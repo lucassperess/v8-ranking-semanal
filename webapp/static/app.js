@@ -15,7 +15,6 @@ async function json(url, options) { const response=await fetch(url,options); let
 function render(data) {
   state.data=data; state.window='primary'; state.ticker=data.windows.primary.top20[0]?.ticker || null;
   $('loading').hidden=true; $('error').hidden=true; $('analysis-status').hidden=true; $('dashboard').hidden=false;
-  text('run-kind',data.kind==='featured'?'Resultado de referência':'Nova análise');
   text('metric-alternative',pct(data.windows.alternative.mean_pct));
   renderWindow();
 }
@@ -133,7 +132,6 @@ function renderHeatmap(rows) {
 async function loadRun(id) {
   state.runId=id; $('dashboard').hidden=true;$('loading').hidden=true;$('analysis-status').hidden=false;
   try {const job=await json(`/api/analyses/${id}`);const names={queued:'Aguardando',running:'Processando',completed:'Concluída',failed:'Falhou'};
-    text('run-kind','Nova análise');
     const panel=$('analysis-status');clear(panel);panel.classList.toggle('failed',job.status==='failed');
     panel.append(node('div','eyebrow','EXECUÇÃO INDEPENDENTE'),node('h2','',job.status==='failed'?'A análise não pôde ser concluída':job.status==='queued'?'Sua análise está na fila':'Preparando sua análise'));
     panel.append(node('p','execution-current',job.error||`${names[job.status]||job.status} · ${job.stage}`));
