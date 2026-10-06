@@ -224,12 +224,16 @@ def submission_details(root: Path, *, featured: bool = False) -> dict | None:
         return None  # Execuções anteriores e execuções pelo comando Python.
     request = _json(path)
     report = _json(output_path(root, 'ranking_report.json', featured=featured))
-    options = request['options']
-    if (request['input_sha256'] != report['input_sha256']
-            or request['reference_date'] != report['week']['reference_date']
-            or options['reviewed_week'] != report['week']
-            or bool(options['allow_nonfriday_end']) != report['week']['nonfriday_end_accepted']
-            or (options['allow_nonfriday_end'] and not options['accepted_at'])):
+    try:
+        options = request['options']
+        compatible = (request['input_sha256'] == report['input_sha256']
+                      and request['reference_date'] == report['week']['reference_date']
+                      and options['reviewed_week'] == report['week']
+                      and bool(options['allow_nonfriday_end']) == report['week']['nonfriday_end_accepted']
+                      and (not options['allow_nonfriday_end'] or options['accepted_at']))
+    except (KeyError, TypeError):
+        raise ValueError('Registro do envio incompleto') from None
+    if not compatible:
         raise ValueError('Decisão do envio diverge da execução')
     return request
 

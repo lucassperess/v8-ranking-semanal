@@ -149,6 +149,8 @@ class ReplicationTests(unittest.TestCase):
         record['input_sha256'] = '0' * 64
         path.write_text(json.dumps(record), encoding='utf-8')
         self.assertEqual(self.client.get(f'/api/analyses/{job_id}/result').status_code, 503)
+        path.write_text('{}', encoding='utf-8')
+        self.assertEqual(self.client.get(f'/api/analyses/{job_id}/result').status_code, 503)
 
     def test_missing_official_sources_fail_with_actionable_message(self):
         raw = extraction('2026-09-18')
