@@ -123,6 +123,9 @@ def audit_details(root: Path, *, featured: bool = False) -> dict:
             if row["field"] == "close" else
             "Campo não usado na fórmula do retorno; fechamento preservado.")}
             for row in selected if row["ticker"] in eligible]
+        for issue in eligible_issues:
+            issue['explanation'] = explain_issue(issue)
+            issue['impact'] = issue['explanation']['impact']
         windows[key] = {"type_exclusions": excluded, "issue_counts": counts,
                         "eligible_issues": eligible_issues,
                         "sources": acquisition["sources"],
@@ -147,6 +150,43 @@ def _decimal(raw: str | None) -> Decimal | None:
         return value if value.is_finite() else None
     except InvalidOperation:
         return None
+
+
+def explain_issue(issue: dict) -> dict:
+    """Explica a ocorrência e seu alcance sem presumir a causa do problema."""
+    descriptions = {
+        'OUTSIDE_DAILY_RANGE': (
+            'O preço informado está abaixo do mínimo ou acima do máximo registrado no CSV para esse dia.',
+            'Um preço do dia deveria ficar entre esses dois limites. Essa diferença merece conferência na extração; não sabemos sua causa.'),
+        'MISSING_VALUE': (
+            'Esse campo veio sem valor no CSV.',
+            'O programa manteve a ausência: não colocou zero nem copiou o valor de outro dia.'),
+        'VOLUME_PRICE_DIVERGENCE': (
+            'O volume bruto difere em mais de 10% do resultado de quantidade ajustada × preço médio ajustado.',
+            'Os campos podem usar bases de ajuste diferentes. Essa comparação, sozinha, não prova erro no volume.'),
+        'LOW_ABOVE_HIGH': (
+            'O menor preço informado para o dia é maior que o maior preço informado.',
+            'Os dois valores são incompatíveis entre si. É preciso conferir a linha no CSV original.'),
+        'NONPOSITIVE_PRICE': (
+            'O preço informado é zero ou negativo.',
+            'Esse valor não pode ser usado como preço válido. O programa não o substitui por outro valor.'),
+        'NEGATIVE_AMOUNT': (
+            'A quantidade ou o volume informado é negativo.',
+            'O registro merece conferência na extração; o programa não corrige esse valor automaticamente.'),
+        'INSTRUMENT_AMBIGUOUS': (
+            'Na leitura inicial, não foi possível confirmar o tipo de instrumento apenas pelo CSV.',
+            'A confirmação é feita depois com as evidências da B3. Nas ações elegíveis desta execução, essa etapa já foi concluída.'),
+    }
+    observed, context = descriptions.get(issue['code'], (
+        issue['reason'], 'Confira o registro na extração e os arquivos de auditoria para entender a ocorrência.'))
+    impact = ('O alerta envolve o fechamento, que é o preço usado para calcular o retorno. '
+              'O valor do CSV não foi corrigido automaticamente; confira-o antes de interpretar o resultado.'
+              if issue['field'] == 'close' else
+              'O ranking usa o fechamento inicial e o final, não este campo. '
+              'Este alerta não altera o retorno calculado e não prova que o fechamento esteja errado.')
+    if issue['code'] == 'INSTRUMENT_AMBIGUOUS':
+        impact = 'A ação só entrou no ranking depois da confirmação oficial do seu tipo nas duas datas usadas no cálculo.'
+    return {'observed': observed, 'context': context, 'impact': impact}
 
 
 def daily_context(normalized_path: Path, tickers: set[str], baseline: str, end: str) -> dict:
@@ -295,7 +335,11 @@ def enrich_interpretation(payload: dict) -> dict:
         issues = [issue for issue in issues if issue['ticker'] in tickers]
         for row in rows:
             row['change_brl'] = str(Decimal(row['end_close']) - Decimal(row['start_close']))
-            row['issues'] = [issue for issue in issues if issue['ticker'] == row['ticker']]
+            row['issues'] = [{**issue, 'explanation': explain_issue(issue)}
+                             for issue in issues if issue['ticker'] == row['ticker']]
+        if key == 'primary':
+            for issue in payload.get('quality', {}).get('top20_issues', []):
+                issue['explanation'] = explain_issue(issue)
         window['interpretation'] = {
             'leader': {field: rows[0][field] for field in ('ticker', 'return_pct', 'change_brl')} if rows else None,
             'last_return_pct': rows[-1]['return_pct'] if rows else None,

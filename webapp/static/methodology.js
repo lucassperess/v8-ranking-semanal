@@ -116,7 +116,7 @@ function showAudit(data) {
         row.source_line,
         `${row.ticker} · ${dateLabel(row.trade_date)}`,
         fieldLabels[row.field] || row.field,
-        row.reason,
+        `${row.explanation.observed} ${row.explanation.context}`,
         row.impact,
       ]),
     );
@@ -244,7 +244,12 @@ async function showMethod() {
     const line = item('div', 'quality-card');
     line.append(
       item('strong', '', `${issue.ticker} · ${dateLabel(issue.trade_date)}`),
-      item('span', '', `${fieldNames[issue.field] || issue.field}: ${issue.reason}`),
+      item(
+        'span',
+        '',
+        `${fieldNames[issue.field] || issue.field}: ${issue.explanation.observed} ${issue.explanation.context}`,
+      ),
+      item('span', '', issue.explanation.impact),
     );
     el('method-quality').append(line);
   });

@@ -35,7 +35,7 @@ class PresentationTests(unittest.TestCase):
         self.assertEqual(counts["OUTSIDE_DAILY_RANGE"]["top20_occurrences"], 1)
         bied = next(row for row in main["eligible_issues"] if row["ticker"] == "BIED3")
         self.assertEqual(bied["field"], "average")
-        self.assertIn("Campo não usado", bied["impact"])
+        self.assertIn("não este campo", bied["impact"])
         self.assertNotEqual(main["dates"], result["windows"]["alternative"]["dates"])
 
     def test_audit_rejects_changed_evidence_and_reports_missing(self):
@@ -75,7 +75,8 @@ class PresentationTests(unittest.TestCase):
         def window(ticker, start, end, change, issues):
             return {'top20': [{'ticker': ticker, 'start_close': start, 'end_close': end,
                               'return_pct': change}], 'quality': {'top20_issues': issues}}
-        issue = {'ticker': 'TEST3', 'field': 'average', 'trade_date': '2026-09-11'}
+        issue = {'ticker': 'TEST3', 'field': 'average', 'trade_date': '2026-09-11',
+                 'code': 'OUTSIDE_DAILY_RANGE', 'reason': 'Valor fora do intervalo mínimo–máximo'}
         payload = {'windows': {
             'primary': window('TEST3', '0.10000001', '0.10000002', '0.00001', [issue]),
             'alternative': window('TEST3', '1.1', '1.0', '-9.0909', []),

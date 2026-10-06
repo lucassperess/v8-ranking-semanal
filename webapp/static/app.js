@@ -197,13 +197,12 @@ function renderDetail() {
     open: 'Abertura',
   };
   for (const issue of row.issues || []) {
+    const explanation = issue.explanation;
     alerts.append(
-      node(
-        'p',
-        '',
-        `${day(issue.trade_date)} · ${labels[issue.field] || issue.field}: ${issue.reason}. ${issue.field === 'close' ? 'Afeta o fechamento usado no retorno; o valor foi preservado, sem correção automática.' : 'Este campo não entra na fórmula do retorno; o fechamento foi preservado.'}`,
-      ),
+      node('strong', '', `${day(issue.trade_date)} · ${labels[issue.field] || issue.field}`),
     );
+    alerts.append(node('p', '', `${explanation.observed} ${explanation.context}`));
+    alerts.append(node('p', '', explanation.impact));
   }
   const returns = state.chartMode === 'returns';
   $('chart-price').classList.toggle('active', !returns);
