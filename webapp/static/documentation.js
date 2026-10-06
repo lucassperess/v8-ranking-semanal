@@ -96,6 +96,22 @@ if ('IntersectionObserver' in window) {
 
 if (matchMedia('(max-width:800px)').matches) document.querySelector('.docs-menu').open = false;
 if (matchMedia('(max-width:1250px)').matches) document.querySelector('.docs-outline').open = false;
+
+// A navegação recolhível muda a altura da página depois da primeira leitura do fragmento.
+window.addEventListener(
+  'load',
+  () => {
+    if (!location.hash) return;
+    let id;
+    try {
+      id = decodeURIComponent(location.hash.slice(1));
+    } catch {
+      return;
+    }
+    document.getElementById(id)?.scrollIntoView({ block: 'start', behavior: 'instant' });
+  },
+  { once: true },
+);
 document.querySelectorAll('.docs-menu,.docs-outline').forEach((menu) => {
   menu.addEventListener('toggle', () => {
     if (menu.open && matchMedia('(max-width:800px)').matches) {
