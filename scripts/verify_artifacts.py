@@ -39,8 +39,14 @@ def verify(root: Path) -> None:
         ordered = sorted(rows, key=lambda row: (-values[row["ticker"]], row["ticker"]))
         if rows != ordered:
             raise ValueError("Ordenação divergente")
-        if result["windows"][key]["top20"] != ordered[:summary["top_n"]]:
+        displayed = result["windows"][key]["top20"]
+        original_fields = [{field: value for field, value in row.items()
+                            if field not in {'change_brl', 'issues'}} for row in displayed]
+        if original_fields != ordered[:summary["top_n"]]:
             raise ValueError("Top 20 divergente")
+        if any(Decimal(row['change_brl']) != Decimal(row['end_close']) - Decimal(row['start_close'])
+               for row in displayed):
+            raise ValueError("Variação absoluta divergente")
         mean = sum((values[row["ticker"]] for row in ordered[:summary["top_n"]]), Decimal(0)) / summary["top_n"]
         if mean != Decimal(summary["mean_return_fraction"]):
             raise ValueError("Média divergente")

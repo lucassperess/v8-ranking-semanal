@@ -8,6 +8,8 @@ const preciseMoney = (value) =>
   );
 const pct = (value) => `${nf.format(Number(value))}%`;
 const signedPct = (value) => `${Number(value) > 0 ? '+' : ''}${pct(value)}`;
+const signedMoney = (value) =>
+  `${Number(value) > 0 ? '+' : Number(value) < 0 ? '−' : ''}R$ ${preciseMoney(Math.abs(Number(value)))}`;
 const day = (value) => {
   if (!value) return '—';
   const [y, m, d] = value.split('-');
@@ -98,6 +100,19 @@ function renderWindow() {
   });
   select.value = state.ticker;
   renderTable(current.top20);
+  const interpretation = current.interpretation;
+  if (interpretation?.leader) {
+    const leader = interpretation.leader;
+    text(
+      'ranking-highlights',
+      `${leader.ticker} lidera com ${signedPct(leader.return_pct)} (${signedMoney(leader.change_brl)} por ação). Os retornos deste top ${current.top20.length} vão de ${pct(interpretation.last_return_pct)} a ${pct(leader.return_pct)}.`,
+    );
+    text(
+      'ranking-limits',
+      `${interpretation.low_initial_price_count} de ${current.top20.length} ações começaram abaixo de R$ 1,00. Uma base de preço pequena pode ampliar a variação percentual; o ganho em R$ aparece no painel da ação.${interpretation.alerted_tickers.length ? ` Há alertas nas pontas para ${interpretation.alerted_tickers.join(', ')}; selecione a ação para conferir.` : ' Nenhum alerta registrado nas pontas do top desta janela.'}`,
+    );
+    text('negotiation-note', interpretation.negotiation_note);
+  }
   renderDetail();
   renderDistribution(b);
   renderHeatmap(current.top20);
@@ -124,6 +139,12 @@ function renderTable(rows) {
         node('td', i === 5 ? (Number(row.return_pct) < 0 ? 'negative' : 'positive') : '', value),
       ),
     );
+    if (row.issues?.length) {
+      const marker = node('span', 'asset-issue-marker', 'ⓘ');
+      marker.title = 'Alerta nesta janela. Selecione a ação para conferir.';
+      marker.setAttribute('aria-label', 'Com alerta; selecione para conferir');
+      tr.children[1].append(marker);
+    }
     const select = () => {
       state.ticker = row.ticker;
       $('asset-select').value = row.ticker;
@@ -160,7 +181,30 @@ function renderDetail() {
   text('detail-kind', row.instrument_type === 'acao_on' ? 'AÇÃO ORDINÁRIA' : 'AÇÃO PREFERENCIAL');
   text('detail-return', signedPct(row.return_pct));
   $('detail-return').classList.toggle('negative', Number(row.return_pct) < 0);
-  const note = state.data.quality.top20_issues.filter((item) => item.ticker === row.ticker);
+  text('detail-start', `R$ ${preciseMoney(row.start_close)}`);
+  text('detail-end', `R$ ${preciseMoney(row.end_close)}`);
+  text('detail-change', signedMoney(row.change_brl));
+  const alerts = $('detail-alerts');
+  clear(alerts);
+  alerts.hidden = !row.issues?.length;
+  const labels = {
+    close: 'Fechamento',
+    average: 'Preço médio',
+    raw_volume: 'Volume bruto',
+    adjusted_quantity: 'Quantidade ajustada',
+    high: 'Máximo',
+    low: 'Mínimo',
+    open: 'Abertura',
+  };
+  for (const issue of row.issues || []) {
+    alerts.append(
+      node(
+        'p',
+        '',
+        `${day(issue.trade_date)} · ${labels[issue.field] || issue.field}: ${issue.reason}. ${issue.field === 'close' ? 'Afeta o fechamento usado no retorno; o valor foi preservado, sem correção automática.' : 'Este campo não entra na fórmula do retorno; o fechamento foi preservado.'}`,
+      ),
+    );
+  }
   const returns = state.chartMode === 'returns';
   $('chart-price').classList.toggle('active', !returns);
   $('chart-returns').classList.toggle('active', returns);
@@ -168,7 +212,7 @@ function renderDetail() {
   $('chart-returns').setAttribute('aria-pressed', String(returns));
   text(
     'detail-note',
-    `${note.length ? `Atenção: ${note.map((item) => `${day(item.trade_date)} · ${item.field}: ${item.reason}`).join('; ')}. ` : ''}${returns ? 'Retorno entre fechamentos ajustados de datas consecutivas da extração. Uma lacuna indica ausência de comparação válida.' : 'Preço de fechamento ajustado em reais (R$) por ação.'} O ranking compara os fechamentos de ${day(row.start_date)} e ${day(row.end_date)}.`,
+    `${returns ? 'Retorno entre fechamentos ajustados de datas consecutivas da extração. Uma lacuna indica ausência de comparação válida.' : 'Preço de fechamento ajustado em reais (R$) por ação.'} O ranking compara os fechamentos de ${day(row.start_date)} e ${day(row.end_date)}. Variação em R$ = final − inicial, por ação ajustada; não representa o resultado de uma operação com custos.`,
   );
   const box = $('detail-chart');
   clear(box);

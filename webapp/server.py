@@ -21,7 +21,7 @@ from webapp import documentation
 from webapp.pages import render_page
 from webapp.review import review_input, problem
 from weekly_ranking import RankingError
-from webapp.presentation import DOWNLOADS, audit_details, build_presentation, output_path, submission_details
+from webapp.presentation import DOWNLOADS, audit_details, build_presentation, enrich_interpretation, output_path, submission_details
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -215,7 +215,11 @@ def analysis_result(job_id: str):
     except ValueError as exc:
         raise HTTPException(503, f"Não foi possível conferir os arquivos desta execução: {exc}") from None
     payload["downloads"] = [name for name in DOWNLOADS if output_path(root, name).is_file()]
-    return JSONResponse(payload)
+    for key, name in (('primary', 'quality_context.json'), ('alternative', 'quality_context_alternativo.json')):
+        quality_path = output_path(root, name)
+        if quality_path.is_file():
+            payload['windows'][key]['quality'] = json.loads(quality_path.read_text(encoding='utf-8'))
+    return JSONResponse(enrich_interpretation(payload))
 
 
 @app.get("/api/analyses/{job_id}/files/{name}")

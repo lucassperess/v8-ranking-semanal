@@ -11,9 +11,9 @@
       name="description"
       content="Ranking semanal de ações brasileiras com metodologia, alertas e teste de novas extrações da Economatica."
     />
-    <link rel="stylesheet" href="/static/styles.css?v=organized-20261006" />
+    <link rel="stylesheet" href="/static/styles.css?v=interpretation-20261006" />
     <link rel="stylesheet" href="/static/mobile.css?v=menu-20261006" />
-    <script src="/static/app.js?v=mobile-20261006" defer></script>
+    <script src="/static/app.js?v=interpretation-20261006" defer></script>
     <script src="/static/header.js?v=menu-20261006" defer></script>
   </head>
   <body>
@@ -147,6 +147,14 @@
                 </button>
               </div>
             </div>
+            <div class="ranking-summary" aria-label="Destaques da janela selecionada">
+              <p id="ranking-highlights"></p>
+              <p id="ranking-limits" class="muted"></p>
+              <details class="negotiation-context">
+                <summary>Contexto de negociação</summary>
+                <p id="negotiation-note" class="muted"></p>
+              </details>
+            </div>
             <a class="mobile-chart-link" href="#asset-detail"
               >Toque em uma ação para ver o gráfico · explorar ↓</a
             >
@@ -180,6 +188,21 @@
                   </div>
                   <span id="detail-return" class="detail-return"></span>
                 </div>
+                <dl class="price-comparison" aria-label="Fechamentos e variação da janela">
+                  <div>
+                    <dt>Inicial</dt>
+                    <dd id="detail-start"></dd>
+                  </div>
+                  <div>
+                    <dt>Final</dt>
+                    <dd id="detail-end"></dd>
+                  </div>
+                  <div>
+                    <dt>Variação (R$)</dt>
+                    <dd id="detail-change"></dd>
+                  </div>
+                </dl>
+                <div id="detail-alerts" class="asset-alerts" hidden></div>
                 <div class="chart-controls">
                   <div class="chart-mode window-switch" role="group" aria-label="Medida do gráfico">
                     <button id="chart-price" class="active" type="button" aria-pressed="true">

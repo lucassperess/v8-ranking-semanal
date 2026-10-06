@@ -256,10 +256,11 @@ def build_presentation(root: Path, *, featured: bool = False,
             expected_hash = summary.get("outputs", {}).get(expected_name)
             if expected_hash and digest(path) != expected_hash:
                 raise ValueError(f"Hash divergente: {name}")
+        window_quality = _json(output_path(root, "quality_context" + suffix + ".json", featured=featured))
         windows[key] = {"start_date": summary["start_date"], "end_date": summary["end_date"],
                         "mean_pct": summary["mean_return_pct_display"],
                         "eligible": summary["eligible_shares"], "excluded": summary["excluded_instruments"],
-                        "top20": rows, "breadth": _distribution(all_rows)}
+                        "top20": rows, "breadth": _distribution(all_rows), "quality": window_quality}
     quality = _json(output_path(root, "quality_context.json", featured=featured))
     exclusions = _csv(output_path(root, "candidate_exclusions.csv", featured=featured))
     tickers = {row["ticker"] for window in windows.values() for row in window["top20"]}
@@ -269,7 +270,7 @@ def build_presentation(root: Path, *, featured: bool = False,
     else:
         series_path = root / "daily_context.json"
         daily = _json(series_path) if series_path.exists() else {"dates": [], "series": {}, "heatmap": {}, "note": "Série diária indisponível."}
-    return {"kind": "featured" if featured else "analysis", "week": report["week"],
+    payload = {"kind": "featured" if featured else "analysis", "week": report["week"],
             'submission': submission_details(root, featured=featured),
             "windows": windows, "daily": daily, "quality": quality,
             "exclusions": {"count": len(exclusions), "reasons": dict(Counter(row["reason"] for row in exclusions))},
@@ -278,6 +279,33 @@ def build_presentation(root: Path, *, featured: bool = False,
                            "code_sha256": report["code_sha256"], "pipeline_version": report["version"]},
             "audit": audit_details(root, featured=featured),
             "downloads": [name for name in DOWNLOADS if output_path(root, name, featured=featured).exists()]}
+    return enrich_interpretation(payload)
+
+
+def enrich_interpretation(payload: dict) -> dict:
+    """Contexto determinístico em Decimal, separado dos derivados auditados."""
+    for key, window in payload['windows'].items():
+        rows = window['top20']
+        issues = window.get('quality', {}).get('top20_issues')
+        if issues is None:
+            audit_window = payload.get('audit', {}).get('windows', {}).get(key)
+            issues = audit_window['eligible_issues'] if audit_window else (
+                payload.get('quality', {}).get('top20_issues', []) if key == 'primary' else [])
+        tickers = {row['ticker'] for row in rows}
+        issues = [issue for issue in issues if issue['ticker'] in tickers]
+        for row in rows:
+            row['change_brl'] = str(Decimal(row['end_close']) - Decimal(row['start_close']))
+            row['issues'] = [issue for issue in issues if issue['ticker'] == row['ticker']]
+        window['interpretation'] = {
+            'leader': {field: rows[0][field] for field in ('ticker', 'return_pct', 'change_brl')} if rows else None,
+            'last_return_pct': rows[-1]['return_pct'] if rows else None,
+            'low_initial_price_count': sum(Decimal(row['start_close']) < 1 for row in rows),
+            'alerted_tickers': sorted({issue['ticker'] for issue in issues}),
+            'negotiation_note': 'O CSV contém volume bruto e quantidade ajustada. As bases podem divergir; '
+                                'sem confirmação de escala e comparabilidade, não há medida de liquidez nesta tela. '
+                                'O ranking não usa filtro de liquidez.',
+        }
+    return payload
 
 
 def write_featured_daily(root: Path, normalized_path: Path) -> Path:

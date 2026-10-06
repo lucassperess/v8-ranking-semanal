@@ -14,7 +14,7 @@ from fastapi.testclient import TestClient
 
 import etl
 from webapp import store
-from webapp.presentation import DOWNLOADS, audit_details, build_presentation, daily_context, output_path
+from webapp.presentation import DOWNLOADS, audit_details, build_presentation, daily_context, enrich_interpretation, output_path
 from webapp.server import app
 
 
@@ -71,6 +71,26 @@ class PresentationTests(unittest.TestCase):
             self.assertIsNone(result["heatmap"]["ABCD3"][0]["return_pct"])
             self.assertIsNone(result["heatmap"]["ABCD3"][1]["return_pct"])
 
+    def test_interpretation_decimal_and_window_isolation(self):
+        def window(ticker, start, end, change, issues):
+            return {'top20': [{'ticker': ticker, 'start_close': start, 'end_close': end,
+                              'return_pct': change}], 'quality': {'top20_issues': issues}}
+        issue = {'ticker': 'TEST3', 'field': 'average', 'trade_date': '2026-09-11'}
+        payload = {'windows': {
+            'primary': window('TEST3', '0.10000001', '0.10000002', '0.00001', [issue]),
+            'alternative': window('TEST3', '1.1', '1.0', '-9.0909', []),
+        }}
+        result = enrich_interpretation(payload)
+        main = result['windows']['primary']
+        alt = result['windows']['alternative']
+        self.assertEqual(main['top20'][0]['change_brl'], '1E-8')
+        self.assertEqual(alt['top20'][0]['change_brl'], '-0.1')
+        self.assertEqual(main['interpretation']['low_initial_price_count'], 1)
+        self.assertEqual(alt['interpretation']['low_initial_price_count'], 0)
+        self.assertEqual(main['interpretation']['alerted_tickers'], ['TEST3'])
+        self.assertEqual(alt['top20'][0]['issues'], [])
+        self.assertEqual(main['top20'][0]['return_pct'], '0.00001')
+
 
 class ApiTests(unittest.TestCase):
     def setUp(self):
@@ -107,10 +127,18 @@ class ApiTests(unittest.TestCase):
             shutil.copyfile(source / name, target)
         payload = build_presentation(source, featured=True)
         payload.pop("audit")  # Execuções concluídas antes desta ampliação.
+        for window in payload['windows'].values():
+            window.pop('interpretation')
+            window.pop('quality')
+            for row in window['top20']:
+                row.pop('change_brl')
+                row.pop('issues')
         (root / "presentation.json").write_text(json.dumps(payload), encoding="utf-8")
         store.update_job(job_id, status="completed", stage="Concluída")
         response = self.client.get(f"/api/analyses/{job_id}/result")
         self.assertTrue(response.json()["audit"]["available"])
+        self.assertEqual(response.json()['windows']['primary']['top20'][0]['change_brl'], '0.50')
+        self.assertIn('interpretation', response.json()['windows']['alternative'])
         for name in response.json()["downloads"]:
             self.assertEqual(self.client.get(f"/api/analyses/{job_id}/files/{name}").status_code, 200)
         self.assertEqual(self.client.get(f"/api/analyses/{job_id}/files/normalized.csv").status_code, 404)

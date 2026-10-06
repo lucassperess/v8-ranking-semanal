@@ -2260,3 +2260,84 @@ footer,
   margin: 3px 0 0;
   accent-color: #66666b;
 }
+
+/* Contexto da janela e comparação por ação; não modifica a seleção. */
+.ranking-summary {
+  margin: 0 0 24px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #080808;
+  font-size: 13px;
+  line-height: 1.65;
+}
+.ranking-summary p {
+  margin: 0;
+}
+.ranking-summary p + p {
+  margin-top: 8px;
+}
+.negotiation-context {
+  margin-top: 10px;
+}
+.negotiation-context summary {
+  cursor: pointer;
+  color: var(--muted);
+  padding: 4px 0;
+}
+.negotiation-context p {
+  padding-top: 8px;
+}
+.price-comparison {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 18px 0;
+}
+.price-comparison dt {
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+.price-comparison dd {
+  margin: 0;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+.asset-alerts {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+.asset-alerts p {
+  margin: 0;
+}
+.asset-alerts p + p {
+  margin-top: 8px;
+}
+.asset-issue-marker {
+  margin-left: 6px;
+  color: var(--muted);
+  font-size: 12px;
+}
+@media (max-width: 600px) {
+  .ranking-summary {
+    padding: 14px;
+  }
+  .negotiation-context summary {
+    min-height: 44px;
+    display: list-item;
+    align-content: center;
+  }
+  .price-comparison {
+    gap: 8px;
+  }
+  .price-comparison dd {
+    font-size: 13px;
+  }
+}
