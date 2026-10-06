@@ -1,52 +1,232 @@
 <!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080b10">
-  <title>Ranking semanal de ações · V8 Capital</title>
-  <meta name="description" content="Ranking semanal de ações brasileiras com metodologia, alertas e teste de novas extrações da Economatica.">
-  <link rel="stylesheet" href="/static/styles.css?v=info-20261006-3">
-  <script src="/static/app.js" defer></script>
-<script src="/static/header.js" defer></script></head>
-<body>
-  <a class="skip-link" href="#ranking">Ir para o ranking</a>
-  <div class="shell">
-    <header class="topbar">
-      <a class="brand" href="/" aria-label="Voltar ao resultado de referência"><img class="brand-logo" src="/static/v8-logo.png" alt="V8 Capital" width="40" height="40"></a>
-      <nav class="topnav" aria-label="Navegação principal"><a id="nav-result" href="/" aria-current="page">Ranking</a><a id="nav-method" href="/documentacao">Documentação</a><a href="/nova-analise">Nova análise</a></nav>
-      <div class="header-actions"><a class="source-link" href="https://github.com/lucassperess/v8-ranking-semanal" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .75a11.25 11.25 0 0 0-3.56 21.92c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.29-5.13-1.25-5.13-5.56 0-1.23.44-2.24 1.16-3.03-.12-.29-.5-1.43.11-2.97 0 0 .95-.3 3.09 1.16a10.76 10.76 0 0 1 5.62 0c2.15-1.46 3.09-1.16 3.09-1.16.61 1.54.23 2.68.12 2.97.72.79 1.15 1.8 1.15 3.03 0 4.32-2.63 5.27-5.14 5.55.4.35.76 1.03.76 2.08v3.11c0 .3.2.65.78.54A11.25 11.25 0 0 0 12 .75Z"/></svg><span>Código no GitHub</span><span aria-hidden="true">↗</span></a><button id="fullscreen-button" class="fullscreen-button" type="button" aria-label="Entrar em tela cheia" title="Entrar em tela cheia" aria-pressed="false"><svg class="fullscreen-expand" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg><svg class="fullscreen-collapse" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h5V3M21 8h-5V3M8 21v-5H3M16 21v-5h5"/></svg></button><span id="fullscreen-message" class="fullscreen-message" role="status" hidden></span></div>
-    </header>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#080b10" />
+    <title>Ranking semanal de ações · V8 Capital</title>
+    <meta
+      name="description"
+      content="Ranking semanal de ações brasileiras com metodologia, alertas e teste de novas extrações da Economatica."
+    />
+    <link rel="stylesheet" href="/static/styles.css?v=organized-20261006" />
+    <script src="/static/app.js" defer></script>
+    <script src="/static/header.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#ranking">Ir para o ranking</a>
+    <div class="shell">
+      {{HEADER}}
 
-    <main>
-      <section class="intro">
-        <div class="intro-grid"><div><h1>Ranking semanal de ações</h1><p>Maiores altas entre ações ON e PN · preços de fechamento ajustados da Economatica</p></div><a id="execution-audit" class="audit-access" href="/metodologia">Auditoria desta execução ↗</a></div>
-      </section>
-
-      <div id="loading" class="status-box" role="status">Carregando resultado…</div>
-      <div id="error" class="status-box status-error" role="alert" hidden></div>
-      <section id="analysis-status" class="execution-status" hidden aria-live="polite"></section>
-
-      <div id="dashboard" hidden>
-        <section class="metric-strip" aria-label="Indicadores principais">
-          <div class="metric main-metric"><span class="metric-label">Média do top 20</span><strong id="metric-mean"></strong><span class="metric-info"><button class="info-button" type="button" aria-label="Sobre média do top 20" aria-describedby="metric-mean-help">i</button><span id="metric-mean-help" class="info-tooltip metric-tooltip" role="tooltip">Média aritmética dos 20 maiores retornos da janela selecionada.</span></span></div>
-          <div class="metric"><span class="metric-label">Ações elegíveis</span><strong id="metric-eligible"></strong><span class="metric-info"><button class="info-button" type="button" aria-label="Sobre ações elegíveis" aria-describedby="metric-eligible-help">i</button><span id="metric-eligible-help" class="info-tooltip metric-tooltip" role="tooltip">Ações ordinárias e preferenciais confirmadas, com fechamento válido nas duas pontas da janela selecionada.</span></span></div>
-          <div class="metric"><span class="metric-label">Ações em alta</span><strong id="metric-up"></strong><span class="metric-info"><button class="info-button" type="button" aria-label="Sobre ações em alta" aria-describedby="metric-up-help">i</button><span id="metric-up-help" class="info-tooltip metric-tooltip" role="tooltip">Percentual das ações elegíveis com retorno positivo na janela selecionada. <span id="metric-up-note"></span>.</span></span></div>
-          <div class="metric"><span class="metric-label">Janela alternativa</span><strong id="metric-alternative"></strong><span class="metric-info"><button class="info-button" type="button" aria-label="Sobre janela alternativa" aria-describedby="metric-alternative-help">i</button><span id="metric-alternative-help" class="info-tooltip metric-tooltip" role="tooltip">Média aritmética dos 20 maiores retornos entre o primeiro e o último fechamento disponíveis dentro da semana.</span></span></div>
+      <main>
+        <section class="intro">
+          <div class="intro-grid">
+            <div>
+              <h1>Ranking semanal de ações</h1>
+              <p>
+                Maiores altas entre ações ON e PN · preços de fechamento ajustados da Economatica
+              </p>
+            </div>
+            <a id="execution-audit" class="audit-access" href="/metodologia"
+              >Auditoria desta execução ↗</a
+            >
+          </div>
         </section>
 
-        <section id="ranking" class="section ranking-section">
-          <div class="section-head"><div><div class="ranking-title-row"><h2>Maiores altas da semana</h2><a id="ranking-download" class="download-button" download>Baixar este ranking · CSV ↓</a></div><div class="ranking-period"><p id="ranking-subtitle"></p><span class="period-info"><button class="info-button" type="button" aria-label="Como o período é calculado" aria-describedby="window-explanation">i</button><span id="window-explanation" class="info-tooltip period-tooltip" role="tooltip"></span></span></div></div><div class="window-switch" role="group" aria-label="Janela do ranking"><button id="primary-button" class="active" type="button" aria-pressed="true">Semana completa</button><button id="alternative-button" type="button" aria-pressed="false">Dentro da semana</button></div></div>
-          <a class="mobile-chart-link" href="#asset-detail">Explorar gráfico e selecionar ação ↓</a><div class="ranking-grid"><div class="table-wrap"><table><thead><tr><th>#</th><th>ATIVO</th><th>ESPÉCIE</th><th>INICIAL (R$)</th><th>FINAL (R$)</th><th>RETORNO (%)</th></tr></thead><tbody id="ranking-body"></tbody></table></div><aside id="asset-detail" class="detail-panel"><div class="detail-top"><div><span class="detail-overline">ATIVO SELECIONADO</span><h3 id="detail-ticker"></h3><span id="detail-kind" class="ticker-kind"></span></div><span id="detail-return" class="detail-return"></span></div><div class="chart-controls"><div class="chart-mode window-switch" role="group" aria-label="Medida do gráfico"><button id="chart-price" class="active" type="button" aria-pressed="true">Preços (R$)</button><button id="chart-returns" type="button" aria-pressed="false">Retornos diários (%)</button></div><select id="asset-select" aria-label="Selecionar ação para o gráfico"></select></div><div id="detail-chart" class="detail-chart"></div><div id="detail-note" class="detail-note"></div></aside></div>
-        </section>
+        <div id="loading" class="status-box" role="status">Carregando resultado…</div>
+        <div id="error" class="status-box status-error" role="alert" hidden></div>
+        <section id="analysis-status" class="execution-status" hidden aria-live="polite"></section>
 
-        <section class="section context-section"><div class="section-head"><div><span class="section-kicker">02 / CONTEXTO</span><h2>Além do top 20</h2><p>Distribuição e amplitude das ações elegíveis nesta extração.</p></div></div><div class="context-grid"><div class="context-panel"><h3>Distribuição dos retornos</h3><div id="distribution" class="distribution"></div></div><div class="context-panel breadth-panel"><h3>Amplitude da amostra</h3><div id="breadth-counts" class="breadth-counts"></div><div id="breadth-bar" class="breadth-bar"></div><p id="breadth-note" class="muted"></p></div></div></section>
+        <div id="dashboard" hidden>
+          <section class="metric-strip" aria-label="Indicadores principais">
+            <div class="metric main-metric">
+              <span class="metric-label">Média do top 20</span><strong id="metric-mean"></strong
+              ><span class="metric-info"
+                ><button
+                  class="info-button"
+                  type="button"
+                  aria-label="Sobre média do top 20"
+                  aria-describedby="metric-mean-help"
+                >
+                  i</button
+                ><span id="metric-mean-help" class="info-tooltip metric-tooltip" role="tooltip"
+                  >Média aritmética dos 20 maiores retornos da janela selecionada.</span
+                ></span
+              >
+            </div>
+            <div class="metric">
+              <span class="metric-label">Ações elegíveis</span><strong id="metric-eligible"></strong
+              ><span class="metric-info"
+                ><button
+                  class="info-button"
+                  type="button"
+                  aria-label="Sobre ações elegíveis"
+                  aria-describedby="metric-eligible-help"
+                >
+                  i</button
+                ><span id="metric-eligible-help" class="info-tooltip metric-tooltip" role="tooltip"
+                  >Ações ordinárias e preferenciais confirmadas, com fechamento válido nas duas
+                  pontas da janela selecionada.</span
+                ></span
+              >
+            </div>
+            <div class="metric">
+              <span class="metric-label">Ações em alta</span><strong id="metric-up"></strong
+              ><span class="metric-info"
+                ><button
+                  class="info-button"
+                  type="button"
+                  aria-label="Sobre ações em alta"
+                  aria-describedby="metric-up-help"
+                >
+                  i</button
+                ><span id="metric-up-help" class="info-tooltip metric-tooltip" role="tooltip"
+                  >Percentual das ações elegíveis com retorno positivo na janela selecionada.
+                  <span id="metric-up-note"></span>.</span
+                ></span
+              >
+            </div>
+            <div class="metric">
+              <span class="metric-label">Janela alternativa</span
+              ><strong id="metric-alternative"></strong
+              ><span class="metric-info"
+                ><button
+                  class="info-button"
+                  type="button"
+                  aria-label="Sobre janela alternativa"
+                  aria-describedby="metric-alternative-help"
+                >
+                  i</button
+                ><span
+                  id="metric-alternative-help"
+                  class="info-tooltip metric-tooltip"
+                  role="tooltip"
+                  >Média aritmética dos 20 maiores retornos entre o primeiro e o último fechamento
+                  disponíveis dentro da semana.</span
+                ></span
+              >
+            </div>
+          </section>
 
-        <section class="section heatmap-section"><div class="section-head"><div><span class="section-kicker">03 / TRAJETÓRIA</span><h2>Movimento diário do top 20</h2><p>Variação entre datas consecutivas da extração. Células vazias não são preenchidas.</p></div></div><p class="heatmap-legend"><span class="positive">Alta</span> · <span class="negative">Queda</span> · — Sem comparação válida</p><div id="heatmap" class="heatmap-wrap"></div></section>
+          <section id="ranking" class="section ranking-section">
+            <div class="section-head">
+              <div>
+                <div class="ranking-title-row">
+                  <h2>Maiores altas da semana</h2>
+                  <a id="ranking-download" class="download-button" download
+                    >Baixar este ranking · CSV ↓</a
+                  >
+                </div>
+                <div class="ranking-period">
+                  <p id="ranking-subtitle"></p>
+                  <span class="period-info"
+                    ><button
+                      class="info-button"
+                      type="button"
+                      aria-label="Como o período é calculado"
+                      aria-describedby="window-explanation"
+                    >
+                      i</button
+                    ><span
+                      id="window-explanation"
+                      class="info-tooltip period-tooltip"
+                      role="tooltip"
+                    ></span
+                  ></span>
+                </div>
+              </div>
+              <div class="window-switch" role="group" aria-label="Janela do ranking">
+                <button id="primary-button" class="active" type="button" aria-pressed="true">
+                  Semana completa</button
+                ><button id="alternative-button" type="button" aria-pressed="false">
+                  Dentro da semana
+                </button>
+              </div>
+            </div>
+            <a class="mobile-chart-link" href="#asset-detail"
+              >Explorar gráfico e selecionar ação ↓</a
+            >
+            <div class="ranking-grid">
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>ATIVO</th>
+                      <th>ESPÉCIE</th>
+                      <th>INICIAL (R$)</th>
+                      <th>FINAL (R$)</th>
+                      <th>RETORNO (%)</th>
+                    </tr>
+                  </thead>
+                  <tbody id="ranking-body"></tbody>
+                </table>
+              </div>
+              <aside id="asset-detail" class="detail-panel">
+                <div class="detail-top">
+                  <div>
+                    <span class="detail-overline">ATIVO SELECIONADO</span>
+                    <h3 id="detail-ticker"></h3>
+                    <span id="detail-kind" class="ticker-kind"></span>
+                  </div>
+                  <span id="detail-return" class="detail-return"></span>
+                </div>
+                <div class="chart-controls">
+                  <div class="chart-mode window-switch" role="group" aria-label="Medida do gráfico">
+                    <button id="chart-price" class="active" type="button" aria-pressed="true">
+                      Preços (R$)</button
+                    ><button id="chart-returns" type="button" aria-pressed="false">
+                      Retornos diários (%)
+                    </button>
+                  </div>
+                  <select id="asset-select" aria-label="Selecionar ação para o gráfico"></select>
+                </div>
+                <div id="detail-chart" class="detail-chart"></div>
+                <div id="detail-note" class="detail-note"></div>
+              </aside>
+            </div>
+          </section>
 
-      </div>
+          <section class="section context-section">
+            <div class="section-head">
+              <div>
+                <span class="section-kicker">02 / CONTEXTO</span>
+                <h2>Além do top 20</h2>
+                <p>Distribuição e amplitude das ações elegíveis nesta extração.</p>
+              </div>
+            </div>
+            <div class="context-grid">
+              <div class="context-panel">
+                <h3>Distribuição dos retornos</h3>
+                <div id="distribution" class="distribution"></div>
+              </div>
+              <div class="context-panel breadth-panel">
+                <h3>Amplitude da amostra</h3>
+                <div id="breadth-counts" class="breadth-counts"></div>
+                <div id="breadth-bar" class="breadth-bar"></div>
+                <p id="breadth-note" class="muted"></p>
+              </div>
+            </div>
+          </section>
 
-    </main>
-  </div>
-</body>
+          <section class="section heatmap-section">
+            <div class="section-head">
+              <div>
+                <span class="section-kicker">03 / TRAJETÓRIA</span>
+                <h2>Movimento diário do top 20</h2>
+                <p>
+                  Variação entre datas consecutivas da extração. Células vazias não são preenchidas.
+                </p>
+              </div>
+            </div>
+            <p class="heatmap-legend">
+              <span class="positive">Alta</span> · <span class="negative">Queda</span> · — Sem
+              comparação válida
+            </p>
+            <div id="heatmap" class="heatmap-wrap"></div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </body>
 </html>

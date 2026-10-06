@@ -41,6 +41,9 @@ No Linux/macOS, substitua `.venv\Scripts\python` por `.venv/bin/python`. Veja co
 - Faça mudanças dentro do escopo pedido. Planejamento de uma fase não autoriza executar fases posteriores.
 - Atualize documentação e testes relevantes quando mudar uma regra ou contrato.
 - Use casos sintéticos independentes de rede para os controles; a regressão com CSV original é opcional via `ECONOMATICA_CASE_CSV`.
+- O cabeçalho compartilhado fica em `webapp/templates/header.html`, composto por `webapp/pages.py`; não duplique sua marcação nas páginas.
+- Para a interface, use Node 22, `npm ci --ignore-scripts`, `npm run format:check` e `npm run check:frontend`. Formate mudanças com `npm run format`.
+- Execute `python -m ruff check .` e `python -m scripts.verify_artifacts` com o Python do ambiente virtual. Não reformate arquivos em `resultados/`: suas assinaturas dependem dos bytes preservados.
 - Execute os testes pertinentes e `git diff --check` antes de concluir. Para mudanças que atravessam módulos, execute a suíte completa.
 - Para UI, confira a página afetada no navegador e uma largura móvel quando o layout for alterado. Não trate uma resposta HTTP 200 como confirmação visual.
 - Distinga comportamento implementado, proposta e limitação conhecida nos textos.

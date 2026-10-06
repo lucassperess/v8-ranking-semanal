@@ -1,13 +1,170 @@
 <!doctype html>
 <html lang="pt-BR">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#000"><title>Nova análise · V8 Capital</title><link rel="stylesheet" href="/static/styles.css?v=info-20261006-3"><script src="/static/new-analysis.js" defer></script><script src="/static/header.js" defer></script></head>
-<body class="new-analysis-page"><a class="skip-link" href="#upload-form">Ir para o envio</a><div class="shell">
-<header class="topbar"><a class="brand" href="/" aria-label="Resultado de referência"><img class="brand-logo" src="/static/v8-logo.png" alt="V8 Capital" width="40" height="40"></a><nav class="topnav" aria-label="Navegação principal"><a href="/">Ranking</a><a href="/documentacao">Documentação</a><a href="/nova-analise" aria-current="page">Nova análise</a></nav><div class="header-actions"><a class="source-link" href="https://github.com/lucassperess/v8-ranking-semanal" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .75a11.25 11.25 0 0 0-3.56 21.92c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.29-5.13-1.25-5.13-5.56 0-1.23.44-2.24 1.16-3.03-.12-.29-.5-1.43.11-2.97 0 0 .95-.3 3.09 1.16a10.76 10.76 0 0 1 5.62 0c2.15-1.46 3.09-1.16 3.09-1.16.61 1.54.23 2.68.12 2.97.72.79 1.15 1.8 1.15 3.03 0 4.32-2.63 5.27-5.14 5.55.4.35.76 1.03.76 2.08v3.11c0 .3.2.65.78.54A11.25 11.25 0 0 0 12 .75Z"/></svg><span>Código no GitHub</span><span aria-hidden="true">↗</span></a><button id="fullscreen-button" class="fullscreen-button" type="button" aria-label="Entrar em tela cheia" title="Entrar em tela cheia" aria-pressed="false"><svg class="fullscreen-expand" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg><svg class="fullscreen-collapse" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h5V3M21 8h-5V3M8 21v-5H3M16 21v-5h5"/></svg></button><span id="fullscreen-message" class="fullscreen-message" role="status" hidden></span></div></header>
-<main><div class="page-heading"><h1>Nova análise</h1><p>Envie sua extração da Economatica e escolha a referência. O mesmo processo produzirá um resultado independente, com seu próprio link e arquivos de conferência.</p><div class="page-context"><a href="/">Ver o resultado do case ↗</a><a href="/documentacao/metodologia">Conhecer os critérios ↗</a></div></div>
-<div class="new-analysis-layout"><form id="upload-form" class="upload-form upload-workspace">
-  <section class="form-stage"><div class="form-stage-heading"><span>01</span><div><h2>Escolha a extração</h2><p>Use o CSV no mesmo formato do case.</p></div></div><label class="file-drop" id="file-drop" for="csv-file"><span class="file-icon" aria-hidden="true">↑</span><strong id="file-title">Selecionar arquivo CSV</strong><span id="file-description">ou arraste e solte aqui · até 10 MB</span><input id="csv-file" name="file" type="file" accept=".csv,text/csv" required aria-label="Arquivo CSV da Economatica" aria-describedby="format-help"></label><p id="format-help" class="muted">Vírgula como separador, ponto decimal, UTF-8 ou Windows-1252 e “-” para ausência. As nove colunas precisam manter os nomes e a ordem documentados.</p><details class="format-details"><summary>Conferir as nove colunas do arquivo</summary><ol><li>Ativo</li><li>Data</li><li>Fechamento|ajust p/ prov|Em moeda orig</li><li>Q Títs|ajust p/ prov</li><li>Abertura|ajust p/ prov|Em moeda orig</li><li>Máximo|ajust p/ prov|Em moeda orig</li><li>Mínimo|ajust p/ prov|Em moeda orig</li><li>Médio|ajust p/ prov|Em moeda orig</li><li>Volume$|Em moeda orig</li></ol><p>O processo confere o formato no envio. Uma mudança de estrutura gera uma mensagem de erro.</p></details></section>
-  <section class="form-stage"><div class="form-stage-heading"><span>02</span><div><h2>Confira a semana</h2><p>A referência seleciona a semana-calendário anterior.</p></div></div><label for="reference-date">Data de referência</label><input id="reference-date" name="reference_date" type="date" required aria-describedby="reference-help week-preview"><small id="reference-help">Exemplo: 22/09/2026 seleciona a semana de 14 a 20/09/2026.</small><p id="date-suggestion" class="muted" aria-live="polite"></p><div id="week-preview" class="week-preview" aria-live="polite"></div><p class="muted">Os fechamentos exatos são definidos pelos dados disponíveis. A janela principal parte do fechamento anterior à semana; a alternativa compara as duas pontas dentro dela.</p></section>
-  <section class="form-stage submit-stage"><div class="form-stage-heading"><span>03</span><div><h2>Execute e acompanhe</h2><p>A próxima página mostrará o estado do processamento.</p></div></div><button id="submit-button" type="submit">Executar nova análise ↗</button><div id="form-message" role="alert" aria-live="polite"></div></section>
-</form><aside class="analysis-guide"><h2>O que você recebe</h2><ol class="deliverable-list"><li><strong>Ranking e gráficos</strong><p>Top 20, média, distribuição, preços e retornos diários.</p></li><li><strong>Método aplicado à sua base</strong><p>Datas selecionadas, universo elegível e motivos das exclusões.</p></li><li><strong>Arquivos para conferência</strong><p>Resultados derivados disponíveis na metodologia da sua execução.</p></li></ol><div class="run-limits"><h3>Limites e disponibilidade</h3><dl><div><dt>Tamanho máximo</dt><dd>10 MB</dd></div><div><dt>Processamento máximo</dt><dd>10 minutos</dd></div><div><dt>Fila</dt><dd>1 ativa + 2 aguardando</dd></div><div><dt>Envios por origem</dt><dd>3 por hora</dd></div><div><dt>Resultado disponível</dt><dd>7 dias</dd></div></dl></div><p class="doc-note">Guarde o link da sua execução. Os envios não aparecem em uma lista pública. O CSV original não é disponibilizado para download e é removido após 24 horas.</p><p class="muted">O processamento depende das fontes oficiais da B3. Uma falha na obtenção ou confirmação dos instrumentos é explicada na página da execução.</p></aside></div></main>
-<footer><span>V8 CAPITAL · CASE TÉCNICO DE DADOS</span><span>O resultado de referência permanece disponível na página do ranking.</span></footer>
-</div></body></html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000" />
+    <title>Nova análise · V8 Capital</title>
+    <link rel="stylesheet" href="/static/styles.css?v=organized-20261006" />
+    <script src="/static/new-analysis.js" defer></script>
+    <script src="/static/header.js" defer></script>
+  </head>
+  <body class="new-analysis-page">
+    <a class="skip-link" href="#upload-form">Ir para o envio</a>
+    <div class="shell">
+      {{HEADER}}
+      <main>
+        <div class="page-heading">
+          <h1>Nova análise</h1>
+          <p>
+            Envie sua extração da Economatica e escolha a referência. O mesmo processo produzirá um
+            resultado independente, com seu próprio link e arquivos de conferência.
+          </p>
+          <div class="page-context">
+            <a href="/">Ver o resultado do case ↗</a
+            ><a href="/documentacao/metodologia">Conhecer os critérios ↗</a>
+          </div>
+        </div>
+        <div class="new-analysis-layout">
+          <form id="upload-form" class="upload-form upload-workspace">
+            <section class="form-stage">
+              <div class="form-stage-heading">
+                <span>01</span>
+                <div>
+                  <h2>Escolha a extração</h2>
+                  <p>Use o CSV no mesmo formato do case.</p>
+                </div>
+              </div>
+              <label class="file-drop" id="file-drop" for="csv-file"
+                ><span class="file-icon" aria-hidden="true">↑</span
+                ><strong id="file-title">Selecionar arquivo CSV</strong
+                ><span id="file-description">ou arraste e solte aqui · até 10 MB</span
+                ><input
+                  id="csv-file"
+                  name="file"
+                  type="file"
+                  accept=".csv,text/csv"
+                  required
+                  aria-label="Arquivo CSV da Economatica"
+                  aria-describedby="format-help"
+              /></label>
+              <p id="format-help" class="muted">
+                Vírgula como separador, ponto decimal, UTF-8 ou Windows-1252 e “-” para ausência. As
+                nove colunas precisam manter os nomes e a ordem documentados.
+              </p>
+              <details class="format-details">
+                <summary>Conferir as nove colunas do arquivo</summary>
+                <ol>
+                  <li>Ativo</li>
+                  <li>Data</li>
+                  <li>Fechamento|ajust p/ prov|Em moeda orig</li>
+                  <li>Q Títs|ajust p/ prov</li>
+                  <li>Abertura|ajust p/ prov|Em moeda orig</li>
+                  <li>Máximo|ajust p/ prov|Em moeda orig</li>
+                  <li>Mínimo|ajust p/ prov|Em moeda orig</li>
+                  <li>Médio|ajust p/ prov|Em moeda orig</li>
+                  <li>Volume$|Em moeda orig</li>
+                </ol>
+                <p>
+                  O processo confere o formato no envio. Uma mudança de estrutura gera uma mensagem
+                  de erro.
+                </p>
+              </details>
+            </section>
+            <section class="form-stage">
+              <div class="form-stage-heading">
+                <span>02</span>
+                <div>
+                  <h2>Confira a semana</h2>
+                  <p>A referência seleciona a semana-calendário anterior.</p>
+                </div>
+              </div>
+              <label for="reference-date">Data de referência</label
+              ><input
+                id="reference-date"
+                name="reference_date"
+                type="date"
+                required
+                aria-describedby="reference-help week-preview"
+              /><small id="reference-help"
+                >Exemplo: 22/09/2026 seleciona a semana de 14 a 20/09/2026.</small
+              >
+              <p id="date-suggestion" class="muted" aria-live="polite"></p>
+              <div id="week-preview" class="week-preview" aria-live="polite"></div>
+              <p class="muted">
+                Os fechamentos exatos são definidos pelos dados disponíveis. A janela principal
+                parte do fechamento anterior à semana; a alternativa compara as duas pontas dentro
+                dela.
+              </p>
+            </section>
+            <section class="form-stage submit-stage">
+              <div class="form-stage-heading">
+                <span>03</span>
+                <div>
+                  <h2>Execute e acompanhe</h2>
+                  <p>A próxima página mostrará o estado do processamento.</p>
+                </div>
+              </div>
+              <button id="submit-button" type="submit">Executar nova análise ↗</button>
+              <div id="form-message" role="alert" aria-live="polite"></div>
+            </section>
+          </form>
+          <aside class="analysis-guide">
+            <h2>O que você recebe</h2>
+            <ol class="deliverable-list">
+              <li>
+                <strong>Ranking e gráficos</strong>
+                <p>Top 20, média, distribuição, preços e retornos diários.</p>
+              </li>
+              <li>
+                <strong>Método aplicado à sua base</strong>
+                <p>Datas selecionadas, universo elegível e motivos das exclusões.</p>
+              </li>
+              <li>
+                <strong>Arquivos para conferência</strong>
+                <p>Resultados derivados disponíveis na metodologia da sua execução.</p>
+              </li>
+            </ol>
+            <div class="run-limits">
+              <h3>Limites e disponibilidade</h3>
+              <dl>
+                <div>
+                  <dt>Tamanho máximo</dt>
+                  <dd>10 MB</dd>
+                </div>
+                <div>
+                  <dt>Processamento máximo</dt>
+                  <dd>10 minutos</dd>
+                </div>
+                <div>
+                  <dt>Fila</dt>
+                  <dd>1 ativa + 2 aguardando</dd>
+                </div>
+                <div>
+                  <dt>Envios por origem</dt>
+                  <dd>3 por hora</dd>
+                </div>
+                <div>
+                  <dt>Resultado disponível</dt>
+                  <dd>7 dias</dd>
+                </div>
+              </dl>
+            </div>
+            <p class="doc-note">
+              Guarde o link da sua execução. Os envios não aparecem em uma lista pública. O CSV
+              original não é disponibilizado para download e é removido após 24 horas.
+            </p>
+            <p class="muted">
+              O processamento depende das fontes oficiais da B3. Uma falha na obtenção ou
+              confirmação dos instrumentos é explicada na página da execução.
+            </p>
+          </aside>
+        </div>
+      </main>
+      <footer>
+        <span>V8 CAPITAL · CASE TÉCNICO DE DADOS</span
+        ><span>O resultado de referência permanece disponível na página do ranking.</span>
+      </footer>
+    </div>
+  </body>
+</html>

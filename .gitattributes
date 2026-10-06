@@ -2,5 +2,10 @@
 *.json text eol=lf
 *.md text eol=lf
 *.py text eol=lf
+*.js text eol=lf
+*.mjs text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.yml text eol=lf
 resultados/**/*.json -text
 resultados/**/*.csv -text

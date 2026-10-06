@@ -17,6 +17,7 @@ from fastapi.staticfiles import StaticFiles
 import etl
 from webapp import store
 from webapp import documentation
+from webapp.pages import render_page
 from webapp.presentation import DOWNLOADS, audit_details, build_presentation, output_path
 
 
@@ -52,12 +53,12 @@ def healthz():
 
 @app.get("/")
 def index():
-    return FileResponse(STATIC / "index.html")
+    return HTMLResponse(render_page("index.html"))
 
 
 @app.get("/metodologia")
 def methodology_page():
-    return FileResponse(STATIC / "methodology.html")
+    return HTMLResponse(render_page("methodology.html"))
 
 
 @app.get("/documentacao", response_class=HTMLResponse)
@@ -79,19 +80,19 @@ def documentation_index():
 
 @app.get("/nova-analise")
 def new_analysis_page():
-    return FileResponse(STATIC / "new-analysis.html")
+    return HTMLResponse(render_page("new-analysis.html"))
 
 
 @app.get("/analise/{job_id}/metodologia")
 def analysis_methodology_page(job_id: str):
     job_or_404(job_id)
-    return FileResponse(STATIC / "methodology.html")
+    return HTMLResponse(render_page("methodology.html"))
 
 
 @app.get("/analise/{job_id}")
 def analysis_page(job_id: str):
     valid_id(job_id)
-    return FileResponse(STATIC / "index.html")
+    return HTMLResponse(render_page("index.html"))
 
 
 def valid_id(job_id: str) -> None:

@@ -142,6 +142,39 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(self.client.get(f"/analise/{'c' * 32}/metodologia").status_code, 404)
         self.assertEqual(self.client.get("/analise/invalid/metodologia").status_code, 404)
 
+    def test_shared_header_has_one_active_link_and_no_template_markers(self):
+        from html.parser import HTMLParser
+
+        class HeaderParser(HTMLParser):
+            def __init__(self):
+                super().__init__()
+                self.header = False
+                self.active = []
+                self.buttons = 0
+
+            def handle_starttag(self, tag, attrs):
+                attrs = dict(attrs)
+                if tag == "header":
+                    self.header = True
+                if self.header and tag == "a" and attrs.get("aria-current") == "page":
+                    self.active.append(attrs["href"])
+                if attrs.get("id") == "fullscreen-button":
+                    self.buttons += 1
+
+            def handle_endtag(self, tag):
+                if tag == "header":
+                    self.header = False
+
+        for route, expected in (("/", "/"), ("/metodologia", "/documentacao"),
+                                ("/documentacao/metodologia", "/documentacao"),
+                                ("/nova-analise", "/nova-analise"), (f"/analise/{'a' * 32}", "/")):
+            response = self.client.get(route)
+            parser = HeaderParser()
+            parser.feed(response.text)
+            self.assertEqual(parser.active, [expected], route)
+            self.assertEqual(parser.buttons, 1, route)
+            self.assertNotIn("{{", response.text, route)
+
     def test_documentation_links_sections_and_original_audit(self):
         from webapp.documentation import PAGES
         for slug in PAGES:

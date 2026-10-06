@@ -1,0 +1,6 @@
+resultados/
+runtime-data/
+runs/
+data/
+*.png
+*.jpg

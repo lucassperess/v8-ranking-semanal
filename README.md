@@ -2,6 +2,8 @@ Média dos retornos do top 20: 17,78%
 
 # Ranking semanal de ações
 
+[![Verificações do projeto](https://github.com/lucassperess/v8-ranking-semanal/actions/workflows/checks.yml/badge.svg)](https://github.com/lucassperess/v8-ranking-semanal/actions/workflows/checks.yml)
+
 Para manter ou revisar o projeto, siga o [roteiro técnico e preparação do ambiente](docs/desenvolvimento.md) e o [registro de decisões](docs/decisoes.md). As orientações para agentes ficam em [AGENTS.md](AGENTS.md), compartilhadas com Claude Code por [CLAUDE.md](CLAUDE.md).
 
 Pipeline em Python 3.11+ (biblioteca padrão) para preparar extrações da Economatica, definir ações ON/PN, calcular retornos e gerar o top 20 da semana anterior. O arquivo recebido é copiado sem alteração para a pasta da execução; nenhuma linha é descartada e nenhum preço ausente é preenchido. O projeto pode ser executado novamente com outro arquivo e outra data de referência.

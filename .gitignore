@@ -11,3 +11,5 @@ runtime-data/
 *.pdf
 *.zip
 .env
+node_modules/
+.ruff_cache/

@@ -5,6 +5,7 @@ import re
 from pathlib import Path
 
 import markdown
+from webapp.pages import render_page
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGES = {
@@ -66,7 +67,7 @@ def render(slug: str) -> str:
     keys = list(PAGES)
     pos = keys.index(slug)
     adjacent = ''.join(f'<a href="/documentacao/{keys[index]}"><small>{direction}</small>{html.escape(PAGES[keys[index]][0])} {arrow}</a>' for index, direction, arrow in [(pos - 1, "Anterior", "←"), (pos + 1, "Próximo", "→")] if 0 <= index < len(keys))
-    template = (ROOT / "webapp/static/documentation.html").read_text(encoding="utf-8")
+    template = render_page("documentation.html")
     for key, value in {"TITLE": html.escape(PAGES[slug][0]), "NAV": nav, "CONTENT": content, "TOC": engine.toc,
                        "CARDS": cards, "ADJACENT": adjacent, "SOURCE": REPO + "docs/" + PAGES[slug][1]}.items():
         template = template.replace("{{" + key + "}}", value)

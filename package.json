@@ -1,0 +1,13 @@
+{
+  "name": "v8-ranking-semanal-dev",
+  "private": true,
+  "scripts": {
+    "format": "prettier --write webapp/static webapp/templates scripts/*.mjs .github/workflows/*.yml package.json .prettierrc.json",
+    "format:check": "prettier --check webapp/static webapp/templates scripts/*.mjs .github/workflows/*.yml package.json .prettierrc.json",
+    "check:frontend": "node scripts/check_frontend.mjs"
+  },
+  "devDependencies": {
+    "postcss": "8.5.29",
+    "prettier": "3.9.9"
+  }
+}

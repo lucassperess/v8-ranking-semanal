@@ -11,3 +11,6 @@ tests
 *.zip
 *.pyc
 .env
+node_modules
+.ruff_cache
+.github

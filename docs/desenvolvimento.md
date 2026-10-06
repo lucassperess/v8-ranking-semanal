@@ -126,3 +126,28 @@ Após editar, rode também `git diff --check`. Mudanças em dados ou regras prec
 As oito páginas de uso são publicadas a partir de uma lista explícita em `webapp/documentation.py`. Este roteiro e o registro de decisões são documentação técnica no GitHub; não foram adicionados ao menu público nesta etapa.
 
 Ao mudar uma regra, atualize a decisão, o artigo aplicável e o teste correspondente. Ao mudar uma saída, atualize seus consumidores e o dicionário de campos. Ao documentar limitações, diferencie funcionamento atual e melhorias planejadas.
+
+## Organização da interface e verificações automáticas
+
+O cabeçalho tem uma única fonte em `webapp/templates/header.html`. `webapp/pages.py` compõe as páginas no servidor e marca a navegação ativa. Preserve os identificadores usados pelo JavaScript ao editar esse template.
+
+- `styles.css`: estilos compartilhados, ranking e formulário de nova análise.
+- `documentation.css`: navegação e artigos da documentação.
+- `audit.css`: apresentação da auditoria de uma execução.
+
+Edite a regra existente antes de acrescentar outra para o mesmo seletor e propriedade no mesmo contexto. HTML, CSS e JavaScript são formatados com Prettier; Node.js 22 é uma ferramenta de desenvolvimento, sem necessidade no servidor de produção.
+
+```powershell
+npm ci --ignore-scripts
+npm run format
+npm run format:check
+npm run check:frontend
+.venv\Scripts\python -m ruff check .
+.venv\Scripts\python -m scripts.verify_artifacts
+```
+
+No Linux/macOS, use `.venv/bin/python`. O verificador da interface confere sintaxe JavaScript, interpretação do CSS e declarações sobrescritas no mesmo contexto. Ruff verifica erros essenciais de Python. A conferência dos derivados verifica assinaturas, retornos a partir das pontas, ordenação, top 20 e médias das duas janelas; ela não substitui uma reprodução a partir do CSV bruto.
+
+O workflow `.github/workflows/checks.yml` executa essas verificações em cada envio de código e pull request. Os testes Python rodam em Linux (3.11 e 3.12) e Windows (3.11); a formatação e a sintaxe da interface rodam em Linux com Node 22. A regressão com o bruto original permanece opcional e é ignorada no CI quando a entrada não está disponível.
+
+Uma execução aprovada no CI não verifica downloads reais da B3, o comportamento visual no navegador nem a operação da VPS. Essas conferências continuam necessárias quando a mudança afeta essas áreas. O workflow não publica automaticamente o site.
