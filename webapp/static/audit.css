@@ -1,4 +1,4 @@
-/* Audit uses the dashboard's neutral panels; blue identifies actions. */
+/* Neutral panels with blue actions, diagrams and the example ticker. */
 .audit-page .page-heading h1 {
   font-size: 30px;
 }
@@ -71,7 +71,7 @@
   background: #050506;
 }
 .audit-page .week-definition > span {
-  color: var(--muted);
+  color: var(--blue);
 }
 .audit-page .small-tag {
   color: #d0d0d7;
@@ -81,7 +81,7 @@
 .audit-page .bridge-line,
 .audit-page .bridge-line:before,
 .audit-page .bridge-line:after {
-  background: #77777f;
+  background: var(--blue);
 }
 .audit-page .universe-step {
   padding: 20px;
@@ -93,7 +93,7 @@
   background: #252527;
 }
 .audit-page .universe-track span {
-  background: #a4a4ad;
+  background: var(--blue);
 }
 .audit-page .universe-heading {
   flex-wrap: wrap;
@@ -109,7 +109,7 @@
   background: #050506;
 }
 .audit-page .example-ticker {
-  color: var(--text);
+  color: var(--blue);
   font-weight: 600;
 }
 .audit-page .audit-table-wrap {
