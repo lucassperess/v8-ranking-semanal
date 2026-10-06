@@ -18,15 +18,19 @@ python etl.py --input "CAMINHO\nova_extracao.csv" --reference-date 2026-09-29 --
 
 O programa espera **as nove colunas e sua ordem originais**. Detecta UTF-8 ou Windows-1252, usa vírgula como separador, ponto decimal e `-` como ausência. Uma alteração de esquema ou separador interrompe a execução com erro. Linhas malformadas, por sua vez, permanecem representadas na base normalizada, com os campos recuperáveis e um alerta `MALFORMED_ROW`.
 
-### Classificação opcional pela B3
+### Cadastro oficial da B3: classificação por snapshot
 
-O [Cadastro de Instrumentos Listados da B3](https://www.b3.com.br/pt_br/market-data-e-indices/servicos-de-dados/market-data/consultas/boletim-diario/dados-publicos-de-produtos-listados-e-de-balcao/glossario/) pode enriquecer a classificação. Baixe um **snapshot referente à data analisada ou anterior** e passe seu CSV com `--b3-registry`. O leitor reconhece `TckrSymb` e `SctyCtgyNm` (ou os nomes completos em inglês) e `RptDt`. Se este último faltar, informe `--b3-snapshot-date AAAA-MM-DD`. Um snapshot posterior à data de referência é rejeitado. Um cadastro com mais de sete dias gera alerta de desatualização. O arquivo de referência original fica fora do Git; seu hash e sua data ficam no manifesto.
+O tratamento aceita o **ZIP diário original BVBG.028.02**, obtido na [Pesquisa por Pregão da B3](https://www.b3.com.br/pt_br/market-data-e-indices/servicos-de-dados/market-data/historico/boletins-diarios/pesquisa-por-pregao/pesquisa-por-pregao/). Para a execução de exemplo, foi usado o cadastro do último pregão da semana anterior à referência: [IN260918.zip](https://www.b3.com.br/pesquisapregao/download?filelist=IN260918.zip,). O arquivo contém outro ZIP e dois XMLs; o leitor escolhe a última versão pelo nome temporal do XML e registra o membro escolhido. Faz leitura em fluxo, sem carregar os mais de 150 mil instrumentos na memória. Cada nova semana requer escolher explicitamente o snapshot apropriado, baixá-lo e fornecê-lo no comando. O programa não faz consulta ao cadastro vigente hoje para classificar retrospectivamente uma semana passada.
 
 ```powershell
-python etl.py --input "CAMINHO\economatica.csv" --reference-date 2026-09-22 --output-dir "runs\com-b3" --b3-registry "CAMINHO\cadastro_b3.csv" --overrides "overrides\approved.csv"
+python etl.py --input "CAMINHO\economatica.csv" --reference-date 2026-09-22 --output-dir "runs\com-b3" --b3-registry "data\reference\IN260918.zip" --overrides "overrides\approved.csv"
 ```
 
-O cruzamento usa ticker normalizado, preserva todas as linhas e sinaliza códigos sem correspondência. A categoria B3 prevalece quando interpretável. Categoria oficial desconhecida ou conflitante fica sem resolução automática. Sem B3, regras de sufixo geram apenas rótulos **provisórios**: `3` a `8` como possível ação, `32`/`33` como possível BDR; sufixo `11` fica ambíguo. Essas regras não definem elegibilidade para o ranking. A [série histórica da B3](https://www.b3.com.br/pt_br/market-data-e-indices/servicos-de-dados/market-data/historico/mercado-a-vista/cotacoes-historicas/) também pode auxiliar a verificar instrumentos negociados em uma data, mas seus preços não substituem os preços ajustados da Economatica.
+O cruzamento usa ticker normalizado no segmento de ações e mercado à vista (`Sgmt=1`, `Mkt=10`), preserva todas as linhas e sinaliza códigos sem correspondência. A combinação `SctyCtgy`, `Desc` e `CFICd` é usada para distinguir ação ON, ação PN, unit, BDR e ETF. Códigos de categoria novos, espécies contraditórias e múltiplos registros conflitantes ficam sem resolução automática. A B3 define [ações ON e PN](https://www.b3.com.br/pt_br/produtos-e-servicos/negociacao/renda-variavel/acoes.htm), [units](https://b3.com.br/pt_br/produtos-e-servicos/negociacao/renda-variavel/certificado-de-deposito-de-acoes-units.htm) e [BDRs](https://borainvestir.b3.com.br/tipos-de-investimentos/renda-variavel/acoes/qual-a-diferenca-entre-acoes-e-bdrs/). O mapeamento numérico das quatro categorias utilizadas foi validado nos registros e descrições do próprio snapshot; se o layout/domínio mudar, o código desconhecido não será forçado para uma categoria existente. O CSV tabular de cadastro ainda é aceito como entrada legada, com `TckrSymb`, `SctyCtgyNm` e `RptDt`, mas a execução documentada usa o ZIP oficial.
+
+O programa valida a data `RptDt` contida no XML e rejeita snapshot posterior à referência. Mais de sete dias de diferença gera alerta. O manifesto registra URL da fonte, hash SHA-256 do ZIP, nome do XML, data, número de registros e tickers sem correspondência. O arquivo bruto B3 fica fora do Git. O rótulo identifica o instrumento **no snapshot escolhido**; não é prova de que sua classificação era a mesma em cada linha histórica da Economatica. Ausência de ticker no cadastro da data não prova inexistência ou falta de negociação. A [série histórica COTAHIST da B3](https://www.b3.com.br/pt_br/market-data-e-indices/servicos-de-dados/market-data/historico/mercado-a-vista/cotacoes-historicas/) pode ser usada como checagem independente de negociação e espécie, mas seus preços brutos não substituem os preços ajustados da Economatica.
+
+Sem B3, regras de sufixo geram apenas rótulos **provisórios**: `3` a `8` como possível ação, `32`/`33` como possível BDR; sufixo `11` fica ambíguo. Essas regras não definem elegibilidade para o ranking.
 
 Se uma classificação exigir revisão, registre a decisão em `overrides/approved.csv`, com ticker, categoria, URL da fonte, responsável, data da aprovação e justificativa. Esse arquivo é versionado. Uma categoria oficial já resolvida pela B3 não é alterada pelo mapeamento manual. Sugestões de IA nunca entram no ETL automaticamente.
 
@@ -48,6 +52,18 @@ Se uma classificação exigir revisão, registre a decisão em `overrides/approv
 ## Achados da extração recebida
 
 Na execução com referência em **22/09/2026**, sem cadastro B3: 4.828 linhas preservadas, 478 códigos, 1.278 fechamentos ausentes, 43 registros em 02/01/1920 sem preço, nove linhas históricas com quantidade e volume mas sem preço e nenhuma chave ticker–data duplicada. Há 11 ocorrências de valor fora do intervalo diário no arquivo inteiro, inclusive preços médios. A data 07/09/2026 contém linhas mas nenhum fechamento positivo; 21/09/2026 pertence à semana corrente em relação à data de referência. Esses fatos são diagnósticos, **não regras fixas para futuras extrações**. O ETL não presume causas de movimentos nem moeda adicional além do texto da fonte.
+
+Com o snapshot B3 de **18/09/2026**, o cruzamento localizou **473 dos 478** códigos da extração. `NEMO5`, `NEMO6`, `OIBR3`, `OIBR4` e `RNEW11` ficaram sem correspondência nesse snapshot; nenhum deles apresenta fechamento positivo na parte recente do arquivo. Eles permanecem na base e no manifesto para revisão. Essa cobertura não é uma regra para outras datas nem uma decisão de elegibilidade. Para nova extração, usar snapshot datado da própria análise e conferir as mesmas contagens antes de avançar ao ranking.
+
+### Conferência independente com o COTAHIST
+
+Para verificar a espécie ON/PN/UNT dos papéis **que efetivamente negociaram** no dia do snapshot, use o [COTAHIST diário da B3](https://bvmf.bmfbovespa.com.br/InstDados/SerHist/COTAHIST_D18092026.ZIP). O programa lê `CODNEG`, `TPMERC` e `ESPECI` conforme o [layout oficial](https://www.b3.com.br/data/files/33/67/B9/50/D84057102C784E47AC094EA8/SeriesHistoricas_Layout.pdf), valida a data e grava contagens, hashes e eventuais divergências:
+
+```powershell
+python verify_b3.py --normalized "runs\com-b3\normalized.csv" --cotahist "data\reference\COTAHIST_D18092026.ZIP" --snapshot-date 2026-09-18 --output "runs\com-b3\cotahist_check.json"
+```
+
+Na execução do case, **326** códigos classificados como ON/PN/unit também constavam no COTAHIST de 18/09: 244 ON, 73 PN e 9 units; **nenhuma divergência**. Os demais não foram refutados: o COTAHIST só contém ativos negociados naquele pregão. O relatório é uma verificação adicional; não altera `normalized.csv` nem a classificação.
 
 ## Revisão opcional de exceções
 

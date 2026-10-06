@@ -14,8 +14,11 @@ from datetime import date
 from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
+from b3_registry import RegistryError, load_bvbg
+import b3_registry
 
-VERSION = "1.0.0"
+
+VERSION = "1.1.0"
 SOURCE_COLUMNS = [
     "Ativo",
     "Data",
@@ -392,7 +395,17 @@ def run(input_path: Path, reference_date: date, output_dir: Path, b3_path: Path 
     if not Decimal("0") <= coverage_drop <= Decimal("1"):
         raise InputError("--coverage-drop deve estar entre 0 e 1.")
     rows, encoding = read_economatica(input_path)
-    registry, b3_info = load_registry(b3_path, reference_date, b3_snapshot_date)
+    requested_tickers = {
+        parse_ticker(row["fields"][0])[0]
+        for row in rows if row["fields"] and row["fields"][0]
+    } - {""}
+    if b3_path is not None and b3_path.suffix.lower() == ".zip":
+        try:
+            registry, b3_info = load_bvbg(b3_path, reference_date, requested_tickers, b3_snapshot_date)
+        except RegistryError as exc:
+            raise InputError(str(exc)) from exc
+    else:
+        registry, b3_info = load_registry(b3_path, reference_date, b3_snapshot_date)
     overrides, overrides_info = load_overrides(overrides_path)
     records, issues, summary = transform(rows, reference_date, registry, coverage_drop, b3_info["used"], overrides)
     if b3_info.get("stale_over_7_days"):
@@ -412,6 +425,7 @@ def run(input_path: Path, reference_date: date, output_dir: Path, b3_path: Path 
     (output_dir / "quality_summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     manifest = {
         "etl_version": VERSION, "code_sha256": sha256(Path(__file__)),
+        "b3_parser_sha256": sha256(Path(b3_registry.__file__)) if b3_info["used"] and b3_info.get("format") == "BVBG.028.02_XML" else None,
         "input_filename": input_path.name, "input_sha256": sha256(input_path),
         "input_encoding": encoding, "reference_date": reference_date.isoformat(),
         "coverage_drop_threshold": str(coverage_drop), "b3_registry": b3_info,
@@ -428,7 +442,7 @@ def main() -> int:
     parser.add_argument("--input", type=Path, required=True, help="CSV original da Economatica")
     parser.add_argument("--reference-date", type=date.fromisoformat, required=True, help="AAAA-MM-DD; apenas diagnóstico")
     parser.add_argument("--output-dir", type=Path, required=True)
-    parser.add_argument("--b3-registry", type=Path, help="CSV de um único snapshot do cadastro B3")
+    parser.add_argument("--b3-registry", type=Path, help="ZIP oficial BVBG.028.02 da B3 (ou CSV de cadastro validado)")
     parser.add_argument("--b3-snapshot-date", type=date.fromisoformat, help="AAAA-MM-DD se o cadastro não tiver RptDt")
     parser.add_argument("--overrides", type=Path, help="CSV versionado de classificações aprovadas manualmente")
     parser.add_argument("--baseline-summary", type=Path, help="quality_summary.json de extração anterior para comparar cobertura")
