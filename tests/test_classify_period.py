@@ -62,6 +62,19 @@ class PeriodClassificationTests(unittest.TestCase):
         self.assertEqual(summary["blocked_tickers"], ["TEST3"])
         self.assertTrue((self.root / "output" / "period_classification.csv").exists())
 
+    def test_unresolved_nonshare_does_not_block_share_universe(self):
+        with self.normalized.open("a", encoding="utf-8", newline="") as stream:
+            writer = csv.DictWriter(stream, fieldnames=["ticker", "trade_date", "close", "parse_status"])
+            for day in ("2026-09-11", "2026-09-18"):
+                writer.writerow({"ticker": "SANB11", "trade_date": day, "close": "10", "parse_status": "ok"})
+        first, last = self.root / "first.zip", self.root / "last.zip"
+        cota(first, "20260911", "TEST3", "ON NM", "BRTESTACNOR1")
+        cota(last, "20260918", "TEST3", "ON NM", "BRTESTACNOR1")
+        summary = self.execute("output", cota_files=[first, last])
+        self.assertFalse(summary["classification_gate_passed"])
+        self.assertTrue(summary["ranking_gate_passed"])
+        self.assertEqual(summary["ranking_decision_counts"], {"excluir": 1, "incluir": 1})
+
     def test_prior_registry_is_not_treated_as_exact_date_evidence(self):
         b3 = self.root / "registry.zip"
         registry(b3, "2026-09-11", "TEST3", "11", "ON NM", "BRTESTACNOR1")

@@ -19,10 +19,11 @@ from pathlib import Path
 from xml.etree import ElementTree as ET
 
 import b3_registry
+import ranking_universe
 from b3_registry import RegistryError, child, classify, digest, last_xml, local_name, value
 
 
-VERSION = "1.0.0"
+VERSION = "1.1.0"
 EVIDENCE_COLUMNS = ["ticker", "source_date", "source", "instrument_type", "isin", "detail", "file", "file_sha256"]
 RESULT_COLUMNS = ["ticker", "price_date", "close", "status", "instrument_type", "isin", "evidence_sources", "reason"]
 EXCLUSION_COLUMNS = ["ticker", "start_date_rows", "end_date_rows", "reason"]
@@ -270,18 +271,23 @@ def run(normalized: Path, start: date, end: date, output_dir: Path, b3_files: li
                "confirmed_tickers": len(candidates) - len(blocked),
                "blocked_tickers": blocked, "status_counts": dict(sorted(Counter(r["status"] for r in results).items())),
                "classification_gate_passed": bool(candidates) and not blocked,
-               "note": "Classificação confirmada não define elegibilidade de ON, PN, unit, BDR ou ETF."}
+               "note": "A classificação detalhada preserva todos os tipos; ranking_universe.csv decide apenas o universo ON/PN."}
     output_dir.mkdir(parents=True, exist_ok=True)
     write_csv(output_dir / "period_classification.csv", RESULT_COLUMNS, results)
     write_csv(output_dir / "b3_evidence.csv", EVIDENCE_COLUMNS, evidence)
     write_csv(output_dir / "candidate_exclusions.csv", EXCLUSION_COLUMNS, exclusions)
+    universe = ranking_universe.run(output_dir / "period_classification.csv", output_dir)
+    summary["ranking_gate_passed"] = universe["ranking_gate_passed"]
+    summary["ranking_decision_counts"] = universe["decision_counts"]
+    summary["ranking_review_tickers"] = universe["review_tickers"]
     (output_dir / "classification_summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     manifest = {"version": VERSION, "code_sha256": digest(Path(__file__)),
                 "b3_registry_code_sha256": digest(Path(b3_registry.__file__)),
+                "ranking_universe_code_sha256": digest(Path(ranking_universe.__file__)),
                 "normalized_file": normalized.name, "normalized_sha256": digest(normalized),
                 "source_files": files,
                 "outputs": {name: digest(output_dir / name) for name in
-                            ("period_classification.csv", "b3_evidence.csv", "candidate_exclusions.csv", "classification_summary.json")}}
+                            ("period_classification.csv", "b3_evidence.csv", "candidate_exclusions.csv", "ranking_universe.csv", "ranking_universe_summary.json", "classification_summary.json")}}
     (output_dir / "classification_manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return summary
 
@@ -302,7 +308,7 @@ def main() -> int:
     except (ClassificationError, OSError) as exc:
         parser.exit(2, f"Erro: {exc}\n")
     print(json.dumps(summary, ensure_ascii=False))
-    return 0 if summary["classification_gate_passed"] else 3
+    return 0 if summary["ranking_gate_passed"] else 3
 
 
 if __name__ == "__main__":

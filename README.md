@@ -1,8 +1,8 @@
-# Ranking semanal de ações — etapa de tratamento
+# Ranking semanal de ações — tratamento e definição do universo
 
-Pipeline em Python 3.11+ (biblioteca padrão) para preparar extrações diárias da Economatica. **Esta etapa não calcula retornos nem seleciona a semana ou o universo do ranking.** O arquivo recebido é copiado sem alteração para a pasta da execução; nenhuma linha é descartada e nenhum preço ausente é preenchido. O projeto pode ser executado novamente com outro arquivo e outra data de referência.
+Pipeline em Python 3.11+ (biblioteca padrão) para preparar extrações diárias da Economatica e definir, para duas datas de preço informadas, quais códigos são ações ON/PN. **Esta etapa ainda não calcula retornos nem escolhe a semana do ranking.** O arquivo recebido é copiado sem alteração para a pasta da execução; nenhuma linha é descartada e nenhum preço ausente é preenchido. O projeto pode ser executado novamente com outro arquivo e outras datas.
 
-O enunciado do case exige que a **primeira linha do README final** apresente a média dos retornos do top 20. Este repositório contém apenas a etapa de tratamento; a primeira linha será atualizada na entrega final, depois que o ranking for calculado e validado. Este README ainda não é a entrega final.
+O enunciado do case exige que a **primeira linha do README final** apresente a média dos retornos do top 20. A primeira linha será atualizada na entrega final, depois que o ranking for calculado e validado. Este README ainda não é a entrega final.
 
 ## Executar
 
@@ -30,7 +30,7 @@ O cruzamento usa ticker normalizado no segmento de ações e mercado à vista (`
 
 O programa valida a data `RptDt` contida no XML e rejeita snapshot posterior à referência. Mais de sete dias de diferença gera alerta. O manifesto registra URL da fonte, hash SHA-256 do ZIP, nome do XML, data, número de registros e tickers sem correspondência. O arquivo bruto B3 fica fora do Git. O rótulo identifica o instrumento **no snapshot escolhido**; não é prova de que sua classificação era a mesma em cada linha histórica da Economatica. Ausência de ticker no cadastro da data não prova inexistência ou falta de negociação. A [série histórica COTAHIST da B3](https://www.b3.com.br/pt_br/market-data-e-indices/servicos-de-dados/market-data/historico/mercado-a-vista/cotacoes-historicas/) pode ser usada como checagem independente de negociação e espécie, mas seus preços brutos não substituem os preços ajustados da Economatica.
 
-Sem B3, regras de sufixo geram apenas rótulos **provisórios**: `3` a `8` como possível ação, `32`/`33` como possível BDR; sufixo `11` fica ambíguo. Essas regras não definem elegibilidade para o ranking.
+Sem B3, o **ETL geral** mantém seus rótulos de sufixo como provisórios. A decisão específica do universo semanal é feita depois, por `ranking_universe.py`, com confirmação datada para ações elegíveis.
 
 ### Resolver a classificação nas datas de preço
 
@@ -46,9 +46,17 @@ Para fornecer os arquivos oficiais por conta própria, sem a etapa de busca:
 python classify_period.py --normalized "runs\com-b3\normalized.csv" --start-date 2026-09-11 --end-date 2026-09-18 --output-dir "runs\classificacao-manual" --b3-file "data\reference\IN260918.zip" --cotahist-file "data\reference\COTAHIST_D11092026.ZIP" --cotahist-file "data\reference\COTAHIST_D18092026.ZIP"
 ```
 
-O classificador usa apenas evidência **da data exata do preço**: código, mercado, especificação e ISIN do COTAHIST; categoria, descrição, CFI e ISIN do cadastro. Ausência de evidência, espécie ou ISIN divergentes, categoria desconhecida e preço duplicado produzem pendência. O status `classification_gate_passed` só fica verdadeiro quando todo código com fechamento positivo nas duas datas foi confirmado; **isso não decide se ON, PN, unit, BDR ou ETF pertence ao ranking**. Uma execução com pendência grava relatórios e termina com código `3`.
+O classificador detalhado usa apenas evidência **da data exata do preço**: código, mercado, especificação e ISIN do COTAHIST; categoria, descrição, CFI e ISIN do cadastro. Ele mantém `classification_gate_passed` como medida de completude da **catalogação detalhada** dos candidatos. A etapa seguinte decide o universo do case com `ranking_gate_passed`. Uma execução com decisão de ranking pendente grava relatórios e termina com código `3`.
 
-As saídas são `period_classification.csv` (resultado por código e data), `b3_evidence.csv` (evidências oficiais), `candidate_exclusions.csv` (códigos sem os dois preços e motivo), `classification_summary.json` e `classification_manifest.json`. A busca automática acrescenta `source_acquisition.json`, inclusive falhas de acesso. Esta etapa não calcula retornos nem escolhe a janela ou o universo do ranking.
+### Regra explícita do universo do case
+
+O universo é **ação ordinária ou preferencial brasileira**, incluindo classes de preferenciais, com fechamento positivo nas duas datas informadas. Essa definição interpreta “ações” literalmente: [BDR é certificado depositário](https://www.b3.com.br/pt_br/produtos-e-servicos/negociacao/renda-variavel/brazilian-depositary-receipts-bdrs-nao-patrocinados-nivel-i.htm) e [unit é certificado que reúne valores mobiliários](https://b3.com.br/pt_br/produtos-e-servicos/negociacao/renda-variavel/certificado-de-deposito-de-acoes-units.htm); nenhum dos dois é uma ação individual ON/PN. O [manual de negociação da B3](https://sistemasweb.b3.com.br/normativos/MPODENEGOCIACAO20260525.pdf) define os códigos `3` (ON), `4` (PN), `5` a `8` (classes PN), `31` a `40` (BDR) e `11` a `30` (conjunto de outros produtos, incluindo units e fundos).
+
+O programa lê **o código completo**, com prefixo alfanumérico de quatro caracteres: `B3SA3` é ON e `B1CS34` segue a faixa de BDR. Códigos `11` a `30` e formatos fora dessas faixas recebem `outro`, sem fingir distinguir unit, ETF e fundos somente pelo final. Um sufixo fracionário, como `F`, não é confundido com a ação de lote padrão. Para **incluir** uma ON/PN no ranking, a espécie precisa ser confirmada em fonte oficial nas **duas datas de preço**. BDR e `outro` são excluídos pela regra do código; a espécie detalhada pode ficar desconhecida. Qualquer conflito de preço duplicado, ISIN ou classificação oficial leva a `revisar` e impede o ranking. Uma fonte oficial que indique ação fora do padrão também leva a revisão, evitando exclusão silenciosa.
+
+Essa é uma regra replicável para o **universo deste ranking**, não um cadastro histórico completo de cada instrumento da extração. Tickers sem os dois fechamentos positivos permanecem em `candidate_exclusions.csv`. Nenhuma linha da base normalizada é apagada e os preços da B3 não substituem os preços ajustados da Economatica.
+
+As saídas são `period_classification.csv` (resultado detalhado por código e data), `b3_evidence.csv` (evidências oficiais), `candidate_exclusions.csv` (códigos sem os dois preços e motivo), `ranking_universe.csv` (decisão `incluir`, `excluir` ou `revisar`, com fundamento), `ranking_universe_summary.json`, `classification_summary.json` e `classification_manifest.json`. A busca automática acrescenta `source_acquisition.json`, inclusive falhas de acesso. Esta etapa não calcula retornos nem escolhe as datas do ranking.
 
 Se uma classificação exigir revisão, registre a decisão em `overrides/approved.csv`, com ticker, categoria, URL da fonte, responsável, data da aprovação e justificativa. Esse arquivo é versionado. Uma categoria oficial já resolvida pela B3 não é alterada pelo mapeamento manual. Sugestões de IA nunca entram no ETL automaticamente.
 
@@ -73,7 +81,7 @@ Na execução com referência em **22/09/2026**, sem cadastro B3: 4.828 linhas p
 
 Com o snapshot B3 de **18/09/2026**, o cruzamento localizou **473 dos 478** códigos da extração. `NEMO5`, `NEMO6`, `OIBR3`, `OIBR4` e `RNEW11` ficaram sem correspondência nesse snapshot; nenhum deles apresenta fechamento positivo na parte recente do arquivo. Eles permanecem na base e no manifesto para revisão. Essa cobertura não é uma regra para outras datas nem uma decisão de elegibilidade. Para nova extração, usar snapshot datado da própria análise e conferir as mesmas contagens antes de avançar ao ranking.
 
-Na resolução específica de **11/09 e 18/09**, 320 códigos tinham fechamento positivo nas duas datas. Todos os **320 foram confirmados** por evidência datada: 238 ações ON, 70 PN, 9 units e 3 BDRs. Os demais 158 aparecem em `candidate_exclusions.csv` com motivo. O teste offline repetido gerou arquivos idênticos. Isso valida a etapa de classificação, **não** a seleção final dos 20 papéis.
+Na resolução específica de **11/09 e 18/09**, 320 códigos tinham fechamento positivo nas duas datas. Todos os **320 foram confirmados** por evidência datada: 238 ações ON, 70 PN, 9 units e 3 BDRs. Pela regra explícita do universo, **308 ações entram** e **12 instrumentos ficam fora** (9 units e 3 BDRs), sem pendências de revisão nessa execução. Os demais 158 aparecem em `candidate_exclusions.csv` com motivo. Isso valida a definição do universo para essas datas, **não** a seleção final dos 20 papéis.
 
 ### Conferência independente com o COTAHIST
 

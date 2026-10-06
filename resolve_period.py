@@ -7,6 +7,7 @@ não produz classificação por sufixo: a etapa gera um relatório de pendência
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import tempfile
 import urllib.error
@@ -79,9 +80,11 @@ def run(normalized: Path, start: date, end: date, output_dir: Path, reference_di
     # Se a espécie no início ainda não foi resolvida, tenta o cadastro daquele
     # próprio pregão. Divergência real permanece bloqueada para revisão.
     classification_path = output_dir / "period_classification.csv"
-    import csv
+    with (output_dir / "ranking_universe.csv").open(encoding="utf-8", newline="") as stream:
+        pending_shares = {row["ticker"] for row in csv.DictReader(stream)
+                          if row["decision"] == "revisar" and row["code_class"] in ("acao_on", "acao_pn")}
     with classification_path.open(encoding="utf-8", newline="") as stream:
-        unresolved_start = any(row["price_date"] == start.isoformat() and row["status"] == "unresolved"
+        unresolved_start = any(row["ticker"] in pending_shares and row["price_date"] == start.isoformat() and row["status"] == "unresolved"
                                for row in csv.DictReader(stream))
     if unresolved_start:
         path, event = acquire("registry", start, reference_dir, offline)
@@ -92,6 +95,9 @@ def run(normalized: Path, start: date, end: date, output_dir: Path, reference_di
     report = {"start_date": start.isoformat(), "end_date": end.isoformat(),
               "normalized_sha256": digest(normalized), "sources": events,
               "classification_gate_passed": summary["classification_gate_passed"],
+              "ranking_gate_passed": summary["ranking_gate_passed"],
+              "ranking_decision_counts": summary["ranking_decision_counts"],
+              "ranking_review_tickers": summary["ranking_review_tickers"],
               "blocked_tickers": summary["blocked_tickers"]}
     (output_dir / "source_acquisition.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return summary
@@ -111,7 +117,7 @@ def main() -> int:
     except (ClassificationError, OSError) as exc:
         parser.exit(2, f"Erro: {exc}\n")
     print(json.dumps(summary, ensure_ascii=False))
-    return 0 if summary["classification_gate_passed"] else 3
+    return 0 if summary["ranking_gate_passed"] else 3
 
 
 if __name__ == "__main__":
