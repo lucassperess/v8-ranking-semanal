@@ -2,6 +2,8 @@ Média dos retornos do top 20: 17,78%
 
 # Ranking semanal de ações
 
+Para manter ou revisar o projeto, siga o [roteiro técnico e preparação do ambiente](docs/desenvolvimento.md) e o [registro de decisões](docs/decisoes.md). As orientações para agentes ficam em [AGENTS.md](AGENTS.md), compartilhadas com Claude Code por [CLAUDE.md](CLAUDE.md).
+
 Pipeline em Python 3.11+ (biblioteca padrão) para preparar extrações da Economatica, definir ações ON/PN, calcular retornos e gerar o top 20 da semana anterior. O arquivo recebido é copiado sem alteração para a pasta da execução; nenhuma linha é descartada e nenhum preço ausente é preenchido. O projeto pode ser executado novamente com outro arquivo e outra data de referência.
 
 O [resultado do case](resultados/2026-09-22/README.md) apresenta as 20 ações, os retornos, a alternativa de janela e as premissas. O comando único abaixo gera automaticamente um novo README de resultado, com a média correta na primeira linha, para cada nova extração.
@@ -153,8 +155,14 @@ Se desejar sugestões da Groq, informe um modelo compatível por `--model` e def
 
 ## Testes e reprodução
 
+Instale as dependências de desenvolvimento e execute a suíte no ambiente virtual, a partir da raiz:
+
 ```powershell
-python -m unittest discover -s tests -v
+python -m venv .venv
+.venv\Scripts\python -m pip install -r requirements-dev.txt
+.venv\Scripts\python -m unittest discover -s tests -v
 ```
+
+No Linux/macOS, use `python3 -m venv .venv` e `.venv/bin/python` nos comandos seguintes. O [guia de desenvolvimento](docs/desenvolvimento.md) explica testes por área, regressão opcional e execução local de API/worker.
 
 Os testes sintéticos não exigem rede nem arquivos externos. Para incluir a verificação de regressão com a extração original, defina `ECONOMATICA_CASE_CSV` com seu caminho antes de rodá-los. Essa verificação exige 4.828 linhas rastreáveis e compara byte a byte as saídas de duas execuções. O arquivo bruto, o PDF e os resultados locais ficam fora do repositório público.

@@ -1,0 +1,119 @@
+# Desenvolvimento e roteiro de leitura
+
+Este guia permite localizar o cálculo, preparar um ambiente e verificar mudanças sem depender do histórico da conversa. A [documentação de uso](como-usar.md) atende quem explora a interface; este artigo atende quem mantém o código.
+
+## Roteiro recomendado
+
+1. [README principal](../README.md): objetivo, resultado de referência e comandos de reprodução.
+2. [Decisões](decisoes.md) e [metodologia](metodologia.md): definições e limites que governam o cálculo.
+3. [Arquitetura](sistema.md): caminho do envio ao resultado.
+4. [weekly_ranking.py](../weekly_ranking.py): siga `run`, `choose_week`, `rank_pair` e a geração do relatório.
+5. Módulos abaixo: acompanhe as entradas e saídas de cada etapa.
+6. [Testes](../tests): exemplos dos contratos e comportamentos esperados.
+7. [Resultado do case](../resultados/2026-09-22/README.md): exemplo histórico, com arquivos derivados versionados.
+
+## Mapa técnico
+
+| Arquivo ou pasta | Responsabilidade | Teste principal |
+| --- | --- | --- |
+| `etl.py` | Ler esquema, normalizar campos, preservar linhas, registrar qualidade e manifesto | `test_etl.py` |
+| `b3_registry.py` | Interpretar cadastro B3 e calcular identificações de conteúdo | `test_b3_registry.py` |
+| `resolve_period.py` | Obter e reaproveitar fontes datadas para as pontas | Casos de resolução em `test_classify_period.py` |
+| `classify_period.py` | Reunir evidências oficiais e classificação por instrumento/data | `test_classify_period.py` |
+| `ranking_universe.py` | Decidir incluir, excluir ou revisar para ON/PN | `test_ranking_universe.py` |
+| `weekly_ranking.py` | Escolher janela, ordenar retornos e produzir média/relatórios | `test_weekly_ranking.py` |
+| `verify_b3.py` | Conferência adicional de classificação com COTAHIST | `test_verify_b3.py` |
+| `review_exceptions.py` | Revisão opcional de exceções, separada da rotina principal | `test_review_exceptions.py` |
+| `webapp/server.py`, `store.py`, `worker.py` | API, persistência/fila, processamento e limpeza | `test_webapp.py` cobre API, fila e apresentação; não é teste integral da operação na VPS |
+| `webapp/presentation.py` | Adaptar derivados e calcular contexto visual em Python | `test_webapp.py` |
+| `webapp/documentation.py`, `docs/` | Renderizar artigos Markdown versionados e índice de busca | `test_webapp.py` |
+| `webapp/static/` | Interface HTML/CSS/JavaScript | Conferência no navegador das páginas afetadas |
+| `scripts/create_featured_daily.py` | Preparar séries visuais da demonstração a partir do bruto | Conferir saídas e lacunas ao atualizar a demonstração |
+| `deploy/` | Docker, Traefik e operação da aplicação | Verificação de saúde e HTTPS após publicação autorizada |
+
+Nem toda linha do projeto possui teste automático específico. Use a tabela para localizar verificações existentes, sem pressupor cobertura integral.
+
+## Preparar o ambiente
+
+O núcleo de tratamento/classificação/ranking usa Python 3.11+ e a biblioteca padrão. Para trabalhar na interface e executar todos os testes, instale as dependências de desenvolvimento, que incluem as da aplicação.
+
+### Windows / PowerShell
+
+```powershell
+python -m venv .venv
+.venv\Scripts\python -m pip install -r requirements-dev.txt
+.venv\Scripts\python -m unittest discover -s tests -v
+```
+
+### Linux / macOS
+
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements-dev.txt
+.venv/bin/python -m unittest discover -s tests -v
+```
+
+`requirements-web.txt` instala o necessário para servir o site. `requirements-dev.txt` inclui também `httpx`, utilizado nos testes da API. Os comandos acima usam o executável da pasta virtual explicitamente, sem exigir ativação do ambiente.
+
+## Executar a interface local
+
+No Windows, a partir da raiz, em um terminal:
+
+```powershell
+.venv\Scripts\python -m uvicorn webapp.server:app --host 127.0.0.1 --port 8000
+```
+
+Em outro terminal:
+
+```powershell
+.venv\Scripts\python -m webapp.worker
+```
+
+Abra `http://127.0.0.1:8000`. No Linux/macOS, use `.venv/bin/python` nos mesmos comandos. A demonstração pode ser consultada sem worker; novos envios precisam dele.
+
+O diretório padrão de estado local é `runtime-data/`. A variável `RANKING_DATA_DIR` permite outro diretório. A operação da VPS e suas configurações ficam em [deploy/README.md](../deploy/README.md).
+
+## Reproduzir o pipeline
+
+Exemplo da referência, com o CSV original disponível fora do Git:
+
+```powershell
+.venv\Scripts\python weekly_ranking.py --input "CAMINHO\economatica.csv" --reference-date 2026-09-22 --output-dir "runs\reproducao-2026-09-22"
+```
+
+Para uma nova extração, substitua arquivo, referência e diretório. Fontes oficiais ausentes podem ser baixadas. `--reference-dir` escolhe a pasta de fontes; `--offline` impede novas buscas e só permite concluir se as evidências guardadas forem suficientes.
+
+Não é possível reproduzir integralmente o case apenas com os derivados do Git: o CSV bruto e as fontes necessárias também são entradas. Veja [auditoria](auditoria.md) para o que está disponível publicamente.
+
+## Testes e limites da verificação
+
+A suíte padrão utiliza casos sintéticos e fontes locais artificiais. Não depende de Groq, credenciais ou rede. Testes que precisam da extração original são opcionais e podem aparecer como ignorados quando ela não estiver configurada.
+
+Para habilitar a regressão do tratamento com o CSV original no PowerShell:
+
+```powershell
+$env:ECONOMATICA_CASE_CSV = "CAMINHO\economatica.csv"
+.venv\Scripts\python -m unittest discover -s tests -v
+```
+
+No Linux/macOS:
+
+```bash
+ECONOMATICA_CASE_CSV="/caminho/economatica.csv" .venv/bin/python -m unittest discover -s tests -v
+```
+
+Essa regressão confere o tratamento e sua repetição; não equivale a testar downloads reais da B3 ou executar uma análise pública completa.
+
+Para conferir a área web isoladamente:
+
+```powershell
+.venv\Scripts\python -m unittest discover -s tests -p "test_webapp.py" -v
+```
+
+Após editar, rode também `git diff --check`. Mudanças em dados ou regras precisam de testes com casos relevantes; mudanças de layout precisam de inspeção no navegador. Conferir a média histórica não prova, sozinho, que novas extrações funcionem.
+
+## Manutenção da documentação
+
+As oito páginas de uso são publicadas a partir de uma lista explícita em `webapp/documentation.py`. Este roteiro e o registro de decisões são documentação técnica no GitHub; não foram adicionados ao menu público nesta etapa.
+
+Ao mudar uma regra, atualize a decisão, o artigo aplicável e o teste correspondente. Ao mudar uma saída, atualize seus consumidores e o dicionário de campos. Ao documentar limitações, diferencie funcionamento atual e melhorias planejadas.

@@ -4,6 +4,8 @@ Esta pasta contém os oito artigos publicados pela interface em `/documentacao`.
 
 ## Caminhos de leitura
 
+Para manutenção do código, consulte o [roteiro técnico e comandos](desenvolvimento.md), o [registro de decisões](decisoes.md) e as [orientações para agentes](../AGENTS.md). Esses documentos técnicos ficam no GitHub; os oito artigos de uso continuam no site.
+
 | O que você quer fazer? | Por onde começar |
 | --- | --- |
 | Entender a entrega em poucos minutos | Comece aqui → Metodologia do ranking |
