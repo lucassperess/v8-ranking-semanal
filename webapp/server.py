@@ -38,6 +38,8 @@ async def secure_headers(request: Request, call_next):
     response.headers["Content-Security-Policy"] = "default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'"
     if request.url.path.startswith("/api/analyses"):
         response.headers["Cache-Control"] = "no-store"
+    if request.url.path.startswith("/static/") or response.headers.get("content-type", "").startswith("text/html"):
+        response.headers["Cache-Control"] = "no-cache"
     return response
 
 
