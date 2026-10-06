@@ -102,9 +102,13 @@ def load_bvbg(path: Path, reference_date: date, requested_tickers: set[str],
         scanned = spot = 0
         with nested.open(xml_name) as stream:
             context = ET.iterparse(stream, events=("start", "end"))
-            _, root = next(context)
+            parents: list[ET.Element] = []
             for event, node in context:
-                if event != "end" or local_name(node.tag) != "BizGrp":
+                if event == "start":
+                    parents.append(node)
+                    continue
+                if local_name(node.tag) != "BizGrp":
+                    parents.pop()
                     continue
                 scanned += 1
                 document = child(node, "Document", "Instrm")
@@ -113,7 +117,8 @@ def load_bvbg(path: Path, reference_date: date, requested_tickers: set[str],
                     dates.add(report)
                 common = child(document, "FinInstrmAttrCmon")
                 if value(common, "Sgmt") != "1" or value(common, "Mkt") != "10":
-                    root.clear()
+                    parents[-2].remove(node)
+                    parents.pop()
                     continue
                 spot += 1
                 equity = child(document, "InstrmInf", "EqtyInf")
@@ -125,7 +130,10 @@ def load_bvbg(path: Path, reference_date: date, requested_tickers: set[str],
                     isin = value(equity, "ISIN")
                     kind, detail = classify(category, description, cfi)
                     candidates[ticker].add((kind, f"{detail}; ISIN={isin}"))
-                root.clear()
+                # BizGrp é filho de Xchg, não do elemento raiz Document.
+                # Remover do pai libera cada registro antes de ler o próximo.
+                parents[-2].remove(node)
+                parents.pop()
         if len(dates) != 1:
             raise RegistryError(f"XML B3 deve conter uma única RptDt; encontradas {sorted(dates)!r}.")
         snapshot = date.fromisoformat(next(iter(dates)))
