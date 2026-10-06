@@ -267,6 +267,38 @@ class ApiTests(unittest.TestCase):
         with self.assertRaises(store.LimitError):
             store.create_job("f" * 32, "2026-09-22", "b" * 64, "another")
 
+    def test_origin_limit_expires_after_one_hour(self):
+        for index in range(3):
+            job_id = f"{index:032x}"
+            store.create_job(job_id, "2026-09-22", "a" * 64, "same-origin")
+            store.update_job(job_id, status="completed")
+        with self.assertRaisesRegex(store.LimitError, "por hora"):
+            store.check_limits("same-origin")
+        with self.assertRaisesRegex(store.LimitError, "por hora"):
+            store.create_job("f" * 32, "2026-09-22", "a" * 64, "same-origin")
+        store.check_limits("different-origin")
+        with store.db() as con:
+            con.execute("UPDATE jobs SET created_at=? WHERE id=?",
+                        (store.stamp(store.now() - timedelta(minutes=61)), "0" * 32))
+        store.create_job("f" * 32, "2026-09-22", "a" * 64, "same-origin")
+
+    def test_results_expire_after_seven_days_without_removing_recent_runs(self):
+        for job_id, age in (("a" * 32, 8), ("b" * 32, 6)):
+            store.create_job(job_id, "2026-09-22", "a" * 64, "origin")
+            store.update_job(job_id, status="completed")
+            root = self.data / "runs" / job_id
+            root.mkdir(parents=True)
+            (root / "top20.csv").write_text("derived", encoding="utf-8")
+            with store.db() as con:
+                con.execute("UPDATE jobs SET created_at=? WHERE id=?",
+                            (store.stamp(store.now() - timedelta(days=age)), job_id))
+        store.cleanup()
+        self.assertFalse((self.data / "runs" / ("a" * 32)).exists())
+        self.assertTrue((self.data / "runs" / ("b" * 32) / "top20.csv").exists())
+        response = self.client.get(f"/api/analyses/{'a' * 32}/result")
+        self.assertEqual(response.status_code, 410)
+        self.assertIn("expirou", response.json()["detail"])
+
 
 if __name__ == "__main__":
     unittest.main()
