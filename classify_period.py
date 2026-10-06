@@ -55,9 +55,13 @@ def read_bvbg(path: Path, requested: set[str], cache_dir: Path | None = None) ->
         scanned = 0
         with nested.open(xml_name) as stream:
             context = ET.iterparse(stream, events=("start", "end"))
-            _, root = next(context)
+            parents: list[ET.Element] = []
             for event, node in context:
-                if event != "end" or local_name(node.tag) != "BizGrp":
+                if event == "start":
+                    parents.append(node)
+                    continue
+                if local_name(node.tag) != "BizGrp":
+                    parents.pop()
                     continue
                 scanned += 1
                 document = child(node, "Document", "Instrm")
@@ -66,7 +70,8 @@ def read_bvbg(path: Path, requested: set[str], cache_dir: Path | None = None) ->
                     dates.add(report_date)
                 common = child(document, "FinInstrmAttrCmon")
                 if value(common, "Sgmt") != "1" or value(common, "Mkt") != "10":
-                    root.clear()
+                    parents[-2].remove(node)
+                    parents.pop()
                     continue
                 equity = child(document, "InstrmInf", "EqtyInf")
                 ticker = value(equity, "TckrSymb").upper()
@@ -75,7 +80,10 @@ def read_bvbg(path: Path, requested: set[str], cache_dir: Path | None = None) ->
                     evidence.append({"ticker": ticker, "source_date": report_date, "source": "BVBG.028.02",
                                      "instrument_type": kind, "isin": value(equity, "ISIN"), "detail": detail,
                                      "file": path.name, "file_sha256": ""})
-                root.clear()
+                # O pai de BizGrp é Xchg. Remover cada registro evita manter
+                # os 150 mil instrumentos no XML de meio gigabyte em RAM.
+                parents[-2].remove(node)
+                parents.pop()
         if len(dates) != 1:
             raise ClassificationError(f"{path.name}: esperado um único RptDt, recebido {sorted(dates)!r}")
         report_date = date.fromisoformat(next(iter(dates)))
