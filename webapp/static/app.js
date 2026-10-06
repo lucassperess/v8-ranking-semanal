@@ -55,23 +55,25 @@ function renderDetail() {
   text('detail-return',`+${pct(row.return_pct)}`); text('detail-start',`${day(row.start_date)} · ${money(row.start_close)}`);
   text('detail-end',`${day(row.end_date)} · ${money(row.end_close)}`);
   const note=state.data.quality.top20_issues.filter(item=>item.ticker===row.ticker);
-  text('detail-note',note.length?`Atenção: ${note.map(item=>`${day(item.trade_date)} · ${item.field}: ${item.reason}`).join('; ')}`:'Preço de fechamento ajustado. A série diária é apenas contexto visual; o ranking usa as duas pontas acima.');
+  text('detail-note',`${note.length?`Atenção: ${note.map(item=>`${day(item.trade_date)} · ${item.field}: ${item.reason}`).join('; ')}. `:''}Preço ajustado por ação, na moeda original do ativo. A extração não identifica o código da moeda. A série diária é contexto; o ranking usa as duas pontas acima.`);
   const box=$('detail-chart'); clear(box);
   const series=state.data.daily.series[row.ticker]||[];
   const points=series.filter(p=>p.close!==null);
   if(points.length<2){box.append(node('div','chart-empty','Série diária indisponível para este ativo.'));return;}
   const values=points.map(p=>Number(p.close));const min=Math.min(...values),max=Math.max(...values),pad=Math.max((max-min)*.18,max*.04,.01);
-  const lower=Math.max(0,min-pad),upper=max+pad,w=600,h=250,left=62,right=18,top=28,bottom=38;
+  const lower=Math.max(0,min-pad),upper=max+pad,w=600,h=250,left=66,right=18,top=28,bottom=38;
   const tickStep=(upper-lower)/4;
   const tickFormat=new Intl.NumberFormat('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:tickStep<.01?5:tickStep<.1?3:2});
   const allDates=state.data.daily.dates; const x=d=>left+(allDates.indexOf(d)/Math.max(1,allDates.length-1))*(w-left-right);
   const y=v=>top+(upper-v)/(upper-lower)*(h-top-bottom);
-  const chart=svg('svg',{viewBox:`0 0 ${w} ${h}`,role:'img','aria-label':`Fechamento ajustado de ${row.ticker} por data; passe o cursor ou foque um ponto para ver o valor`});
+  const chart=svg('svg',{viewBox:`0 0 ${w} ${h}`,role:'img','aria-label':`Fechamento ajustado de ${row.ticker}, em moeda original por ação, por data; passe o cursor ou foque um ponto para ver o valor`});
   const axisLabel=(content,attributes)=>{const label=svg('text',attributes);label.textContent=content;chart.append(label);};
-  axisLabel('FECHAMENTO AJUSTADO',{x:0,y:12,fill:'#a4a8af','font-size':12});
+  axisLabel('PREÇO · MOEDA ORIGINAL / AÇÃO',{x:0,y:12,fill:'#a4a8af','font-size':12});
+  chart.append(svg('line',{x1:left,y1:top,x2:left,y2:h-bottom,stroke:'#55595f'}));
+  chart.append(svg('line',{x1:left,y1:h-bottom,x2:w-right,y2:h-bottom,stroke:'#55595f'}));
   for(let i=0;i<=4;i++){
     const yy=top+(i/4)*(h-top-bottom), tick=upper-(i/4)*(upper-lower);
-    chart.append(svg('line',{x1:left,y1:yy,x2:w-right,y2:yy,stroke:'#34363a','stroke-dasharray':i===4?'':'2 5'}));
+    chart.append(svg('line',{x1:left-5,y1:yy,x2:left,y2:yy,stroke:'#55595f'}));
     axisLabel(tickFormat.format(tick),{x:left-9,y:yy+4,fill:'#a4a8af','font-size':12,'text-anchor':'end'});
   }
   allDates.forEach(d=>{const xx=x(d);chart.append(svg('line',{x1:xx,y1:h-bottom,x2:xx,y2:h-bottom+5,stroke:'#4c4f55'}));axisLabel(day(d).slice(0,5),{x:xx,y:h-12,fill:'#a4a8af','font-size':12,'text-anchor':'middle'});});
@@ -80,7 +82,7 @@ function renderDetail() {
   allDates.forEach(d=>{const close=byDate.get(d);if(close===null||close===undefined){drawSegment();return;}segment.push([x(d),y(Number(close))]);});drawSegment();
   const guide=svg('line',{x1:0,y1:top,x2:0,y2:h-bottom,stroke:'#8e949c','stroke-dasharray':'3 4',visibility:'hidden'});chart.append(guide);
   const tip=node('div','chart-tooltip');tip.hidden=true;tip.setAttribute('role','status');
-  const show=(p,xx)=>{guide.setAttribute('x1',xx);guide.setAttribute('x2',xx);guide.setAttribute('visibility','visible');tip.textContent=`${day(p.date)} · ${preciseMoney(p.close)}`;tip.style.left=`${Math.min(83,Math.max(17,xx/w*100))}%`;tip.style.top=`${y(Number(p.close))/h*100}%`;tip.hidden=false;};
+  const show=(p,xx)=>{guide.setAttribute('x1',xx);guide.setAttribute('x2',xx);guide.setAttribute('visibility','visible');tip.textContent=`${day(p.date)} · ${preciseMoney(p.close)} moeda orig./ação`;tip.style.left=`${Math.min(72,Math.max(28,xx/w*100))}%`;tip.style.top=`${y(Number(p.close))/h*100}%`;tip.hidden=false;};
   const hide=()=>{guide.setAttribute('visibility','hidden');tip.hidden=true;};
   points.forEach(p=>{const xx=x(p.date),yy=y(Number(p.close));chart.append(svg('circle',{cx:xx,cy:yy,r:4,fill:'#3cdaa8'}));const hit=svg('circle',{cx:xx,cy:yy,r:13,fill:'transparent',tabindex:0,role:'button','aria-label':`${day(p.date)}: fechamento ajustado ${preciseMoney(p.close)}`});hit.addEventListener('pointerenter',()=>show(p,xx));hit.addEventListener('pointerleave',hide);hit.addEventListener('focus',()=>show(p,xx));hit.addEventListener('blur',hide);chart.append(hit);});
   box.append(chart,tip);
