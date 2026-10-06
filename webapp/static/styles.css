@@ -100,3 +100,15 @@ th,.brand-name,.topnav,.source-link,.intro p,.aside-value,.aside-meta,.aside-act
 .period-info:hover .period-tooltip,.period-info:focus-within .period-tooltip{visibility:visible;opacity:1}
 .ranking-toolbar{justify-content:flex-end}
 @media(max-width:650px){.ranking-period{align-items:flex-start}.ranking-toolbar{align-items:flex-end}}
+
+/* Shared brand and compact header actions. */
+.brand-logo{display:block;width:40px;height:40px;object-fit:contain;border-radius:8px}
+.header-actions{display:flex;align-items:center;gap:8px;position:relative;margin-left:auto}
+.header-actions .source-link{display:flex;align-items:center;gap:8px;margin-left:0}
+.source-link svg{width:16px;height:16px;flex-shrink:0}
+.fullscreen-button{display:grid;place-items:center;width:34px;height:34px;padding:7px;border:1px solid #45454a;border-radius:50%;background:transparent;color:#d0d2d8}
+.fullscreen-button:hover{background:var(--selection);color:#fff}
+.fullscreen-button svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.fullscreen-collapse{display:none}.fullscreen-button[aria-pressed=true] .fullscreen-expand{display:none}.fullscreen-button[aria-pressed=true] .fullscreen-collapse{display:block}
+.fullscreen-message{position:absolute;right:0;top:calc(100% + 8px);width:280px;padding:12px;border:1px solid #45454a;border-radius:10px;background:#202023;z-index:10;font-size:12px;line-height:1.5}
+@media(max-width:650px){.brand-logo{width:34px;height:34px}.header-actions{gap:6px}.header-actions .source-link{padding:7px 9px}.topbar{padding-top:9px}}

@@ -8,14 +8,14 @@
   <meta name="description" content="Ranking semanal de ações brasileiras com metodologia, alertas e teste de novas extrações da Economatica.">
   <link rel="stylesheet" href="/static/styles.css">
   <script src="/static/app.js" defer></script>
-</head>
+<script src="/static/header.js" defer></script></head>
 <body>
   <a class="skip-link" href="#ranking">Ir para o ranking</a>
   <div class="shell">
     <header class="topbar">
-      <a class="brand" href="/" aria-label="Voltar ao resultado de referência"><span class="brand-mark">V8</span><span class="brand-divider"></span><span class="brand-name">RANKING DE AÇÕES</span></a>
+      <a class="brand" href="/" aria-label="Voltar ao resultado de referência"><img class="brand-logo" src="/static/v8-logo.png" alt="V8 Capital" width="40" height="40"><span class="brand-divider"></span><span class="brand-name">RANKING DE AÇÕES</span></a>
       <nav class="topnav" aria-label="Navegação principal"><a id="nav-result" href="/" aria-current="page">Ranking</a><a id="nav-method" href="/metodologia">Metodologia</a><a href="/nova-analise">Nova análise</a></nav>
-      <a class="source-link" href="https://github.com/lucassperess/v8-ranking-semanal" target="_blank" rel="noopener noreferrer">Código no GitHub <span aria-hidden="true">↗</span></a>
+      <div class="header-actions"><a class="source-link" href="https://github.com/lucassperess/v8-ranking-semanal" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .75a11.25 11.25 0 0 0-3.56 21.92c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.29-5.13-1.25-5.13-5.56 0-1.23.44-2.24 1.16-3.03-.12-.29-.5-1.43.11-2.97 0 0 .95-.3 3.09 1.16a10.76 10.76 0 0 1 5.62 0c2.15-1.46 3.09-1.16 3.09-1.16.61 1.54.23 2.68.12 2.97.72.79 1.15 1.8 1.15 3.03 0 4.32-2.63 5.27-5.14 5.55.4.35.76 1.03.76 2.08v3.11c0 .3.2.65.78.54A11.25 11.25 0 0 0 12 .75Z"/></svg><span>Código no GitHub</span><span aria-hidden="true">↗</span></a><button id="fullscreen-button" class="fullscreen-button" type="button" aria-label="Entrar em tela cheia" title="Entrar em tela cheia" aria-pressed="false"><svg class="fullscreen-expand" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg><svg class="fullscreen-collapse" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h5V3M21 8h-5V3M8 21v-5H3M16 21v-5h5"/></svg></button><span id="fullscreen-message" class="fullscreen-message" role="status" hidden></span></div>
     </header>
 
     <main>
