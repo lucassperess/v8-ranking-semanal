@@ -110,7 +110,8 @@ async function onFile() {
   const latest = dates.reduce((a, b) => (a > b ? a : b));
   const candidate = new Date(`${latest}T12:00:00Z`);
   const weekday = candidate.getUTCDay();
-  candidate.setUTCDate(candidate.getUTCDate() + ((8 - weekday) % 7 || 7));
+  // Uma segunda-feira isolada não fecha a semana recém-iniciada.
+  if (weekday !== 1) candidate.setUTCDate(candidate.getUTCDate() + ((8 - weekday) % 7));
   const suggestion = candidate.toISOString().slice(0, 10);
   if (suggestion <= today()) {
     $('reference-date').value = suggestion;
