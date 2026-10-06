@@ -1,0 +1,12 @@
+__pycache__/
+.pytest_cache/
+.venv/
+*.py[cod]
+data/raw/
+data/reference/
+runs/
+outputs/
+*.csv
+*.pdf
+*.zip
+.env
