@@ -112,3 +112,8 @@ th,.brand-name,.topnav,.source-link,.intro p,.aside-value,.aside-meta,.aside-act
 .fullscreen-collapse{display:none}.fullscreen-button[aria-pressed=true] .fullscreen-expand{display:none}.fullscreen-button[aria-pressed=true] .fullscreen-collapse{display:block}
 .fullscreen-message{position:absolute;right:0;top:calc(100% + 8px);width:280px;padding:12px;border:1px solid #45454a;border-radius:10px;background:#202023;z-index:10;font-size:12px;line-height:1.5}
 @media(max-width:650px){.brand-logo{width:34px;height:34px}.header-actions{gap:6px}.header-actions .source-link{padding:7px 9px}.topbar{padding-top:9px}}
+
+.ranking-title-row{display:flex;align-items:baseline;gap:20px;flex-wrap:wrap;margin-bottom:7px}
+.ranking-title-row h2{margin-bottom:0}
+.ranking-title-row .download-button{padding:0;line-height:1.5}
+@media(max-width:650px){.ranking-title-row{gap:8px 16px}}
