@@ -83,13 +83,13 @@ th,.brand-name,.topnav,.source-link,.intro p,.aside-value,.aside-meta,.aside-act
 
 /* Summary cards match the rounded, outlined market cards. */
 .metric-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;border:0;margin:14px 0 30px}
-.metric,.metric:first-child{display:flex;flex-direction:column;align-items:flex-start;gap:10px;border:1px solid #38383b;border-radius:var(--radius-panel);padding:18px 20px;min-height:128px;background:#050506}
-.metric strong{font-size:26px;line-height:1.2}
-.metric-label{white-space:normal;line-height:1.5}
+.metric,.metric:first-child{display:flex;flex-direction:column;align-items:flex-start;gap:10px;border:1px solid #38383b;border-radius:var(--radius-panel);padding:20px 22px;min-height:112px;background:#050506;position:relative}
+.metric strong{font-family:Arial,Helvetica,sans-serif;font-size:42px;line-height:1.05;font-weight:700;letter-spacing:-.025em}
+.metric-label{white-space:normal;line-height:1.5;color:#85858b;font-size:13px;padding-right:22px}
 .metric-note{display:block;white-space:normal;line-height:1.5}
 .heatmap-grid{border-radius:0}
 @media(max-width:900px){.metric-strip{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}}
-@media(max-width:650px){.metric,.metric:first-child{padding:16px!important;border:1px solid #38383b;min-height:128px}.metric:nth-child(odd){border-left:1px solid #38383b}.metric strong{font-size:24px}}
+@media(max-width:650px){.metric,.metric:first-child{padding:16px!important;border:1px solid #38383b;min-height:112px}.metric:nth-child(odd){border-left:1px solid #38383b}.metric strong{font-size:36px}}
 
 /* Period explanation lives beside its context, available on hover or focus. */
 .ranking-period{display:flex;align-items:center;gap:8px}
@@ -120,3 +120,10 @@ th,.brand-name,.topnav,.source-link,.intro p,.aside-value,.aside-meta,.aside-act
 
 /* Center navigation independently of the widths of the brand and actions. */
 @media(min-width:1001px){.topbar{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)}.topbar .brand{justify-self:start}.topbar .topnav{margin:0;justify-self:center}.topbar .header-actions{margin-left:0;justify-self:end}}
+
+.metric-info{display:contents}
+.metric-info .info-button{position:absolute;top:13px;right:15px;width:18px;height:18px;font-size:11px;font-weight:400;border-color:#55555b;color:#a3a3aa}
+.metric-tooltip{position:absolute;right:15px;top:40px;width:250px;max-width:calc(100vw - 40px);padding:12px 14px;border:1px solid #414145;border-radius:10px;background:#202023;color:#e0e2e6;font-size:12px;line-height:1.6;box-shadow:0 8px 24px #0008;z-index:5;visibility:hidden;opacity:0;pointer-events:none;font-family:Arial,Helvetica,sans-serif}
+.metric-info:hover .metric-tooltip,.metric-info:focus-within .metric-tooltip{visibility:visible;opacity:1}
+.metric:first-child .metric-tooltip{left:15px;right:auto}
+@media(max-width:900px){.metric:nth-child(odd) .metric-tooltip{left:15px;right:auto}}

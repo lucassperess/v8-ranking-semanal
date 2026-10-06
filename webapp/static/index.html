@@ -29,10 +29,10 @@
 
       <div id="dashboard" hidden>
         <section class="metric-strip" aria-label="Indicadores principais">
-          <div class="metric main-metric"><span class="metric-label">MÉDIA DO TOP 20</span><strong id="metric-mean"></strong><span class="metric-note">média aritmética</span></div>
-          <div class="metric"><span class="metric-label">AÇÕES ELEGÍVEIS</span><strong id="metric-eligible"></strong><span class="metric-note">ON e PN</span></div>
-          <div class="metric"><span class="metric-label">AÇÕES EM ALTA</span><strong id="metric-up"></strong><span class="metric-note" id="metric-up-note"></span></div>
-          <div class="metric"><span class="metric-label">JANELA ALTERNATIVA</span><strong id="metric-alternative"></strong><span class="metric-note">dentro da semana</span></div>
+          <div class="metric main-metric"><span class="metric-label">Média do top 20</span><strong id="metric-mean"></strong><span class="metric-info"><button class="info-button" type="button" aria-label="Sobre média do top 20" aria-describedby="metric-mean-help">i</button><span id="metric-mean-help" class="metric-tooltip" role="tooltip">Média aritmética dos 20 maiores retornos da janela selecionada.</span></span></div>
+          <div class="metric"><span class="metric-label">Ações elegíveis</span><strong id="metric-eligible"></strong><span class="metric-info"><button class="info-button" type="button" aria-label="Sobre ações elegíveis" aria-describedby="metric-eligible-help">i</button><span id="metric-eligible-help" class="metric-tooltip" role="tooltip">Ações ordinárias e preferenciais confirmadas, com fechamento válido nas duas pontas da janela selecionada.</span></span></div>
+          <div class="metric"><span class="metric-label">Ações em alta</span><strong id="metric-up"></strong><span class="metric-info"><button class="info-button" type="button" aria-label="Sobre ações em alta" aria-describedby="metric-up-help">i</button><span id="metric-up-help" class="metric-tooltip" role="tooltip">Percentual das ações elegíveis com retorno positivo na janela selecionada. <span id="metric-up-note"></span>.</span></span></div>
+          <div class="metric"><span class="metric-label">Janela alternativa</span><strong id="metric-alternative"></strong><span class="metric-info"><button class="info-button" type="button" aria-label="Sobre janela alternativa" aria-describedby="metric-alternative-help">i</button><span id="metric-alternative-help" class="metric-tooltip" role="tooltip">Média aritmética dos 20 maiores retornos entre o primeiro e o último fechamento disponíveis dentro da semana.</span></span></div>
         </section>
 
         <section id="ranking" class="section ranking-section">
