@@ -94,10 +94,9 @@ th,.brand-name,.topnav,.source-link,.intro p,.aside-value,.aside-meta,.aside-act
 /* Period explanation lives beside its context, available on hover or focus. */
 .ranking-period{display:flex;align-items:center;gap:8px}
 .period-info{position:relative;display:inline-flex;flex-shrink:0}
-.info-button{display:grid;place-items:center;width:18px;height:18px;padding:0;border:1px solid #74777e;border-radius:50%;background:transparent;color:#bfc3ca;font-size:12px;font-weight:600;font-style:normal}
-.info-button:hover,.info-button:focus{background:#2c2c2e;color:#fff;border-color:#bfc3ca}
-.period-tooltip{position:absolute;top:calc(100% + 10px);right:0;z-index:5;width:320px;max-width:calc(100vw - 40px);padding:12px 14px;border:1px solid #414145;border-radius:10px;background:#202023;color:#e0e2e6;font-size:12px;line-height:1.6;box-shadow:0 8px 24px #0008;visibility:hidden;opacity:0;pointer-events:none}
-.period-info .info-button:hover + .period-tooltip,.period-info .info-button:focus-visible + .period-tooltip{visibility:visible;opacity:1}
+.info-button{display:grid;place-items:center;width:18px;height:18px;padding:0;border:1px solid #55555b;border-radius:50%;background:transparent;color:#a3a3aa;font:400 11px Arial,Helvetica,sans-serif}
+.info-button:hover,.info-button:focus-visible{background:#2c2c2e;color:#fff;border-color:#bfc3ca}
+.period-tooltip{top:calc(100% + 10px);right:0}
 .ranking-toolbar{justify-content:flex-end}
 @media(max-width:650px){.ranking-period{align-items:flex-start}.ranking-toolbar{align-items:flex-end}}
 
@@ -122,7 +121,11 @@ th,.brand-name,.topnav,.source-link,.intro p,.aside-value,.aside-meta,.aside-act
 @media(min-width:1001px){.topbar{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)}.topbar .brand{justify-self:start}.topbar .topnav{margin:0;justify-self:center}.topbar .header-actions{margin-left:0;justify-self:end}}
 
 .metric-info{position:absolute;top:13px;right:15px;width:18px;height:18px}
-.metric-info .info-button{width:18px;height:18px;font-size:11px;font-weight:400;border-color:#55555b;color:#a3a3aa}
-.metric-tooltip{position:absolute;right:0;top:28px;width:250px;max-width:calc(100vw - 40px);padding:12px 14px;border:1px solid #414145;border-radius:10px;background:#202023;color:#e0e2e6;font-size:12px;line-height:1.6;box-shadow:0 8px 24px #0008;z-index:5;visibility:hidden;opacity:0;pointer-events:none;font-family:Arial,Helvetica,sans-serif}
-.metric-info .info-button:hover + .metric-tooltip,.metric-info .info-button:focus-visible + .metric-tooltip{visibility:visible;opacity:1}
-@media(max-width:900px){.metric-tooltip{width:220px}.metric:nth-child(odd) .metric-tooltip{left:-110px;right:auto}}
+
+.metric-tooltip{right:0;top:28px}
+@media(max-width:1100px){.metric:nth-child(odd) .metric-tooltip{left:-110px;right:auto}}
+
+/* One visual language for every information button and tooltip. */
+.info-tooltip{position:absolute;z-index:5;width:280px;max-width:calc(100vw - 40px);padding:12px 14px;border:1px solid #414145;border-radius:10px;background:#202023;color:#e0e2e6;font:12px/1.6 Arial,Helvetica,sans-serif;box-shadow:0 8px 24px #0008;visibility:hidden;opacity:0;pointer-events:none}
+.info-button:hover + .info-tooltip,.info-button:focus-visible + .info-tooltip{visibility:visible;opacity:1}
+@media(max-width:1100px){.info-tooltip{width:220px}}
