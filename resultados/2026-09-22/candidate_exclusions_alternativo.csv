@@ -1,0 +1,165 @@
+ticker,start_date_rows,end_date_rows,reason
+AESO3,0,0,Ausência de linha em uma ou ambas as datas
+AFLT3,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+AHEB3,0,0,Ausência de linha em uma ou ambas as datas
+AHEB5,0,0,Ausência de linha em uma ou ambas as datas
+AHEB6,0,0,Ausência de linha em uma ou ambas as datas
+APTI3,0,0,Ausência de linha em uma ou ambas as datas
+APTI4,0,0,Ausência de linha em uma ou ambas as datas
+ARND3,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+AVLL3,1,0,Ausência de linha em uma ou ambas as datas
+B1003,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+BALM3,0,0,Ausência de linha em uma ou ambas as datas
+BALM4,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+BAUH3,0,0,Ausência de linha em uma ou ambas as datas
+BAUH4,0,0,Ausência de linha em uma ou ambas as datas
+BBML3,0,0,Ausência de linha em uma ou ambas as datas
+BDLL3,1,0,Ausência de linha em uma ou ambas as datas
+BDLL4,1,0,Ausência de linha em uma ou ambas as datas
+BETP3,0,0,Ausência de linha em uma ou ambas as datas
+BGIP3,0,0,Ausência de linha em uma ou ambas as datas
+BGIP4,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+BMIN3,0,0,Ausência de linha em uma ou ambas as datas
+BMIN4,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+BNBR3,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+BOBR3,0,0,Ausência de linha em uma ou ambas as datas
+BPAR3,0,0,Ausência de linha em uma ou ambas as datas
+BRKM6,1,0,Ausência de linha em uma ou ambas as datas
+BRQB3,0,0,Ausência de linha em uma ou ambas as datas
+BRSR5,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+CALI3,0,0,Ausência de linha em uma ou ambas as datas
+CASN3,0,0,Ausência de linha em uma ou ambas as datas
+CASN4,0,0,Ausência de linha em uma ou ambas as datas
+CATA3,0,0,Ausência de linha em uma ou ambas as datas
+CATA4,0,0,Ausência de linha em uma ou ambas as datas
+CBEE3,1,0,Ausência de linha em uma ou ambas as datas
+CEDO3,0,0,Ausência de linha em uma ou ambas as datas
+CEDO4,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+CEEB5,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+CEEB6,0,0,Ausência de linha em uma ou ambas as datas
+CEED3,0,0,Ausência de linha em uma ou ambas as datas
+CEED4,0,0,Ausência de linha em uma ou ambas as datas
+CEGR3,0,0,Ausência de linha em uma ou ambas as datas
+CGAS3,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+CLSC3,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+COCE3,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+COCE6,0,0,Ausência de linha em uma ou ambas as datas
+COMR3,0,0,Ausência de linha em uma ou ambas as datas
+CRPG3,0,0,Ausência de linha em uma ou ambas as datas
+CRPG6,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+CRTE3,0,0,Ausência de linha em uma ou ambas as datas
+CRTE5,0,0,Ausência de linha em uma ou ambas as datas
+CTAX3,1,0,Ausência de linha em uma ou ambas as datas
+CTCA3,0,0,Ausência de linha em uma ou ambas as datas
+CTKA3,1,0,Ausência de linha em uma ou ambas as datas
+CTKA4,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+CTSA3,0,0,Ausência de linha em uma ou ambas as datas
+CTSA4,0,0,Ausência de linha em uma ou ambas as datas
+DEXP4,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+DOHL3,0,0,Ausência de linha em uma ou ambas as datas
+DOHL4,1,0,Ausência de linha em uma ou ambas as datas
+DTCY3,1,0,Ausência de linha em uma ou ambas as datas
+DTCY4,0,0,Ausência de linha em uma ou ambas as datas
+EALT3,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+EGGY3,0,0,Ausência de linha em uma ou ambas as datas
+EKTR3,0,0,Ausência de linha em uma ou ambas as datas
+EMAE3,0,0,Ausência de linha em uma ou ambas as datas
+EMAE4,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+ENMT3,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+ENMT4,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+EQMA3B,1,0,Ausência de linha em uma ou ambas as datas
+EQMA5B,0,0,Ausência de linha em uma ou ambas as datas
+EQMA6B,0,0,Ausência de linha em uma ou ambas as datas
+EQPA5,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+EQPA6,0,0,Ausência de linha em uma ou ambas as datas
+EQPA7,1,0,Ausência de linha em uma ou ambas as datas
+ESTR3,0,0,Ausência de linha em uma ou ambas as datas
+EUCA3,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+EUFA3,0,0,Ausência de linha em uma ou ambas as datas
+FIEI3,1,0,Ausência de linha em uma ou ambas as datas
+FIGE3,0,0,Ausência de linha em uma ou ambas as datas
+FIGE4,0,0,Ausência de linha em uma ou ambas as datas
+FRIO3,0,0,Ausência de linha em uma ou ambas as datas
+GEPA3,1,0,Ausência de linha em uma ou ambas as datas
+GEPA4,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+GPAR3,0,0,Ausência de linha em uma ou ambas as datas
+GSHP3,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+HBTS3,0,0,Ausência de linha em uma ou ambas as datas
+HBTS5,1,0,Ausência de linha em uma ou ambas as datas
+HBTS6,0,0,Ausência de linha em uma ou ambas as datas
+HETA3,0,0,Ausência de linha em uma ou ambas as datas
+HETA4,1,0,Ausência de linha em uma ou ambas as datas
+HMOB3,0,0,Ausência de linha em uma ou ambas as datas
+HOOT3,0,0,Ausência de linha em uma ou ambas as datas
+IGSN3,0,0,Ausência de linha em uma ou ambas as datas
+IGTI4,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+INNC3,0,0,Ausência de linha em uma ou ambas as datas
+IVPR3B,0,0,Ausência de linha em uma ou ambas as datas
+IVPR4B,0,0,Ausência de linha em uma ou ambas as datas
+JFEN3,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+JOPA3,0,0,Ausência de linha em uma ou ambas as datas
+JOPA4,0,0,Ausência de linha em uma ou ambas as datas
+KLAS3,0,0,Ausência de linha em uma ou ambas as datas
+LLBI3,0,0,Ausência de linha em uma ou ambas as datas
+LMED3,0,0,Ausência de linha em uma ou ambas as datas
+LTEL3B,0,0,Ausência de linha em uma ou ambas as datas
+LTLA3B,0,0,Ausência de linha em uma ou ambas as datas
+LUXM3,0,0,Ausência de linha em uma ou ambas as datas
+MAPT3,0,0,Ausência de linha em uma ou ambas as datas
+MAPT4,0,0,Ausência de linha em uma ou ambas as datas
+MGEL3,0,0,Ausência de linha em uma ou ambas as datas
+MGEL4,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+MMAQ3,0,0,Ausência de linha em uma ou ambas as datas
+MMAQ4,0,0,Ausência de linha em uma ou ambas as datas
+MNDL3,1,0,Ausência de linha em uma ou ambas as datas
+MRSA3B,1,0,Ausência de linha em uma ou ambas as datas
+MRSA5B,1,0,Ausência de linha em uma ou ambas as datas
+MRSA6B,0,0,Ausência de linha em uma ou ambas as datas
+MSPA3,0,0,Ausência de linha em uma ou ambas as datas
+MSPA4,0,0,Ausência de linha em uma ou ambas as datas
+MTSA3,0,0,Ausência de linha em uma ou ambas as datas
+MWET3,0,0,Ausência de linha em uma ou ambas as datas
+MWET4,0,0,Ausência de linha em uma ou ambas as datas
+NEMO3,0,0,Ausência de linha em uma ou ambas as datas
+NEMO5,0,0,Ausência de linha em uma ou ambas as datas
+NEMO6,0,0,Ausência de linha em uma ou ambas as datas
+NEXP3,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+ODER3,0,0,Ausência de linha em uma ou ambas as datas
+ODER4,0,0,Ausência de linha em uma ou ambas as datas
+OIBR3,0,0,Ausência de linha em uma ou ambas as datas
+OIBR4,0,0,Ausência de linha em uma ou ambas as datas
+OPGM3,0,0,Ausência de linha em uma ou ambas as datas
+OPSE3,0,0,Ausência de linha em uma ou ambas as datas
+OPTS3,0,0,Ausência de linha em uma ou ambas as datas
+PATI4,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+PEAB3,0,0,Ausência de linha em uma ou ambas as datas
+PEAB4,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+PPAR3,0,0,Ausência de linha em uma ou ambas as datas
+PPLA11,0,0,Ausência de linha em uma ou ambas as datas
+PRPT3,0,0,Ausência de linha em uma ou ambas as datas
+PTCA3,0,0,Ausência de linha em uma ou ambas as datas
+QUSW3,0,0,Ausência de linha em uma ou ambas as datas
+QVQP3,0,0,Ausência de linha em uma ou ambas as datas
+RBNS11,0,0,Ausência de linha em uma ou ambas as datas
+RNEW11,0,0,Ausência de linha em uma ou ambas as datas
+RPAD3,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+RPAD5,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+RPAD6,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+RPMG3,0,0,Ausência de linha em uma ou ambas as datas
+RSID3,0,0,Ausência de linha em uma ou ambas as datas
+RSUL3,0,0,Ausência de linha em uma ou ambas as datas
+RVEE3,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+SALT3,0,0,Ausência de linha em uma ou ambas as datas
+SALT5,0,0,Ausência de linha em uma ou ambas as datas
+SALT6,0,0,Ausência de linha em uma ou ambas as datas
+SHUL3,0,0,Ausência de linha em uma ou ambas as datas
+SNSY3,0,0,Ausência de linha em uma ou ambas as datas
+SNSY6,0,0,Ausência de linha em uma ou ambas as datas
+SOND3,0,0,Ausência de linha em uma ou ambas as datas
+SOND5,0,0,Ausência de linha em uma ou ambas as datas
+SOND6,1,0,Ausência de linha em uma ou ambas as datas
+TELB3,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+TELB4,1,1,Sem fechamento positivo válido em uma ou ambas as datas
+TXRX3,0,0,Ausência de linha em uma ou ambas as datas
+USIM6,0,0,Ausência de linha em uma ou ambas as datas
+WLMM3,0,0,Ausência de linha em uma ou ambas as datas

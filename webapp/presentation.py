@@ -22,10 +22,20 @@ DOWNLOADS = {
     "top20_alternativo.csv": ("alternativa", "top20.csv"),
     "all_returns_alternativo.csv": ("alternativa", "all_returns.csv"),
     "quality_context.json": ("principal", "quality_context.json"),
+    "quality_context_alternativo.json": ("alternativa", "quality_context.json"),
     "candidate_exclusions.csv": ("classification", "candidate_exclusions.csv"),
     "ranking_report.json": ("root", "ranking_report.json"),
     "README.md": ("root", "README.md"),
+    "etl_manifest.json": ("etl", "manifest.json"),
+    "quality_summary.json": ("etl", "quality_summary.json"),
+    "quality_by_date.csv": ("etl", "quality_by_date.csv"),
+    "quality_issues.csv": ("etl", "quality_issues.csv"),
 }
+for suffix, group in (("", "classification"), ("_alternativo", "classification_alternative")):
+    for filename in ("ranking_universe.csv", "period_classification.csv", "b3_evidence.csv",
+                     "classification_manifest.json", "source_acquisition.json", "candidate_exclusions.csv",
+                     "classification_summary.json", "ranking_universe_summary.json"):
+        DOWNLOADS[Path(filename).stem + suffix + Path(filename).suffix] = (group, filename)
 
 
 def output_path(root: Path, name: str, *, featured: bool = False) -> Path:
@@ -38,7 +48,87 @@ def output_path(root: Path, name: str, *, featured: bool = False) -> Path:
         return root / filename
     if group == "classification":
         return root / "classification" / "principal" / filename
+    if group == "classification_alternative":
+        return root / "classification" / "alternativa" / filename
+    if group == "etl":
+        return root / "etl" / filename
     return root / "rankings" / group / filename
+
+
+def audit_details(root: Path, *, featured: bool = False) -> dict:
+    """Conferência dos derivados publicados; nenhum preço é recalculado aqui."""
+    path = lambda name: output_path(root, name, featured=featured)
+    report = _json(path("ranking_report.json"))
+    required = ["etl_manifest.json", "quality_summary.json", "quality_issues.csv", "quality_by_date.csv"]
+    required += [name + suffix + "." + extension for suffix in ("", "_alternativo")
+                 for name, extension in (("classification_manifest", "json"), ("ranking_universe", "csv"),
+                                         ("b3_evidence", "csv"), ("period_classification", "csv"),
+                                         ("source_acquisition", "json"), ("candidate_exclusions", "csv"),
+                                         ("classification_summary", "json"), ("ranking_universe_summary", "json"))]
+    missing = [name for name in required if not path(name).is_file()]
+    if missing:
+        return {"available": False, "missing_files": missing,
+                "note": "Evidências detalhadas indisponíveis nesta execução histórica; consulte os derivados disponíveis."}
+    etl_manifest = _json(path("etl_manifest.json"))
+    if etl_manifest["input_sha256"] != report["input_sha256"]:
+        raise ValueError("Manifesto ETL usa outra entrada")
+    if digest(path("etl_manifest.json")) != report["etl_manifest_sha256"]:
+        raise ValueError("Hash divergente: etl_manifest.json")
+    for name in ("quality_summary.json", "quality_issues.csv", "quality_by_date.csv"):
+        if not path(name).is_file() or digest(path(name)) != etl_manifest["outputs"][name]:
+            raise ValueError(f"Hash divergente ou arquivo ausente: {name}")
+    issues = _csv(path("quality_issues.csv"))
+    windows = {}
+    for key, suffix in (("primary", ""), ("alternative", "_alternativo")):
+        summary = report[key]
+        manifest_name = "classification_manifest" + suffix + ".json"
+        manifest = _json(path(manifest_name))
+        if digest(path(manifest_name)) != summary["classification_manifest_sha256"]:
+            raise ValueError(f"Hash divergente: {manifest_name}")
+        for name in ("ranking_universe.csv", "period_classification.csv", "b3_evidence.csv", "candidate_exclusions.csv",
+                     "classification_summary.json", "ranking_universe_summary.json"):
+            public_name = Path(name).stem + suffix + Path(name).suffix
+            if not path(public_name).is_file() or digest(path(public_name)) != manifest["outputs"][name]:
+                raise ValueError(f"Hash divergente ou arquivo ausente: {public_name}")
+        if manifest["normalized_sha256"] != etl_manifest["outputs"]["normalized.csv"]:
+            raise ValueError("Classificação e tratamento usam entradas diferentes")
+        acquisition = _json(path("source_acquisition" + suffix + ".json"))
+        if (acquisition["normalized_sha256"] != manifest["normalized_sha256"]
+                or acquisition["start_date"] != summary["start_date"]
+                or acquisition["end_date"] != summary["end_date"]):
+            raise ValueError("Aquisição B3 incompatível com a janela")
+        obtained = {row["file"]: row.get("sha256") for row in acquisition["sources"]}
+        if any(obtained.get(row["file"]) != row["sha256"] for row in manifest["source_files"]):
+            raise ValueError("Assinaturas das fontes adquiridas divergem da classificação")
+        universe = _csv(path("ranking_universe" + suffix + ".csv"))
+        eligible = {row["ticker"] for row in universe if row["decision"] == "incluir"}
+        excluded = [row for row in universe if row["decision"] != "incluir"]
+        if len(eligible) != summary["eligible_shares"] or len(excluded) != summary["excluded_instruments"]:
+            raise ValueError("Contagem de decisões divergente do relatório")
+        top = {row["ticker"] for row in _csv(path("top20" + suffix + ".csv"))}
+        dates = {summary["start_date"], summary["end_date"]}
+        selected = [row for row in issues if row["trade_date"] in dates]
+        counts = []
+        for code in sorted({row["code"] for row in issues}):
+            rows = [row for row in selected if row["code"] == code]
+            counts.append({"code": code, "file_occurrences": sum(row["code"] == code for row in issues),
+                           "endpoint_occurrences": len(rows),
+                           "eligible_occurrences": sum(row["ticker"] in eligible for row in rows),
+                           "top20_occurrences": sum(row["ticker"] in top for row in rows)})
+        eligible_issues = [{**row, "impact": (
+            "Hipótese provisória do ETL resolvida na confirmação oficial do universo."
+            if row["code"] == "INSTRUMENT_AMBIGUOUS" else
+            "Alerta no fechamento utilizado; valor preservado, sem correção automática."
+            if row["field"] == "close" else
+            "Campo não usado na fórmula do retorno; fechamento preservado.")}
+            for row in selected if row["ticker"] in eligible]
+        windows[key] = {"type_exclusions": excluded, "issue_counts": counts,
+                        "eligible_issues": eligible_issues,
+                        "sources": acquisition["sources"],
+                        "dates": sorted(dates)}
+    return {"available": True, "summary": _json(path("quality_summary.json")), "windows": windows,
+            "note": "Ocorrências são contadas por campo e linha, não por ação; uma linha pode gerar vários alertas. "
+                    "As colunas de janela consideram somente as duas pontas, não os dias intermediários."}
 
 
 def _csv(path: Path) -> list[dict[str, str]]:
@@ -164,6 +254,7 @@ def build_presentation(root: Path, *, featured: bool = False,
             "sensitivity": report["sensitivity"], "premises": report["premises"],
             "provenance": {"input_sha256": report["input_sha256"],
                            "code_sha256": report["code_sha256"], "pipeline_version": report["version"]},
+            "audit": audit_details(root, featured=featured),
             "downloads": [name for name in DOWNLOADS if output_path(root, name, featured=featured).exists()]}
 
 

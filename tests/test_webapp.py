@@ -1,9 +1,12 @@
 """Contrato público: números do case, lacunas, fila e validação de upload."""
 
 import io
+import json
 import re
+import shutil
 import tempfile
 import unittest
+from datetime import timedelta
 from pathlib import Path
 from unittest.mock import patch
 
@@ -11,7 +14,7 @@ from fastapi.testclient import TestClient
 
 import etl
 from webapp import store
-from webapp.presentation import build_presentation, daily_context
+from webapp.presentation import DOWNLOADS, audit_details, build_presentation, daily_context, output_path
 from webapp.server import app
 
 
@@ -19,6 +22,36 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class PresentationTests(unittest.TestCase):
+    def test_audit_scope_and_type_decisions(self):
+        result = audit_details(ROOT / "resultados" / "2026-09-22", featured=True)
+        self.assertTrue(result["available"])
+        self.assertEqual(result["summary"]["rows_input"], result["summary"]["rows_output"])
+        main = result["windows"]["primary"]
+        self.assertEqual(len(main["type_exclusions"]), 12)
+        self.assertEqual(sum(row["official_types"] == "unit" for row in main["type_exclusions"]), 9)
+        counts = {row["code"]: row for row in main["issue_counts"]}
+        self.assertEqual(counts["OUTSIDE_DAILY_RANGE"]["file_occurrences"], 11)
+        self.assertEqual(counts["OUTSIDE_DAILY_RANGE"]["endpoint_occurrences"], 3)
+        self.assertEqual(counts["OUTSIDE_DAILY_RANGE"]["top20_occurrences"], 1)
+        bied = next(row for row in main["eligible_issues"] if row["ticker"] == "BIED3")
+        self.assertEqual(bied["field"], "average")
+        self.assertIn("Campo não usado", bied["impact"])
+        self.assertNotEqual(main["dates"], result["windows"]["alternative"]["dates"])
+
+    def test_audit_rejects_changed_evidence_and_reports_missing(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            source = ROOT / "resultados" / "2026-09-22"
+            for name in DOWNLOADS:
+                shutil.copyfile(source / name, root / name)
+            (root / "b3_evidence.csv").write_text("changed", encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "Hash divergente"):
+                audit_details(root, featured=True)
+            (root / "b3_evidence.csv").unlink()
+            audit = audit_details(root, featured=True)
+            self.assertFalse(audit["available"])
+            self.assertIn("b3_evidence.csv", audit["missing_files"])
+
     def test_featured_agrees_with_pipeline(self):
         result = build_presentation(ROOT / "resultados" / "2026-09-22", featured=True)
         self.assertEqual(result["windows"]["primary"]["mean_pct"], "17.78")
@@ -55,6 +88,46 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(result.json()["windows"]["primary"]["mean_pct"], "17.78")
         self.assertEqual(self.client.get("/api/featured/files/economatica_original.csv").status_code, 404)
         self.assertEqual(self.client.get("/api/featured/files/top20.csv").status_code, 200)
+        for name in result.json()["downloads"]:
+            self.assertEqual(self.client.get(f"/api/featured/files/{name}").status_code, 200, name)
+        for name in ("normalized.csv", "IN260918.zip", "presentation.json", "../etl/normalized.csv"):
+            self.assertEqual(self.client.get(f"/api/featured/files/{name}").status_code, 404, name)
+
+    def test_completed_job_exposes_its_own_audit_and_legacy_payload(self):
+        job_id = "d" * 32
+        store.create_job(job_id, "2026-09-22", "b" * 64, "test-client")
+        root = self.data / "runs" / job_id
+        source = ROOT / "resultados" / "2026-09-22"
+        for name in DOWNLOADS:
+            target = output_path(root, name)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(source / name, target)
+        payload = build_presentation(source, featured=True)
+        payload.pop("audit")  # Execuções concluídas antes desta ampliação.
+        (root / "presentation.json").write_text(json.dumps(payload), encoding="utf-8")
+        store.update_job(job_id, status="completed", stage="Concluída")
+        response = self.client.get(f"/api/analyses/{job_id}/result")
+        self.assertTrue(response.json()["audit"]["available"])
+        for name in response.json()["downloads"]:
+            self.assertEqual(self.client.get(f"/api/analyses/{job_id}/files/{name}").status_code, 200)
+        self.assertEqual(self.client.get(f"/api/analyses/{job_id}/files/normalized.csv").status_code, 404)
+
+    def test_retention_removes_both_raw_copies_and_keeps_audit(self):
+        job_id = "e" * 32
+        store.create_job(job_id, "2026-09-22", "b" * 64, "test-client")
+        store.update_job(job_id, status="completed", stage="Concluída")
+        paths = [self.data / "uploads" / f"{job_id}.csv",
+                 self.data / "runs" / job_id / "etl" / "economatica_original.csv"]
+        for path in paths:
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text("private input", encoding="utf-8")
+        evidence = paths[1].parent / "quality_issues.csv"
+        evidence.write_text("derived audit", encoding="utf-8")
+        with store.db() as con:
+            con.execute("UPDATE jobs SET created_at=? WHERE id=?", (store.stamp(store.now() - timedelta(hours=25)), job_id))
+        store.cleanup()
+        self.assertTrue(all(not path.exists() for path in paths))
+        self.assertTrue(evidence.exists())
 
     def test_dedicated_pages_and_execution_methodology(self):
         ranking = self.client.get("/")

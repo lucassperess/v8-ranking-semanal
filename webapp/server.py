@@ -17,7 +17,7 @@ from fastapi.staticfiles import StaticFiles
 import etl
 from webapp import store
 from webapp import documentation
-from webapp.presentation import build_presentation, output_path
+from webapp.presentation import DOWNLOADS, audit_details, build_presentation, output_path
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -109,7 +109,10 @@ def job_or_404(job_id: str) -> dict:
 
 @app.get("/api/featured")
 def featured():
-    return build_presentation(FEATURED, featured=True)
+    try:
+        return build_presentation(FEATURED, featured=True)
+    except ValueError as exc:
+        raise HTTPException(503, f"Não foi possível conferir os arquivos desta execução: {exc}") from None
 
 
 @app.get("/api/featured/files/{name}")
@@ -178,7 +181,14 @@ def analysis_result(job_id: str):
     path = store.DATA_DIR / "runs" / job_id / "presentation.json"
     if not path.is_file():
         raise HTTPException(410, "O resultado expirou. Envie o arquivo novamente.")
-    return JSONResponse(json.loads(path.read_text(encoding="utf-8")))
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    root = path.parent
+    try:
+        payload["audit"] = audit_details(root)
+    except ValueError as exc:
+        raise HTTPException(503, f"Não foi possível conferir os arquivos desta execução: {exc}") from None
+    payload["downloads"] = [name for name in DOWNLOADS if output_path(root, name).is_file()]
+    return JSONResponse(payload)
 
 
 @app.get("/api/analyses/{job_id}/files/{name}")

@@ -1,0 +1,19 @@
+{
+  "rule_version": "1.0.0",
+  "universe_definition": "Ações ordinárias e preferenciais da B3, inclusive classes PN, com preço positivo nas duas datas e confirmação oficial em ambas",
+  "candidate_tickers": 314,
+  "decision_counts": {
+    "excluir": 12,
+    "incluir": 302
+  },
+  "class_counts": {
+    "acao_on": 239,
+    "acao_pn": 63,
+    "bdr": 3,
+    "outro": 9
+  },
+  "review_tickers": [],
+  "ranking_gate_passed": true,
+  "classification_sha256": "5ed843ed6b1b23b73008f29c61527a18ed47e26a7426db3973eec41bc2399740",
+  "rule_code_sha256": "64b2cde834cb7707124f56cadd55f167cfc67d0515c1ba5872358a49b0935030"
+}

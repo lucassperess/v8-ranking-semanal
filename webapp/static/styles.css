@@ -137,3 +137,18 @@ th,.brand-name,.topnav,.source-link,.intro p,.aside-value,.aside-meta,.aside-act
 .upload-workspace .week-preview,.analysis-guide .doc-note{background:#050506;border:1px solid #38383b;border-radius:var(--radius-panel);padding:18px 20px;color:#b8b8c1}
 .upload-workspace .week-preview>span{color:#92929a}
 .upload-workspace .week-preview>strong{color:#ededf0}
+
+/* Execution evidence tables, with local scrolling on narrow screens. */
+.audit-controls{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:18px 0}
+.audit-controls label{font-size:13px;color:var(--muted)}
+.audit-controls select{background:#202023;color:#ededf0;border:1px solid #414145;border-radius:10px;padding:9px 12px;font:13px Arial,Helvetica,sans-serif}
+.audit-table-wrap{max-width:100%;overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin:16px 0 24px}
+.audit-table{white-space:normal;min-width:540px}
+.audit-table caption{text-align:left;padding:14px;color:var(--muted);font-size:12px;line-height:1.6}
+.audit-table th,.audit-table td{width:auto;text-align:left;padding:12px;vertical-align:top;line-height:1.6;color:#d0d0d7;font-size:12px}
+.audit-table th{color:var(--muted);font-weight:400}
+.audit-table td:nth-child(2){font-weight:400}
+.audit-table tbody tr{cursor:default}
+.audit-table tbody tr:last-child td{border-bottom:0}
+.doc-content{min-width:0}
+.quality-card strong{color:#ededf0}

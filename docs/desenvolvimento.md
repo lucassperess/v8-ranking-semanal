@@ -29,6 +29,7 @@ Este guia permite localizar o cálculo, preparar um ambiente e verificar mudanç
 | `webapp/documentation.py`, `docs/` | Renderizar artigos Markdown versionados e índice de busca | `test_webapp.py` |
 | `webapp/static/` | Interface HTML/CSS/JavaScript | Conferência no navegador das páginas afetadas |
 | `scripts/create_featured_daily.py` | Preparar séries visuais da demonstração a partir do bruto | Conferir saídas e lacunas ao atualizar a demonstração |
+| `scripts/export_audit.py` | Exportar evidências derivadas de uma execução para a demonstração correspondente | Confere assinaturas e recusa versões conflitantes antes da cópia |
 | `deploy/` | Docker, Traefik e operação da aplicação | Verificação de saúde e HTTPS após publicação autorizada |
 
 Nem toda linha do projeto possui teste automático específico. Use a tabela para localizar verificações existentes, sem pressupor cobertura integral.
@@ -84,6 +85,14 @@ Exemplo da referência, com o CSV original disponível fora do Git:
 Para uma nova extração, substitua arquivo, referência e diretório. Fontes oficiais ausentes podem ser baixadas. `--reference-dir` escolhe a pasta de fontes; `--offline` impede novas buscas e só permite concluir se as evidências guardadas forem suficientes.
 
 Não é possível reproduzir integralmente o case apenas com os derivados do Git: o CSV bruto e as fontes necessárias também são entradas. Veja [auditoria](auditoria.md) para o que está disponível publicamente.
+
+Para complementar uma demonstração com evidências da **mesma execução**, use:
+
+```powershell
+.venv\Scripts\python -m scripts.export_audit --run-dir "runs\reproducao-2026-09-22" --destination "resultados\2026-09-22"
+```
+
+O destino deve existir e conter o mesmo `ranking_report.json`. O exportador confere as evidências e recusa arquivos existentes com conteúdo diferente antes de copiar. Ele não publica bruto nem altera retornos, README editorial ou séries diárias. Uma reprodução com outra versão de código pode gerar outro relatório: nesse caso, use outro destino para a nova demonstração, sem substituir o histórico.
 
 ## Testes e limites da verificação
 

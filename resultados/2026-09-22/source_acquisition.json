@@ -1,0 +1,39 @@
+{
+  "start_date": "2026-09-11",
+  "end_date": "2026-09-18",
+  "normalized_sha256": "a94d867b8d4b3d4b994064bbd35f778657da20be3115ed1971fa68b9b7115f40",
+  "sources": [
+    {
+      "kind": "cotahist",
+      "source_date": "2026-09-11",
+      "url": "https://bvmf.bmfbovespa.com.br/InstDados/SerHist/COTAHIST_D11092026.ZIP",
+      "file": "COTAHIST_D11092026.ZIP",
+      "status": "available",
+      "sha256": "8cc79de657e6e3ba5b9aeb2f454c67e5b7904066227cf8ac3c49b6a19140d639"
+    },
+    {
+      "kind": "cotahist",
+      "source_date": "2026-09-18",
+      "url": "https://bvmf.bmfbovespa.com.br/InstDados/SerHist/COTAHIST_D18092026.ZIP",
+      "file": "COTAHIST_D18092026.ZIP",
+      "status": "available",
+      "sha256": "dbb432658fac047210d385058d79f632bca7139f920436a0872eba72e7f706bb"
+    },
+    {
+      "kind": "registry",
+      "source_date": "2026-09-18",
+      "url": "https://www.b3.com.br/pesquisapregao/download?filelist=IN260918.zip,",
+      "file": "IN260918.zip",
+      "status": "available",
+      "sha256": "826241f04d41c6a6a6d2aff614a6730b10e84788281971bc730e89da217c7173"
+    }
+  ],
+  "classification_gate_passed": true,
+  "ranking_gate_passed": true,
+  "ranking_decision_counts": {
+    "excluir": 12,
+    "incluir": 308
+  },
+  "ranking_review_tickers": [],
+  "blocked_tickers": []
+}

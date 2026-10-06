@@ -1,0 +1,20 @@
+{
+  "start_date": "2026-09-14",
+  "end_date": "2026-09-18",
+  "candidate_definition": "ticker com fechamento positivo nas duas datas explícitas",
+  "candidate_tickers": 314,
+  "excluded_before_classification": 164,
+  "confirmed_tickers": 314,
+  "blocked_tickers": [],
+  "status_counts": {
+    "confirmed": 628
+  },
+  "classification_gate_passed": true,
+  "note": "A classificação detalhada preserva todos os tipos; ranking_universe.csv decide apenas o universo ON/PN.",
+  "ranking_gate_passed": true,
+  "ranking_decision_counts": {
+    "excluir": 12,
+    "incluir": 302
+  },
+  "ranking_review_tickers": []
+}

@@ -147,6 +147,7 @@ def cleanup() -> None:
                 continue
             if row["created_at"] < raw_before:
                 (DATA_DIR / "uploads" / f"{job_id}.csv").unlink(missing_ok=True)
+                (DATA_DIR / "runs" / job_id / "etl" / "economatica_original.csv").unlink(missing_ok=True)
             if row["created_at"] < result_before:
                 shutil.rmtree(DATA_DIR / "runs" / job_id, ignore_errors=True)
                 (DATA_DIR / "logs" / f"{job_id}.log").unlink(missing_ok=True)

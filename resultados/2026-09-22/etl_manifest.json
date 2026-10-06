@@ -1,0 +1,27 @@
+{
+  "etl_version": "1.2.0",
+  "code_sha256": "c98516af976ec2805e02215b91cf33f3c74a595a6c033d841495d5ad50743bfb",
+  "b3_parser_sha256": null,
+  "input_filename": "economatica.csv",
+  "input_sha256": "dbce30af2c26e14d8e3f3c675741c95aedd101dfc1a90bad62ae81e72a0def4a",
+  "input_encoding": "cp1252",
+  "reference_date": "2026-09-22",
+  "coverage_drop_threshold": "0.25",
+  "b3_registry": {
+    "used": false
+  },
+  "manual_overrides": {
+    "used": false
+  },
+  "baseline_summary": {
+    "used": false
+  },
+  "rows_input": 4828,
+  "rows_output": 4828,
+  "outputs": {
+    "normalized.csv": "a94d867b8d4b3d4b994064bbd35f778657da20be3115ed1971fa68b9b7115f40",
+    "quality_issues.csv": "76cac4f741e7f22580ed3a26feaf5fd6877b7a96867147035ecefeb6546eb632",
+    "quality_by_date.csv": "77a552ce5e4d173d9d576edaaea98ad280442e948e1112c01213a4753a6ae244",
+    "quality_summary.json": "a8d09df06ca1e6b596a255f82f9544cfd1798e0286061e96ce7ad3e78d195c4f"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "source_sha256": "76cac4f741e7f22580ed3a26feaf5fd6877b7a96867147035ecefeb6546eb632",
+  "dates": [
+    "2026-09-14",
+    "2026-09-18"
+  ],
+  "etl_issue_counts_raw": {
+    "INSTRUMENT_AMBIGUOUS": 27,
+    "MISSING_VALUE": 378,
+    "OUTSIDE_DAILY_RANGE": 3,
+    "VOLUME_PRICE_DIVERGENCE": 1
+  },
+  "note": "Alertas provisórios de tipo no ETL podem ter sido resolvidos pela classificação B3 posterior",
+  "top20_issues": [
+    {
+      "ticker": "BIED3",
+      "trade_date": "2026-09-18",
+      "field": "average",
+      "code": "OUTSIDE_DAILY_RANGE",
+      "severity": "warning",
+      "reason": "Valor fora do intervalo mínimo–máximo"
+    }
+  ]
+}
