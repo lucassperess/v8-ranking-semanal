@@ -9,6 +9,44 @@ let busy = false,
 function message(value) {
   $('form-message').textContent = value;
 }
+function resetReview() {
+  $('short-week-review').hidden = true;
+  $('accept-short-week').checked = false;
+  $('accept-short-week').required = false;
+  for (const id of ['accept-short-week', 'reviewed-sha', 'reviewed-reference']) {
+    $(id).disabled = true;
+    if (id !== 'accept-short-week') $(id).value = '';
+  }
+  $('submit-button').textContent = 'Executar nova análise ↗';
+}
+function showReview(detail) {
+  resetReview();
+  const { week, input_sha256, reference_date } = detail.review;
+  $('review-message').textContent = detail.message;
+  $('review-guidance').textContent = detail.guidance;
+  $('review-dates').replaceChildren();
+  for (const [label, value] of [
+    ['Fechamento anterior à semana', week.preceding_close],
+    ['Primeiro fechamento na semana', week.first_week_close],
+    ['Último fechamento na semana', week.last_week_close],
+  ]) {
+    const group = document.createElement('div');
+    const term = document.createElement('dt');
+    term.textContent = label;
+    const description = document.createElement('dd');
+    description.textContent = `${day(value)} · ${week.selected_date_coverage[value]} linhas com fechamento positivo`;
+    group.append(term, description);
+    $('review-dates').append(group);
+  }
+  $('reviewed-sha').value = input_sha256;
+  $('reviewed-reference').value = reference_date;
+  for (const id of ['accept-short-week', 'reviewed-sha', 'reviewed-reference'])
+    $(id).disabled = false;
+  $('short-week-review').hidden = false;
+  $('accept-short-week').required = true;
+  $('submit-button').textContent = 'Executar com as datas revisadas ↗';
+  $('accept-short-week').focus();
+}
 function updateWeekPreview() {
   const raw = $('reference-date').value;
   if (!raw) {
@@ -44,6 +82,7 @@ function validFile(file) {
   return true;
 }
 async function onFile() {
+  resetReview();
   const version = ++fileReadVersion;
   const file = $('csv-file').files[0];
   message('');
@@ -71,9 +110,7 @@ async function onFile() {
   const latest = dates.reduce((a, b) => (a > b ? a : b));
   const candidate = new Date(`${latest}T12:00:00Z`);
   const weekday = candidate.getUTCDay();
-  if (weekday === 5) candidate.setUTCDate(candidate.getUTCDate() + 3);
-  else if (weekday === 6) candidate.setUTCDate(candidate.getUTCDate() + 2);
-  else if (weekday === 0) candidate.setUTCDate(candidate.getUTCDate() + 1);
+  candidate.setUTCDate(candidate.getUTCDate() + ((8 - weekday) % 7 || 7));
   const suggestion = candidate.toISOString().slice(0, 10);
   if (suggestion <= today()) {
     $('reference-date').value = suggestion;
@@ -88,7 +125,10 @@ async function onFile() {
 $('reference-date').value = today();
 $('reference-date').max = today();
 updateWeekPreview();
-$('reference-date').addEventListener('change', updateWeekPreview);
+$('reference-date').addEventListener('input', () => {
+  resetReview();
+  updateWeekPreview();
+});
 $('csv-file').addEventListener('change', () =>
   onFile().catch(() =>
     message('Não foi possível ler o arquivo selecionado. Selecione-o novamente.'),
@@ -126,6 +166,12 @@ $('upload-form').addEventListener('submit', async (event) => {
     return;
   }
   busy = true;
+  const fields = [...$('upload-form').querySelectorAll('input')];
+  const body = new FormData($('upload-form'));
+  const enabled = fields.filter((field) => !field.disabled);
+  enabled.forEach((field) => {
+    field.disabled = true;
+  });
   const button = $('submit-button');
   button.disabled = true;
   button.textContent = 'Enviando e conferindo formato…';
@@ -133,7 +179,7 @@ $('upload-form').addEventListener('submit', async (event) => {
   try {
     const response = await fetch('/api/analyses', {
       method: 'POST',
-      body: new FormData($('upload-form')),
+      body,
     });
     let payload;
     try {
@@ -141,17 +187,34 @@ $('upload-form').addEventListener('submit', async (event) => {
     } catch {
       throw new Error('O servidor não respondeu como esperado. Tente novamente.');
     }
+    enabled.forEach((field) => {
+      field.disabled = false;
+    });
+    if (response.status === 409 && payload.detail?.code === 'short_week_review') {
+      showReview(payload.detail);
+      message('Confira as datas acima. Marque a aceitação somente após revisar a extração.');
+      busy = false;
+      button.disabled = false;
+      return;
+    }
     if (!response.ok)
       throw new Error(
         typeof payload.detail === 'string'
           ? payload.detail
-          : 'Não foi possível enviar a extração. Confira o arquivo e a referência.',
+          : payload.detail?.message
+            ? `${payload.detail.message} ${payload.detail.guidance || ''}`
+            : 'Não foi possível enviar a extração. Confira o arquivo e a referência.',
       );
     location.assign(payload.url);
   } catch (error) {
+    enabled.forEach((field) => {
+      field.disabled = false;
+    });
     message(error.message);
     busy = false;
     button.disabled = false;
-    button.textContent = 'Executar nova análise ↗';
+    button.textContent = $('short-week-review').hidden
+      ? 'Executar nova análise ↗'
+      : 'Executar com as datas revisadas ↗';
   }
 });

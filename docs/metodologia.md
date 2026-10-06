@@ -65,10 +65,12 @@ As datas são escolhidas globalmente para a execução, com base nos dias da ext
 
 O sistema verifica se existe fechamento anterior e se há dados na semana. Também:
 
-- Interrompe quando o último dia disponível é anterior à sexta-feira, até que a semana encurtada seja revisada e aceita explicitamente pelo comando `--allow-nonfriday-end`.
+- Interrompe quando o último dia disponível é anterior à sexta-feira, até que a semana encurtada seja revisada e aceita explicitamente pelo formulário ou pelo comando `--allow-nonfriday-end`.
 - Interrompe se o fechamento anterior estiver mais de dez dias antes da segunda-feira da semana.
 - Compara a cobertura das três datas escolhidas com uma referência de cobertura recente: o valor central superior das contagens ordenadas de até dez datas anteriores com preços positivos. Uma ponta com menos da metade dessa cobertura impede o cálculo.
 - Exige pelo menos duas datas com cotação dentro da semana para produzir a alternativa.
+
+No formulário, a revisão mostra o fechamento anterior, o primeiro e o último dentro da semana, com suas contagens de linhas com fechamento positivo. O usuário precisa confirmar a aceitação antes de enfileirar uma semana encurtada. A confirmação vale apenas para aquele arquivo e referência, fica disponível na auditoria e no arquivo `analysis_request.json`, e é invalidada ao trocar a entrada. O pipeline verifica tudo novamente no worker.
 
 Esses controles ajudam a detectar uma extração incompleta. O calendário e a cobertura observada não comprovam, sozinhos, que uma ausência é feriado.
 

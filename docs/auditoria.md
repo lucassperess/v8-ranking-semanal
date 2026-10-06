@@ -63,3 +63,7 @@ Confira datas, elegibilidade e arquivos de retorno antes de comparar duas execu�
 Os artigos são mantidos em Markdown no Git e publicados pelo site. A documentação atual descreve o código revisado; o relatório histórico conserva a identificação do código que executou o case.
 
 Ainda não há associação automática entre cada execução e uma revisão arquivada destes artigos. Para conferir comportamento histórico após uma alteração, consulte a versão correspondente no Git e os manifestos. Veja [metodologia](metodologia.md) e [README do projeto](../README.md).
+
+### Registro de um envio pela interface
+
+Novas análises oferecem `analysis_request.json`: referência, assinatura da entrada, datas verificadas e opções. Quando houver aceitação de semana encurtada, o arquivo também registra o horário da confirmação. A seção Semana e janelas destaca essa decisão. O registro não inclui nome original, endereço IP nem conteúdo bruto. Sua compatibilidade com o relatório é conferida antes de apresentar o resultado. Análises antigas e execuções pelo comando podem não ter esse arquivo; o relatório continua informando se o encerramento antes da sexta foi aceito.

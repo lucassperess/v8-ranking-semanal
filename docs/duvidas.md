@@ -20,7 +20,7 @@ A referência define a semana-calendário anterior. Confira se o CSV contém dad
 
 ## A semana termina antes da sexta-feira
 
-Pode haver feriado ou extração parcial. O programa exige revisão e não presume a causa. O comando Python possui `--allow-nonfriday-end` para aceitação explícita; o formulário público não oferece esse parâmetro.
+Pode haver feriado ou extração parcial. O programa exige revisão e não presume a causa. O formulário mostra as três datas encontradas e suas contagens de fechamentos positivos. Após conferir a extração e o calendário, marque a aceitação explícita e execute novamente. Trocar o arquivo ou a referência invalida a confirmação. O comando Python mantém `--allow-nonfriday-end`. Essa decisão fica no relatório e, para envios pela interface, no registro do envio; ela não dispensa cobertura, qualidade dos preços ou evidência B3.
 
 ## A B3 está indisponível ou há classificação pendente
 

@@ -91,6 +91,41 @@
               >
               <p id="date-suggestion" class="muted" aria-live="polite"></p>
               <div id="week-preview" class="week-preview" aria-live="polite"></div>
+              <section
+                id="short-week-review"
+                class="short-week-review"
+                hidden
+                aria-labelledby="review-heading"
+              >
+                <h3 id="review-heading">Revise as datas disponíveis</h3>
+                <p id="review-message"></p>
+                <dl id="review-dates" class="review-dates"></dl>
+                <p id="review-guidance" class="muted"></p>
+                <label class="review-acceptance" for="accept-short-week">
+                  <input
+                    id="accept-short-week"
+                    name="allow_nonfriday_end"
+                    type="checkbox"
+                    value="true"
+                    disabled
+                  />
+                  <span
+                    >Revisei a extração e aceito calcular com o último fechamento disponível,
+                    anterior à sexta-feira.</span
+                  >
+                </label>
+                <input id="reviewed-sha" name="reviewed_sha256" type="hidden" disabled />
+                <input
+                  id="reviewed-reference"
+                  name="reviewed_reference_date"
+                  type="hidden"
+                  disabled
+                />
+                <p class="muted">
+                  A decisão ficará registrada. Cobertura, qualidade dos preços e confirmação B3
+                  continuam obrigatórias.
+                </p>
+              </section>
               <p class="muted">
                 Os fechamentos exatos são definidos pelos dados disponíveis. A janela principal
                 parte do fechamento anterior à semana; a alternativa compara as duas pontas dentro

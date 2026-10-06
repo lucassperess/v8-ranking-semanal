@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 import signal
 import subprocess
 import sys
@@ -47,11 +48,20 @@ def process(job: dict) -> None:
     command = [sys.executable, str(ROOT / "weekly_ranking.py"), "--input", str(input_path),
                "--reference-date", job["reference_date"], "--output-dir", str(output_dir),
                "--reference-dir", str(reference_dir)]
+    options = job.get('options', {})
+    if options.get('allow_nonfriday_end'):
+        command.append('--allow-nonfriday-end')
+    request = {'input_sha256': job['input_sha256'], 'reference_date': job['reference_date'],
+               'submitted_at': job['created_at'], 'options': options}
+    if options.get('reviewed_week'):
+        (output_dir / 'analysis_request.json').write_text(
+            json.dumps(request, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     last_stage = ""
     started = time.monotonic()
     with log_path.open("w", encoding="utf-8") as log:
         child = subprocess.Popen(command, cwd=ROOT, stdout=log, stderr=subprocess.STDOUT,
-                                 shell=False, text=True)
+                                 shell=False, text=True,
+                                 env={**os.environ, 'PYTHONUTF8': '1', 'PYTHONIOENCODING': 'utf-8'})
         while child.poll() is None:
             if STOP or time.monotonic() - started > 600:
                 child.terminate()

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+import json
 import shutil
 import sqlite3
 from contextlib import contextmanager
@@ -65,6 +66,10 @@ def initialize() -> None:
         CREATE INDEX IF NOT EXISTS jobs_status_idx ON jobs(status, created_at);
         CREATE INDEX IF NOT EXISTS jobs_rate_idx ON jobs(client_ip, created_at);
         """)
+        con.execute('BEGIN IMMEDIATE')
+        columns = {row['name'] for row in con.execute('PRAGMA table_info(jobs)')}
+        if 'options_json' not in columns:
+            con.execute("ALTER TABLE jobs ADD COLUMN options_json TEXT NOT NULL DEFAULT '{}'")
 
 
 def check_limits(client_ip: str) -> None:
@@ -79,7 +84,8 @@ def check_limits(client_ip: str) -> None:
             raise LimitError("O limite temporário de análises foi atingido. Tente mais tarde.")
 
 
-def create_job(job_id: str, reference_date: str, input_sha256: str, client_ip: str) -> None:
+def create_job(job_id: str, reference_date: str, input_sha256: str, client_ip: str,
+               options: dict | None = None) -> None:
     initialize()
     with db() as con:
         con.execute("BEGIN IMMEDIATE")
@@ -90,15 +96,19 @@ def create_job(job_id: str, reference_date: str, input_sha256: str, client_ip: s
             raise LimitError("Limite de três análises por hora atingido para esta origem.")
         if con.execute("SELECT count(*) FROM jobs WHERE created_at>=?", (since,)).fetchone()[0] >= 30:
             raise LimitError("O limite temporário de análises foi atingido. Tente mais tarde.")
-        con.execute("INSERT INTO jobs VALUES (?,?,?,?,?,?,?,?,?)",
-                    (job_id, reference_date, input_sha256, client_ip, "queued", "Aguardando processamento", None, stamp(), stamp()))
+        con.execute("INSERT INTO jobs (id,reference_date,input_sha256,client_ip,status,stage,error,created_at,updated_at,options_json) VALUES (?,?,?,?,?,?,?,?,?,?)",
+                    (job_id, reference_date, input_sha256, client_ip, "queued", "Aguardando processamento", None, stamp(), stamp(), json.dumps(options or {})))
 
 
 def get_job(job_id: str) -> dict | None:
     initialize()
     with db() as con:
-        row = con.execute("SELECT id,reference_date,input_sha256,status,stage,error,created_at,updated_at FROM jobs WHERE id=?", (job_id,)).fetchone()
-        return dict(row) if row else None
+        row = con.execute("SELECT id,reference_date,input_sha256,status,stage,error,created_at,updated_at,options_json FROM jobs WHERE id=?", (job_id,)).fetchone()
+        if row is None:
+            return None
+        job = dict(row)
+        job['options'] = json.loads(job.pop('options_json'))
+        return job
 
 
 def next_job() -> dict | None:
@@ -107,11 +117,13 @@ def next_job() -> dict | None:
         con.execute("BEGIN IMMEDIATE")
         if con.execute("SELECT 1 FROM jobs WHERE status='running' LIMIT 1").fetchone():
             return None
-        row = con.execute("SELECT id,reference_date FROM jobs WHERE status='queued' ORDER BY created_at,id LIMIT 1").fetchone()
+        row = con.execute("SELECT id,reference_date,input_sha256,created_at,options_json FROM jobs WHERE status='queued' ORDER BY created_at,id LIMIT 1").fetchone()
         if not row:
             return None
         con.execute("UPDATE jobs SET status='running',stage='Validando extração',updated_at=? WHERE id=?", (stamp(), row["id"]))
-        return dict(row)
+        job = dict(row)
+        job['options'] = json.loads(job.pop('options_json'))
+        return job
 
 
 def update_job(job_id: str, *, status: str | None = None, stage: str | None = None,

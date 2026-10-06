@@ -151,3 +151,11 @@ No Linux/macOS, use `.venv/bin/python`. O verificador da interface confere sinta
 O workflow `.github/workflows/checks.yml` executa essas verificações em cada envio de código e pull request. Os testes Python rodam em Linux (3.11 e 3.12) e Windows (3.11); a formatação e a sintaxe da interface rodam em Linux com Node 22. A regressão com o bruto original permanece opcional e é ignorada no CI quando a entrada não está disponível.
 
 Uma execução aprovada no CI não verifica downloads reais da B3, o comportamento visual no navegador nem a operação da VPS. Essas conferências continuam necessárias quando a mudança afeta essas áreas. O workflow não publica automaticamente o site.
+
+## Revisão e teste de novas extrações
+
+`webapp/review.py` reaproveita `etl.transform` em lotes e `weekly_ranking.select_week` para conferir datas e cobertura antes da fila. `POST /api/analyses` responde 409 com `short_week_review` quando é necessária revisão, sem manter upload ou criar job. O cliente apresenta datas e exige checkbox; no segundo envio, `allow_nonfriday_end`, `reviewed_sha256` e `reviewed_reference_date` vinculam a aceitação à entrada. A API reconfere o arquivo.
+
+A fila migra bancos existentes acrescentando opções com padrão vazio. O worker passa `--allow-nonfriday-end` somente quando autorizado e grava `analysis_request.json`. Ele executa novamente todos os controles. `submission_details` confere a compatibilidade do registro com o relatório. Mensagens de falha recebem orientação por categoria; a mensagem original permanece visível.
+
+`tests/test_replication.py` executa o worker em subprocesso real com extrações e fontes B3 **artificiais e locais**, sem rede. Os fixtures não devem ser publicados como evidência oficial. A API também é conferida com duas entradas distintas, migração de banco antigo, confirmação invalidada e bloqueios. Uma extração real diferente deve ser conferida em desenvolvimento para verificar aquisição das fontes e apresentação por HTTPS.

@@ -2221,3 +2221,42 @@ footer,
 .quality-card strong {
   color: #ededf0;
 }
+.short-week-review {
+  padding: 20px;
+  border: 1px solid #38383b;
+  border-radius: 14px;
+  background: #050506;
+  margin-top: 20px;
+}
+.short-week-review h3 {
+  margin: 0 0 12px;
+  font-size: 18px;
+}
+.review-dates {
+  margin: 20px 0;
+}
+.review-dates div {
+  padding: 12px 0;
+  border-bottom: 1px solid #29292c;
+}
+.review-dates dt {
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.review-dates dd {
+  margin: 0;
+}
+.review-acceptance {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  text-transform: none;
+  line-height: 1.6;
+}
+.review-acceptance input {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  margin: 3px 0 0;
+  accent-color: #66666b;
+}

@@ -13,12 +13,15 @@ from pathlib import Path
 from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
 from fastapi.responses import FileResponse, JSONResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
+from starlette.concurrency import run_in_threadpool
 
 import etl
 from webapp import store
 from webapp import documentation
 from webapp.pages import render_page
-from webapp.presentation import DOWNLOADS, audit_details, build_presentation, output_path
+from webapp.review import review_input, problem
+from weekly_ranking import RankingError
+from webapp.presentation import DOWNLOADS, audit_details, build_presentation, output_path, submission_details
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -128,7 +131,9 @@ def featured_file(name: str):
 
 
 @app.post("/api/analyses", status_code=202)
-async def create_analysis(request: Request, reference_date: date = Form(...), file: UploadFile = File(...)):
+async def create_analysis(request: Request, reference_date: date = Form(...), file: UploadFile = File(...),
+                          allow_nonfriday_end: bool = Form(False), reviewed_sha256: str = Form(''),
+                          reviewed_reference_date: str = Form('')):
     if reference_date > date.today():
         raise HTTPException(422, "A data de referência não pode estar no futuro")
     if not file.filename or not file.filename.lower().endswith(".csv"):
@@ -152,16 +157,35 @@ async def create_analysis(request: Request, reference_date: date = Form(...), fi
                     raise HTTPException(413, "O CSV deve ter no máximo 10 MB")
                 sha.update(chunk)
                 output.write(chunk)
-        rows, _encoding = etl.read_economatica(target)
-        if not rows:
-            raise HTTPException(422, "O CSV não contém linhas de dados")
+        week = await run_in_threadpool(review_input, target, reference_date)
+        review = {'week': week, 'input_sha256': sha.hexdigest(),
+                  'reference_date': reference_date.isoformat()}
+        if week['nonfriday_end_accepted']:
+            if not (allow_nonfriday_end and reviewed_sha256 == sha.hexdigest()
+                    and reviewed_reference_date == reference_date.isoformat()):
+                raise HTTPException(409, {
+                    'code': 'short_week_review',
+                    'message': 'A última data com fechamento positivo é anterior à sexta-feira. Revise a extração antes de continuar.',
+                    'guidance': 'A ausência pode ser feriado ou extração incompleta. O sistema não presume a causa. Aceite apenas depois de conferir as datas disponíveis.',
+                    'review': review,
+                })
+        elif allow_nonfriday_end:
+            raise HTTPException(422, 'As datas mudaram e não exigem aceitação de semana encurtada. Confira novamente o envio.')
+        options = {'allow_nonfriday_end': allow_nonfriday_end, 'reviewed_week': week,
+                   'accepted_at': store.stamp() if allow_nonfriday_end else None}
         try:
-            store.create_job(job_id, reference_date.isoformat(), sha.hexdigest(), client_ip)
+            store.create_job(job_id, reference_date.isoformat(), sha.hexdigest(), client_ip, options)
         except store.LimitError as exc:
             raise HTTPException(429, str(exc)) from None
     except etl.InputError as exc:
         target.unlink(missing_ok=True)
-        raise HTTPException(422, str(exc)) from None
+        raise HTTPException(422, str(exc) + ' ' + problem(str(exc))['guidance']) from None
+    except RankingError as exc:
+        target.unlink(missing_ok=True)
+        raise HTTPException(422, problem(str(exc))) from None
+    except (ValueError, IndexError):
+        target.unlink(missing_ok=True)
+        raise HTTPException(422, 'Estrutura de linha inválida. Exporte novamente as nove colunas documentadas; confira campos e datas antes de reenviar.') from None
     except Exception:
         target.unlink(missing_ok=True)
         raise
@@ -171,7 +195,8 @@ async def create_analysis(request: Request, reference_date: date = Form(...), fi
 @app.get("/api/analyses/{job_id}")
 def analysis_status(job_id: str):
     job = job_or_404(job_id)
-    return {**job, "result_url": f"/api/analyses/{job_id}/result" if job["status"] == "completed" else None}
+    return {**job, 'problem': problem(job['error']) if job['error'] else None,
+            "result_url": f"/api/analyses/{job_id}/result" if job["status"] == "completed" else None}
 
 
 @app.get("/api/analyses/{job_id}/result")
@@ -186,6 +211,7 @@ def analysis_result(job_id: str):
     root = path.parent
     try:
         payload["audit"] = audit_details(root)
+        payload['submission'] = submission_details(root)
     except ValueError as exc:
         raise HTTPException(503, f"Não foi possível conferir os arquivos desta execução: {exc}") from None
     payload["downloads"] = [name for name in DOWNLOADS if output_path(root, name).is_file()]

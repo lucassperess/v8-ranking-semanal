@@ -43,7 +43,8 @@ class PresentationTests(unittest.TestCase):
             root = Path(temporary)
             source = ROOT / "resultados" / "2026-09-22"
             for name in DOWNLOADS:
-                shutil.copyfile(source / name, root / name)
+                if (source / name).is_file():
+                    shutil.copyfile(source / name, root / name)
             (root / "b3_evidence.csv").write_text("changed", encoding="utf-8")
             with self.assertRaisesRegex(ValueError, "Hash divergente"):
                 audit_details(root, featured=True)
@@ -99,6 +100,8 @@ class ApiTests(unittest.TestCase):
         root = self.data / "runs" / job_id
         source = ROOT / "resultados" / "2026-09-22"
         for name in DOWNLOADS:
+            if not (source / name).is_file():
+                continue
             target = output_path(root, name)
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(source / name, target)
@@ -210,7 +213,7 @@ class ApiTests(unittest.TestCase):
     def test_valid_upload_is_queued_and_isolated(self):
         original = Path(tempfile.gettempdir()) / "does-not-exist.csv"
         header = ",".join(etl.SOURCE_COLUMNS)
-        sample = (header + "\nABCD3<XBSP>,18/09/2026,1,1,1,1,1,1,1\n").encode("cp1252")
+        sample = (header + "\n" + "\n".join(f"ABCD3<XBSP>,{day},1,1,1,1,1,1,1" for day in ("2026-09-11", "2026-09-14", "2026-09-18")) + "\n").encode("cp1252")
         first = self.client.post("/api/analyses", data={"reference_date": "2026-09-22"},
                                  files={"file": ("other.csv", sample, "text/csv")})
         self.assertEqual(first.status_code, 202, first.text)

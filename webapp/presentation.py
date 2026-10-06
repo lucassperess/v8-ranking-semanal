@@ -26,6 +26,7 @@ DOWNLOADS = {
     "candidate_exclusions.csv": ("classification", "candidate_exclusions.csv"),
     "ranking_report.json": ("root", "ranking_report.json"),
     "README.md": ("root", "README.md"),
+    "analysis_request.json": ("root", "analysis_request.json"),
     "etl_manifest.json": ("etl", "manifest.json"),
     "quality_summary.json": ("etl", "quality_summary.json"),
     "quality_by_date.csv": ("etl", "quality_by_date.csv"),
@@ -217,6 +218,22 @@ def _distribution(rows: list[dict[str, str]]) -> dict:
             "up": up, "down": down, "flat": flat, "denominator": len(rows)}
 
 
+def submission_details(root: Path, *, featured: bool = False) -> dict | None:
+    path = output_path(root, 'analysis_request.json', featured=featured)
+    if not path.exists():
+        return None  # Execuções anteriores e execuções pelo comando Python.
+    request = _json(path)
+    report = _json(output_path(root, 'ranking_report.json', featured=featured))
+    options = request['options']
+    if (request['input_sha256'] != report['input_sha256']
+            or request['reference_date'] != report['week']['reference_date']
+            or options['reviewed_week'] != report['week']
+            or bool(options['allow_nonfriday_end']) != report['week']['nonfriday_end_accepted']
+            or (options['allow_nonfriday_end'] and not options['accepted_at'])):
+        raise ValueError('Decisão do envio diverge da execução')
+    return request
+
+
 def build_presentation(root: Path, *, featured: bool = False,
                        normalized_path: Path | None = None) -> dict:
     report = _json(output_path(root, "ranking_report.json", featured=featured))
@@ -249,6 +266,7 @@ def build_presentation(root: Path, *, featured: bool = False,
         series_path = root / "daily_context.json"
         daily = _json(series_path) if series_path.exists() else {"dates": [], "series": {}, "heatmap": {}, "note": "Série diária indisponível."}
     return {"kind": "featured" if featured else "analysis", "week": report["week"],
+            'submission': submission_details(root, featured=featured),
             "windows": windows, "daily": daily, "quality": quality,
             "exclusions": {"count": len(exclusions), "reasons": dict(Counter(row["reason"] for row in exclusions))},
             "sensitivity": report["sensitivity"], "premises": report["premises"],

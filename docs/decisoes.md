@@ -8,7 +8,7 @@ Consolidado em 06/10/2026 a partir da implementação existente. Estas decisões
 
 **Motivo:** incluir no principal o movimento do primeiro pregão e tornar explícita a sensibilidade à interpretação de “última semana”.
 
-**Consequências:** datas são selecionadas globalmente da extração; não há uma ponta diferente por ticker. Cada janela resolve sua própria elegibilidade. Falta de dados, cobertura insuficiente e encerramento antes da sexta-feira exigem os controles implementados; a aceitação de semana encurtada existe no comando, ainda não no formulário.
+**Consequências:** datas são selecionadas globalmente da extração; não há uma ponta diferente por ticker. Cada janela resolve sua própria elegibilidade. Falta de dados, cobertura insuficiente e encerramento antes da sexta-feira exigem os controles implementados; a aceitação explícita de semana encurtada existe no comando e no formulário. Na interface, exige revisão das datas, fica vinculada à assinatura do arquivo e à referência e é registrada na execução. Os demais controles continuam obrigatórios.
 
 **Implementação:** `weekly_ranking.py`, testes de seleção em `tests/test_weekly_ranking.py`.
 
@@ -87,3 +87,13 @@ Consolidado em 06/10/2026 a partir da implementação existente. Estas decisões
 Uma alteração deve identificar a decisão afetada, a razão da mudança, seus efeitos nos dados/saídas e os testes aplicáveis. Atualize o artigo correspondente junto com o código. Preserve no Git o histórico e os registros da demonstração; melhorias planejadas não devem ser descritas como implementadas.
 
 Os números de 22/09/2026 pertencem ao exemplo. Nenhuma dessas decisões exige que outra extração tenha os mesmos tickers, contagens ou retornos.
+
+## D12 — Revisão explícita de semana encurtada na interface
+
+**Decisão:** antes de enfileirar um envio cujo último fechamento é anterior à sexta-feira, mostrar as datas e as contagens de fechamentos positivos e exigir nova confirmação. Não inferir feriado. Mudanças na entrada ou na referência exigem nova revisão.
+
+**Registro:** opções e horário de aceitação persistem na fila; o worker escreve `analysis_request.json` sem nome original, IP ou bruto. A auditoria confere esse registro contra a entrada e a semana do relatório. Execuções anteriores continuam legíveis sem afirmar uma confirmação pelo formulário que não existiu.
+
+**Limites:** a revisão inicial usa o tratamento existente em lotes e a mesma regra de seleção de semana. Ela confere datas e cobertura; duplicatas, qualidade e classificação completas continuam no pipeline. Falhas ganham orientação para corrigir a extração, rever datas ou aguardar disponibilidade B3, sem liberar pendências.
+
+**Verificação:** `tests/test_replication.py` cobre revisão, confirmação vinculada, cobertura, migração, duas entradas independentes e execução integral com fontes artificiais locais. Testes artificiais não representam consultas reais à B3.

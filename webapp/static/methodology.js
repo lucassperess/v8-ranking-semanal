@@ -154,6 +154,18 @@ async function showMethod() {
   );
   put('reference-value', dateLabel(data.week.reference_date));
   put('week-value', `${dateLabel(data.week.week_start)} a ${dateLabel(data.week.week_end)}`);
+  if (data.week.nonfriday_end_accepted) {
+    el('week-decision').hidden = false;
+    const options = data.submission?.options;
+    put(
+      'week-decision',
+      `Semana encurtada aceita explicitamente: último fechamento em ${dateLabel(data.week.last_week_close)}. ` +
+        (options?.accepted_at
+          ? `Confirmação no formulário em ${new Date(options.accepted_at).toLocaleString('pt-BR')}. A decisão está no registro do envio para download.`
+          : 'A aceitação está registrada no relatório do pipeline; esta execução não possui registro de confirmação pelo formulário.') +
+        ' Isso não comprova feriado. Os controles de cobertura, preços e classificação foram mantidos.',
+    );
+  }
   for (const [key, window] of [
     ['primary', primary],
     ['alternative', alternative],
@@ -268,6 +280,11 @@ async function showMethod() {
     'ranking_report.json': [
       'Relatório da execução',
       'Datas, regras, contagens e assinaturas dos arquivos.',
+      'JSON',
+    ],
+    'analysis_request.json': [
+      'Registro do envio',
+      'Referência, datas revisadas e aceitação explícita de semana encurtada.',
       'JSON',
     ],
     'README.md': [

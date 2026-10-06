@@ -36,15 +36,21 @@ def write_text_lf(path: Path, content: str) -> None:
 
 def choose_week(quality_path: Path, reference_date: date, allow_nonfriday_end: bool = False) -> dict:
     """Semana calendário anterior, usando pregões presentes e com cobertura."""
-    current_monday = reference_date - timedelta(days=reference_date.weekday())
-    monday = current_monday - timedelta(days=7)
-    sunday = monday + timedelta(days=6)
-    friday = monday + timedelta(days=4)
     with quality_path.open(encoding="utf-8", newline="") as stream:
         reader = csv.DictReader(stream)
         if not {"date", "positive_close"}.issubset(reader.fieldnames or []):
             raise RankingError("quality_by_date.csv sem date e positive_close")
         available = [(date.fromisoformat(row["date"]), int(row["positive_close"])) for row in reader]
+    return select_week(available, reference_date, allow_nonfriday_end)
+
+
+def select_week(available: list[tuple[date, int]], reference_date: date,
+                allow_nonfriday_end: bool = False) -> dict:
+    """Regra compartilhada pelo pipeline e pela revisão do envio público."""
+    current_monday = reference_date - timedelta(days=reference_date.weekday())
+    monday = current_monday - timedelta(days=7)
+    sunday = monday + timedelta(days=6)
+    friday = monday + timedelta(days=4)
     quoted = [(day, count) for day, count in available if count > 0 and day < current_monday]
     in_week = [(day, count) for day, count in quoted if monday <= day <= sunday]
     before = [(day, count) for day, count in quoted if day < monday]
@@ -229,7 +235,7 @@ def write_case_readme(output_dir: Path, report: dict) -> None:
     lines.extend(["", "## Reproduzir", "",
                   "Com Python 3.11+ e o CSV original disponível, rode na raiz do projeto:", "",
                   "```powershell",
-                  f'python weekly_ranking.py --input "CAMINHO\\economatica.csv" --reference-date {week["reference_date"]} --output-dir "runs\\semana-{week["reference_date"]}"',
+                  f'python weekly_ranking.py --input "CAMINHO\\economatica.csv" --reference-date {week["reference_date"]} --output-dir "runs\\semana-{week["reference_date"]}"' + (' --allow-nonfriday-end' if week['nonfriday_end_accepted'] else ''),
                   "```", "",
                   "O programa obtém cadastros e cotações oficiais da B3 quando não estão em `data/reference/`. "
                   "Com os arquivos já guardados, acrescente `--offline`. "

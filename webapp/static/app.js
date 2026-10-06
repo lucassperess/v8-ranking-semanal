@@ -46,6 +46,10 @@ async function json(url, options) {
 }
 
 function render(data) {
+  $('short-week-notice').hidden = !data.week.nonfriday_end_accepted;
+  if (data.week.nonfriday_end_accepted)
+    $('short-week-notice').textContent =
+      `Semana encurtada aceita após revisão: último fechamento em ${day(data.week.last_week_close)}. Confira a decisão na auditoria desta execução.`;
   state.data = data;
   state.window = 'primary';
   state.ticker = data.windows.primary.top20[0]?.ticker || null;
@@ -544,6 +548,7 @@ async function loadRun(id) {
         job.error || `${names[job.status] || job.status} · ${job.stage}`,
       ),
     );
+    if (job.problem?.guidance) panel.append(node('p', 'doc-note', job.problem.guidance));
     if (job.status !== 'failed') {
       const steps = node('ol', 'execution-steps');
       const current =
