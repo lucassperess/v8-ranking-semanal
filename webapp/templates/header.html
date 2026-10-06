@@ -2,7 +2,7 @@
   <a class="brand" href="/" aria-label="Resultado de referência"
     ><img class="brand-logo" src="/static/v8-logo.png" alt="V8 Capital" width="40" height="40"
   /></a>
-  <nav class="topnav" aria-label="Navegação principal">
+  <nav id="primary-navigation" class="topnav" aria-label="Navegação principal">
     <a id="nav-result" href="/" {{ACTIVE_ranking}}>Ranking</a
     ><a id="nav-method" href="/documentacao" {{ACTIVE_documentation}}>Documentação</a
     ><a href="/nova-analise" {{ACTIVE_new-analysis}}>Nova análise</a>
@@ -31,6 +31,17 @@
         <path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5" /></svg
       ><svg class="fullscreen-collapse" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M3 8h5V3M21 8h-5V3M8 21v-5H3M16 21v-5h5" />
+      </svg></button
+    ><button
+      class="menu-toggle"
+      type="button"
+      aria-label="Abrir menu"
+      aria-expanded="false"
+      aria-controls="primary-navigation"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path class="menu-open-icon" d="M4 6h16M4 12h16M4 18h16" />
+        <path class="menu-close-icon" d="m6 6 12 12M18 6 6 18" />
       </svg></button
     ><span id="fullscreen-message" class="fullscreen-message" role="status" hidden></span>
   </div>

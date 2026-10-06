@@ -1,4 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const header = document.querySelector('.topbar');
+  const menu = header.querySelector('.menu-toggle');
+  const navigation = document.getElementById('primary-navigation');
+  const setMenu = (open) => {
+    header.classList.toggle('menu-expanded', open);
+    menu.setAttribute('aria-expanded', String(open));
+    menu.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+  };
+  header.classList.add('menu-ready');
+  menu.addEventListener('click', (event) => {
+    const open = menu.getAttribute('aria-expanded') !== 'true';
+    setMenu(open);
+    if (open && event.detail === 0) navigation.querySelector('a').focus();
+  });
+  navigation.addEventListener('click', (event) => {
+    if (event.target.closest('a')) setMenu(false);
+  });
+  document.addEventListener('click', (event) => {
+    if (!header.contains(event.target)) setMenu(false);
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && menu.getAttribute('aria-expanded') === 'true') {
+      setMenu(false);
+      menu.focus();
+    }
+  });
+  matchMedia('(max-width: 800px)').addEventListener('change', () => setMenu(false));
   const closeTips = () =>
     document
       .querySelectorAll('.info-button[aria-expanded="true"]')
