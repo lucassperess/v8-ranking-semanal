@@ -11,11 +11,12 @@ from datetime import date
 from pathlib import Path
 
 from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import FileResponse, JSONResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
 
 import etl
 from webapp import store
+from webapp import documentation
 from webapp.presentation import build_presentation, output_path
 
 
@@ -57,6 +58,23 @@ def index():
 @app.get("/metodologia")
 def methodology_page():
     return FileResponse(STATIC / "methodology.html")
+
+
+@app.get("/documentacao", response_class=HTMLResponse)
+def documentation_home():
+    return documentation.render("comece-aqui")
+
+
+@app.get("/documentacao/{slug}", response_class=HTMLResponse)
+def documentation_article(slug: str):
+    if slug not in documentation.PAGES:
+        raise HTTPException(404, "Artigo não encontrado")
+    return documentation.render(slug)
+
+
+@app.get("/api/documentation")
+def documentation_index():
+    return documentation.search_index()
 
 
 @app.get("/nova-analise")

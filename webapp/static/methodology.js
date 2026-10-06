@@ -7,7 +7,7 @@ async function showMethod(){
   const match=location.pathname.match(/^\/analise\/([0-9a-f]{32})\/metodologia$/);
   const resultHref=match?`/analise/${match[1]}`:'/';
   el('nav-result').href=resultHref;el('back-result').href=resultHref;
-  el('nav-method').href=location.pathname;
+  el('nav-method').href=match?`/documentacao?analise=${match[1]}`:'/documentacao';el('read-method').href=match?`/documentacao/metodologia?analise=${match[1]}`:'/documentacao/metodologia';
   const response=await fetch(match?`/api/analyses/${match[1]}/result`:'/api/featured');
   const data=await response.json();if(!response.ok)throw new Error(data.detail||'Não foi possível carregar esta execução.');
   const primary=data.windows.primary,alternative=data.windows.alternative;

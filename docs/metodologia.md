@@ -241,4 +241,4 @@ Para conferir a implementação:
 
 Preparado em **06/10/2026**, com base no código local correspondente à revisão `b9904a5` e nos arquivos da referência de 22/09/2026. Essa é uma identificação editorial da base consultada; não altera o registro da execução histórica.
 
-Guia de uso, dados, classificação e arquitetura terão artigos próprios conforme o [mapa da documentação](README.md). Sempre que uma regra mudar, este artigo deve ser revisado junto com o código.
+Os artigos de [guia de uso](como-usar.md), [dados](dados.md), [classificação](classificacao.md) e [arquitetura](sistema.md) complementam esta explicação. Sempre que uma regra mudar, este artigo deve ser revisado junto com o código.

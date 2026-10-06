@@ -1,6 +1,7 @@
 """Contrato público: números do case, lacunas, fila e validação de upload."""
 
 import io
+import re
 import tempfile
 import unittest
 from pathlib import Path
@@ -67,6 +68,31 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(self.client.get(f"/analise/{'a' * 32}/metodologia").status_code, 200)
         self.assertEqual(self.client.get(f"/analise/{'c' * 32}/metodologia").status_code, 404)
         self.assertEqual(self.client.get("/analise/invalid/metodologia").status_code, 404)
+
+    def test_documentation_links_sections_and_original_audit(self):
+        from webapp.documentation import PAGES
+        for slug in PAGES:
+            response = self.client.get(f"/documentacao/{slug}")
+            self.assertEqual(response.status_code, 200)
+            self.assertNotIn("{{", response.text)
+            ids = set(re.findall(r'id="([^"]+)"', response.text))
+            for fragment in re.findall(r'href="#([^"]+)"', response.text):
+                self.assertIn(fragment, ids, (slug, fragment))
+            for route in re.findall(r'href="(/documentacao[^"?#]*)', response.text):
+                self.assertEqual(self.client.get(route).status_code, 200, route)
+        method = self.client.get('/documentacao/metodologia').text
+        self.assertIn('class="docs-flow"', method)
+        self.assertNotIn('class="language-mermaid"', method)
+        self.assertIn('47,17%', method)
+        self.assertEqual(self.client.get('/documentacao/desconhecida').status_code, 404)
+        self.assertEqual(self.client.get('/documentacao').status_code, 200)
+        index = self.client.get('/api/documentation').json()
+        self.assertEqual(len(index), len(PAGES))
+        self.assertTrue(any('células vazias' in article['text'] for article in index))
+        ranking = self.client.get('/').text
+        self.assertNotIn('<footer>', ranking)
+        self.assertIn('id="execution-audit"', ranking)
+        self.assertIn('href="/documentacao"', ranking)
 
     def test_bad_upload_rejected_with_clear_message(self):
         response = self.client.post("/api/analyses", data={"reference_date": "2026-09-22"},

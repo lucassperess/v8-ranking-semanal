@@ -1,6 +1,6 @@
 # Documentação do ranking semanal
 
-Esta pasta inicia a documentação editorial do projeto. O mapa abaixo descreve a organização proposta para a interface; apenas o artigo de metodologia foi preparado nesta etapa. As páginas e rotas propostas ainda não foram publicadas no site.
+Esta pasta contém os oito artigos publicados pela interface em `/documentacao`. O site lê os arquivos Markdown versionados neste repositório e fornece navegação por assunto, índice de seções e busca. Este mapa documenta a organização e as melhorias seguintes.
 
 ## Caminhos de leitura
 
@@ -14,22 +14,22 @@ Esta pasta inicia a documentação editorial do projeto. O mapa abaixo descreve 
 
 ## Mapa de páginas
 
-Navegação principal proposta: **Ranking · Documentação · Nova análise**.
+Navegação principal: **Ranking · Documentação · Nova análise**.
 
 | Página | Conteúdo e exemplos | Estado |
 | --- | --- | --- |
-| Comece aqui | Objetivo, escopo, fontes, visão do fluxo e caminhos de leitura | Planejada |
-| Como usar o dashboard | KPIs, tabela, seleção de ação, preços e retornos, hover, matriz, downloads, envio e acompanhamento | Planejada |
-| [Metodologia do ranking](metodologia.md) | Semana, pontas, elegibilidade, fórmula, ordenação, média, alternativa e limitações | Artigo modelo preparado |
-| Dados e tratamento | Contrato das nove colunas, codificação, dicionário, precisão, ausências, duplicatas e controles | Planejada |
-| Classificação dos instrumentos | Hipótese pelo código, confirmação B3 por data, fontes, cache, conflitos e decisões | Planejada |
-| Como o sistema funciona | Upload → API → fila → worker → Python → arquivos → apresentação; limites e retenção | Planejada |
-| Auditoria e reprodução | Arquivos, procedência, versões, comando Python, execução sem internet com fontes disponíveis | Planejada |
-| Problemas e dúvidas | Erros de formato, fontes indisponíveis, lacunas, semana incompleta, poucas ações e expiração | Planejada |
+| Comece aqui | Objetivo, escopo, fontes, visão do fluxo e caminhos de leitura | Publicado |
+| Como usar o dashboard | KPIs, tabela, seleção de ação, preços e retornos, hover, matriz, downloads, envio e acompanhamento | Publicado |
+| [Metodologia do ranking](metodologia.md) | Semana, pontas, elegibilidade, fórmula, ordenação, média, alternativa e limitações | Publicado |
+| Dados e tratamento | Contrato das nove colunas, codificação, dicionário, precisão, ausências, duplicatas e controles | Publicado |
+| Classificação dos instrumentos | Hipótese pelo código, confirmação B3 por data, fontes, cache, conflitos e decisões | Publicado |
+| Como o sistema funciona | Upload → API → fila → worker → Python → arquivos → apresentação; limites e retenção | Publicado |
+| Auditoria e reprodução | Arquivos, procedência, versões, comando Python, execução sem internet com fontes disponíveis | Publicado |
+| Problemas e dúvidas | Erros de formato, fontes indisponíveis, lacunas, semana incompleta, poucas ações e expiração | Publicado |
 
 ## Organização da interface
 
-Estrutura proposta para uma página de artigo:
+Estrutura de uma página de artigo:
 
 ```text
 Ranking · Documentação · Nova análise
@@ -52,14 +52,14 @@ Dúvidas
 - Diagramas com equivalente textual, tabelas legíveis e exemplos com unidades explícitas.
 - Explicações essenciais visíveis no artigo. Tooltips servem para lembretes curtos, com acesso por teclado e toque.
 - Links permanentes por assunto e seção; identificação da página atual e navegação de retorno.
-- Busca por títulos, conteúdo e sinônimos, como “dados faltando”, “sem cotação” e “preço ausente”. Sua implementação fica para a fase da interface.
+- Busca por títulos, conteúdo e sinônimos, como “dados faltando”, “sem cotação” e “preço ausente”. A busca consulta títulos, descrições e conteúdo dos artigos.
 - Caminhos relacionados ao final de cada artigo, evitando repetir explicações extensas.
 
 ## Regras gerais e dados da execução
 
 A documentação explica as regras. A auditoria de uma execução mostra suas próprias datas, preços, contagens, ocorrências e arquivos.
 
-As rotas atuais `/metodologia` e `/analise/{id}/metodologia` já apresentam dados específicos da execução. Na migração, esses acessos devem continuar funcionando. Uma proposta é publicar os artigos em `/documentacao/{assunto}` e manter uma área de auditoria vinculada a cada análise, com links para os artigos aplicáveis.
+As rotas atuais `/metodologia` e `/analise/{id}/metodologia` já apresentam dados específicos da execução. Esses acessos permanecem funcionando como auditoria. Os artigos são publicados em `/documentacao/{assunto}`. O parâmetro `?analise={id}` preserva o link da execução consultada ao navegar entre os artigos.
 
 Não substituir números de uma análise enviada pelos números do case. Não apresentar um exemplo histórico como valor fixo para novas execuções. A revisão da documentação aplicável deve ser identificada junto à versão do código; isso ainda precisa ser implementado para preservar a interpretação de execuções antigas.
 
@@ -76,15 +76,13 @@ Cada artigo deve conter:
 
 Termos como ETL, worker e hash precisam ser explicados na primeira ocorrência. Separar comportamento implementado, decisão metodológica e melhoria planejada. Na manutenção, atualizar o artigo na mesma alteração que modificar a regra correspondente.
 
-O README da raiz continua sendo a entrada para instalação, comandos e manutenção. Os artigos ficam em Markdown no Git. Uma futura publicação no site deve utilizar esse conteúdo para reduzir divergências entre documentação e repositório.
+O README da raiz continua sendo a entrada para instalação, comandos e manutenção. Os artigos ficam em Markdown no Git. O site utiliza esse conteúdo para reduzir divergências entre documentação e repositório.
 
-## Ordem proposta de implementação
+## Próximas melhorias
 
-1. Revisar este mapa e o artigo modelo quanto a profundidade e linguagem.
-2. Preparar guia de uso e artigos de dados/classificação, com capturas anotadas e exemplos.
-3. Desenvolver a estrutura de documentação, navegação e busca.
-4. Integrar auditoria por execução e a identificação da revisão aplicável.
-5. Conferir navegação, leitura no celular, teclado, links e correspondência com o código antes de publicar.
+1. Acrescentar capturas anotadas da interface aos guias de uso.
+2. Associar automaticamente cada execução à revisão arquivada dos artigos.
+3. Atualizar artigos junto às mudanças das regras e verificar exemplos e navegação.
 
 ## Referências de organização
 

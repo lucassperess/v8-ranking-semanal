@@ -6,7 +6,7 @@ Pipeline em Python 3.11+ (biblioteca padrão) para preparar extrações da Econo
 
 O [resultado do case](resultados/2026-09-22/README.md) apresenta as 20 ações, os retornos, a alternativa de janela e as premissas. O comando único abaixo gera automaticamente um novo README de resultado, com a média correta na primeira linha, para cada nova extração.
 
-O [mapa da documentação](docs/README.md) define a organização proposta para os guias da ferramenta. O [artigo modelo de metodologia](docs/metodologia.md) explica as regras implementadas, com diagrama do processo, exemplo real, controles e instruções de conferência. Esses documentos estão no repositório; a nova seção de documentação ainda não foi integrada à interface.
+O [mapa da documentação](docs/README.md) define a organização proposta para os guias da ferramenta. O [artigo modelo de metodologia](docs/metodologia.md) explica as regras implementadas, com diagrama do processo, exemplo real, controles e instruções de conferência. A seção [Documentação](https://ranking.lucaspsm.com/documentacao) publica oito artigos a partir dos arquivos Markdown do repositório, com busca e navegação por assunto. A auditoria continua disponível por execução.
 
 ## Interface para avaliar e reproduzir o case
 
@@ -33,7 +33,9 @@ As saídas `resultados/2026-09-22/daily_context.json` são apenas contexto visua
 ### Páginas da interface
 
 - `/`: ranking de referência, gráficos de preços/retornos diários e contexto da amostra.
-- `/metodologia`: explicação do processo, comparação visual das janelas, universo, exclusões, exemplo de cálculo e arquivos da execução de referência.
+- `/documentacao`: entrada dos guias, busca e navegação entre oito assuntos.
+- `/documentacao/{assunto}`: artigo versionado, índice de seções e links relacionados.
+- `/metodologia`: auditoria da referência, explicação do processo, comparação visual das janelas, universo, exclusões, exemplo de cálculo e arquivos da execução de referência.
 - `/nova-analise`: envio de uma extração, conferência da semana e informações de formato, limites e retenção.
 - `/analise/{id}`: acompanhamento de uma execução independente; ao terminar, mostra seu ranking e seus gráficos.
 - `/analise/{id}/metodologia`: metodologia com datas, contagens, alertas e downloads específicos daquela execução. Não reutiliza as contagens do case.
