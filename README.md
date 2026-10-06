@@ -6,6 +6,28 @@ Pipeline em Python 3.11+ (biblioteca padrão) para preparar extrações da Econo
 
 O [resultado do case](resultados/2026-09-22/README.md) apresenta as 20 ações, os retornos, a alternativa de janela e as premissas. O comando único abaixo gera automaticamente um novo README de resultado, com a média correta na primeira linha, para cada nova extração.
 
+## Interface para avaliar e reproduzir o case
+
+O site [ranking.lucaspsm.com](https://ranking.lucaspsm.com) exibe o resultado de referência, os alertas e a metodologia. Na seção **Teste com uma nova extração**, qualquer avaliador pode enviar outro CSV da Economatica no mesmo esquema de nove colunas e informar uma data de referência. O site executa **este mesmo `weekly_ranking.py`**, gera um link separado para a nova análise e mostra a etapa em andamento. O resultado de referência não muda quando alguém envia um arquivo. Os retornos e a média são calculados em Python; o navegador apenas apresenta os valores produzidos.
+
+O arquivo enviado pode ter até **10 MB**. A fila aceita uma análise ativa e duas aguardando, com até três envios por hora por origem. Arquivos brutos são removidos após 24 horas e resultados de teste após sete dias. O CSV original e os arquivos brutos da B3 não ficam disponíveis para download público. O link da análise é aleatório e não há lista pública de envios: quem possui o link pode ver o resultado derivado enquanto ele existir. A aplicação não exige login, portanto não use o formulário para dados que não possam ser processados nessa demonstração pública.
+
+Para executar a interface localmente:
+
+```powershell
+python -m venv .venv
+.venv\Scripts\python -m pip install -r requirements-web.txt
+.venv\Scripts\python -m uvicorn webapp.server:app --host 127.0.0.1 --port 8000
+```
+
+Em outro terminal, inicie o worker (`.venv\Scripts\python -m webapp.worker`). Abra `http://127.0.0.1:8000`. No Linux, substitua `.venv\Scripts\python` por `.venv/bin/python`. A aplicação usa `runtime-data/` por padrão; `RANKING_DATA_DIR` escolhe outro diretório. Para recriar somente a série diária de apresentação do resultado fixo, sem incluir o CSV bruto no Git:
+
+```powershell
+python scripts/create_featured_daily.py --input "CAMINHO\economatica.csv"
+```
+
+As saídas `resultados/2026-09-22/daily_context.json` são apenas contexto visual. Suas lacunas permanecem vazias e não alteram o top 20. A implantação Docker com Traefik e as instruções de operação estão em [deploy/README.md](deploy/README.md).
+
 ## Gerar um novo ranking
 
 ```powershell

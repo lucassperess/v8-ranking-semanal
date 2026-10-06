@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b10">
+  <title>Ranking semanal de ações · V8 Capital</title>
+  <meta name="description" content="Ranking semanal de ações brasileiras com metodologia, alertas e teste de novas extrações da Economatica.">
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Voltar ao resultado de referência"><span class="brand-mark">V8</span><span class="brand-divider"></span><span class="brand-name">RANKING DE AÇÕES</span></a>
+      <nav class="topnav" aria-label="Navegação principal"><a href="#ranking">Ranking</a><a href="#metodologia">Metodologia</a><a href="#teste">Testar estratégia</a></nav>
+      <a class="source-link" href="https://github.com/lucassperess/v8-ranking-semanal" target="_blank" rel="noopener noreferrer">Código no GitHub <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main>
+      <section class="intro">
+        <div class="intro-grid"><div><h1>Ranking semanal de ações<span aria-hidden="true">›</span></h1><p>Maiores altas entre ações ON e PN · preços de fechamento ajustados da Economatica</p></div><div class="intro-aside"><div id="run-kind" class="aside-value">Resultado de referência</div><div id="run-period" class="aside-meta">Carregando período…</div><a href="#teste" class="aside-action">Nova análise ↗</a></div></div>
+      </section>
+
+      <div id="loading" class="status-box" role="status">Carregando resultado…</div>
+      <div id="error" class="status-box status-error" role="alert" hidden></div>
+      <section id="analysis-status" class="status-box" hidden aria-live="polite"></section>
+
+      <div id="dashboard" hidden>
+        <section class="metric-strip" aria-label="Indicadores principais">
+          <div class="metric main-metric"><span class="metric-label">MÉDIA DO TOP 20</span><strong id="metric-mean"></strong><span class="metric-note">média aritmética</span></div>
+          <div class="metric"><span class="metric-label">AÇÕES ELEGÍVEIS</span><strong id="metric-eligible"></strong><span class="metric-note">ON e PN</span></div>
+          <div class="metric"><span class="metric-label">AÇÕES EM ALTA</span><strong id="metric-up"></strong><span class="metric-note" id="metric-up-note"></span></div>
+          <div class="metric"><span class="metric-label">JANELA ALTERNATIVA</span><strong id="metric-alternative"></strong><span class="metric-note">dentro da semana</span></div>
+        </section>
+
+        <section id="ranking" class="section ranking-section">
+          <div class="section-head"><div><h2>Maiores altas da semana<span aria-hidden="true">›</span></h2><p id="ranking-subtitle"></p></div><div class="window-switch" role="group" aria-label="Janela do ranking"><button id="primary-button" class="active" type="button">Principal</button><button id="alternative-button" type="button">Alternativa</button></div></div>
+          <div class="ranking-grid"><div class="table-wrap"><table><thead><tr><th>#</th><th>ATIVO</th><th>ESPÉCIE</th><th>FECH. INICIAL</th><th>FECH. FINAL</th><th>RETORNO</th></tr></thead><tbody id="ranking-body"></tbody></table></div><aside class="detail-panel"><div class="detail-top"><div><span class="detail-overline">ATIVO SELECIONADO</span><h3 id="detail-ticker"></h3><span id="detail-kind" class="ticker-kind"></span></div><span id="detail-return" class="detail-return"></span></div><div id="detail-chart" class="detail-chart"></div><div class="detail-bottom"><span id="detail-start"></span><span id="detail-end"></span></div><div id="detail-note" class="detail-note"></div></aside></div>
+        </section>
+
+        <section class="section context-section"><div class="section-head"><div><span class="section-kicker">02 / CONTEXTO</span><h2>Além do top 20</h2><p>Distribuição e amplitude das ações elegíveis nesta extração.</p></div></div><div class="context-grid"><div class="context-panel"><h3>Distribuição dos retornos</h3><div id="distribution" class="distribution"></div></div><div class="context-panel breadth-panel"><h3>Amplitude da amostra</h3><div id="breadth-counts" class="breadth-counts"></div><div id="breadth-bar" class="breadth-bar"></div><p id="breadth-note" class="muted"></p></div></div></section>
+
+        <section class="section heatmap-section"><div class="section-head"><div><span class="section-kicker">03 / TRAJETÓRIA</span><h2>Movimento diário do top 20</h2><p>Variação entre datas consecutivas da extração. Células vazias não são preenchidas.</p></div></div><div id="heatmap" class="heatmap-wrap"></div></section>
+
+        <section id="metodologia" class="section method-section"><div class="section-head"><div><span class="section-kicker">04 / AUDITORIA</span><h2>Como o resultado foi produzido</h2><p>Critérios, limites e arquivos para conferir a execução.</p></div></div><div class="method-grid"><div class="method-panel"><h3>Regra do ranking</h3><ol id="method-list"></ol><div class="method-callout"><span>FÓRMULA</span><strong>Fechamento ajustado final ÷ inicial − 1</strong></div></div><div class="method-panel"><h3>Qualidade e exclusões</h3><div id="quality-list"></div><div id="exclusion-list"></div></div></div><div class="audit-footer"><div><span>REFERÊNCIA DA EXTRAÇÃO</span><code id="input-hash"></code></div><div><span>VERSÃO DO PIPELINE</span><code id="code-version"></code></div></div><div id="downloads" class="downloads"></div></section>
+      </div>
+
+      <section id="teste" class="section test-section"><div class="section-head"><div><span class="section-kicker">05 / REPRODUÇÃO</span><h2>Teste com uma nova extração</h2><p>Envie outro CSV da Economatica no mesmo formato. O mesmo código fará o tratamento, a confirmação dos instrumentos pela B3 e o cálculo.</p></div></div><div class="test-grid"><form id="upload-form" class="upload-form"><label for="csv-file">ARQUIVO CSV DA ECONOMATICA</label><input id="csv-file" name="file" type="file" accept=".csv,text/csv" required><small>Até 10 MB · nove colunas no formato documentado · nenhum preço ausente será preenchido</small><label for="reference-date">DATA DE REFERÊNCIA</label><input id="reference-date" name="reference_date" type="date" required><small>Escolha uma data após a semana que deseja analisar. O programa seleciona a semana-calendário anterior.</small><button id="submit-button" type="submit">Executar análise <span aria-hidden="true">↗</span></button><div id="form-message" role="status" aria-live="polite"></div></form><div class="test-explainer"><div class="step"><span>01</span><div><strong>Extração preservada</strong><p>O arquivo recebido fica ligado apenas à sua execução e sai do servidor após 24 horas.</p></div></div><div class="step"><span>02</span><div><strong>Classificação oficial</strong><p>A B3 confirma a espécie das ações nas datas utilizadas. Se faltar evidência, o ranking não é publicado como completo.</p></div></div><div class="step"><span>03</span><div><strong>Resultado auditável</strong><p>Você recebe um link próprio com ranking, alertas, exclusões, hashes e arquivos derivados para conferência.</p></div></div><div class="privacy-note">Uma análise por vez, até duas aguardando. Resultados de teste ficam disponíveis por sete dias. O resultado de referência permanece fixo.</div></div></div></section>
+    </main>
+    <footer><span>V8 CAPITAL · CASE TÉCNICO DE DADOS</span><span>Dados históricos da extração · sem atualização em tempo real</span><a href="https://github.com/lucassperess/v8-ranking-semanal" target="_blank" rel="noopener noreferrer">METODOLOGIA E CÓDIGO ↗</a></footer>
+  </div>
+</body>
+</html>

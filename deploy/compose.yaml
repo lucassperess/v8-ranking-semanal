@@ -1,0 +1,75 @@
+name: v8-ranking
+services:
+  app:
+    image: v8-ranking:latest
+    build:
+      context: /home/lucas/projects/v8-ranking-semanal
+    restart: unless-stopped
+    command: ["uvicorn", "webapp.server:app", "--host", "0.0.0.0", "--port", "8000", "--proxy-headers", "--forwarded-allow-ips", "*"]
+    environment:
+      RANKING_DATA_DIR: /data
+    volumes:
+      - ranking_data:/data
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m
+    mem_limit: 768m
+    pids_limit: 128
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - backend
+      - proxy
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=proxy
+      - traefik.http.routers.v8-ranking.rule=Host(`ranking.lucaspsm.com`)
+      - traefik.http.routers.v8-ranking.entrypoints=websecure
+      - traefik.http.routers.v8-ranking.tls.certresolver=letsencrypt
+      - traefik.http.services.v8-ranking.loadbalancer.server.port=8000
+      - traefik.http.middlewares.v8-ranking-size.buffering.maxRequestBodyBytes=11534336
+      - traefik.http.routers.v8-ranking.middlewares=v8-ranking-size
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/healthz',timeout=4)"]
+      interval: 20s
+      timeout: 5s
+      retries: 3
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+
+  worker:
+    image: v8-ranking:latest
+    build:
+      context: /home/lucas/projects/v8-ranking-semanal
+    restart: unless-stopped
+    command: ["python", "-m", "webapp.worker"]
+    environment:
+      RANKING_DATA_DIR: /data
+    volumes:
+      - ranking_data:/data
+    read_only: true
+    tmpfs:
+      - /tmp:size=256m
+    mem_limit: 3g
+    pids_limit: 256
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - backend
+      - egress
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+
+volumes:
+  ranking_data:
+
+networks:
+  backend:
+    internal: true
+  egress: {}
+  proxy:
+    external: true
