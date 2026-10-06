@@ -18,10 +18,7 @@ function render(data) {
   text('run-kind',data.kind==='featured'?'Resultado de referência':'Nova análise');
   text('run-period',`Referência ${day(data.week.reference_date)} · ${day(data.week.week_start)} a ${day(data.week.week_end)}`);
   text('metric-alternative',pct(data.windows.alternative.mean_pct));
-  text('input-hash',data.provenance.input_sha256);
-  text('code-version',`${data.provenance.pipeline_version} · ${data.provenance.code_sha256.slice(0,16)}…`);
-  const method=$('method-list'); clear(method); data.premises.forEach(item=>method.append(node('li','',item)));
-  renderQuality(data); renderDownloads(data); renderWindow();
+  renderWindow();
 }
 
 function renderWindow() {
@@ -133,66 +130,32 @@ function renderHeatmap(rows) {
     dates.forEach(d=>{const raw=changes.get(d)??null;const cell=node('span',`heat-cell${raw===null?' missing':''}`,raw===null?'—':`${Number(raw)>0?'+':''}${pct(raw)}`);const color=heatColor(raw);if(color)cell.style.background=color;cell.title=`${row.ticker} · ${day(d)}: ${raw===null?'sem comparação válida':pct(raw)}`;grid.append(cell);});
   });wrap.append(grid);
 }
-function renderQuality(data) {
-  const box=$('quality-list');clear(box);const issues=data.quality.top20_issues||[];
-  if(!issues.length)box.append(node('div','quality-item','Nenhum alerta específico nos 20 ativos desta janela.'));
-  issues.forEach(item=>{const line=node('div','quality-item');line.append(node('strong','',`${item.ticker} · ${day(item.trade_date)} `));line.append(document.createTextNode(`${item.field}: ${item.reason}`));box.append(line);});
-  const exclusions=$('exclusion-list');clear(exclusions);exclusions.append(node('h4','',`${data.exclusions.count} códigos sem duas pontas válidas`));
-  Object.entries(data.exclusions.reasons).slice(0,4).forEach(([reason,count])=>exclusions.append(node('div','exclusion-item',`${count} · ${reason}`)));
-  exclusions.append(node('div','exclusion-item',`${data.windows.primary.excluded} instrumentos com duas pontas ficaram fora por não serem ações ON/PN.`));
-}
-function renderDownloads(data) {
-  const box=$('downloads');clear(box);const base=data.kind==='featured'?'/api/featured/files':`/api/analyses/${state.runId}/files`;
-  const labels={'top20.csv':'Top 20 · CSV','all_returns.csv':'Todos os retornos · CSV','top20_alternativo.csv':'Janela alternativa · CSV','candidate_exclusions.csv':'Exclusões · CSV','quality_context.json':'Alertas · JSON','ranking_report.json':'Relatório · JSON','README.md':'Leia-me da execução'};
-  data.downloads.filter(name=>labels[name]).forEach(name=>{const a=node('a','',`${labels[name]} ↗`);a.href=`${base}/${name}`;a.download=name;box.append(a);});
-}
 async function loadRun(id) {
   state.runId=id; $('dashboard').hidden=true;$('loading').hidden=true;$('analysis-status').hidden=false;
   try {const job=await json(`/api/analyses/${id}`);const names={queued:'Aguardando',running:'Processando',completed:'Concluída',failed:'Falhou'};
-    $('analysis-status').textContent=`${names[job.status]||job.status} · ${job.stage}${job.error?` — ${job.error}`:''}`;
+    text('run-kind','Nova análise');text('run-period',`Referência ${day(job.reference_date)}`);
+    const panel=$('analysis-status');clear(panel);panel.classList.toggle('failed',job.status==='failed');
+    panel.append(node('div','eyebrow','EXECUÇÃO INDEPENDENTE'),node('h2','',job.status==='failed'?'A análise não pôde ser concluída':job.status==='queued'?'Sua análise está na fila':'Preparando sua análise'));
+    panel.append(node('p','execution-current',job.error||`${names[job.status]||job.status} · ${job.stage}`));
+    if(job.status!=='failed'){
+      const steps=node('ol','execution-steps');
+      const current=job.status==='queued'?0:job.stage==='Preparando resultado'?3:job.stage.includes('Calculando')?2:job.stage.includes('B3')||job.stage.includes('Classificando')?1:0;
+      ['Leitura e tratamento','Classificação pela B3','Cálculo dos rankings','Preparação do resultado'].forEach((label,index)=>{const step=node('li',job.status==='queued'?'':index<current?'done':index===current?'current':'');step.append(node('span','',String(index+1).padStart(2,'0')),node('strong','',label));if(index===current&&job.status==='running')step.setAttribute('aria-current','step');steps.append(step);});panel.append(steps);
+    }
+    panel.append(node('p','muted',job.status==='failed'?'Confira o motivo acima antes de reenviar. O resultado de referência continua disponível.':'Esta página acompanha o processamento automaticamente. Guarde seu endereço para voltar à mesma execução. O limite de processamento é de dez minutos; o resultado ficará disponível por sete dias.'));
+    const links=node('div','page-context');for(const [label,href] of [['Enviar outra base ↗','/nova-analise'],['Ver resultado de referência ↗','/']]){const link=node('a','',label);link.href=href;links.append(link);}panel.append(links);
     if(job.status==='completed'){const result=await json(`/api/analyses/${id}/result`);render(result);return;}
-    if(job.status==='failed'){$('analysis-status').classList.add('status-error');return;}
+    if(job.status==='failed')return;
     setTimeout(()=>loadRun(id),1800);
   }catch(exc){error(exc.message);$('analysis-status').hidden=true;}
 }
-async function submit(event) {
-  event.preventDefault();const file=$('csv-file').files[0];
-  if(!file||!file.name.toLowerCase().endsWith('.csv')){text('form-message','Escolha um arquivo .csv da Economatica.');return;}
-  if(file.size>10*1024*1024){text('form-message','O arquivo ultrapassa 10 MB. Exporte uma extração menor para continuar.');return;}
-  const button=$('submit-button');button.disabled=true;button.textContent='Enviando arquivo…';text('form-message','');
-  try{const response=await json('/api/analyses',{method:'POST',body:new FormData($('upload-form'))});window.location.assign(response.url);}
-  catch(exc){text('form-message',exc.message);button.disabled=false;button.textContent='Executar análise ↗';}
-}
-function todayLocal(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;}
-function updateWeekPreview(){
-  const raw=$('reference-date').value;if(!raw){text('week-preview','Escolha a data de referência para conferir a semana.');return;}
-  const ref=new Date(`${raw}T12:00:00Z`);if(Number.isNaN(ref.getTime()))return;
-  const offset=(ref.getUTCDay()+6)%7;const start=new Date(ref);start.setUTCDate(ref.getUTCDate()-offset-7);const end=new Date(start);end.setUTCDate(start.getUTCDate()+6);
-  text('week-preview',`Semana a analisar: ${day(start.toISOString().slice(0,10))} a ${day(end.toISOString().slice(0,10))}. Os fechamentos exatos serão determinados pelos dados disponíveis.`);
-}
-async function suggestReferenceDate(){
-  const file=$('csv-file').files[0];if(!file||file.size>10*1024*1024)return;
-  const content=await file.text();const matches=content.match(/20\d{2}-\d{2}-\d{2}/g);if(!matches?.length)return;
-  const latest=matches.reduce((a,b)=>a>b?a:b);const candidate=new Date(`${latest}T12:00:00Z`);
-  if(Number.isNaN(candidate.getTime()))return;
-  const weekday=candidate.getUTCDay();if(weekday===5)candidate.setUTCDate(candidate.getUTCDate()+3);
-  else if(weekday===6)candidate.setUTCDate(candidate.getUTCDate()+2);
-  else if(weekday===0)candidate.setUTCDate(candidate.getUTCDate()+1);
-  const suggestion=candidate.toISOString().slice(0,10);
-  if(suggestion<=todayLocal())$('reference-date').value=suggestion;
-  updateWeekPreview();
-  document.querySelector('#reference-date + small').textContent=`Sugestão baseada na última data do arquivo (${day(latest)}). Confira a semana antes de executar.`;
-}
 document.addEventListener('DOMContentLoaded',()=>{
-  $('reference-date').value=todayLocal();$('reference-date').max=todayLocal();$('upload-form').addEventListener('submit',submit);
-  updateWeekPreview();$('reference-date').addEventListener('change',updateWeekPreview);
   $('asset-select').addEventListener('change',event=>{state.ticker=event.target.value;renderTable(state.data.windows[state.window].top20);renderDetail();});
   $('chart-price').addEventListener('click',()=>{state.chartMode='price';renderDetail();});
   $('chart-returns').addEventListener('click',()=>{state.chartMode='returns';renderDetail();});
   let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>{if(state.data)renderDetail();},100);});
-  $('csv-file').addEventListener('change',()=>suggestReferenceDate().catch(()=>{}));
   $('primary-button').addEventListener('click',()=>{state.window='primary';renderWindow();});
   $('alternative-button').addEventListener('click',()=>{state.window='alternative';renderWindow();});
   const match=window.location.pathname.match(/^\/analise\/([0-9a-f]{32})$/);
-  if(match)loadRun(match[1]);else json('/api/featured').then(render).catch(exc=>error(exc.message));
+  if(match){$('nav-result').href=`/analise/${match[1]}`;$('nav-method').href=`/analise/${match[1]}/metodologia`;$('result-method').href=$('nav-method').href;loadRun(match[1]);}else json('/api/featured').then(render).catch(exc=>error(exc.message));
 });

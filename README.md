@@ -28,6 +28,16 @@ python scripts/create_featured_daily.py --input "CAMINHO\economatica.csv"
 
 As saídas `resultados/2026-09-22/daily_context.json` são apenas contexto visual. Suas lacunas permanecem vazias e não alteram o top 20. A implantação Docker com Traefik e as instruções de operação estão em [deploy/README.md](deploy/README.md).
 
+### Páginas da interface
+
+- `/`: ranking de referência, gráficos de preços/retornos diários e contexto da amostra.
+- `/metodologia`: explicação do processo, comparação visual das janelas, universo, exclusões, exemplo de cálculo e arquivos da execução de referência.
+- `/nova-analise`: envio de uma extração, conferência da semana e informações de formato, limites e retenção.
+- `/analise/{id}`: acompanhamento de uma execução independente; ao terminar, mostra seu ranking e seus gráficos.
+- `/analise/{id}/metodologia`: metodologia com datas, contagens, alertas e downloads específicos daquela execução. Não reutiliza as contagens do case.
+
+O formulário sugere a referência a partir das datas presentes no CSV, incluindo datas no formato `DD/MM/AAAA`; o usuário deve conferir a semana indicada antes de enviar. A API continua sendo responsável pela validação do esquema e pela execução do pipeline. Uma falha fica explícita na página da análise, e os resultados enviados não aparecem em uma lista pública.
+
 ## Gerar um novo ranking
 
 ```powershell

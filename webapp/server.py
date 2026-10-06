@@ -52,6 +52,22 @@ def index():
     return FileResponse(STATIC / "index.html")
 
 
+@app.get("/metodologia")
+def methodology_page():
+    return FileResponse(STATIC / "methodology.html")
+
+
+@app.get("/nova-analise")
+def new_analysis_page():
+    return FileResponse(STATIC / "new-analysis.html")
+
+
+@app.get("/analise/{job_id}/metodologia")
+def analysis_methodology_page(job_id: str):
+    job_or_404(job_id)
+    return FileResponse(STATIC / "methodology.html")
+
+
 @app.get("/analise/{job_id}")
 def analysis_page(job_id: str):
     valid_id(job_id)

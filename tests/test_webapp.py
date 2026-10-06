@@ -55,6 +55,19 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(self.client.get("/api/featured/files/economatica_original.csv").status_code, 404)
         self.assertEqual(self.client.get("/api/featured/files/top20.csv").status_code, 200)
 
+    def test_dedicated_pages_and_execution_methodology(self):
+        ranking = self.client.get("/")
+        self.assertNotIn('id="upload-form"', ranking.text)
+        self.assertNotIn('id="method-list"', ranking.text)
+        self.assertEqual(self.client.get("/metodologia").status_code, 200)
+        upload = self.client.get("/nova-analise")
+        self.assertEqual(upload.status_code, 200)
+        self.assertIn('id="upload-form"', upload.text)
+        store.create_job("a" * 32, "2026-09-22", "b" * 64, "test-client")
+        self.assertEqual(self.client.get(f"/analise/{'a' * 32}/metodologia").status_code, 200)
+        self.assertEqual(self.client.get(f"/analise/{'c' * 32}/metodologia").status_code, 404)
+        self.assertEqual(self.client.get("/analise/invalid/metodologia").status_code, 404)
+
     def test_bad_upload_rejected_with_clear_message(self):
         response = self.client.post("/api/analyses", data={"reference_date": "2026-09-22"},
                                     files={"file": ("wrong.csv", b"ticker,date\nAAA3,2026-09-18\n", "text/csv")})

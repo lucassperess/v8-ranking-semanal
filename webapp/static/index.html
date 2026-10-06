@@ -14,20 +14,20 @@
   <div class="shell">
     <header class="topbar">
       <a class="brand" href="/" aria-label="Voltar ao resultado de referência"><span class="brand-mark">V8</span><span class="brand-divider"></span><span class="brand-name">RANKING DE AÇÕES</span></a>
-      <nav class="topnav" aria-label="Navegação principal"><a href="#ranking">Ranking</a><a href="#metodologia">Metodologia</a><a href="#teste">Testar estratégia</a></nav>
+      <nav class="topnav" aria-label="Navegação principal"><a id="nav-result" href="/" aria-current="page">Ranking</a><a id="nav-method" href="/metodologia">Metodologia</a><a href="/nova-analise">Nova análise</a></nav>
       <a class="source-link" href="https://github.com/lucassperess/v8-ranking-semanal" target="_blank" rel="noopener noreferrer">Código no GitHub <span aria-hidden="true">↗</span></a>
     </header>
 
     <main>
       <section class="intro">
-        <div class="intro-grid"><div><h1>Ranking semanal de ações<span aria-hidden="true">›</span></h1><p>Maiores altas entre ações ON e PN · preços de fechamento ajustados da Economatica</p></div><div class="intro-aside"><div id="run-kind" class="aside-value">Resultado de referência</div><div id="run-period" class="aside-meta">Carregando período…</div><a href="#teste" class="aside-action">Nova análise ↗</a></div></div>
+        <div class="intro-grid"><div><h1>Ranking semanal de ações<span aria-hidden="true">›</span></h1><p>Maiores altas entre ações ON e PN · preços de fechamento ajustados da Economatica</p></div><div class="intro-aside"><div id="run-kind" class="aside-value">Resultado de referência</div><div id="run-period" class="aside-meta">Carregando período…</div><a href="/nova-analise" class="aside-action">Nova análise ↗</a></div></div>
       </section>
 
       <div id="loading" class="status-box" role="status">Carregando resultado…</div>
       <div id="error" class="status-box status-error" role="alert" hidden></div>
-      <section id="analysis-status" class="status-box" hidden aria-live="polite"></section>
+      <section id="analysis-status" class="execution-status" hidden aria-live="polite"></section>
 
-      <div id="dashboard" hidden>
+      <div id="dashboard" hidden><div class="result-context-links"><a id="result-method" href="/metodologia">Entenda o método e confira esta execução ↗</a></div>
         <section class="metric-strip" aria-label="Indicadores principais">
           <div class="metric main-metric"><span class="metric-label">MÉDIA DO TOP 20</span><strong id="metric-mean"></strong><span class="metric-note">média aritmética</span></div>
           <div class="metric"><span class="metric-label">AÇÕES ELEGÍVEIS</span><strong id="metric-eligible"></strong><span class="metric-note">ON e PN</span></div>
@@ -44,10 +44,8 @@
 
         <section class="section heatmap-section"><div class="section-head"><div><span class="section-kicker">03 / TRAJETÓRIA</span><h2>Movimento diário do top 20</h2><p>Variação entre datas consecutivas da extração. Células vazias não são preenchidas.</p></div></div><p class="heatmap-legend"><span class="positive">Alta</span> · <span class="negative">Queda</span> · — Sem comparação válida</p><div id="heatmap" class="heatmap-wrap"></div></section>
 
-        <section id="metodologia" class="section method-section"><div class="section-head"><div><span class="section-kicker">04 / AUDITORIA</span><h2>Como o resultado foi produzido</h2><p>Critérios, limites e arquivos para conferir a execução.</p></div></div><div class="method-grid"><div class="method-panel"><h3>Regra do ranking</h3><ol id="method-list"></ol><div class="method-callout"><span>FÓRMULA</span><strong>Fechamento ajustado final ÷ inicial − 1</strong></div></div><div class="method-panel"><h3>Qualidade e exclusões</h3><p class="muted">Alertas e exclusões abaixo se referem à janela principal.</p><div id="quality-list"></div><div id="exclusion-list"></div></div></div><div class="audit-footer"><div><span>REFERÊNCIA DA EXTRAÇÃO</span><code id="input-hash"></code></div><div><span>VERSÃO DO PIPELINE</span><code id="code-version"></code></div></div><div id="downloads" class="downloads"></div></section>
       </div>
 
-      <section id="teste" class="section test-section"><div class="section-head"><div><span class="section-kicker">05 / REPRODUÇÃO</span><h2>Teste com uma nova extração</h2><p>Envie outro CSV da Economatica no mesmo formato. O mesmo código fará o tratamento, a confirmação dos instrumentos pela B3 e o cálculo.</p></div></div><div class="test-grid"><form id="upload-form" class="upload-form"><label for="csv-file">ARQUIVO CSV DA ECONOMATICA</label><input id="csv-file" name="file" type="file" accept=".csv,text/csv" required><small>Até 10 MB · nove colunas no formato documentado · nenhum preço ausente será preenchido</small><label for="reference-date">DATA DE REFERÊNCIA</label><input id="reference-date" name="reference_date" type="date" required><small>Escolha uma data após a semana que deseja analisar. O programa seleciona a semana-calendário anterior.</small><p id="week-preview" class="week-preview" aria-live="polite"></p><button id="submit-button" type="submit">Executar análise <span aria-hidden="true">↗</span></button><div id="form-message" role="status" aria-live="polite"></div></form><div class="test-explainer"><div class="step"><span>01</span><div><strong>Extração preservada</strong><p>O arquivo recebido fica ligado apenas à sua execução e sai do servidor após 24 horas.</p></div></div><div class="step"><span>02</span><div><strong>Classificação oficial</strong><p>A B3 confirma a espécie das ações nas datas utilizadas. Se faltar evidência, o ranking não é publicado como completo.</p></div></div><div class="step"><span>03</span><div><strong>Resultado auditável</strong><p>Você recebe um link próprio com ranking, alertas, exclusões, hashes e arquivos derivados para conferência.</p></div></div><div class="privacy-note">Uma análise por vez, até duas aguardando. Resultados de teste ficam disponíveis por sete dias. O resultado de referência permanece fixo.</div></div></div></section>
     </main>
     <footer><span>V8 CAPITAL · CASE TÉCNICO DE DADOS</span><span>Dados históricos da extração · sem atualização em tempo real</span><a href="https://github.com/lucassperess/v8-ranking-semanal" target="_blank" rel="noopener noreferrer">METODOLOGIA E CÓDIGO ↗</a></footer>
   </div>
