@@ -18,7 +18,7 @@ from b3_registry import RegistryError, load_bvbg
 import b3_registry
 
 
-VERSION = "1.1.0"
+VERSION = "1.2.0"
 SOURCE_COLUMNS = [
     "Ativo",
     "Data",
@@ -237,7 +237,8 @@ def add_issue(issues: list[dict], record: dict, field: str, code: str, severity:
 
 
 def transform(raw_rows: list[dict], reference_date: date, registry: dict, coverage_drop: Decimal,
-              registry_used: bool = False, overrides: dict | None = None) -> tuple[list[dict], list[dict], dict]:
+              registry_used: bool = False, overrides: dict | None = None,
+              registry_snapshot_date: date | None = None) -> tuple[list[dict], list[dict], dict]:
     overrides = overrides or {}
     records, issues = [], []
     key_groups = defaultdict(list)
@@ -271,7 +272,13 @@ def transform(raw_rows: list[dict], reference_date: date, registry: dict, covera
                 elif parsed is None:
                     add_issue(issues, record, field, "MISSING_VALUE", "info", "Valor ausente na extração")
             if record["ticker"]:
-                if record["ticker"] in registry and registry[record["ticker"]][0] not in ("nao_resolvido", "categoria_oficial_nao_mapeada"):
+                trade_date = date.fromisoformat(record["trade_date"]) if record["trade_date"] else None
+                if registry_used and trade_date and registry_snapshot_date and trade_date < registry_snapshot_date:
+                    record.update(instrument_type="nao_resolvido", classification_source="snapshot_posterior",
+                                  classification_detail=f"Cadastro B3 de {registry_snapshot_date} posterior à linha de {trade_date}; consultar evidência histórica")
+                    add_issue(issues, record, "Ativo", "B3_SNAPSHOT_AFTER_TRADE_DATE", "warning",
+                              "Cadastro posterior à data da linha; classificação histórica não inferida")
+                elif record["ticker"] in registry and registry[record["ticker"]][0] not in ("nao_resolvido", "categoria_oficial_nao_mapeada"):
                     kind, detail = registry[record["ticker"]]
                     record.update(instrument_type=kind, classification_source="b3", classification_detail=detail)
                 elif record["ticker"] in overrides:
@@ -407,7 +414,8 @@ def run(input_path: Path, reference_date: date, output_dir: Path, b3_path: Path 
     else:
         registry, b3_info = load_registry(b3_path, reference_date, b3_snapshot_date)
     overrides, overrides_info = load_overrides(overrides_path)
-    records, issues, summary = transform(rows, reference_date, registry, coverage_drop, b3_info["used"], overrides)
+    snapshot_date = date.fromisoformat(b3_info["snapshot_date"]) if b3_info.get("snapshot_date") else None
+    records, issues, summary = transform(rows, reference_date, registry, coverage_drop, b3_info["used"], overrides, snapshot_date)
     if b3_info.get("stale_over_7_days"):
         issues.append({"record_id": "", "source_line": "", "ticker": "", "trade_date": "", "field": "b3_registry", "code": "B3_STALE_SNAPSHOT", "severity": "warning", "reason": "Cadastro B3 tem mais de sete dias frente à data de referência; códigos recentes podem não aparecer"})
     baseline_info = compare_baseline(summary, issues, baseline_summary, coverage_drop)

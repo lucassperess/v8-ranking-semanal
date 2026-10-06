@@ -109,6 +109,16 @@ class ETLTests(unittest.TestCase):
         output = self.execute(b3_path=b3, b3_snapshot_date=date(2026, 9, 21))
         self.assertIn("B3_TICKER_UNMATCHED", codes(output / "quality_issues.csv"))
 
+    def test_later_snapshot_does_not_classify_historical_row(self):
+        make_csv(self.source, [["ABCD3<XBSP>", "2026-09-11", "10", "1", "10", "10", "10", "10", "10"]])
+        b3 = self.root / "b3.csv"
+        b3.write_text("RptDt;TckrSymb;SctyCtgyNm\n2026-09-18;ABCD3;SHARES\n", encoding="utf-8")
+        output = self.execute(b3_path=b3)
+        with (output / "normalized.csv").open(encoding="utf-8", newline="") as stream:
+            row = next(csv.DictReader(stream))
+        self.assertEqual((row["instrument_type"], row["classification_source"]), ("nao_resolvido", "snapshot_posterior"))
+        self.assertIn("B3_SNAPSHOT_AFTER_TRADE_DATE", codes(output / "quality_issues.csv"))
+
     def test_approved_override_only_for_unresolved_asset(self):
         make_csv(self.source, [["ABCD11<XBSP>", "2026-09-21", "10", "1", "10", "10", "10", "10", "10"]])
         override = self.root / "overrides.csv"

@@ -4,6 +4,7 @@ __pycache__/
 *.py[cod]
 data/raw/
 data/reference/
+data/cache/
 runs/
 outputs/
 *.pdf

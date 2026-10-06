@@ -93,6 +93,7 @@ def load_bvbg(path: Path, reference_date: date, requested_tickers: set[str],
               declared_snapshot_date: date | None = None) -> tuple[dict, dict]:
     if not path.is_file():
         raise RegistryError(f"Arquivo B3 inexistente: {path}")
+    outer = nested = None
     try:
         outer = zipfile.ZipFile(path)
         nested, xml_name = last_xml(outer)
@@ -156,3 +157,8 @@ def load_bvbg(path: Path, reference_date: date, requested_tickers: set[str],
         if isinstance(exc, RegistryError):
             raise
         raise RegistryError(f"Falha ao ler BVBG.028.02: {exc}") from exc
+    finally:
+        if nested is not None and nested is not outer:
+            nested.close()
+        if outer is not None:
+            outer.close()
