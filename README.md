@@ -1,10 +1,22 @@
-# Ranking semanal de ações — tratamento e definição do universo
+Média dos retornos do top 20: 17,78%
 
-Pipeline em Python 3.11+ (biblioteca padrão) para preparar extrações diárias da Economatica e definir, para duas datas de preço informadas, quais códigos são ações ON/PN. **Esta etapa ainda não calcula retornos nem escolhe a semana do ranking.** O arquivo recebido é copiado sem alteração para a pasta da execução; nenhuma linha é descartada e nenhum preço ausente é preenchido. O projeto pode ser executado novamente com outro arquivo e outras datas.
+# Ranking semanal de ações
 
-O enunciado do case exige que a **primeira linha do README final** apresente a média dos retornos do top 20. A primeira linha será atualizada na entrega final, depois que o ranking for calculado e validado. Este README ainda não é a entrega final.
+Pipeline em Python 3.11+ (biblioteca padrão) para preparar extrações da Economatica, definir ações ON/PN, calcular retornos e gerar o top 20 da semana anterior. O arquivo recebido é copiado sem alteração para a pasta da execução; nenhuma linha é descartada e nenhum preço ausente é preenchido. O projeto pode ser executado novamente com outro arquivo e outra data de referência.
 
-## Executar
+O [resultado do case](resultados/2026-09-22/README.md) apresenta as 20 ações, os retornos, a alternativa de janela e as premissas. O comando único abaixo gera automaticamente um novo README de resultado, com a média correta na primeira linha, para cada nova extração.
+
+## Gerar um novo ranking
+
+```powershell
+python weekly_ranking.py --input "CAMINHO\economatica.csv" --reference-date 2026-09-22 --output-dir "runs\semana-2026-09-22"
+```
+
+O programa identifica a semana-calendário anterior, usa o último fechamento antes dela e o último fechamento da semana como pontas do retorno principal. Calcula também uma interpretação alternativa, do primeiro ao último fechamento dentro da semana. Obtém os arquivos oficiais da B3 se não estiverem em `data/reference/`; com eles já guardados, use `--offline`. Se o último dia com cotação for anterior à sexta-feira, para e exige revisão; `--allow-nonfriday-end` registra a aceitação expressa de uma semana encurtada. Uma queda acentuada de cobertura nas datas escolhidas também impede um resultado silencioso. As verificações de preços, duplicatas, classificação, ordenação e média são automáticas; a conferência manual foi feita apenas no desenvolvimento.
+
+O retorno é `fechamento ajustado final / fechamento ajustado inicial - 1`, sempre com preços da Economatica. Não há filtro de liquidez. Os 20 maiores retornos são ordenados sem arredondamento, com ticker como desempate, e a média aritmética é arredondada só para exibição. O resultado da semana de 14 a 18/09/2026 foi **17,78%** na janela principal (11 a 18/09) e **15,93%** na alternativa (14 a 18/09). Os dois top 20 têm 16 ações em comum.
+
+## Executar somente o tratamento
 
 ```powershell
 python etl.py --input "CAMINHO\economatica.csv" --reference-date 2026-09-22 --output-dir "runs\extracao-2026-09-22"

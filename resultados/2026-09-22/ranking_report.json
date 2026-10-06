@@ -1,0 +1,74 @@
+{
+  "version": "1.0.0",
+  "code_sha256": "a620441bf4f0b058a8d66cdac66fb0002c9a84b69b5774ef322ea221baef44cb",
+  "week": {
+    "reference_date": "2026-09-22",
+    "week_start": "2026-09-14",
+    "week_end": "2026-09-20",
+    "preceding_close": "2026-09-11",
+    "first_week_close": "2026-09-14",
+    "last_week_close": "2026-09-18",
+    "recent_median_positive_closes": 336,
+    "selected_date_coverage": {
+      "2026-09-11": 338,
+      "2026-09-14": 336,
+      "2026-09-18": 329
+    },
+    "nonfriday_end_accepted": false
+  },
+  "primary": {
+    "start_date": "2026-09-11",
+    "end_date": "2026-09-18",
+    "universe_candidates": 320,
+    "eligible_shares": 308,
+    "excluded_instruments": 12,
+    "ranked_shares": 308,
+    "top_n": 20,
+    "mean_return_fraction": "0.1777710700407527177528945460",
+    "mean_return_pct_exact": "17.77710700407527177528945460",
+    "mean_return_pct_display": "17.78",
+    "extreme_return_tickers_at_least_50pct_abs": [],
+    "tie_breaker": "ticker crescente quando retornos exatos empatam",
+    "classification_manifest_sha256": "f0d84c7210d138265e433ce9985f195398aad17b85c6c31df8252c330d3883aa",
+    "outputs": {
+      "all_returns.csv": "b23d255849157f56cb3208e6f926f067446c22410b99fb90dfc7561ab06bfe41",
+      "top20.csv": "03b9fb32013d3c249058f386dc19859e34cd691e36d8e5444ff77564bc7a6933",
+      "quality_context.json": "77c2c6ca70c9ae40d226bbe03a51e6bd09dc992614f1ca45e95c1871bc099ce4"
+    }
+  },
+  "alternative": {
+    "start_date": "2026-09-14",
+    "end_date": "2026-09-18",
+    "universe_candidates": 314,
+    "eligible_shares": 302,
+    "excluded_instruments": 12,
+    "ranked_shares": 302,
+    "top_n": 20,
+    "mean_return_fraction": "0.1593094137164696050699303182",
+    "mean_return_pct_exact": "15.93094137164696050699303182",
+    "mean_return_pct_display": "15.93",
+    "extreme_return_tickers_at_least_50pct_abs": [],
+    "tie_breaker": "ticker crescente quando retornos exatos empatam",
+    "classification_manifest_sha256": "b5e43e0bf8c1aa5a25f5fff598deb8ef2e44a7d4c1af108edd4fc14542f7fde0",
+    "outputs": {
+      "all_returns.csv": "e4fb17b1abdcba27cc5678e75fd3dfaa82ba3228b532ed56e70b32d2ba85af78",
+      "top20.csv": "67a3a41d5403fce52adcfd0628b80d54205a00f404eccda551ceefe7a9b2a12b",
+      "quality_context.json": "8aa2e4a0ca769d44dd9f5ca297522ba68c4a1af195bc6c4126966f18c52ba8e2"
+    }
+  },
+  "sensitivity": {
+    "top20_overlap": 16,
+    "mean_difference_percentage_points": "1.84616563242831126829642278"
+  },
+  "input_sha256": "dbce30af2c26e14d8e3f3c675741c95aedd101dfc1a90bad62ae81e72a0def4a",
+  "etl_manifest_sha256": "8abd4f1545b431b7c56d7c52421428d51fee22000e97e146c91d713e472cac1c",
+  "premises": [
+    "Semana anterior de segunda a domingo",
+    "Principal: último fechamento antes da semana até último fechamento nela",
+    "Alternativa: primeiro até último fechamento na semana",
+    "Preços de fechamento ajustados da Economatica; B3 apenas para espécie do instrumento",
+    "Retorno = preço final / preço inicial - 1",
+    "Universo ON/PN confirmado; sem filtro de liquidez",
+    "Média aritmética dos 20 maiores retornos exatos; arredondamento só na apresentação"
+  ]
+}
