@@ -79,7 +79,7 @@ function renderDetail() {
   const y=v=>top+(upper-v)/(upper-lower)*(h-top-bottom);
   const chart=svg('svg',{viewBox:`0 0 ${w} ${h}`,role:'group','aria-label':`${returns?'Retornos diários em percentual':'Fechamento ajustado em reais por ação'} de ${row.ticker}; passe o cursor ou foque uma observação para ver o valor`});
   const axisLabel=(content,attributes)=>{const label=svg('text',attributes);label.textContent=content;chart.append(label);};
-  axisLabel(returns?'RETORNO DIÁRIO (%)':'REAL (R$ / AÇÃO)',{x:0,y:12,fill:'#a4a8af','font-size':12});
+  axisLabel(returns?'RETORNO DIÁRIO (%)':'REAIS',{x:0,y:12,fill:'#a4a8af','font-size':12});
   chart.append(svg('line',{x1:left,y1:top,x2:left,y2:h-bottom,stroke:'#55595f'}));
   chart.append(svg('line',{x1:left,y1:h-bottom,x2:w-right,y2:h-bottom,stroke:'#55595f'}));
   for(let i=0;i<=4;i++){
