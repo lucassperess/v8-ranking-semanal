@@ -6,6 +6,8 @@ Pipeline em Python 3.11+ (biblioteca padrão) para preparar extrações da Econo
 
 O [resultado do case](resultados/2026-09-22/README.md) apresenta as 20 ações, os retornos, a alternativa de janela e as premissas. O comando único abaixo gera automaticamente um novo README de resultado, com a média correta na primeira linha, para cada nova extração.
 
+O [mapa da documentação](docs/README.md) define a organização proposta para os guias da ferramenta. O [artigo modelo de metodologia](docs/metodologia.md) explica as regras implementadas, com diagrama do processo, exemplo real, controles e instruções de conferência. Esses documentos estão no repositório; a nova seção de documentação ainda não foi integrada à interface.
+
 ## Interface para avaliar e reproduzir o case
 
 O site [ranking.lucaspsm.com](https://ranking.lucaspsm.com) exibe o resultado de referência, os alertas e a metodologia. Na seção **Teste com uma nova extração**, qualquer avaliador pode enviar outro CSV da Economatica no mesmo esquema de nove colunas e informar uma data de referência. O site executa **este mesmo `weekly_ranking.py`**, gera um link separado para a nova análise e mostra a etapa em andamento. O resultado de referência não muda quando alguém envia um arquivo. Os retornos e a média são calculados em Python; o navegador apenas apresenta os valores produzidos.
