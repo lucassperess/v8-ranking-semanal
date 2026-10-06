@@ -38,3 +38,8 @@ A VPS usa dois contêineres: aplicação web/API e worker. O armazenamento de ex
 A rotina não depende de IA. A disponibilidade das fontes oficiais pode afetar uma nova análise se as evidências necessárias ainda não estiverem no cache.
 
 Para operar ou manter a implantação, consulte [as instruções de deploy](../deploy/README.md). Para reproduzir o cálculo sem a interface, veja [Auditoria e reprodução](auditoria.md).
+
+
+## Guias associados ao resultado
+
+Ao concluir uma análise, o worker arquiva a documentação disponível nessa versão da aplicação. A API verifica a assinatura dos textos e a correspondência com a entrada e o código antes de oferecer a leitura. O ranking continua vindo dos mesmos derivados do pipeline; os guias são um registro separado. Artigos arquivados não usam a busca dos artigos atuais: o menu de assuntos navega dentro da cópia associada. A cópia tem o mesmo prazo de sete dias do resultado de teste.

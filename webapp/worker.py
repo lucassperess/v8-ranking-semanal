@@ -11,6 +11,7 @@ import time
 from pathlib import Path
 
 from webapp import store
+from webapp.doc_revision import archive
 from webapp.presentation import build_presentation
 
 
@@ -81,6 +82,7 @@ def process(job: dict) -> None:
         lines = log_path.read_text(encoding="utf-8", errors="replace").splitlines()
         message = next((line.removeprefix("Erro: ") for line in reversed(lines) if line.startswith("Erro: ")), None)
         raise RuntimeError(message or "Não foi possível concluir a análise. Consulte o formato e a data informados.")
+    archive(output_dir)
     payload = build_presentation(output_dir, normalized_path=output_dir / "etl" / "normalized.csv")
     (output_dir / "presentation.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     store.update_job(job_id, status="completed", stage="Concluída")

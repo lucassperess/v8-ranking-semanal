@@ -6,14 +6,17 @@ const normalize = (value) =>
     .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase();
 let documents;
-const context = new URLSearchParams(location.search).get('analise');
+const context =
+  new URLSearchParams(location.search).get('analise') ||
+  location.pathname.match(/^\/analise\/([0-9a-f]{32})\/documentacao\//)?.[1];
 const id = context && /^[0-9a-f]{32}$/.test(context) ? context : null;
 if (id) {
   document.getElementById('docs-audit').href = `/analise/${id}/metodologia`;
   document.getElementById('docs-audit').textContent = 'Auditoria da sua análise ↗';
   document.getElementById('nav-result').href = `/analise/${id}`;
-  document.getElementById('docs-context').textContent =
-    'Documentação geral · confira datas e números na auditoria da sua análise.';
+  if (!document.getElementById('docs-context').dataset.archived)
+    document.getElementById('docs-context').textContent =
+      'Documentação geral · confira datas e números na auditoria da sua análise.';
 }
 function keepContext() {
   if (id)

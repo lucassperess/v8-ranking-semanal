@@ -6,7 +6,7 @@ O dashboard apresenta os resultados calculados pelo Python. Os controles mudam a
 
 | Indicador | Interpretação |
 | --- | --- |
-| Média do top 20 | Média aritmética dos 20 retornos selecionados na janela principal |
+| Média do top 20 | Média aritmética dos 20 retornos da janela selecionada |
 | Ações elegíveis | ON/PN com duas pontas utilizáveis e confirmação oficial |
 | Ações em alta | Proporção com retorno positivo entre as elegíveis |
 | Janela alternativa | Média do top 20 usando primeiro e último fechamento dentro da semana |
@@ -62,3 +62,18 @@ O painel da ação mostra os fechamentos inicial e final e a diferença **final 
 A marca de informação no ticker indica um alerta da janela selecionada. Ao selecionar a ação, o painel mostra data, campo, motivo e se o campo entra na fórmula. Esses alertas consideram as duas pontas; não garantem ausência de problemas nos dias intermediários. A auditoria contém o contexto mais amplo.
 
 “Contexto de negociação” explica a limitação da extração: volume bruto e quantidade ajustada podem usar bases diferentes. Sem confirmação de escala e comparabilidade, a interface não apresenta um indicador de liquidez ou inferências sobre facilidade de negociação. Nenhum filtro de liquidez foi aplicado.
+
+
+## Exemplos visuais da referência
+
+As capturas abaixo usam a referência de **22/09/2026**. Em outra análise, os tickers, as datas e os valores são os da sua execução.
+
+![Indicadores e resumo da referência: média de 17,78%, 308 elegíveis e destaque de ECOM3.](assets/ranking-20261006.jpg)
+
+**Como ler:** os cards descrevem a amostra; o resumo identifica o líder e a faixa de retornos do top. “Semana completa” e “Dentro da semana” escolhem as pontas usadas na comparação. O CSV ao lado do título acompanha essa escolha.
+
+![Painel de BIED3 com preços inicial e final, variação de R$ 0,82, alerta explicado e gráfico de fechamentos.](assets/alerta-20261006.jpg)
+
+**Exemplo de alerta:** em BIED3, o preço médio recebido em 18/09 ficou fora do mínimo e do máximo informados para o dia. Isso merece conferência no CSV, mas não prova que o fechamento esteja errado. O ranking usa os fechamentos de R$ 5,55 e R$ 6,37: a diferença é R$ 0,82 por ação ajustada, e o retorno é 14,77%. O preço médio não entra nessa fórmula.
+
+No celular, abra o menu pelo botão de três linhas. Selecione a ação no ranking para ir ao painel; use “Voltar ao ranking” para continuar. Os ícones de informação abrem com toque e fecham com outro toque ou ao tocar fora. A tela cheia é uma opção do desktop.

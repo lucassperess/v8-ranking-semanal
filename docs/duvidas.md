@@ -43,3 +43,12 @@ Resultados de teste expiram após sete dias. Salve os derivados enquanto estiver
 A média utiliza os retornos calculados antes do arredondamento da apresentação. Refaça a conta com `return_fraction` ou `return_pct` dos CSVs, não apenas com os percentuais de duas casas da tela.
 
 Para conferir decisões e procedência, abra [Auditoria e reprodução](auditoria.md).
+
+
+## O alerta de preço médio muda o retorno?
+
+Não, por si só. Quando o preço médio fica abaixo do mínimo ou acima do máximo informado no CSV, os valores merecem conferência. O ranking usa o fechamento inicial e o final, não o médio. O sistema não presume a causa nem corrige valores automaticamente. Um alerta no próprio fechamento merece atenção porque esse preço entra no cálculo. O painel explica a diferença para cada ocorrência.
+
+## Os guias antigos mudam quando a documentação é atualizada?
+
+A cópia associada à execução permanece igual. Abra “Documentação desta execução” na auditoria para ler a revisão arquivada. Uma associação realizada depois do processamento é identificada como posterior; se a execução não registrou guias, o site informa isso. A documentação do menu principal mostra os artigos atuais.

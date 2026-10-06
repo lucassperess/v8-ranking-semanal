@@ -164,3 +164,20 @@ A fila migra bancos existentes acrescentando opções com padrão vazio. O worke
 ### Conferência visual mobile
 
 Confira 320, 390 e 430 px e o desktop antes de publicar alterações de layout. Verifique navegação completa, ausência de sobreposição na introdução, retorno visível no ranking, seleção e volta do gráfico, abertura/fechamento de informações, matriz com datas e ticker fixos, menus e tabelas da documentação, seletor da auditoria e referência brasileira no formulário. Conferência de viewport no navegador não substitui teste em Android e iOS físicos, especialmente para seleção de arquivos e teclado.
+
+
+## Arquivar a documentação aplicável
+
+Novas análises da interface recebem `documentation_snapshot.json` na conclusão, antes da preparação do resultado. `webapp/doc_revision.py` guarda README e arquivos Markdown de `docs/`, identifica a revisão pelo conteúdo e vincula a cópia à entrada e à assinatura do código do relatório. A API verifica essa correspondência e a integridade dos textos ao ler os guias.
+
+Uma execução pelo comando, ou anterior a esse registro, exige conferência das regras antes da associação:
+
+```powershell
+.venv/Scripts/python -m scripts.archive_documentation --run-dir "runs/reproducao-2026-09-22" --reviewed
+```
+
+O parâmetro declara que a compatibilidade foi revisada; não faz essa revisão automaticamente. O registro usa `reviewed_after_execution`, informa quando a associação ocorreu e não sobrescreve cópias existentes. A demonstração histórica usa esse modo. Não mude o relatório ou os CSVs para acrescentar documentação.
+
+A auditoria abre `/documentacao/referencia/{assunto}` para os guias associados à referência e `/analise/{id}/documentacao/{assunto}` para uma análise. A busca permanece nos artigos atuais; cópias arquivadas usam o menu de assuntos. `documentation_snapshot.json` é um derivado público permitido, sem dados brutos, endereços IP ou credenciais. O prazo da cópia acompanha o resultado de teste.
+
+Imagens dos guias ficam em `docs/assets/`, com nomes que identificam a versão. Preserve arquivos já referenciados por cópias arquivadas; adicione uma imagem com outro nome quando atualizar exemplos. O site serve as capturas em `/documentation-assets/`. A referência técnica concentra comandos avançados e o dicionário antes presentes no README principal.

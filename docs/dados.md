@@ -30,7 +30,7 @@ Uma coluna renomeada, separador diferente ou estrutura incompatível gera erro e
 | `trade_date` | Data interpretada em formato ISO |
 | `close`, `open`, `high`, `low`, `average` | Valores numéricos dos preços fornecidos |
 | `adjusted_quantity`, `raw_volume` | Quantidade ajustada e volume financeiro da fonte |
-| `instrument_type`, `classification_source` | Tipo e origem da classificação inicial; veja o dicionário completo no README |
+| `instrument_type`, `classification_source` | Tipo e origem da classificação inicial; veja o [dicionário completo na referência técnica](referencia-tecnica.md#saídas-de-cada-execução) |
 | `raw_fields_json`, `parse_status` | Conteúdo bruto e situação da leitura |
 
 A precisão recebida é preservada. Não há arredondamento prévio dos preços, preenchimento por zero ou carregamento do último preço conhecido. A classificação inicial pode ser provisória; veja a [confirmação dos instrumentos](classificacao.md).

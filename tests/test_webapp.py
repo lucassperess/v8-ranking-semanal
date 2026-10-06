@@ -108,6 +108,11 @@ class ApiTests(unittest.TestCase):
         result = self.client.get("/api/featured")
         self.assertEqual(result.status_code, 200)
         self.assertEqual(result.json()["windows"]["primary"]["mean_pct"], "17.78")
+        self.assertTrue(result.json()['documentation']['available'])
+        self.assertEqual(result.json()['documentation']['mode'], 'reviewed_after_execution')
+        archived = self.client.get('/documentacao/referencia/metodologia')
+        self.assertEqual(archived.status_code, 200)
+        self.assertIn('Cópia arquivada', archived.text)
         self.assertEqual(self.client.get("/api/featured/files/economatica_original.csv").status_code, 404)
         self.assertEqual(self.client.get("/api/featured/files/top20.csv").status_code, 200)
         for name in result.json()["downloads"]:
@@ -138,6 +143,7 @@ class ApiTests(unittest.TestCase):
         store.update_job(job_id, status="completed", stage="Concluída")
         response = self.client.get(f"/api/analyses/{job_id}/result")
         self.assertTrue(response.json()["audit"]["available"])
+        self.assertEqual(self.client.get(f'/analise/{job_id}/documentacao/como-usar').status_code, 200)
         self.assertEqual(response.json()['windows']['primary']['top20'][0]['change_brl'], '0.50')
         self.assertIn('interpretation', response.json()['windows']['alternative'])
         for name in response.json()["downloads"]:

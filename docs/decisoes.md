@@ -78,7 +78,7 @@ Consolidado em 06/10/2026 a partir da implementação existente. Estas decisões
 
 **Motivo:** permitir avaliar replicabilidade mantendo recursos limitados e procedência por execução.
 
-**Consequências:** 10 MB; dez minutos; uma ativa e duas aguardando; três envios por hora por origem. Bruto removido após 24 horas, testes após sete dias. Link imprevisível não é autenticação. Auditoria pública inclui os manifestos ETL e de classificação, decisões do universo, ocorrências e evidências derivadas B3 das duas janelas. Bruto e base normalizada completa não são públicos. Artigos ainda não são automaticamente vinculados a uma revisão histórica por execução.
+**Consequências:** 10 MB; dez minutos; uma ativa e duas aguardando; três envios por hora por origem. Bruto removido após 24 horas, testes após sete dias. Link imprevisível não é autenticação. Auditoria pública inclui os manifestos ETL e de classificação, decisões do universo, ocorrências e evidências derivadas B3 das duas janelas. Bruto e base normalizada completa não são públicos. Novas análises pela interface arquivam a revisão dos guias na conclusão; associações posteriores à execução são identificadas explicitamente.
 
 **Implementação:** `webapp/server.py`, `store.py`, `worker.py`, `presentation.py` e `deploy/`.
 

@@ -1,6 +1,6 @@
 # Documentação do ranking semanal
 
-Esta pasta contém os oito artigos publicados pela interface em `/documentacao`. O site lê os arquivos Markdown versionados neste repositório e fornece navegação por assunto, índice de seções e busca. Este mapa documenta a organização e as melhorias seguintes.
+Esta pasta contém os oito artigos publicados pela interface em `/documentacao`. O site lê os arquivos Markdown versionados neste repositório e fornece navegação por assunto, índice de seções e busca. Este mapa orienta a leitura dos conteúdos publicados.
 
 ## Caminhos de leitura
 
@@ -63,7 +63,7 @@ A documentação explica as regras. A auditoria de uma execução mostra suas pr
 
 As rotas atuais `/metodologia` e `/analise/{id}/metodologia` já apresentam dados específicos da execução. Esses acessos permanecem funcionando como auditoria. Os artigos são publicados em `/documentacao/{assunto}`. O parâmetro `?analise={id}` preserva o link da execução consultada ao navegar entre os artigos.
 
-Não substituir números de uma análise enviada pelos números do case. Não apresentar um exemplo histórico como valor fixo para novas execuções. A revisão da documentação aplicável deve ser identificada junto à versão do código; isso ainda precisa ser implementado para preservar a interpretação de execuções antigas.
+Não substituir números de uma análise enviada pelos números do case. Não apresentar um exemplo histórico como valor fixo para novas execuções. A auditoria identifica a revisão arquivada dos guias e permite abrir seus artigos. Novas análises registram essa cópia na conclusão; associações de execuções anteriores são identificadas como posteriores à execução.
 
 ## Padrão editorial
 
@@ -80,11 +80,9 @@ Termos como ETL, worker e hash precisam ser explicados na primeira ocorrência. 
 
 O README da raiz continua sendo a entrada para instalação, comandos e manutenção. Os artigos ficam em Markdown no Git. O site utiliza esse conteúdo para reduzir divergências entre documentação e repositório.
 
-## Próximas melhorias
+## Exemplos e histórico
 
-1. Acrescentar capturas anotadas da interface aos guias de uso.
-2. Associar automaticamente cada execução à revisão arquivada dos artigos.
-3. Atualizar artigos junto às mudanças das regras e verificar exemplos e navegação.
+O [guia de uso](como-usar.md) contém capturas da referência com instruções de leitura. A auditoria oferece a cópia dos artigos associada à execução e o arquivo `documentation_snapshot.json`, com textos e assinaturas. Artigos atuais podem evoluir sem substituir essa cópia. Veja [Auditoria](auditoria.md) para os limites da associação histórica.
 
 ## Referências de organização
 

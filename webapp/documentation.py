@@ -6,6 +6,7 @@ from pathlib import Path
 
 import markdown
 from webapp.pages import render_page
+from webapp.doc_revision import current_revision
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGES = {
@@ -45,11 +46,15 @@ def rewrite_link(match: re.Match) -> str:
         target = "/documentacao"
     elif filename.startswith("../"):
         target = REPO + filename[3:] + ("#" + fragment if fragment else "")
+    elif filename.startswith('assets/'):
+        target = '/documentation-assets/' + filename[7:]
+    elif filename.endswith('.md'):
+        target = REPO + 'docs/' + filename + ('#' + fragment if fragment else '')
     return f"[{label}]({target})"
 
 
-def render(slug: str) -> str:
-    text = source(slug)
+def render(slug: str, *, snapshot: dict | None = None, archive_base: str = '') -> str:
+    text = snapshot['documents']['docs/' + PAGES[slug][1]]['content'] if snapshot else source(slug)
     # O índice é gerado dos títulos reais. O diagrama tem equivalente HTML/textual,
     # sem scripts ou dependência de um serviço externo para desenhá-lo.
     text = re.sub(r"## Nesta página\n.*?(?=\n## )", "", text, flags=re.S)
@@ -69,8 +74,21 @@ def render(slug: str) -> str:
     adjacent = ''.join(f'<a href="/documentacao/{keys[index]}"><small>{direction}</small>{html.escape(PAGES[keys[index]][0])} {arrow}</a>' for index, direction, arrow in [(pos - 1, "Anterior", "←"), (pos + 1, "Próximo", "→")] if 0 <= index < len(keys))
     template = render_page("documentation.html")
     for key, value in {"TITLE": html.escape(PAGES[slug][0]), "NAV": nav, "CONTENT": content, "TOC": engine.toc,
-                       "CARDS": cards, "ADJACENT": adjacent, "SOURCE": REPO + "docs/" + PAGES[slug][1]}.items():
+                       "CARDS": cards, "ADJACENT": adjacent, "SOURCE": REPO + "docs/" + PAGES[slug][1],
+                       'REVISION': (snapshot['revision'] if snapshot else current_revision())[:12]}.items():
         template = template.replace("{{" + key + "}}", value)
+    if snapshot:
+        template = re.sub(r'href="/documentacao/([^"?#]+)',
+                          lambda m: f'href="{archive_base}/{m[1]}', template)
+        template = template.replace('Regras e guias da ferramenta · exemplos históricos identificados no artigo.',
+            'Cópia arquivada desta execução · ' + (
+            'associada após revisão; não foi registrada na data do processamento.'
+            if snapshot['mode'] == 'reviewed_after_execution' else 'registrada na conclusão do processamento.'))
+        template = template.replace('id="docs-search"', 'id="docs-search" disabled')
+        template = template.replace('class="docs-search-area"', 'class="docs-search-area" hidden')
+        template = template.replace('Ex.: preço ausente, semana, B3', 'Use o menu de assuntos nesta revisão')
+        template = template.replace('Consultar fonte e histórico no GitHub ↗', 'Consultar artigo atual no GitHub ↗')
+        template = template.replace('id="docs-context"', 'id="docs-context" data-archived="true"')
     return template
 
 

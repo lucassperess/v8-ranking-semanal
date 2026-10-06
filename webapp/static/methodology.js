@@ -256,6 +256,11 @@ async function showMethod() {
   const base = match ? `/api/analyses/${match[1]}/files` : '/api/featured/files';
   showAudit(data);
   const files = {
+    'documentation_snapshot.json': [
+      'Guias arquivados',
+      'Textos, assinatura da revisão e associação à execução.',
+      'JSON',
+    ],
     'top20.csv': ['Ranking principal', 'Os maiores retornos, suas pontas e posições.', 'CSV'],
     'all_returns.csv': [
       'Universo completo',
@@ -395,6 +400,19 @@ async function showMethod() {
     });
   put('method-hash', data.provenance.input_sha256);
   put('method-version', `${data.provenance.pipeline_version} · ${data.provenance.code_sha256}`);
+  const docs = data.documentation;
+  put(
+    'method-doc-revision',
+    docs?.available
+      ? `Revisão ${docs.revision.slice(0, 12)} · ${docs.mode === 'reviewed_after_execution' ? 'Associada após revisão das regras. Esta cópia foi registrada depois da execução.' : 'Registrada na conclusão desta execução.'} A cópia arquivada não muda quando os artigos atuais são editados.`
+      : docs?.note || 'Revisão dos guias não registrada nesta execução.',
+  );
+  if (docs?.available) {
+    el('method-doc-link').hidden = false;
+    el('method-doc-link').href = match
+      ? `/analise/${match[1]}/documentacao/metodologia?analise=${match[1]}`
+      : '/documentacao/referencia/metodologia';
+  }
   el('method-loading').hidden = true;
   el('method-body').hidden = false;
   const picker = document.querySelector('.audit-section-picker');

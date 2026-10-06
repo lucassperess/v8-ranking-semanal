@@ -241,6 +241,6 @@ Para conferir a implementação:
 
 ## Revisão deste artigo
 
-Preparado em **06/10/2026**, com base no código local correspondente à revisão `b9904a5` e nos arquivos da referência de 22/09/2026. Essa é uma identificação editorial da base consultada; não altera o registro da execução histórica.
+Revisado em **06/10/2026** para refletir os controles de revisão de semana, os arquivos de auditoria e o contexto da interface. Os exemplos numéricos pertencem à referência de 22/09/2026. A identificação da revisão dos guias aparece nesta página; a auditoria informa qual cópia foi associada a cada execução, sem alterar o registro histórico do cálculo.
 
 Os artigos de [guia de uso](como-usar.md), [dados](dados.md), [classificação](classificacao.md) e [arquitetura](sistema.md) complementam esta explicação. Sempre que uma regra mudar, este artigo deve ser revisado junto com o código.

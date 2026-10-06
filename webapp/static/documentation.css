@@ -470,3 +470,11 @@
     order: 2;
   }
 }
+.docs-article img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  margin: 24px 0 12px;
+}

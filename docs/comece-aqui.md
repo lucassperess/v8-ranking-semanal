@@ -1,4 +1,4 @@
-# Entenda, explore e confira
+# Comece aqui
 
 Esta ferramenta transforma uma extração da Economatica em um ranking semanal de ações ON e PN. Você pode explorar o resultado do case ou enviar outro arquivo no mesmo formato para testar o processo.
 
@@ -24,7 +24,8 @@ Esta ferramenta transforma uma extração da Economatica em um ranking semanal d
 - Ranking das 20 maiores variações entre ações elegíveis e sua média aritmética.
 - Comparação com uma janela alternativa dentro da semana.
 - Gráficos de preços, retornos diários, distribuição e movimento do top 20.
-- Datas utilizadas, alertas, exclusões e arquivos derivados para conferência.
+- Variação em R$ por ação, resumo dos destaques e alertas explicados junto ao ativo.
+- Datas utilizadas, exclusões, arquivos derivados e guias arquivados por execução.
 
 Cada novo envio cria uma execução independente. O resultado de referência permanece fixo. Os números desta documentação usados como exemplos pertencem ao case; os números da sua análise aparecem no resultado e na auditoria dela.
 

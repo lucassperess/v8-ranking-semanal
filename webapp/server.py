@@ -18,6 +18,7 @@ from starlette.concurrency import run_in_threadpool
 import etl
 from webapp import store
 from webapp import documentation
+from webapp.doc_revision import details as documentation_details, read_snapshot
 from webapp.pages import render_page
 from webapp.review import review_input, problem
 from weekly_ranking import RankingError
@@ -32,6 +33,7 @@ ID_PATTERN = re.compile(r"^[0-9a-f]{32}$")
 
 app = FastAPI(title="Ranking semanal de ações", docs_url=None, redoc_url=None, openapi_url=None)
 app.mount("/static", StaticFiles(directory=STATIC), name="static")
+app.mount('/documentation-assets', StaticFiles(directory=ROOT / 'docs' / 'assets'), name='documentation-assets')
 
 
 @app.middleware("http")
@@ -74,6 +76,31 @@ def documentation_article(slug: str):
     if slug not in documentation.PAGES:
         raise HTTPException(404, "Artigo não encontrado")
     return documentation.render(slug)
+
+
+def archived_article(root: Path, slug: str, base: str):
+    if slug not in documentation.PAGES:
+        raise HTTPException(404, 'Artigo não encontrado')
+    try:
+        snapshot = read_snapshot(root)
+    except ValueError as exc:
+        raise HTTPException(503, str(exc)) from None
+    if not snapshot:
+        raise HTTPException(404, 'Esta execução não registrou uma cópia dos guias')
+    return HTMLResponse(documentation.render(slug, snapshot=snapshot, archive_base=base))
+
+
+@app.get('/documentacao/referencia/{slug}')
+def featured_documentation(slug: str):
+    return archived_article(FEATURED, slug, '/documentacao/referencia')
+
+
+@app.get('/analise/{job_id}/documentacao/{slug}')
+def analysis_documentation(job_id: str, slug: str):
+    job = job_or_404(job_id)
+    if job['status'] != 'completed':
+        raise HTTPException(409, 'A análise ainda não foi concluída')
+    return archived_article(store.DATA_DIR / 'runs' / job_id, slug, f'/analise/{job_id}/documentacao')
 
 
 @app.get("/api/documentation")
@@ -212,6 +239,7 @@ def analysis_result(job_id: str):
     try:
         payload["audit"] = audit_details(root)
         payload['submission'] = submission_details(root)
+        payload['documentation'] = documentation_details(root)
     except ValueError as exc:
         raise HTTPException(503, f"Não foi possível conferir os arquivos desta execução: {exc}") from None
     payload["downloads"] = [name for name in DOWNLOADS if output_path(root, name).is_file()]

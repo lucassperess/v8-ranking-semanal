@@ -14,9 +14,11 @@ from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
 from b3_registry import digest
+from webapp.doc_revision import details as documentation_details
 
 
 DOWNLOADS = {
+    "documentation_snapshot.json": ("root", "documentation_snapshot.json"),
     "top20.csv": ("principal", "top20.csv"),
     "all_returns.csv": ("principal", "all_returns.csv"),
     "top20_alternativo.csv": ("alternativa", "top20.csv"),
@@ -311,6 +313,7 @@ def build_presentation(root: Path, *, featured: bool = False,
         series_path = root / "daily_context.json"
         daily = _json(series_path) if series_path.exists() else {"dates": [], "series": {}, "heatmap": {}, "note": "Série diária indisponível."}
     payload = {"kind": "featured" if featured else "analysis", "week": report["week"],
+            'documentation': documentation_details(root),
             'submission': submission_details(root, featured=featured),
             "windows": windows, "daily": daily, "quality": quality,
             "exclusions": {"count": len(exclusions), "reasons": dict(Counter(row["reason"] for row in exclusions))},
