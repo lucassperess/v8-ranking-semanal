@@ -30,3 +30,4 @@ for (const name of readdirSync(folder)) {
   }
 }
 console.log('JavaScript válido; CSS sem declarações sobrescritas no mesmo seletor e contexto.');
+await import('./test_upload_date.mjs');

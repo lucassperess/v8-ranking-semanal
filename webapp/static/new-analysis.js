@@ -5,7 +5,8 @@ const today = () => {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 };
 let busy = false,
-  fileReadVersion = 0;
+  fileReadVersion = 0,
+  referenceEditVersion = 0;
 function message(value) {
   $('form-message').textContent = value;
 }
@@ -85,6 +86,7 @@ function validFile(file) {
 async function onFile() {
   resetReview();
   const version = ++fileReadVersion;
+  const referenceVersion = referenceEditVersion;
   const file = $('csv-file').files[0];
   message('');
   $('date-suggestion').textContent = '';
@@ -100,7 +102,7 @@ async function onFile() {
     `${new Intl.NumberFormat('pt-BR', { maximumFractionDigits: 2 }).format(file.size / 1024)} KB · clique para trocar`;
   if (!validFile(file)) return;
   const content = await file.text();
-  if (version !== fileReadVersion) return;
+  if (version !== fileReadVersion || referenceVersion !== referenceEditVersion || busy) return;
   const iso = content.match(/\b20\d{2}-\d{2}-\d{2}\b/g) || [];
   const local = (content.match(/\b\d{2}\/\d{2}\/20\d{2}\b/g) || []).map((raw) =>
     raw.split('/').reverse().join('-'),
@@ -130,6 +132,7 @@ $('reference-date').value = today();
 $('reference-date').max = today();
 updateWeekPreview();
 $('reference-date').addEventListener('input', () => {
+  referenceEditVersion++;
   resetReview();
   updateWeekPreview();
 });
