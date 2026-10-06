@@ -6,8 +6,9 @@
     <meta name="theme-color" content="#000" />
     <title>Nova análise · V8 Capital</title>
     <link rel="stylesheet" href="/static/styles.css?v=organized-20261006" />
-    <script src="/static/new-analysis.js" defer></script>
-    <script src="/static/header.js" defer></script>
+    <link rel="stylesheet" href="/static/mobile.css?v=mobile-20261006" />
+    <script src="/static/new-analysis.js?v=mobile-20261006" defer></script>
+    <script src="/static/header.js?v=mobile-20261006" defer></script>
   </head>
   <body class="new-analysis-page">
     <a class="skip-link" href="#upload-form">Ir para o envio</a>
@@ -17,14 +18,18 @@
         <div class="page-heading">
           <h1>Nova análise</h1>
           <p>
-            Envie sua extração da Economatica e escolha a referência. O mesmo processo produzirá um
-            resultado independente, com seu próprio link e arquivos de conferência.
+            Envie um CSV da Economatica e escolha a referência. Você receberá uma análise
+            independente, com ranking e arquivos de conferência.
           </p>
           <div class="page-context">
             <a href="/">Ver o resultado do case ↗</a
             ><a href="/documentacao/metodologia">Conhecer os critérios ↗</a>
           </div>
         </div>
+        <p class="mobile-limits">
+          CSV até 10 MB · uma análise por vez · resultados por 7 dias. O arquivo original é removido
+          após 24 horas.
+        </p>
         <div class="new-analysis-layout">
           <form id="upload-form" class="upload-form upload-workspace">
             <section class="form-stage">
@@ -48,27 +53,30 @@
                   aria-label="Arquivo CSV da Economatica"
                   aria-describedby="format-help"
               /></label>
-              <p id="format-help" class="muted">
-                Vírgula como separador, ponto decimal, UTF-8 ou Windows-1252 e “-” para ausência. As
-                nove colunas precisam manter os nomes e a ordem documentados.
-              </p>
-              <details class="format-details">
-                <summary>Conferir as nove colunas do arquivo</summary>
-                <ol>
-                  <li>Ativo</li>
-                  <li>Data</li>
-                  <li>Fechamento|ajust p/ prov|Em moeda orig</li>
-                  <li>Q Títs|ajust p/ prov</li>
-                  <li>Abertura|ajust p/ prov|Em moeda orig</li>
-                  <li>Máximo|ajust p/ prov|Em moeda orig</li>
-                  <li>Mínimo|ajust p/ prov|Em moeda orig</li>
-                  <li>Médio|ajust p/ prov|Em moeda orig</li>
-                  <li>Volume$|Em moeda orig</li>
-                </ol>
-                <p>
-                  O processo confere o formato no envio. Uma mudança de estrutura gera uma mensagem
-                  de erro.
+              <details class="format-help-details">
+                <summary>Formato aceito e colunas</summary>
+                <p id="format-help" class="muted">
+                  Vírgula como separador, ponto decimal, UTF-8 ou Windows-1252 e “-” para ausência.
+                  As nove colunas precisam manter os nomes e a ordem documentados.
                 </p>
+                <div class="format-details">
+                  <h3>Nomes das nove colunas</h3>
+                  <ol>
+                    <li>Ativo</li>
+                    <li>Data</li>
+                    <li>Fechamento|ajust p/ prov|Em moeda orig</li>
+                    <li>Q Títs|ajust p/ prov</li>
+                    <li>Abertura|ajust p/ prov|Em moeda orig</li>
+                    <li>Máximo|ajust p/ prov|Em moeda orig</li>
+                    <li>Mínimo|ajust p/ prov|Em moeda orig</li>
+                    <li>Médio|ajust p/ prov|Em moeda orig</li>
+                    <li>Volume$|Em moeda orig</li>
+                  </ol>
+                  <p>
+                    O processo confere o formato no envio. Uma mudança de estrutura gera uma
+                    mensagem de erro.
+                  </p>
+                </div>
               </details>
             </section>
             <section class="form-stage">
@@ -85,8 +93,9 @@
                 name="reference_date"
                 type="date"
                 required
-                aria-describedby="reference-help week-preview"
-              /><small id="reference-help"
+                aria-describedby="reference-display reference-help week-preview"
+              /><strong id="reference-display" class="reference-display" aria-live="polite"></strong
+              ><small id="reference-help"
                 >Exemplo: 22/09/2026 seleciona a semana de 14 a 20/09/2026.</small
               >
               <p id="date-suggestion" class="muted" aria-live="polite"></p>
@@ -126,11 +135,14 @@
                   continuam obrigatórias.
                 </p>
               </section>
-              <p class="muted">
-                Os fechamentos exatos são definidos pelos dados disponíveis. A janela principal
-                parte do fechamento anterior à semana; a alternativa compara as duas pontas dentro
-                dela.
-              </p>
+              <details class="format-help-details">
+                <summary>Como os fechamentos são escolhidos</summary>
+                <p class="muted">
+                  Os fechamentos exatos são definidos pelos dados disponíveis. A janela principal
+                  parte do fechamento anterior à semana; a alternativa compara as duas pontas dentro
+                  dela.
+                </p>
+              </details>
             </section>
             <section class="form-stage submit-stage">
               <div class="form-stage-heading">

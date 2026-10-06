@@ -132,6 +132,7 @@ Ao mudar uma regra, atualize a decisão, o artigo aplicável e o teste correspon
 O cabeçalho tem uma única fonte em `webapp/templates/header.html`. `webapp/pages.py` compõe as páginas no servidor e marca a navegação ativa. Preserve os identificadores usados pelo JavaScript ao editar esse template.
 
 - `styles.css`: estilos compartilhados, ranking e formulário de nova análise.
+- `mobile.css`: composição móvel carregada depois dos estilos de cada página; navegação, ranking compacto, controles por toque, índices persistentes e tabelas com rótulos por campo.
 - `documentation.css`: navegação e artigos da documentação.
 - `audit.css`: apresentação da auditoria de uma execução.
 
@@ -159,3 +160,7 @@ Uma execução aprovada no CI não verifica downloads reais da B3, o comportamen
 A fila migra bancos existentes acrescentando opções com padrão vazio. O worker passa `--allow-nonfriday-end` somente quando autorizado e grava `analysis_request.json`. Ele executa novamente todos os controles. `submission_details` confere a compatibilidade do registro com o relatório. Mensagens de falha recebem orientação por categoria; a mensagem original permanece visível.
 
 `tests/test_replication.py` executa o worker em subprocesso real com extrações e fontes B3 **artificiais e locais**, sem rede. Os fixtures não devem ser publicados como evidência oficial. A API também é conferida com duas entradas distintas, migração de banco antigo, confirmação invalidada e bloqueios. Uma extração real diferente deve ser conferida em desenvolvimento para verificar aquisição das fontes e apresentação por HTTPS.
+
+### Conferência visual mobile
+
+Confira 320, 390 e 430 px e o desktop antes de publicar alterações de layout. Verifique navegação completa, ausência de sobreposição na introdução, retorno visível no ranking, seleção e volta do gráfico, abertura/fechamento de informações, matriz com datas e ticker fixos, menus e tabelas da documentação, seletor da auditoria e referência brasileira no formulário. Conferência de viewport no navegador não substitui teste em Android e iOS físicos, especialmente para seleção de arquivos e teclado.

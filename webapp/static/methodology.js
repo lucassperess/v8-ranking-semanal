@@ -353,6 +353,18 @@ async function showMethod() {
       'CSV',
     ],
   });
+  const fileGroups = new Map();
+  const groupFor = (name) => {
+    if (/^(top20|all_returns)/.test(name)) return 'Rankings e retornos';
+    if (/^(quality|candidate_exclusions)/.test(name)) return 'Qualidade e exclusões';
+    if (
+      /^(ranking_universe|period_classification|b3_evidence|classification|source_acquisition)/.test(
+        name,
+      )
+    )
+      return 'Classificação e fontes B3';
+    return 'Execução e reprodução';
+  };
   data.downloads
     .filter((name) => files[name])
     .forEach((name) => {
@@ -363,12 +375,39 @@ async function showMethod() {
       const content = item('div', '');
       content.append(item('strong', '', title), item('p', '', description));
       link.append(content, item('span', 'file-type', `${type} ↓`));
-      el('audit-files').append(link);
+      const groupName = groupFor(name);
+      if (!fileGroups.has(groupName)) {
+        const details = item('details', 'audit-file-group');
+        details.open =
+          !matchMedia('(max-width: 800px)').matches || groupName === 'Rankings e retornos';
+        details.append(item('summary', '', groupName));
+        const body = item('div', '');
+        details.append(body);
+        fileGroups.set(groupName, body);
+        el('audit-files').append(details);
+      }
+      fileGroups.get(groupName).append(link);
     });
   put('method-hash', data.provenance.input_sha256);
   put('method-version', `${data.provenance.pipeline_version} · ${data.provenance.code_sha256}`);
   el('method-loading').hidden = true;
   el('method-body').hidden = false;
+  const picker = document.querySelector('.audit-section-picker');
+  picker.addEventListener('change', () => {
+    document.getElementById(picker.value).scrollIntoView({
+      behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+      block: 'start',
+    });
+    history.replaceState(null, '', `#${picker.value}`);
+  });
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      const current = entries.find((entry) => entry.isIntersecting);
+      if (current) picker.value = current.target.id;
+    },
+    { rootMargin: '-80px 0px -65% 0px' },
+  );
+  document.querySelectorAll('.doc-section').forEach((section) => sectionObserver.observe(section));
 }
 showMethod().catch((error) => {
   el('method-loading').hidden = true;

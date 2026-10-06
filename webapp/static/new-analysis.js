@@ -49,6 +49,7 @@ function showReview(detail) {
 }
 function updateWeekPreview() {
   const raw = $('reference-date').value;
+  $('reference-display').textContent = raw ? `Referência selecionada: ${day(raw)}` : '';
   if (!raw) {
     $('week-preview').textContent = 'Escolha a referência para conferir a semana.';
     return;
@@ -89,7 +90,9 @@ async function onFile() {
   $('date-suggestion').textContent = '';
   if (!file) {
     $('file-title').textContent = 'Selecionar arquivo CSV';
-    $('file-description').textContent = 'ou arraste e solte aqui · até 10 MB';
+    $('file-description').textContent = matchMedia('(max-width: 800px)').matches
+      ? 'Toque para selecionar · até 10 MB'
+      : 'ou arraste e solte aqui · até 10 MB';
     return;
   }
   $('file-title').textContent = file.name;
@@ -219,3 +222,6 @@ $('upload-form').addEventListener('submit', async (event) => {
       : 'Executar com as datas revisadas ↗';
   }
 });
+
+if (matchMedia('(max-width: 800px)').matches)
+  $('file-description').textContent = 'Toque para selecionar · até 10 MB';

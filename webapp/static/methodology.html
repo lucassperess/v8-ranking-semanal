@@ -7,8 +7,9 @@
     <title>Auditoria da execução · V8 Capital</title>
     <link rel="stylesheet" href="/static/styles.css?v=organized-20261006" />
     <link rel="stylesheet" href="/static/audit.css?v=20261006-1" />
-    <script src="/static/methodology.js?v=audit-20261006-1" defer></script>
-    <script src="/static/header.js" defer></script>
+    <link rel="stylesheet" href="/static/mobile.css?v=mobile-20261006" />
+    <script src="/static/methodology.js?v=mobile-20261006" defer></script>
+    <script src="/static/header.js?v=mobile-20261006" defer></script>
   </head>
   <body class="documentation-page audit-page">
     <a class="skip-link" href="#method-content">Ir para a auditoria</a>
@@ -32,6 +33,14 @@
           <div class="doc-layout">
             <aside class="doc-toc">
               <span>NESTA PÁGINA</span>
+              <select class="audit-section-picker" aria-label="Ir para uma seção da auditoria">
+                <option value="processo">Etapas do processamento</option>
+                <option value="periodo">Semana e janelas</option>
+                <option value="universo">Universo e exclusões</option>
+                <option value="calculo">Retorno e média</option>
+                <option value="qualidade">Qualidade dos dados</option>
+                <option value="auditoria">Arquivos e reprodução</option>
+              </select>
               <nav aria-label="Seções da auditoria">
                 <a href="#processo">Processo</a><a href="#periodo">Semana e janelas</a
                 ><a href="#universo">Universo e exclusões</a><a href="#calculo">Retorno e média</a

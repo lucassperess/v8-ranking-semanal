@@ -10,8 +10,9 @@
       content="Ranking semanal de ações brasileiras com metodologia, alertas e teste de novas extrações da Economatica."
     />
     <link rel="stylesheet" href="/static/styles.css?v=organized-20261006" />
-    <script src="/static/app.js" defer></script>
-    <script src="/static/header.js" defer></script>
+    <link rel="stylesheet" href="/static/mobile.css?v=mobile-20261006" />
+    <script src="/static/app.js?v=mobile-20261006" defer></script>
+    <script src="/static/header.js?v=mobile-20261006" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#ranking">Ir para o ranking</a>
@@ -145,10 +146,15 @@
               </div>
             </div>
             <a class="mobile-chart-link" href="#asset-detail"
-              >Explorar gráfico e selecionar ação ↓</a
+              >Toque em uma ação para ver o gráfico · explorar ↓</a
             >
             <div class="ranking-grid">
-              <div class="table-wrap">
+              <div
+                class="table-wrap"
+                tabindex="0"
+                role="region"
+                aria-label="Ranking das 20 ações; selecione uma ação para abrir o gráfico"
+              >
                 <table>
                   <thead>
                     <tr>
@@ -182,8 +188,10 @@
                   </div>
                   <select id="asset-select" aria-label="Selecionar ação para o gráfico"></select>
                 </div>
+                <p class="chart-help">Toque no gráfico para consultar a data e o valor.</p>
                 <div id="detail-chart" class="detail-chart"></div>
                 <div id="detail-note" class="detail-note"></div>
+                <a class="chart-back" href="#ranking">← Voltar ao ranking</a>
               </aside>
             </div>
           </section>
@@ -224,7 +232,16 @@
               <span class="positive">Alta</span> · <span class="negative">Queda</span> · — Sem
               comparação válida
             </p>
-            <div id="heatmap" class="heatmap-wrap"></div>
+            <p class="scroll-hint">
+              Deslize para ver as datas. Toque no ativo para abrir seu gráfico.
+            </p>
+            <div
+              id="heatmap"
+              class="heatmap-wrap"
+              tabindex="0"
+              role="region"
+              aria-label="Movimento diário; role para consultar todas as datas e ações"
+            ></div>
           </section>
         </div>
       </main>

@@ -1,0 +1,527 @@
+/* Mobile layouts: reading order, touch controls and persistent context. */
+@media (max-width: 1000px), (pointer: coarse) {
+  .fullscreen-button {
+    display: none;
+  }
+}
+@media (max-width: 800px) {
+  .shell {
+    padding: 0 16px;
+  }
+  .topbar {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    height: auto;
+    gap: 16px;
+    padding: 16px 0;
+  }
+  .topbar .brand {
+    justify-self: start;
+  }
+  .topbar .header-actions {
+    margin: 0;
+    justify-self: end;
+  }
+  .fullscreen-button {
+    display: none;
+  }
+  .topbar .topnav {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: space-between;
+    gap: 4px;
+    margin: 0;
+    overflow: visible;
+  }
+  .topbar .topnav a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 8px 7px !important;
+    font-size: 13px;
+  }
+  .header-actions .source-link {
+    min-height: 40px;
+    font-size: 12px;
+  }
+  .intro {
+    padding: 24px 0;
+  }
+  .intro-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .intro p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .audit-access {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .metric-strip {
+    gap: 12px;
+    margin: 0 0 24px;
+  }
+  .metric,
+  .metric:first-child {
+    padding: 16px 12px !important;
+    min-height: 116px;
+    gap: 12px;
+  }
+  .metric-label {
+    padding-right: 28px;
+    min-height: 36px;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  .metric strong {
+    font-size: clamp(28px, 8vw, 36px);
+    max-width: 100%;
+  }
+  .metric-info {
+    inset: 0;
+    width: auto;
+    height: auto;
+    display: block;
+    pointer-events: none;
+  }
+  .metric-info .info-button {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    pointer-events: auto;
+  }
+  .info-button {
+    width: 44px;
+    height: 44px;
+    border: 0;
+    background: transparent;
+    position: relative;
+  }
+  .info-button::before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #55555b;
+    border-radius: 50%;
+  }
+  .info-button:hover {
+    background: transparent;
+  }
+  .info-tooltip {
+    font-size: 13px;
+    width: 240px;
+  }
+  .metric-tooltip {
+    top: 48px;
+    right: 8px;
+  }
+  .metric:nth-child(odd) .metric-tooltip {
+    left: 8px;
+    right: auto;
+  }
+  .info-button:hover + .info-tooltip,
+  .info-button:focus-visible + .info-tooltip {
+    visibility: hidden;
+    opacity: 0;
+  }
+  .info-button[aria-expanded='true'] + .info-tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+  .ranking-period {
+    align-items: center;
+  }
+  .ranking-period p {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .period-tooltip {
+    right: 0;
+  }
+  .ranking-section .table-wrap {
+    max-height: 480px;
+    overflow: auto;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+  }
+  .ranking-section table {
+    width: 100%;
+    table-layout: fixed;
+  }
+  .ranking-section th:nth-child(3),
+  .ranking-section th:nth-child(4),
+  .ranking-section th:nth-child(5),
+  .ranking-section td:nth-child(3),
+  .ranking-section td:nth-child(4),
+  .ranking-section td:nth-child(5) {
+    display: none;
+  }
+  .ranking-section th:first-child,
+  .ranking-section td:first-child {
+    width: 38px;
+    padding-left: 12px;
+  }
+  .ranking-section th:nth-child(2),
+  .ranking-section td:nth-child(2) {
+    width: 90px;
+  }
+  .ranking-section th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: #0d0d0f;
+    height: 44px;
+  }
+  .ranking-section td {
+    height: 48px;
+    font-size: 14px;
+  }
+  .mobile-chart-link {
+    display: block;
+    padding: 10px 0;
+    line-height: 1.6;
+  }
+  .detail-panel {
+    scroll-margin-top: 16px;
+  }
+  .chart-mode button {
+    min-height: 44px;
+  }
+  .chart-controls select {
+    min-height: 44px;
+    font-size: 16px;
+  }
+  .chart-tooltip {
+    position: static;
+    transform: none;
+    min-width: 0;
+    width: 100%;
+    margin: 8px 0;
+    font:
+      13px/1.5 Arial,
+      sans-serif;
+  }
+  .chart-help {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--muted);
+    margin: 0 0 8px;
+  }
+  .chart-back {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    font-size: 13px;
+  }
+  .scroll-hint {
+    display: block;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 8px 0 12px;
+  }
+  .heatmap-wrap {
+    max-height: 440px;
+    overflow: auto;
+    border: 1px solid var(--line);
+  }
+  .heatmap-grid {
+    overflow: visible;
+    border: 0;
+  }
+  .heatmap-grid .head {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: #131315;
+    min-height: 44px;
+  }
+  .heatmap-grid .ticker {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background: #101012;
+    min-height: 44px;
+  }
+  .heatmap-grid .head:first-child {
+    left: 0;
+    z-index: 3;
+  }
+  .heat-cell {
+    min-height: 44px;
+  }
+  .doc-toc {
+    position: sticky;
+    top: 0;
+    z-index: 4;
+    background: #080809;
+    padding: 8px 0;
+    margin: 0 0 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  .doc-toc nav {
+    display: none;
+  }
+  .audit-section-picker {
+    display: block;
+    width: 100%;
+    min-height: 44px;
+    background: #171719;
+    color: var(--text);
+    border: 1px solid #38383b;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+  }
+  .audit-page .doc-section {
+    scroll-margin-top: 76px;
+  }
+  .audit-page .process-flow {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .audit-page .process-flow li {
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 26px 1fr;
+    gap: 8px;
+  }
+  .audit-page .process-flow li p {
+    grid-column: 2;
+    margin: 0;
+  }
+  .audit-table-wrap,
+  .docs-table {
+    overflow: visible;
+  }
+  .audit-table,
+  .docs-table table {
+    min-width: 0;
+    width: 100%;
+    white-space: normal;
+  }
+  .audit-table thead,
+  .docs-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  .audit-table tbody,
+  .docs-table tbody {
+    display: block;
+  }
+  .audit-table tr,
+  .docs-table tr {
+    display: block;
+    padding: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  .audit-table td,
+  .docs-table td {
+    display: grid;
+    grid-template-columns: minmax(85px, 35%) minmax(0, 1fr);
+    gap: 12px;
+    width: auto;
+    height: auto;
+    min-height: 36px;
+    padding: 8px 0;
+    border: 0;
+    font-size: 14px;
+    overflow-wrap: anywhere;
+    text-align: left;
+  }
+  .mobile-cell-value {
+    min-width: 0;
+  }
+  .audit-table td::before,
+  .docs-table td::before {
+    content: attr(data-label);
+    color: var(--muted);
+    font-weight: 400;
+  }
+  .audit-files {
+    display: block;
+  }
+  .audit-file-group {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 0 16px;
+    margin: 12px 0;
+  }
+  .audit-file-group summary {
+    min-height: 52px;
+    padding: 16px 0;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .audit-file-group .audit-file {
+    border: 0;
+    border-top: 1px solid var(--line);
+    border-radius: 0;
+    padding: 16px 0;
+  }
+  .upload-workspace .file-drop {
+    min-height: 112px;
+    padding: 16px;
+    gap: 8px;
+    background: #050506;
+    border-color: #55555b;
+  }
+  .upload-workspace .file-icon {
+    display: none;
+  }
+  .new-analysis-layout {
+    gap: 24px;
+  }
+  .form-stage {
+    padding: 0 0 16px;
+    margin-bottom: 16px;
+  }
+  .form-stage-heading {
+    margin-bottom: 16px;
+  }
+  .upload-workspace input[type='date'] {
+    font-size: 16px;
+  }
+  .form-stage .muted,
+  .form-stage small {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .mobile-limits {
+    display: block;
+    font-size: 13px;
+    line-height: 1.6;
+    margin-top: 16px;
+    color: var(--muted);
+  }
+  .format-help-details {
+    margin: 12px 0;
+  }
+  .format-help-details summary {
+    min-height: 44px;
+    padding: 12px 0;
+    cursor: pointer;
+    font-size: 13px;
+  }
+  .reference-display {
+    display: block;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  .docs-top {
+    gap: 16px;
+    padding: 20px 0;
+  }
+  .docs-search-area input {
+    min-height: 44px;
+    font-size: 16px;
+  }
+  .docs-grid {
+    gap: 12px;
+  }
+  .docs-sidebar {
+    position: sticky;
+    top: 0;
+    z-index: 6;
+    background: #000;
+  }
+  .docs-sidebar::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -12px;
+    height: 12px;
+    background: #000;
+  }
+  .docs-outline {
+    position: sticky;
+    top: 60px;
+    z-index: 5;
+    background: #000;
+    border: 1px solid #303034;
+    border-radius: 12px;
+    padding: 0 14px;
+  }
+  .docs-menu {
+    padding: 0 14px;
+  }
+  .docs-menu > summary,
+  .docs-outline > summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 48px;
+    padding: 12px 0;
+    margin: 0;
+    font-size: 14px;
+    letter-spacing: 0;
+    color: #c4c4cd;
+  }
+  .docs-menu > summary::after,
+  .docs-outline > summary::after {
+    content: '⌄';
+    font-size: 20px;
+    color: #b8b8c1;
+  }
+  .docs-menu[open] > summary::after,
+  .docs-outline[open] > summary::after {
+    content: '⌃';
+  }
+  .docs-menu[open] nav,
+  .docs-outline[open] .toc {
+    max-height: 45vh;
+    overflow-y: auto;
+  }
+  .docs-menu nav > a,
+  .docs-outline .toc a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+  }
+  .docs-context {
+    font-size: 12px;
+    margin: 8px 0 16px;
+    line-height: 1.5;
+  }
+  .docs-article h2,
+  .docs-article h3 {
+    scroll-margin-top: 130px;
+  }
+  .docs-article h1 {
+    font-size: 28px;
+  }
+}
+@media (min-width: 801px) {
+  .chart-help,
+  .chart-back,
+  .scroll-hint,
+  .audit-section-picker,
+  .mobile-limits {
+    display: none;
+  }
+  .audit-file-group {
+    grid-column: 1 / -1;
+  }
+  .audit-file-group > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 24px;
+  }
+  .audit-file-group summary {
+    padding: 16px 0;
+    cursor: pointer;
+  }
+}

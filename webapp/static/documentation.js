@@ -93,3 +93,15 @@ if ('IntersectionObserver' in window) {
 
 if (matchMedia('(max-width:800px)').matches) document.querySelector('.docs-menu').open = false;
 if (matchMedia('(max-width:1250px)').matches) document.querySelector('.docs-outline').open = false;
+document.querySelectorAll('.docs-menu,.docs-outline').forEach((menu) => {
+  menu.addEventListener('toggle', () => {
+    if (menu.open && matchMedia('(max-width:800px)').matches) {
+      document.querySelectorAll('.docs-menu,.docs-outline').forEach((other) => {
+        if (other !== menu) other.open = false;
+      });
+    }
+  });
+  menu.addEventListener('click', (event) => {
+    if (event.target.closest('a') && matchMedia('(max-width:800px)').matches) menu.open = false;
+  });
+});

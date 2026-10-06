@@ -129,6 +129,12 @@ function renderTable(rows) {
       $('asset-select').value = row.ticker;
       renderTable(rows);
       renderDetail();
+      if (matchMedia('(max-width: 800px)').matches) {
+        $('asset-detail').scrollIntoView({
+          behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+          block: 'start',
+        });
+      }
     };
     tr.addEventListener('click', select);
     tr.addEventListener('keydown', (e) => {
@@ -192,10 +198,10 @@ function renderDetail() {
     pad = Math.max((max - min) * 0.18, Math.abs(max) * 0.04, returns ? 0.5 : 0.01);
   const lower = returns ? min - pad : Math.max(0, min - pad),
     upper = max + pad,
-    w = Math.max(280, box.clientWidth),
+    w = Math.max(240, box.clientWidth),
     h = Math.max(240, Math.min(320, w * 0.48)),
-    left = 80,
-    right = 25,
+    left = w < 450 ? 64 : 80,
+    right = w < 450 ? 20 : 25,
     top = 32,
     bottom = 40;
   const tickStep = (upper - lower) / 4;
@@ -213,7 +219,7 @@ function renderDetail() {
   const chart = svg('svg', {
     viewBox: `0 0 ${w} ${h}`,
     role: 'group',
-    'aria-label': `${returns ? 'Retornos diários em percentual' : 'Fechamento ajustado em reais por ação'} de ${row.ticker}; passe o cursor ou foque uma observação para ver o valor`,
+    'aria-label': `${returns ? 'Retornos diários em percentual' : 'Fechamento ajustado em reais por ação'} de ${row.ticker}; toque, passe o cursor ou foque uma observação para ver o valor`,
   });
   const axisLabel = (content, attributes) => {
     const label = svg('text', attributes);
@@ -374,8 +380,15 @@ function renderDetail() {
     }
     const attrs = returns
       ? { x: xx - barWidth / 2 - 5, y: top, width: barWidth + 10, height: h - top - bottom }
-      : { cx: xx, cy: yy, r: 13 };
-    const hit = svg(returns ? 'rect' : 'circle', {
+      : {
+          x: Math.max(left - 14, xx - plotWidth / Math.max(1, allDates.length - 1) / 2),
+          y: top,
+          width:
+            Math.min(w - right + 14, xx + plotWidth / Math.max(1, allDates.length - 1) / 2) -
+            Math.max(left - 14, xx - plotWidth / Math.max(1, allDates.length - 1) / 2),
+          height: h - top - bottom,
+        };
+    const hit = svg('rect', {
       ...attrs,
       fill: 'transparent',
       tabindex: 0,
