@@ -80,3 +80,13 @@ th,.brand-name,.topnav,.source-link,.intro p,.aside-value,.aside-meta,.aside-act
 .detail-top{align-items:center;gap:12px}
 .detail-return{font-size:clamp(28px,2.2vw,36px);margin-top:0;font-weight:600;white-space:nowrap}
 @media(max-width:650px){.chart-controls{gap:10px}.chart-controls select{flex:1}.detail-return{font-size:28px}}
+
+/* Summary cards match the rounded, outlined market cards. */
+.metric-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;border:0;margin:14px 0 30px}
+.metric,.metric:first-child{display:flex;flex-direction:column;align-items:flex-start;gap:10px;border:1px solid #38383b;border-radius:var(--radius-panel);padding:18px 20px;min-height:128px;background:#050506}
+.metric strong{font-size:26px;line-height:1.2}
+.metric-label{white-space:normal;line-height:1.5}
+.metric-note{display:block;white-space:normal;line-height:1.5}
+.heatmap-grid{border-radius:0}
+@media(max-width:900px){.metric-strip{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}}
+@media(max-width:650px){.metric,.metric:first-child{padding:16px!important;border:1px solid #38383b;min-height:128px}.metric:nth-child(odd){border-left:1px solid #38383b}.metric strong{font-size:24px}}

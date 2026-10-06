@@ -16,7 +16,6 @@ function render(data) {
   state.data=data; state.window='primary'; state.ticker=data.windows.primary.top20[0]?.ticker || null;
   $('loading').hidden=true; $('error').hidden=true; $('analysis-status').hidden=true; $('dashboard').hidden=false;
   text('run-kind',data.kind==='featured'?'Resultado de referência':'Nova análise');
-  text('run-period',`Referência ${day(data.week.reference_date)} · ${day(data.week.week_start)} a ${day(data.week.week_end)}`);
   text('metric-alternative',pct(data.windows.alternative.mean_pct));
   renderWindow();
 }
@@ -134,7 +133,7 @@ function renderHeatmap(rows) {
 async function loadRun(id) {
   state.runId=id; $('dashboard').hidden=true;$('loading').hidden=true;$('analysis-status').hidden=false;
   try {const job=await json(`/api/analyses/${id}`);const names={queued:'Aguardando',running:'Processando',completed:'Concluída',failed:'Falhou'};
-    text('run-kind','Nova análise');text('run-period',`Referência ${day(job.reference_date)}`);
+    text('run-kind','Nova análise');
     const panel=$('analysis-status');clear(panel);panel.classList.toggle('failed',job.status==='failed');
     panel.append(node('div','eyebrow','EXECUÇÃO INDEPENDENTE'),node('h2','',job.status==='failed'?'A análise não pôde ser concluída':job.status==='queued'?'Sua análise está na fila':'Preparando sua análise'));
     panel.append(node('p','execution-current',job.error||`${names[job.status]||job.status} · ${job.stage}`));
@@ -158,5 +157,5 @@ document.addEventListener('DOMContentLoaded',()=>{
   $('primary-button').addEventListener('click',()=>{state.window='primary';renderWindow();});
   $('alternative-button').addEventListener('click',()=>{state.window='alternative';renderWindow();});
   const match=window.location.pathname.match(/^\/analise\/([0-9a-f]{32})$/);
-  if(match){$('nav-result').href=`/analise/${match[1]}`;$('nav-method').href=`/analise/${match[1]}/metodologia`;$('result-method').href=$('nav-method').href;loadRun(match[1]);}else json('/api/featured').then(render).catch(exc=>error(exc.message));
+  if(match){$('nav-result').href=`/analise/${match[1]}`;$('nav-method').href=`/analise/${match[1]}/metodologia`;loadRun(match[1]);}else json('/api/featured').then(render).catch(exc=>error(exc.message));
 });
