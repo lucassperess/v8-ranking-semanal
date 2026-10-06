@@ -55,13 +55,12 @@ function renderDetail() {
   if(!state.ticker)return;
   const row=state.data.windows[state.window].top20.find(item=>item.ticker===state.ticker);
   text('detail-ticker',row.ticker); text('detail-kind',row.instrument_type==='acao_on'?'AÇÃO ORDINÁRIA':'AÇÃO PREFERENCIAL');
-  text('detail-return',signedPct(row.return_pct));$('detail-return').classList.toggle('negative',Number(row.return_pct)<0); text('detail-start',`${day(row.start_date)} · R$ ${money(row.start_close)}`);
-  text('detail-end',`${day(row.end_date)} · R$ ${money(row.end_close)}`);
+  text('detail-return',signedPct(row.return_pct));$('detail-return').classList.toggle('negative',Number(row.return_pct)<0);
   const note=state.data.quality.top20_issues.filter(item=>item.ticker===row.ticker);
   const returns=state.chartMode==='returns';
   $('chart-price').classList.toggle('active',!returns);$('chart-returns').classList.toggle('active',returns);
   $('chart-price').setAttribute('aria-pressed',String(!returns));$('chart-returns').setAttribute('aria-pressed',String(returns));
-  text('detail-note',`${note.length?`Atenção: ${note.map(item=>`${day(item.trade_date)} · ${item.field}: ${item.reason}`).join('; ')}. `:''}${returns?'Retorno entre fechamentos ajustados de datas consecutivas da extração. Uma lacuna indica ausência de comparação válida.':'Preço de fechamento ajustado em reais (R$) por ação.'} O ranking usa as duas pontas acima.`);
+  text('detail-note',`${note.length?`Atenção: ${note.map(item=>`${day(item.trade_date)} · ${item.field}: ${item.reason}`).join('; ')}. `:''}${returns?'Retorno entre fechamentos ajustados de datas consecutivas da extração. Uma lacuna indica ausência de comparação válida.':'Preço de fechamento ajustado em reais (R$) por ação.'} O ranking compara os fechamentos de ${day(row.start_date)} e ${day(row.end_date)}.`);
   const box=$('detail-chart'); clear(box);
   const series=returns?(state.data.daily.heatmap[row.ticker]||[]).map(p=>({date:p.date,value:p.return_pct})):(state.data.daily.series[row.ticker]||[]).map(p=>({date:p.date,value:p.close}));
   const points=series.filter(p=>p.value!==null&&Number.isFinite(Number(p.value)));
@@ -76,7 +75,7 @@ function renderDetail() {
   const y=v=>top+(upper-v)/(upper-lower)*(h-top-bottom);
   const chart=svg('svg',{viewBox:`0 0 ${w} ${h}`,role:'group','aria-label':`${returns?'Retornos diários em percentual':'Fechamento ajustado em reais por ação'} de ${row.ticker}; passe o cursor ou foque uma observação para ver o valor`});
   const axisLabel=(content,attributes)=>{const label=svg('text',attributes);label.textContent=content;chart.append(label);};
-  axisLabel(returns?'RETORNO DIÁRIO (%)':'REAIS',{x:0,y:12,fill:'#a4a8af','font-size':12});
+  axisLabel(returns?'RETORNO DIÁRIO (%)':'REAIS',{x:returns?0:left-9,y:12,fill:'#a4a8af','font-size':12,'text-anchor':returns?'start':'end'});
   chart.append(svg('line',{x1:left,y1:top,x2:left,y2:h-bottom,stroke:'#55595f'}));
   chart.append(svg('line',{x1:left,y1:h-bottom,x2:w-right,y2:h-bottom,stroke:'#55595f'}));
   for(let i=0;i<=4;i++){
@@ -88,7 +87,8 @@ function renderDetail() {
   const dateStep=Math.max(1,Math.ceil(allDates.length/Math.max(2,Math.floor(plotWidth/55))));
   allDates.forEach((d,i)=>{if(i!==0&&i!==allDates.length-1&&i%dateStep!==0)return;const xx=x(d);chart.append(svg('line',{x1:xx,y1:h-bottom,x2:xx,y2:h-bottom+5,stroke:'#4c4f55'}));axisLabel(day(d).slice(0,5),{x:xx,y:h-12,fill:'#a4a8af','font-size':12,'text-anchor':'middle'});});
   const byDate=new Map(series.map(p=>[p.date,p.value]));let segment=[];
-  const drawSegment=()=>{if(segment.length>1){chart.append(svg('polyline',{points:segment.map(p=>p.join(',')).join(' '),fill:'none',stroke:lineColor,'stroke-width':'2.5','stroke-linejoin':'round'}));}segment=[];};
+  if(!returns){const defs=svg('defs'),gradient=svg('linearGradient',{id:'price-area',x1:'0',y1:'0',x2:'0',y2:'1'});gradient.append(svg('stop',{offset:'0%', 'stop-color':lineColor,'stop-opacity':.22}),svg('stop',{offset:'100%','stop-color':lineColor,'stop-opacity':0}));defs.append(gradient);chart.append(defs);}
+  const drawSegment=()=>{if(segment.length>1){const first=segment[0],last=segment[segment.length-1];chart.append(svg('polygon',{points:[...segment,[last[0],h-bottom],[first[0],h-bottom]].map(p=>p.join(',')).join(' '),fill:'url(#price-area)'}));chart.append(svg('polyline',{points:segment.map(p=>p.join(',')).join(' '),fill:'none',stroke:lineColor,'stroke-width':'2.5','stroke-linejoin':'round'}));}segment=[];};
   if(returns){chart.append(svg('line',{x1:left,y1:y(0),x2:w-right,y2:y(0),stroke:'#777d86','stroke-width':1}));axisLabel('0%',{x:left-9,y:y(0)+4,fill:'#d0d3d8','font-size':12,'text-anchor':'end'});}
   else{allDates.forEach(d=>{const close=byDate.get(d);if(close===null||close===undefined){drawSegment();return;}segment.push([x(d),y(Number(close))]);});drawSegment();}
   const guide=svg('line',{x1:0,y1:top,x2:0,y2:h-bottom,stroke:'#8e949c','stroke-dasharray':'3 4',visibility:'hidden'});chart.append(guide);
@@ -103,6 +103,7 @@ function renderDetail() {
     const hit=svg(returns?'rect':'circle',{...attrs,fill:'transparent',tabindex:0,role:'button','aria-label':`${day(p.date)}: ${returns?`retorno diário ${signedPct(p.value)}`:`fechamento ajustado R$ ${preciseMoney(p.value)}`}`});
     hit.addEventListener('pointerenter',()=>show(p,xx));hit.addEventListener('pointerleave',hide);hit.addEventListener('click',()=>show(p,xx));hit.addEventListener('focus',()=>show(p,xx));hit.addEventListener('blur',hide);hit.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();show(p,xx);}if(e.key==='Escape')hide();});chart.append(hit);
   });
+  if(!returns){[points[0],points[points.length-1]].forEach((p,index)=>axisLabel(`R$ ${money(p.value)}`,{x:x(p.date),y:y(Number(p.value))-14,fill:lineColor,'font-size':14,'font-weight':600,'text-anchor':index===0?'start':'end',stroke:'#050506','stroke-width':4,'paint-order':'stroke',class:'endpoint-value'}));}
   chart.style.aspectRatio=`${w} / ${h}`;box.append(chart,tip);
 }
 
