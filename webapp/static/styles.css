@@ -117,3 +117,6 @@ th,.brand-name,.topnav,.source-link,.intro p,.aside-value,.aside-meta,.aside-act
 .ranking-title-row h2{margin-bottom:0}
 .ranking-title-row .download-button{padding:0;line-height:1.5}
 @media(max-width:650px){.ranking-title-row{gap:8px 16px}}
+
+/* Center navigation independently of the widths of the brand and actions. */
+@media(min-width:1001px){.topbar{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)}.topbar .brand{justify-self:start}.topbar .topnav{margin:0;justify-self:center}.topbar .header-actions{margin-left:0;justify-self:end}}
