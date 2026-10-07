@@ -14,14 +14,18 @@ O contexto será preparado e revisado previamente. Selecionar uma ação exibir�
 - Case: referência em 22/09/2026, semana-calendário de 14 a 20/09/2026; fechamentos da semana de 14 a 18/09.
 - Janela principal: 11/09 → 18/09; alternativa: 14/09 → 18/09.
 - Pesquisar acontecimentos da semana-calendário, indicando quando a publicação ocorreu após o último fechamento ou no fim de semana. Esses acontecimentos não explicam retroativamente o retorno encerrado em 18/09.
-- Antecedentes anteriores a 14/09 só entram quando forem necessários para entender um acontecimento da semana, com data e identificação explícitas.
+- Antecedentes anteriores a 14/09 também entram para explicar a situação da empresa conhecida antes da semana: resultados trimestrais, dificuldades financeiras, mudanças estratégicas e condições de negociação. Devem trazer período, data de divulgação e identificação explícita como antecedentes. Não são apresentados como novidades da semana nem como causas comprovadas da variação.
 - Atender aos ativos da união de `top20.csv` e `top20_alternativo.csv`, associados às respectivas empresas. Isso permite trocar a janela sem deixar as ações exclusivas da alternativa sem tratamento.
 - Pesquisar por empresa, reutilizando acontecimentos corporativos para ON e PN da mesma companhia. A seleção de um ticker continua exibindo os preços e retornos específicos daquele papel.
 - A cobertura poderá variar por empresa e por dia. Não exigir um acontecimento para cada data nem preencher ausências com especulação.
 
 ## Entrega no dashboard
 
-### Contexto da empresa na semana
+### Contexto da empresa e leitura do movimento
+
+Revisão de 07/10/2026: a triagem restrita a notícias semanais não atende à entrega. Cada ativo precisa de uma leitura específica do movimento dos preços e de contexto verificável da empresa. A quantidade de empresas com notícias não mede a proporção do retorno explicada.
+
+A apresentação deve reunir três partes: o que ocorreu com o preço, qual situação da empresa era conhecida naquele período e quais acontecimentos ou relações foram documentados. Resultados trimestrais são identificados como antecedentes. Uma notícia encontrada não dispensa avaliar sua relevância. Sem vínculo sustentado por evidência, não atribuir uma causa.
 
 Seção abaixo do gráfico da ação selecionada, contendo acontecimentos ordenados por data. Cada item terá título literal, explicação curta do fato e de sua possível relevância, data do acontecimento quando conhecida, data da publicação e fontes clicáveis.
 
@@ -80,7 +84,7 @@ O teste seguinte verificará identidade da empresa, datas, links acessíveis e u
 
 ## Critérios de conclusão
 
-- Todos os tickers das duas listas do top 20 têm associação de empresa conferida e estado de contexto explícito; isso não exige notícias para todos eles.
+- Todos os tickers das duas listas do top 20 têm associação de empresa conferida, leitura específica dos preços e contexto da empresa sustentado por fontes. Um estado explícito de ausência de notícias não basta para aprovar a utilidade da entrega. Lacunas relevantes precisam de nova pesquisa ou ficam registradas como pendência da revisão.
 - Eventos e resumo geral apresentam fontes válidas e datas verificadas, sem afirmações causais indevidas.
 - Ausência de notícias é distinguida de pesquisa incompleta.
 - Troca de ticker e janela funciona; leitura desktop e mobile é conferida.

@@ -1,0 +1,3435 @@
+{
+  "reference_date": "2026-09-22",
+  "information_cutoff": "2026-09-18",
+  "status": "evidence_for_context_redesign_not_published_analysis",
+  "financial_source": "https://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/ITR/DADOS/itr_cia_aberta_2026.zip",
+  "financial_archive_sha256": "0e1ef74291d2143e7bb55247b01c8bbd94995d995536f70f0d19de1d79d7e38c",
+  "historical_input_sha256": {
+    "daily_context.json": "ff3cda43ac21cf9aeacd4a9c9371cc2dd926128c1bc9a67ab9137c0dbb201d57",
+    "all_returns.csv": "b23d255849157f56cb3208e6f926f067446c22410b99fb90dfc7561ab06bfe41",
+    "all_returns_alternativo.csv": "e4fb17b1abdcba27cc5678e75fd3dfaa82ba3228b532ed56e70b32d2ba85af78"
+  },
+  "financial": [
+    {
+      "cvm_code": "24961",
+      "tickers": [
+        "AMBP3"
+      ],
+      "status": "no_eligible_2026_filing_in_retrieved_catalog",
+      "filing": null
+    },
+    {
+      "cvm_code": "26069",
+      "tickers": [
+        "ARML3"
+      ],
+      "status": "quarter_accounts_selected_pending_interpretation",
+      "filing": {
+        "CNPJ_CIA": "00.242.184/0001-04",
+        "DT_REFER": "2026-06-30",
+        "VERSAO": "2",
+        "DENOM_CIA": "ARMAC LOCAÇÃO, LOGÍSTICA E SERVIÇOS S.A.",
+        "CD_CVM": "026069",
+        "CATEG_DOC": "ITR",
+        "ID_DOC": "160454",
+        "DT_RECEB": "2026-08-12",
+        "LINK_DOC": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160454"
+      },
+      "scope": "con",
+      "quarter_start": "2026-04-01",
+      "quarter_end": "2026-06-30",
+      "accounts": {
+        "revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "545813000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "545813.0000000000",
+          "reported_scale": "MIL"
+        },
+        "operating_result": {
+          "account_code": "3.05",
+          "label": "Resultado Antes do Resultado Financeiro e dos Tributos",
+          "value_brl": "123758000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "123758.0000000000",
+          "reported_scale": "MIL"
+        },
+        "financial_result": {
+          "account_code": "3.06",
+          "label": "Resultado Financeiro",
+          "value_brl": "-138895000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-138895.0000000000",
+          "reported_scale": "MIL"
+        },
+        "net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "7688000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "7688.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "451467000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "451467.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "-6715000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "-6715.0000000000",
+          "reported_scale": "MIL"
+        },
+        "equity": {
+          "account_code": "2.03",
+          "label": "Patrimônio Líquido Consolidado",
+          "value_brl": "1555127000.0000000000",
+          "period_start": null,
+          "period_end": "2026-06-30",
+          "reported_value": "1555127.0000000000",
+          "reported_scale": "MIL"
+        }
+      },
+      "available_before_price_week": true
+    },
+    {
+      "cvm_code": "26620",
+      "tickers": [
+        "AURE3"
+      ],
+      "status": "quarter_accounts_selected_pending_interpretation",
+      "filing": {
+        "CNPJ_CIA": "28.594.234/0001-23",
+        "DT_REFER": "2026-06-30",
+        "VERSAO": "1",
+        "DENOM_CIA": "AUREN ENERGIA S.A.",
+        "CD_CVM": "026620",
+        "CATEG_DOC": "ITR",
+        "ID_DOC": "160171",
+        "DT_RECEB": "2026-08-05",
+        "LINK_DOC": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160171"
+      },
+      "scope": "con",
+      "quarter_start": "2026-04-01",
+      "quarter_end": "2026-06-30",
+      "accounts": {
+        "revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "3055499000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "3055499.0000000000",
+          "reported_scale": "MIL"
+        },
+        "operating_result": {
+          "account_code": "3.05",
+          "label": "Resultado Antes do Resultado Financeiro e dos Tributos",
+          "value_brl": "384918000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "384918.0000000000",
+          "reported_scale": "MIL"
+        },
+        "financial_result": {
+          "account_code": "3.06",
+          "label": "Resultado Financeiro",
+          "value_brl": "-732146000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-732146.0000000000",
+          "reported_scale": "MIL"
+        },
+        "net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "-379061000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-379061.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "2885529000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "2885529.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "-562853000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "-562853.0000000000",
+          "reported_scale": "MIL"
+        },
+        "equity": {
+          "account_code": "2.03",
+          "label": "Patrimônio Líquido Consolidado",
+          "value_brl": "12752850000.0000000000",
+          "period_start": null,
+          "period_end": "2026-06-30",
+          "reported_value": "12752850.0000000000",
+          "reported_scale": "MIL"
+        }
+      },
+      "available_before_price_week": true
+    },
+    {
+      "cvm_code": "701",
+      "tickers": [
+        "BIED3"
+      ],
+      "status": "quarter_accounts_selected_pending_interpretation",
+      "filing": {
+        "CNPJ_CIA": "45.987.245/0001-92",
+        "DT_REFER": "2026-06-30",
+        "VERSAO": "1",
+        "DENOM_CIA": "BIOMA EDUCAÇÃO S.A.",
+        "CD_CVM": "000701",
+        "CATEG_DOC": "ITR",
+        "ID_DOC": "160857",
+        "DT_RECEB": "2026-08-14",
+        "LINK_DOC": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160857"
+      },
+      "scope": "con",
+      "quarter_start": "2026-04-01",
+      "quarter_end": "2026-06-30",
+      "accounts": {
+        "revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "90916000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "90916.0000000000",
+          "reported_scale": "MIL"
+        },
+        "operating_result": {
+          "account_code": "3.05",
+          "label": "Resultado Antes do Resultado Financeiro e dos Tributos",
+          "value_brl": "-194000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-194.0000000000",
+          "reported_scale": "MIL"
+        },
+        "financial_result": {
+          "account_code": "3.06",
+          "label": "Resultado Financeiro",
+          "value_brl": "-5494000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-5494.0000000000",
+          "reported_scale": "MIL"
+        },
+        "net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "-4844000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-4844.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "85836000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "85836.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "-10619000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "-10619.0000000000",
+          "reported_scale": "MIL"
+        },
+        "equity": {
+          "account_code": "2.03",
+          "label": "Patrimônio Líquido Consolidado",
+          "value_brl": "32421000.0000000000",
+          "period_start": null,
+          "period_end": "2026-06-30",
+          "reported_value": "32421.0000000000",
+          "reported_scale": "MIL"
+        }
+      },
+      "available_before_price_week": true
+    },
+    {
+      "cvm_code": "25232",
+      "tickers": [
+        "CASH3"
+      ],
+      "status": "quarter_accounts_selected_pending_interpretation",
+      "filing": {
+        "CNPJ_CIA": "14.110.585/0001-07",
+        "DT_REFER": "2026-06-30",
+        "VERSAO": "1",
+        "DENOM_CIA": "MÉLIUZ S.A.",
+        "CD_CVM": "025232",
+        "CATEG_DOC": "ITR",
+        "ID_DOC": "160198",
+        "DT_RECEB": "2026-08-05",
+        "LINK_DOC": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160198"
+      },
+      "scope": "con",
+      "quarter_start": "2026-04-01",
+      "quarter_end": "2026-06-30",
+      "accounts": {
+        "revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "115663000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "115663.0000000000",
+          "reported_scale": "MIL"
+        },
+        "operating_result": {
+          "account_code": "3.05",
+          "label": "Resultado Antes do Resultado Financeiro e dos Tributos",
+          "value_brl": "-19057000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-19057.0000000000",
+          "reported_scale": "MIL"
+        },
+        "financial_result": {
+          "account_code": "3.06",
+          "label": "Resultado Financeiro",
+          "value_brl": "2333000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "2333.0000000000",
+          "reported_scale": "MIL"
+        },
+        "net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "-22431000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-22431.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "97820000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "97820.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "7567000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "7567.0000000000",
+          "reported_scale": "MIL"
+        },
+        "equity": {
+          "account_code": "2.03",
+          "label": "Patrimônio Líquido Consolidado",
+          "value_brl": "435892000.0000000000",
+          "period_start": null,
+          "period_end": "2026-06-30",
+          "reported_value": "435892.0000000000",
+          "reported_scale": "MIL"
+        }
+      },
+      "available_before_price_week": true
+    },
+    {
+      "cvm_code": "19623",
+      "tickers": [
+        "DASA3"
+      ],
+      "status": "quarter_accounts_selected_pending_interpretation",
+      "filing": {
+        "CNPJ_CIA": "61.486.650/0001-83",
+        "DT_REFER": "2026-06-30",
+        "VERSAO": "1",
+        "DENOM_CIA": "DIAGNOSTICOS DA AMERICA S.A.",
+        "CD_CVM": "019623",
+        "CATEG_DOC": "ITR",
+        "ID_DOC": "160684",
+        "DT_RECEB": "2026-08-13",
+        "LINK_DOC": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160684"
+      },
+      "scope": "con",
+      "quarter_start": "2026-04-01",
+      "quarter_end": "2026-06-30",
+      "accounts": {
+        "revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "2223502000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "2223502.0000000000",
+          "reported_scale": "MIL"
+        },
+        "operating_result": {
+          "account_code": "3.05",
+          "label": "Resultado Antes do Resultado Financeiro e dos Tributos",
+          "value_brl": "229039000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "229039.0000000000",
+          "reported_scale": "MIL"
+        },
+        "financial_result": {
+          "account_code": "3.06",
+          "label": "Resultado Financeiro",
+          "value_brl": "-305813000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-305813.0000000000",
+          "reported_scale": "MIL"
+        },
+        "net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "-31206000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-31206.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "2465933000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "2465933.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "-175646000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "-175646.0000000000",
+          "reported_scale": "MIL"
+        },
+        "equity": {
+          "account_code": "2.03",
+          "label": "Patrimônio Líquido Consolidado",
+          "value_brl": "6865844000.0000000000",
+          "period_start": null,
+          "period_end": "2026-06-30",
+          "reported_value": "6865844.0000000000",
+          "reported_scale": "MIL"
+        }
+      },
+      "available_before_price_week": true
+    },
+    {
+      "cvm_code": "25836",
+      "tickers": [
+        "DOTZ3"
+      ],
+      "status": "quarter_accounts_selected_pending_interpretation",
+      "filing": {
+        "CNPJ_CIA": "18.174.270/0001-84",
+        "DT_REFER": "2026-06-30",
+        "VERSAO": "1",
+        "DENOM_CIA": "DOTZ S.A.",
+        "CD_CVM": "025836",
+        "CATEG_DOC": "ITR",
+        "ID_DOC": "160708",
+        "DT_RECEB": "2026-08-13",
+        "LINK_DOC": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160708"
+      },
+      "scope": "con",
+      "quarter_start": "2026-04-01",
+      "quarter_end": "2026-06-30",
+      "accounts": {
+        "revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "146132000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "146132.0000000000",
+          "reported_scale": "MIL"
+        },
+        "operating_result": {
+          "account_code": "3.05",
+          "label": "Resultado Antes do Resultado Financeiro e dos Tributos",
+          "value_brl": "41955000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "41955.0000000000",
+          "reported_scale": "MIL"
+        },
+        "financial_result": {
+          "account_code": "3.06",
+          "label": "Resultado Financeiro",
+          "value_brl": "-9820000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-9820.0000000000",
+          "reported_scale": "MIL"
+        },
+        "net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "23297000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "23297.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "53704000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "53704.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "1964000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "1964.0000000000",
+          "reported_scale": "MIL"
+        },
+        "equity": {
+          "account_code": "2.03",
+          "label": "Patrimônio Líquido Consolidado",
+          "value_brl": "-217317000.0000000000",
+          "period_start": null,
+          "period_end": "2026-06-30",
+          "reported_value": "-217317.0000000000",
+          "reported_scale": "MIL"
+        }
+      },
+      "available_before_price_week": true
+    },
+    {
+      "cvm_code": "26077",
+      "tickers": [
+        "ECOM3"
+      ],
+      "status": "quarter_accounts_selected_pending_interpretation",
+      "filing": {
+        "CNPJ_CIA": "26.345.998/0001-50",
+        "DT_REFER": "2026-06-30",
+        "VERSAO": "1",
+        "DENOM_CIA": "ECONOMATICA S.A.",
+        "CD_CVM": "026077",
+        "CATEG_DOC": "ITR",
+        "ID_DOC": "160719",
+        "DT_RECEB": "2026-08-13",
+        "LINK_DOC": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160719"
+      },
+      "scope": "con",
+      "quarter_start": "2026-04-01",
+      "quarter_end": "2026-06-30",
+      "accounts": {
+        "revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "8070000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "8070.0000000000",
+          "reported_scale": "MIL"
+        },
+        "operating_result": {
+          "account_code": "3.05",
+          "label": "Resultado Antes do Resultado Financeiro e dos Tributos",
+          "value_brl": "-4092000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-4092.0000000000",
+          "reported_scale": "MIL"
+        },
+        "financial_result": {
+          "account_code": "3.06",
+          "label": "Resultado Financeiro",
+          "value_brl": "-41000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-41.0000000000",
+          "reported_scale": "MIL"
+        },
+        "net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "-4133000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-4133.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "12339000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "12339.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "-9033000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "-9033.0000000000",
+          "reported_scale": "MIL"
+        },
+        "equity": {
+          "account_code": "2.03",
+          "label": "Patrimônio Líquido Consolidado",
+          "value_brl": "98923000.0000000000",
+          "period_start": null,
+          "period_end": "2026-06-30",
+          "reported_value": "98923.0000000000",
+          "reported_scale": "MIL"
+        }
+      },
+      "available_before_price_week": true
+    },
+    {
+      "cvm_code": "8427",
+      "tickers": [
+        "ESTR4"
+      ],
+      "status": "no_eligible_2026_filing_in_retrieved_catalog",
+      "filing": null
+    },
+    {
+      "cvm_code": "15423",
+      "tickers": [
+        "FASA3"
+      ],
+      "status": "no_eligible_2026_filing_in_retrieved_catalog",
+      "filing": null
+    },
+    {
+      "cvm_code": "18376",
+      "tickers": [
+        "ISAE3"
+      ],
+      "status": "quarter_accounts_selected_pending_interpretation",
+      "filing": {
+        "CNPJ_CIA": "02.998.611/0001-04",
+        "DT_REFER": "2026-06-30",
+        "VERSAO": "1",
+        "DENOM_CIA": "ISA ENERGIA BRASIL",
+        "CD_CVM": "018376",
+        "CATEG_DOC": "ITR",
+        "ID_DOC": "160110",
+        "DT_RECEB": "2026-08-03",
+        "LINK_DOC": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160110"
+      },
+      "scope": "con",
+      "quarter_start": "2026-04-01",
+      "quarter_end": "2026-06-30",
+      "accounts": {
+        "revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "2597525000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "2597525.0000000000",
+          "reported_scale": "MIL"
+        },
+        "operating_result": {
+          "account_code": "3.05",
+          "label": "Resultado Antes do Resultado Financeiro e dos Tributos",
+          "value_brl": "1479978000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "1479978.0000000000",
+          "reported_scale": "MIL"
+        },
+        "financial_result": {
+          "account_code": "3.06",
+          "label": "Resultado Financeiro",
+          "value_brl": "-639214000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-639214.0000000000",
+          "reported_scale": "MIL"
+        },
+        "net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "703370000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "703370.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "1432874000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "1432874.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "232275000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "232275.0000000000",
+          "reported_scale": "MIL"
+        },
+        "equity": {
+          "account_code": "2.03",
+          "label": "Patrimônio Líquido Consolidado",
+          "value_brl": "22480937000.0000000000",
+          "period_start": null,
+          "period_end": "2026-06-30",
+          "reported_value": "22480937.0000000000",
+          "reported_scale": "MIL"
+        }
+      },
+      "available_before_price_week": true
+    },
+    {
+      "cvm_code": "8192",
+      "tickers": [
+        "LUXM4"
+      ],
+      "status": "quarter_accounts_selected_pending_interpretation",
+      "filing": {
+        "CNPJ_CIA": "92.660.570/0001-26",
+        "DT_REFER": "2026-06-30",
+        "VERSAO": "1",
+        "DENOM_CIA": "TREVISA INVESTIMENTOS S.A.",
+        "CD_CVM": "008192",
+        "CATEG_DOC": "ITR",
+        "ID_DOC": "160773",
+        "DT_RECEB": "2026-08-14",
+        "LINK_DOC": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160773"
+      },
+      "scope": "con",
+      "quarter_start": "2026-04-01",
+      "quarter_end": "2026-06-30",
+      "accounts": {
+        "revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "39526000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "39526.0000000000",
+          "reported_scale": "MIL"
+        },
+        "operating_result": {
+          "account_code": "3.05",
+          "label": "Resultado Antes do Resultado Financeiro e dos Tributos",
+          "value_brl": "4460000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "4460.0000000000",
+          "reported_scale": "MIL"
+        },
+        "financial_result": {
+          "account_code": "3.06",
+          "label": "Resultado Financeiro",
+          "value_brl": "574000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "574.0000000000",
+          "reported_scale": "MIL"
+        },
+        "net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "3183000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "3183.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "38174000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "38174.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "3310000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "3310.0000000000",
+          "reported_scale": "MIL"
+        },
+        "equity": {
+          "account_code": "2.03",
+          "label": "Patrimônio Líquido Consolidado",
+          "value_brl": "175397000.0000000000",
+          "period_start": null,
+          "period_end": "2026-06-30",
+          "reported_value": "175397.0000000000",
+          "reported_scale": "MIL"
+        }
+      },
+      "available_before_price_week": true
+    },
+    {
+      "cvm_code": "23574",
+      "tickers": [
+        "MEAL3"
+      ],
+      "status": "quarter_accounts_selected_pending_interpretation",
+      "filing": {
+        "CNPJ_CIA": "17.314.329/0001-20",
+        "DT_REFER": "2026-06-30",
+        "VERSAO": "1",
+        "DENOM_CIA": "INTERNATIONAL MEAL COMPANY ALIMENTACAO S.A.",
+        "CD_CVM": "023574",
+        "CATEG_DOC": "ITR",
+        "ID_DOC": "160721",
+        "DT_RECEB": "2026-08-13",
+        "LINK_DOC": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160721"
+      },
+      "scope": "con",
+      "quarter_start": "2026-04-01",
+      "quarter_end": "2026-06-30",
+      "accounts": {
+        "revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "419824000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "419824.0000000000",
+          "reported_scale": "MIL"
+        },
+        "operating_result": {
+          "account_code": "3.05",
+          "label": "Resultado Antes do Resultado Financeiro e dos Tributos",
+          "value_brl": "13447000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "13447.0000000000",
+          "reported_scale": "MIL"
+        },
+        "financial_result": {
+          "account_code": "3.06",
+          "label": "Resultado Financeiro",
+          "value_brl": "-23722000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-23722.0000000000",
+          "reported_scale": "MIL"
+        },
+        "net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "-12730000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-12730.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "462573000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "462573.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "-32447000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "-32447.0000000000",
+          "reported_scale": "MIL"
+        },
+        "equity": {
+          "account_code": "2.03",
+          "label": "Patrimônio Líquido Consolidado",
+          "value_brl": "752159000.0000000000",
+          "period_start": null,
+          "period_end": "2026-06-30",
+          "reported_value": "752159.0000000000",
+          "reported_scale": "MIL"
+        }
+      },
+      "available_before_price_week": true
+    },
+    {
+      "cvm_code": "8397",
+      "tickers": [
+        "MGEL4"
+      ],
+      "status": "quarter_accounts_selected_pending_interpretation",
+      "filing": {
+        "CNPJ_CIA": "61.065.298/0001-02",
+        "DT_REFER": "2026-06-30",
+        "VERSAO": "1",
+        "DENOM_CIA": "MANGELS INDUSTRIAL S.A.",
+        "CD_CVM": "008397",
+        "CATEG_DOC": "ITR",
+        "ID_DOC": "160653",
+        "DT_RECEB": "2026-08-13",
+        "LINK_DOC": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160653"
+      },
+      "scope": "con",
+      "quarter_start": "2026-04-01",
+      "quarter_end": "2026-06-30",
+      "accounts": {
+        "revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "314078000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "314078.0000000000",
+          "reported_scale": "MIL"
+        },
+        "operating_result": {
+          "account_code": "3.05",
+          "label": "Resultado Antes do Resultado Financeiro e dos Tributos",
+          "value_brl": "28733000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "28733.0000000000",
+          "reported_scale": "MIL"
+        },
+        "financial_result": {
+          "account_code": "3.06",
+          "label": "Resultado Financeiro",
+          "value_brl": "-13275000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-13275.0000000000",
+          "reported_scale": "MIL"
+        },
+        "net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "10102000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "10102.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "268368000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "268368.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "12668000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "12668.0000000000",
+          "reported_scale": "MIL"
+        },
+        "equity": {
+          "account_code": "2.03",
+          "label": "Patrimônio Líquido Consolidado",
+          "value_brl": "60967000.0000000000",
+          "period_start": null,
+          "period_end": "2026-06-30",
+          "reported_value": "60967.0000000000",
+          "reported_scale": "MIL"
+        }
+      },
+      "available_before_price_week": true
+    },
+    {
+      "cvm_code": "26123",
+      "tickers": [
+        "ONCO3"
+      ],
+      "status": "quarter_accounts_selected_pending_interpretation",
+      "filing": {
+        "CNPJ_CIA": "12.104.241/0004-02",
+        "DT_REFER": "2026-06-30",
+        "VERSAO": "1",
+        "DENOM_CIA": "ONCOCLÍNICAS DO BRASIL SERVIÇOS MÉDICOS S.A.",
+        "CD_CVM": "026123",
+        "CATEG_DOC": "ITR",
+        "ID_DOC": "160814",
+        "DT_RECEB": "2026-08-14",
+        "LINK_DOC": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160814"
+      },
+      "scope": "con",
+      "quarter_start": "2026-04-01",
+      "quarter_end": "2026-06-30",
+      "accounts": {
+        "revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "1047748000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "1047748.0000000000",
+          "reported_scale": "MIL"
+        },
+        "operating_result": {
+          "account_code": "3.05",
+          "label": "Resultado Antes do Resultado Financeiro e dos Tributos",
+          "value_brl": "-314371000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-314371.0000000000",
+          "reported_scale": "MIL"
+        },
+        "financial_result": {
+          "account_code": "3.06",
+          "label": "Resultado Financeiro",
+          "value_brl": "-168779000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-168779.0000000000",
+          "reported_scale": "MIL"
+        },
+        "net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "-475735000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-475735.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "1464389000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "1464389.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "-142292000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "-142292.0000000000",
+          "reported_scale": "MIL"
+        },
+        "equity": {
+          "account_code": "2.03",
+          "label": "Patrimônio Líquido Consolidado",
+          "value_brl": "98242000.0000000000",
+          "period_start": null,
+          "period_end": "2026-06-30",
+          "reported_value": "98242.0000000000",
+          "reported_scale": "MIL"
+        }
+      },
+      "available_before_price_week": true
+    },
+    {
+      "cvm_code": "13471",
+      "tickers": [
+        "PLAS3"
+      ],
+      "status": "quarter_accounts_selected_pending_interpretation",
+      "filing": {
+        "CNPJ_CIA": "51.928.174/0001-50",
+        "DT_REFER": "2026-06-30",
+        "VERSAO": "1",
+        "DENOM_CIA": "PLASCAR PARTICIPACOES INDUSTRIAIS S.A.",
+        "CD_CVM": "013471",
+        "CATEG_DOC": "ITR",
+        "ID_DOC": "160604",
+        "DT_RECEB": "2026-08-13",
+        "LINK_DOC": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160604"
+      },
+      "scope": "con",
+      "quarter_start": "2026-04-01",
+      "quarter_end": "2026-06-30",
+      "accounts": {
+        "revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "308953000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "308953.0000000000",
+          "reported_scale": "MIL"
+        },
+        "operating_result": {
+          "account_code": "3.05",
+          "label": "Resultado Antes do Resultado Financeiro e dos Tributos",
+          "value_brl": "5912000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "5912.0000000000",
+          "reported_scale": "MIL"
+        },
+        "financial_result": {
+          "account_code": "3.06",
+          "label": "Resultado Financeiro",
+          "value_brl": "-53548000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-53548.0000000000",
+          "reported_scale": "MIL"
+        },
+        "net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "-47636000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-47636.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "287505000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "287505.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "-49830000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "-49830.0000000000",
+          "reported_scale": "MIL"
+        },
+        "equity": {
+          "account_code": "2.03",
+          "label": "Patrimônio Líquido Consolidado",
+          "value_brl": "-825275000.0000000000",
+          "period_start": null,
+          "period_end": "2026-06-30",
+          "reported_value": "-825275.0000000000",
+          "reported_scale": "MIL"
+        }
+      },
+      "available_before_price_week": true
+    },
+    {
+      "cvm_code": "22497",
+      "tickers": [
+        "QUAL3"
+      ],
+      "status": "quarter_accounts_selected_pending_interpretation",
+      "filing": {
+        "CNPJ_CIA": "11.992.680/0001-93",
+        "DT_REFER": "2026-06-30",
+        "VERSAO": "1",
+        "DENOM_CIA": "QUALICORP CONSULTORIA E CORRETORA DE SEGUROS S.A.",
+        "CD_CVM": "022497",
+        "CATEG_DOC": "ITR",
+        "ID_DOC": "160498",
+        "DT_RECEB": "2026-08-12",
+        "LINK_DOC": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160498"
+      },
+      "scope": "con",
+      "quarter_start": "2026-04-01",
+      "quarter_end": "2026-06-30",
+      "accounts": {
+        "revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "317742000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "317742.0000000000",
+          "reported_scale": "MIL"
+        },
+        "operating_result": {
+          "account_code": "3.05",
+          "label": "Resultado Antes do Resultado Financeiro e dos Tributos",
+          "value_brl": "65523000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "65523.0000000000",
+          "reported_scale": "MIL"
+        },
+        "financial_result": {
+          "account_code": "3.06",
+          "label": "Resultado Financeiro",
+          "value_brl": "-16746000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-16746.0000000000",
+          "reported_scale": "MIL"
+        },
+        "net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "31675000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "31675.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "345976000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "345976.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "19401000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "19401.0000000000",
+          "reported_scale": "MIL"
+        },
+        "equity": {
+          "account_code": "2.03",
+          "label": "Patrimônio Líquido Consolidado",
+          "value_brl": "1353639000.0000000000",
+          "period_start": null,
+          "period_end": "2026-06-30",
+          "reported_value": "1353639.0000000000",
+          "reported_scale": "MIL"
+        }
+      },
+      "available_before_price_week": true
+    },
+    {
+      "cvm_code": "12572",
+      "tickers": [
+        "RCSL3"
+      ],
+      "status": "quarter_accounts_selected_pending_interpretation",
+      "filing": {
+        "CNPJ_CIA": "91.333.666/0001-17",
+        "DT_REFER": "2026-06-30",
+        "VERSAO": "1",
+        "DENOM_CIA": "RECRUSUL S.A.",
+        "CD_CVM": "012572",
+        "CATEG_DOC": "ITR",
+        "ID_DOC": "160565",
+        "DT_RECEB": "2026-08-12",
+        "LINK_DOC": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160565"
+      },
+      "scope": "con",
+      "quarter_start": "2026-04-01",
+      "quarter_end": "2026-06-30",
+      "accounts": {
+        "revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "3000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "3.0000000000",
+          "reported_scale": "MIL"
+        },
+        "operating_result": {
+          "account_code": "3.05",
+          "label": "Resultado Antes do Resultado Financeiro e dos Tributos",
+          "value_brl": "-822000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-822.0000000000",
+          "reported_scale": "MIL"
+        },
+        "financial_result": {
+          "account_code": "3.06",
+          "label": "Resultado Financeiro",
+          "value_brl": "-2080000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-2080.0000000000",
+          "reported_scale": "MIL"
+        },
+        "net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "-2902000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-2902.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "375000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "375.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "-4593000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "-4593.0000000000",
+          "reported_scale": "MIL"
+        },
+        "equity": {
+          "account_code": "2.03",
+          "label": "Patrimônio Líquido Consolidado",
+          "value_brl": "-14922000.0000000000",
+          "period_start": null,
+          "period_end": "2026-06-30",
+          "reported_value": "-14922.0000000000",
+          "reported_scale": "MIL"
+        }
+      },
+      "available_before_price_week": true
+    },
+    {
+      "cvm_code": "6173",
+      "tickers": [
+        "TASA3",
+        "TASA4"
+      ],
+      "status": "quarter_accounts_selected_pending_interpretation",
+      "filing": {
+        "CNPJ_CIA": "92.781.335/0001-02",
+        "DT_REFER": "2026-06-30",
+        "VERSAO": "1",
+        "DENOM_CIA": "TAURUS ARMAS S.A.",
+        "CD_CVM": "006173",
+        "CATEG_DOC": "ITR",
+        "ID_DOC": "160446",
+        "DT_RECEB": "2026-08-11",
+        "LINK_DOC": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160446"
+      },
+      "scope": "con",
+      "quarter_start": "2026-04-01",
+      "quarter_end": "2026-06-30",
+      "accounts": {
+        "revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "360907000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "360907.0000000000",
+          "reported_scale": "MIL"
+        },
+        "operating_result": {
+          "account_code": "3.05",
+          "label": "Resultado Antes do Resultado Financeiro e dos Tributos",
+          "value_brl": "108415000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "108415.0000000000",
+          "reported_scale": "MIL"
+        },
+        "financial_result": {
+          "account_code": "3.06",
+          "label": "Resultado Financeiro",
+          "value_brl": "-8639000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-8639.0000000000",
+          "reported_scale": "MIL"
+        },
+        "net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "97413000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "97413.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "402445000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "402445.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "33163000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "33163.0000000000",
+          "reported_scale": "MIL"
+        },
+        "equity": {
+          "account_code": "2.03",
+          "label": "Patrimônio Líquido Consolidado",
+          "value_brl": "1284525000.0000000000",
+          "period_start": null,
+          "period_end": "2026-06-30",
+          "reported_value": "1284525.0000000000",
+          "reported_scale": "MIL"
+        }
+      },
+      "available_before_price_week": true
+    },
+    {
+      "cvm_code": "7544",
+      "tickers": [
+        "TXRX4"
+      ],
+      "status": "quarter_accounts_selected_pending_interpretation",
+      "filing": {
+        "CNPJ_CIA": "82.982.075/0001-80",
+        "DT_REFER": "2026-06-30",
+        "VERSAO": "1",
+        "DENOM_CIA": "TEXTIL RENAUXVIEW S.A.",
+        "CD_CVM": "007544",
+        "CATEG_DOC": "ITR",
+        "ID_DOC": "160768",
+        "DT_RECEB": "2026-08-14",
+        "LINK_DOC": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160768"
+      },
+      "scope": "con",
+      "quarter_start": "2026-04-01",
+      "quarter_end": "2026-06-30",
+      "accounts": {
+        "revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "28613000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "28613.0000000000",
+          "reported_scale": "MIL"
+        },
+        "operating_result": {
+          "account_code": "3.05",
+          "label": "Resultado Antes do Resultado Financeiro e dos Tributos",
+          "value_brl": "-4329000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-4329.0000000000",
+          "reported_scale": "MIL"
+        },
+        "financial_result": {
+          "account_code": "3.06",
+          "label": "Resultado Financeiro",
+          "value_brl": "-18509000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-18509.0000000000",
+          "reported_scale": "MIL"
+        },
+        "net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "-22841000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-22841.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "29654000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "29654.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "-13558000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "-13558.0000000000",
+          "reported_scale": "MIL"
+        },
+        "equity": {
+          "account_code": "2.03",
+          "label": "Patrimônio Líquido Consolidado",
+          "value_brl": "-440135000.0000000000",
+          "period_start": null,
+          "period_end": "2026-06-30",
+          "reported_value": "-440135.0000000000",
+          "reported_scale": "MIL"
+        }
+      },
+      "available_before_price_week": true
+    },
+    {
+      "cvm_code": "25895",
+      "tickers": [
+        "WDCN3"
+      ],
+      "status": "quarter_accounts_selected_pending_interpretation",
+      "filing": {
+        "CNPJ_CIA": "05.917.486/0001-40",
+        "DT_REFER": "2026-06-30",
+        "VERSAO": "1",
+        "DENOM_CIA": "LIVETECH DA BAHIA INDÚSTRIA E COMÉRCIO S.A.",
+        "CD_CVM": "025895",
+        "CATEG_DOC": "ITR",
+        "ID_DOC": "160522",
+        "DT_RECEB": "2026-08-12",
+        "LINK_DOC": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160522"
+      },
+      "scope": "con",
+      "quarter_start": "2026-04-01",
+      "quarter_end": "2026-06-30",
+      "accounts": {
+        "revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "198324000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "198324.0000000000",
+          "reported_scale": "MIL"
+        },
+        "operating_result": {
+          "account_code": "3.05",
+          "label": "Resultado Antes do Resultado Financeiro e dos Tributos",
+          "value_brl": "19815000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "19815.0000000000",
+          "reported_scale": "MIL"
+        },
+        "financial_result": {
+          "account_code": "3.06",
+          "label": "Resultado Financeiro",
+          "value_brl": "-12560000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-12560.0000000000",
+          "reported_scale": "MIL"
+        },
+        "net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "2835000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "2835.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "222235000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "222235.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "-16744000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "-16744.0000000000",
+          "reported_scale": "MIL"
+        },
+        "equity": {
+          "account_code": "2.03",
+          "label": "Patrimônio Líquido Consolidado",
+          "value_brl": "476501000.0000000000",
+          "period_start": null,
+          "period_end": "2026-06-30",
+          "reported_value": "476501.0000000000",
+          "reported_scale": "MIL"
+        }
+      },
+      "available_before_price_week": true
+    },
+    {
+      "cvm_code": "25518",
+      "tickers": [
+        "WEST3"
+      ],
+      "status": "quarter_accounts_selected_pending_interpretation",
+      "filing": {
+        "CNPJ_CIA": "14.776.142/0001-50",
+        "DT_REFER": "2026-06-30",
+        "VERSAO": "1",
+        "DENOM_CIA": "WESTWING COMÉRCIO VAREJISTA S.A.",
+        "CD_CVM": "025518",
+        "CATEG_DOC": "ITR",
+        "ID_DOC": "160503",
+        "DT_RECEB": "2026-08-12",
+        "LINK_DOC": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160503"
+      },
+      "scope": "ind",
+      "quarter_start": "2026-04-01",
+      "quarter_end": "2026-06-30",
+      "accounts": {
+        "revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "33994000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "33994.0000000000",
+          "reported_scale": "MIL"
+        },
+        "operating_result": {
+          "account_code": "3.05",
+          "label": "Resultado Antes do Resultado Financeiro e dos Tributos",
+          "value_brl": "-14674000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-14674.0000000000",
+          "reported_scale": "MIL"
+        },
+        "financial_result": {
+          "account_code": "3.06",
+          "label": "Resultado Financeiro",
+          "value_brl": "3625000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "3625.0000000000",
+          "reported_scale": "MIL"
+        },
+        "net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo do Período",
+          "value_brl": "-10761000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-10761.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "34657000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "34657.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo do Período",
+          "value_brl": "-2738000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "-2738.0000000000",
+          "reported_scale": "MIL"
+        },
+        "equity": {
+          "account_code": "2.03",
+          "label": "Patrimônio Líquido",
+          "value_brl": "149039000.0000000000",
+          "period_start": null,
+          "period_end": "2026-06-30",
+          "reported_value": "149039.0000000000",
+          "reported_scale": "MIL"
+        }
+      },
+      "available_before_price_week": true
+    },
+    {
+      "cvm_code": "21016",
+      "tickers": [
+        "YDUQ3"
+      ],
+      "status": "quarter_accounts_selected_pending_interpretation",
+      "filing": {
+        "CNPJ_CIA": "08.807.432/0001-10",
+        "DT_REFER": "2026-06-30",
+        "VERSAO": "1",
+        "DENOM_CIA": "YDUQS PARTICIPACOES S.A.",
+        "CD_CVM": "021016",
+        "CATEG_DOC": "ITR",
+        "ID_DOC": "160633",
+        "DT_RECEB": "2026-08-13",
+        "LINK_DOC": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160633"
+      },
+      "scope": "con",
+      "quarter_start": "2026-04-01",
+      "quarter_end": "2026-06-30",
+      "accounts": {
+        "revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "1392055000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "1392055.0000000000",
+          "reported_scale": "MIL"
+        },
+        "operating_result": {
+          "account_code": "3.05",
+          "label": "Resultado Antes do Resultado Financeiro e dos Tributos",
+          "value_brl": "197252000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "197252.0000000000",
+          "reported_scale": "MIL"
+        },
+        "financial_result": {
+          "account_code": "3.06",
+          "label": "Resultado Financeiro",
+          "value_brl": "-206424000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-206424.0000000000",
+          "reported_scale": "MIL"
+        },
+        "net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "-1451000.0000000000",
+          "period_start": "2026-04-01",
+          "period_end": "2026-06-30",
+          "reported_value": "-1451.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_revenue": {
+          "account_code": "3.01",
+          "label": "Receita de Venda de Bens e/ou Serviços",
+          "value_brl": "1378252000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "1378252.0000000000",
+          "reported_scale": "MIL"
+        },
+        "prior_year_net_result": {
+          "account_code": "3.11",
+          "label": "Lucro/Prejuízo Consolidado do Período",
+          "value_brl": "3109000.0000000000",
+          "period_start": "2025-04-01",
+          "period_end": "2025-06-30",
+          "reported_value": "3109.0000000000",
+          "reported_scale": "MIL"
+        },
+        "equity": {
+          "account_code": "2.03",
+          "label": "Patrimônio Líquido Consolidado",
+          "value_brl": "2939421000.0000000000",
+          "period_start": null,
+          "period_end": "2026-06-30",
+          "reported_value": "2939421.0000000000",
+          "reported_scale": "MIL"
+        }
+      },
+      "available_before_price_week": true
+    }
+  ],
+  "prices": [
+    {
+      "ticker": "AMBP3",
+      "cvm_code": "24961",
+      "main": {
+        "ticker": "AMBP3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "start_close": "0.14",
+        "end_close": "0.18",
+        "return_fraction": "0.285714285714285714285714286",
+        "return_pct": "28.57142857142857142857142860"
+      },
+      "alternative": {
+        "ticker": "AMBP3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "start_close": "0.14",
+        "end_close": "0.18",
+        "return_fraction": "0.285714285714285714285714286",
+        "return_pct": "28.57142857142857142857142860"
+      },
+      "price_change_brl": "0.04",
+      "window_difference_pp": "0E-26",
+      "observations": {
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "0"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "7.142857142857142857142857100"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "0"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "6.666666666666666666666666700"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "12.500"
+          }
+        ],
+        "strongest_up_day": {
+          "start_date": "2026-09-17",
+          "end_date": "2026-09-18",
+          "return_pct": "12.500"
+        },
+        "weakest_day": {
+          "start_date": "2026-09-11",
+          "end_date": "2026-09-14",
+          "return_pct": "0"
+        },
+        "positive_days": 3,
+        "negative_days": 0,
+        "flat_days": 2,
+        "missing_comparisons": 0
+      }
+    },
+    {
+      "ticker": "ARML3",
+      "cvm_code": "26069",
+      "main": {
+        "ticker": "ARML3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "start_close": "3.79",
+        "end_close": "4.07",
+        "return_fraction": "0.073878627968337730870712401",
+        "return_pct": "7.387862796833773087071240100"
+      },
+      "alternative": {
+        "ticker": "ARML3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "start_close": "3.7",
+        "end_close": "4.07",
+        "return_fraction": "0.1",
+        "return_pct": "10.0"
+      },
+      "price_change_brl": "0.28",
+      "window_difference_pp": "2.612137203166226912928759900",
+      "observations": {
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "-2.374670184696569920844327180"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "1.621621621621621621621621600"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "2.393617021276595744680851100"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "3.116883116883116883116883100"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "2.518891687657430730478589400"
+          }
+        ],
+        "strongest_up_day": {
+          "start_date": "2026-09-16",
+          "end_date": "2026-09-17",
+          "return_pct": "3.116883116883116883116883100"
+        },
+        "weakest_day": {
+          "start_date": "2026-09-11",
+          "end_date": "2026-09-14",
+          "return_pct": "-2.374670184696569920844327180"
+        },
+        "positive_days": 4,
+        "negative_days": 1,
+        "flat_days": 0,
+        "missing_comparisons": 0
+      }
+    },
+    {
+      "ticker": "AURE3",
+      "cvm_code": "26620",
+      "main": {
+        "ticker": "AURE3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "start_close": "11.84",
+        "end_close": "12.35",
+        "return_fraction": "0.043074324324324324324324324",
+        "return_pct": "4.307432432432432432432432400"
+      },
+      "alternative": {
+        "ticker": "AURE3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "start_close": "11.53",
+        "end_close": "12.35",
+        "return_fraction": "0.071118820468343451864700781",
+        "return_pct": "7.111882046834345186470078100"
+      },
+      "price_change_brl": "0.51",
+      "window_difference_pp": "2.804449614401912754037645700",
+      "observations": {
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "-2.618243243243243243243243240"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "0.433651344319167389418907200"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "0.777202072538860103626943000"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "2.313624678663239074550128500"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "3.433835845896147403685092100"
+          }
+        ],
+        "strongest_up_day": {
+          "start_date": "2026-09-17",
+          "end_date": "2026-09-18",
+          "return_pct": "3.433835845896147403685092100"
+        },
+        "weakest_day": {
+          "start_date": "2026-09-11",
+          "end_date": "2026-09-14",
+          "return_pct": "-2.618243243243243243243243240"
+        },
+        "positive_days": 4,
+        "negative_days": 1,
+        "flat_days": 0,
+        "missing_comparisons": 0
+      }
+    },
+    {
+      "ticker": "BIED3",
+      "cvm_code": "701",
+      "main": {
+        "ticker": "BIED3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "start_close": "5.55",
+        "end_close": "6.37",
+        "return_fraction": "0.147747747747747747747747748",
+        "return_pct": "14.77477477477477477477477480"
+      },
+      "alternative": {
+        "ticker": "BIED3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "start_close": "5.7",
+        "end_close": "6.37",
+        "return_fraction": "0.117543859649122807017543860",
+        "return_pct": "11.75438596491228070175438600"
+      },
+      "price_change_brl": "0.82",
+      "window_difference_pp": "-3.02038880986249407302038880",
+      "observations": {
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "2.702702702702702702702702700"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "4.912280701754385964912280700"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "2.006688963210702341137123700"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "1.639344262295081967213114800"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "2.741935483870967741935483900"
+          }
+        ],
+        "strongest_up_day": {
+          "start_date": "2026-09-14",
+          "end_date": "2026-09-15",
+          "return_pct": "4.912280701754385964912280700"
+        },
+        "weakest_day": {
+          "start_date": "2026-09-16",
+          "end_date": "2026-09-17",
+          "return_pct": "1.639344262295081967213114800"
+        },
+        "positive_days": 5,
+        "negative_days": 0,
+        "flat_days": 0,
+        "missing_comparisons": 0
+      }
+    },
+    {
+      "ticker": "CASH3",
+      "cvm_code": "25232",
+      "main": {
+        "ticker": "CASH3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "start_close": "5.25",
+        "end_close": "5.73",
+        "return_fraction": "0.091428571428571428571428571",
+        "return_pct": "9.142857142857142857142857100"
+      },
+      "alternative": {
+        "ticker": "CASH3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "start_close": "5.31",
+        "end_close": "5.73",
+        "return_fraction": "0.079096045197740112994350282",
+        "return_pct": "7.909604519774011299435028200"
+      },
+      "price_change_brl": "0.48",
+      "window_difference_pp": "-1.233252623083131557707828900",
+      "observations": {
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "1.142857142857142857142857100"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "-0.3766478342749529190207156300"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "1.890359168241965973534971600"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "2.226345083487940630797773700"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "3.992740471869328493647912900"
+          }
+        ],
+        "strongest_up_day": {
+          "start_date": "2026-09-17",
+          "end_date": "2026-09-18",
+          "return_pct": "3.992740471869328493647912900"
+        },
+        "weakest_day": {
+          "start_date": "2026-09-14",
+          "end_date": "2026-09-15",
+          "return_pct": "-0.3766478342749529190207156300"
+        },
+        "positive_days": 4,
+        "negative_days": 1,
+        "flat_days": 0,
+        "missing_comparisons": 0
+      }
+    },
+    {
+      "ticker": "DASA3",
+      "cvm_code": "19623",
+      "main": {
+        "ticker": "DASA3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "start_close": "2.65",
+        "end_close": "2.84",
+        "return_fraction": "0.071698113207547169811320755",
+        "return_pct": "7.169811320754716981132075500"
+      },
+      "alternative": {
+        "ticker": "DASA3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "start_close": "2.83",
+        "end_close": "2.84",
+        "return_fraction": "0.003533568904593639575971731",
+        "return_pct": "0.353356890459363957597173100"
+      },
+      "price_change_brl": "0.19",
+      "window_difference_pp": "-6.816454430295353023534902400",
+      "observations": {
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "6.792452830188679245283018900"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "-2.473498233215547703180212010"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "2.536231884057971014492753600"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "1.413427561837455830388692600"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "-1.045296167247386759581881530"
+          }
+        ],
+        "strongest_up_day": {
+          "start_date": "2026-09-11",
+          "end_date": "2026-09-14",
+          "return_pct": "6.792452830188679245283018900"
+        },
+        "weakest_day": {
+          "start_date": "2026-09-14",
+          "end_date": "2026-09-15",
+          "return_pct": "-2.473498233215547703180212010"
+        },
+        "positive_days": 3,
+        "negative_days": 2,
+        "flat_days": 0,
+        "missing_comparisons": 0
+      }
+    },
+    {
+      "ticker": "DOTZ3",
+      "cvm_code": "25836",
+      "main": {
+        "ticker": "DOTZ3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "start_close": "10.15",
+        "end_close": "11",
+        "return_fraction": "0.083743842364532019704433498",
+        "return_pct": "8.374384236453201970443349800"
+      },
+      "alternative": {
+        "ticker": "DOTZ3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "start_close": "10.58",
+        "end_close": "11",
+        "return_fraction": "0.039697542533081285444234405",
+        "return_pct": "3.969754253308128544423440500"
+      },
+      "price_change_brl": "0.85",
+      "window_difference_pp": "-4.404629983145073426019909300",
+      "observations": {
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "4.236453201970443349753694600"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "2.457466918714555765595463100"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "1.383763837638376383763837600"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "-1.273885350318471337579617830"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "1.382488479262672811059907800"
+          }
+        ],
+        "strongest_up_day": {
+          "start_date": "2026-09-11",
+          "end_date": "2026-09-14",
+          "return_pct": "4.236453201970443349753694600"
+        },
+        "weakest_day": {
+          "start_date": "2026-09-16",
+          "end_date": "2026-09-17",
+          "return_pct": "-1.273885350318471337579617830"
+        },
+        "positive_days": 4,
+        "negative_days": 1,
+        "flat_days": 0,
+        "missing_comparisons": 0
+      }
+    },
+    {
+      "ticker": "ECOM3",
+      "cvm_code": "26077",
+      "main": {
+        "ticker": "ECOM3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "start_close": "1.06",
+        "end_close": "1.56",
+        "return_fraction": "0.471698113207547169811320755",
+        "return_pct": "47.16981132075471698113207550"
+      },
+      "alternative": {
+        "ticker": "ECOM3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "start_close": "1.24",
+        "end_close": "1.56",
+        "return_fraction": "0.258064516129032258064516129",
+        "return_pct": "25.80645161290322580645161290"
+      },
+      "price_change_brl": "0.50",
+      "window_difference_pp": "-21.36335970785149117468046260",
+      "observations": {
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "16.98113207547169811320754720"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "15.32258064516129032258064520"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "-3.496503496503496503496503500"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "14.49275362318840579710144930"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "-1.265822784810126582278481010"
+          }
+        ],
+        "strongest_up_day": {
+          "start_date": "2026-09-11",
+          "end_date": "2026-09-14",
+          "return_pct": "16.98113207547169811320754720"
+        },
+        "weakest_day": {
+          "start_date": "2026-09-15",
+          "end_date": "2026-09-16",
+          "return_pct": "-3.496503496503496503496503500"
+        },
+        "positive_days": 3,
+        "negative_days": 2,
+        "flat_days": 0,
+        "missing_comparisons": 0
+      }
+    },
+    {
+      "ticker": "ESTR4",
+      "cvm_code": "8427",
+      "main": {
+        "ticker": "ESTR4",
+        "instrument_type": "acao_pn",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "start_close": "1.54",
+        "end_close": "1.85",
+        "return_fraction": "0.201298701298701298701298701",
+        "return_pct": "20.12987012987012987012987010"
+      },
+      "alternative": {
+        "ticker": "ESTR4",
+        "instrument_type": "acao_pn",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "start_close": "1.36",
+        "end_close": "1.85",
+        "return_fraction": "0.360294117647058823529411765",
+        "return_pct": "36.02941176470588235294117650"
+      },
+      "price_change_brl": "0.31",
+      "window_difference_pp": "15.89954163483575248281130640",
+      "observations": {
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "-11.68831168831168831168831169"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "11.02941176470588235294117650"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "18.54304635761589403973509930"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "-5.027932960893854748603351960"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "8.823529411764705882352941200"
+          }
+        ],
+        "strongest_up_day": {
+          "start_date": "2026-09-15",
+          "end_date": "2026-09-16",
+          "return_pct": "18.54304635761589403973509930"
+        },
+        "weakest_day": {
+          "start_date": "2026-09-11",
+          "end_date": "2026-09-14",
+          "return_pct": "-11.68831168831168831168831169"
+        },
+        "positive_days": 3,
+        "negative_days": 2,
+        "flat_days": 0,
+        "missing_comparisons": 0
+      }
+    },
+    {
+      "ticker": "FASA3",
+      "cvm_code": "15423",
+      "main": {
+        "ticker": "FASA3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "start_close": "0.21",
+        "end_close": "0.29",
+        "return_fraction": "0.380952380952380952380952381",
+        "return_pct": "38.09523809523809523809523810"
+      },
+      "alternative": {
+        "ticker": "FASA3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "start_close": "0.25",
+        "end_close": "0.29",
+        "return_fraction": "0.16",
+        "return_pct": "16.00"
+      },
+      "price_change_brl": "0.08",
+      "window_difference_pp": "-22.09523809523809523809523810",
+      "observations": {
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "19.04761904761904761904761900"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "32.00"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "12.12121212121212121212121210"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "-8.108108108108108108108108110"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "-14.70588235294117647058823529"
+          }
+        ],
+        "strongest_up_day": {
+          "start_date": "2026-09-14",
+          "end_date": "2026-09-15",
+          "return_pct": "32.00"
+        },
+        "weakest_day": {
+          "start_date": "2026-09-17",
+          "end_date": "2026-09-18",
+          "return_pct": "-14.70588235294117647058823529"
+        },
+        "positive_days": 3,
+        "negative_days": 2,
+        "flat_days": 0,
+        "missing_comparisons": 0
+      }
+    },
+    {
+      "ticker": "ISAE3",
+      "cvm_code": "18376",
+      "main": {
+        "ticker": "ISAE3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "start_close": "32.31",
+        "end_close": "35.37",
+        "return_fraction": "0.094707520891364902506963788",
+        "return_pct": "9.470752089136490250696378800"
+      },
+      "alternative": {
+        "ticker": "ISAE3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "start_close": "32.9",
+        "end_close": "35.37",
+        "return_fraction": "0.075075987841945288753799392",
+        "return_pct": "7.507598784194528875379939200"
+      },
+      "price_change_brl": "3.06",
+      "window_difference_pp": "-1.963153304941961375316439600",
+      "observations": {
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "1.826060043330238316310739700"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "1.063829787234042553191489400"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "8.421052631578947368421052600"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "-1.914008321775312066574202500"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "0.028280542986425339366515800"
+          }
+        ],
+        "strongest_up_day": {
+          "start_date": "2026-09-15",
+          "end_date": "2026-09-16",
+          "return_pct": "8.421052631578947368421052600"
+        },
+        "weakest_day": {
+          "start_date": "2026-09-16",
+          "end_date": "2026-09-17",
+          "return_pct": "-1.914008321775312066574202500"
+        },
+        "positive_days": 4,
+        "negative_days": 1,
+        "flat_days": 0,
+        "missing_comparisons": 0
+      }
+    },
+    {
+      "ticker": "LUXM4",
+      "cvm_code": "8192",
+      "main": {
+        "ticker": "LUXM4",
+        "instrument_type": "acao_pn",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "start_close": "2.72",
+        "end_close": "2.99",
+        "return_fraction": "0.099264705882352941176470588",
+        "return_pct": "9.926470588235294117647058800"
+      },
+      "alternative": {
+        "ticker": "LUXM4",
+        "instrument_type": "acao_pn",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "start_close": "2.89",
+        "end_close": "2.99",
+        "return_fraction": "0.034602076124567474048442907",
+        "return_pct": "3.460207612456747404844290700"
+      },
+      "price_change_brl": "0.27",
+      "window_difference_pp": "-6.466262975778546712802768100",
+      "observations": {
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "6.2500"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "3.114186851211072664359861600"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "15.43624161073825503355704700"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "-12.79069767441860465116279070"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "-0.3333333333333333333333333300"
+          }
+        ],
+        "strongest_up_day": {
+          "start_date": "2026-09-15",
+          "end_date": "2026-09-16",
+          "return_pct": "15.43624161073825503355704700"
+        },
+        "weakest_day": {
+          "start_date": "2026-09-16",
+          "end_date": "2026-09-17",
+          "return_pct": "-12.79069767441860465116279070"
+        },
+        "positive_days": 3,
+        "negative_days": 2,
+        "flat_days": 0,
+        "missing_comparisons": 0
+      }
+    },
+    {
+      "ticker": "MEAL3",
+      "cvm_code": "23574",
+      "main": {
+        "ticker": "MEAL3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "start_close": "0.9",
+        "end_close": "0.97",
+        "return_fraction": "0.077777777777777777777777778",
+        "return_pct": "7.777777777777777777777777800"
+      },
+      "alternative": {
+        "ticker": "MEAL3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "start_close": "0.88",
+        "end_close": "0.97",
+        "return_fraction": "0.102272727272727272727272727",
+        "return_pct": "10.22727272727272727272727270"
+      },
+      "price_change_brl": "0.07",
+      "window_difference_pp": "2.449494949494949494949494900",
+      "observations": {
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "-2.222222222222222222222222220"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "0"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "1.136363636363636363636363600"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "4.494382022471910112359550600"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "4.301075268817204301075268800"
+          }
+        ],
+        "strongest_up_day": {
+          "start_date": "2026-09-16",
+          "end_date": "2026-09-17",
+          "return_pct": "4.494382022471910112359550600"
+        },
+        "weakest_day": {
+          "start_date": "2026-09-11",
+          "end_date": "2026-09-14",
+          "return_pct": "-2.222222222222222222222222220"
+        },
+        "positive_days": 3,
+        "negative_days": 1,
+        "flat_days": 1,
+        "missing_comparisons": 0
+      }
+    },
+    {
+      "ticker": "MGEL4",
+      "cvm_code": "8397",
+      "main": {
+        "ticker": "MGEL4",
+        "instrument_type": "acao_pn",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "start_close": "5.24",
+        "end_close": "5.95",
+        "return_fraction": "0.135496183206106870229007634",
+        "return_pct": "13.54961832061068702290076340"
+      },
+      "alternative": null,
+      "price_change_brl": "0.71",
+      "window_difference_pp": null,
+      "observations": {
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": null
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": null
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "-4.677419354838709677419354840"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "1.522842639593908629441624400"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "-0.8333333333333333333333333300"
+          }
+        ],
+        "strongest_up_day": {
+          "start_date": "2026-09-16",
+          "end_date": "2026-09-17",
+          "return_pct": "1.522842639593908629441624400"
+        },
+        "weakest_day": {
+          "start_date": "2026-09-15",
+          "end_date": "2026-09-16",
+          "return_pct": "-4.677419354838709677419354840"
+        },
+        "positive_days": 1,
+        "negative_days": 2,
+        "flat_days": 0,
+        "missing_comparisons": 2
+      }
+    },
+    {
+      "ticker": "ONCO3",
+      "cvm_code": "26123",
+      "main": {
+        "ticker": "ONCO3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "start_close": "1.14",
+        "end_close": "1.29",
+        "return_fraction": "0.131578947368421052631578947",
+        "return_pct": "13.15789473684210526315789470"
+      },
+      "alternative": {
+        "ticker": "ONCO3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "start_close": "1.07",
+        "end_close": "1.29",
+        "return_fraction": "0.205607476635514018691588785",
+        "return_pct": "20.56074766355140186915887850"
+      },
+      "price_change_brl": "0.15",
+      "window_difference_pp": "7.40285292670929660600098380",
+      "observations": {
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "-6.140350877192982456140350880"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "-1.869158878504672897196261680"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "-1.904761904761904761904761900"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "0.970873786407766990291262100"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "24.03846153846153846153846150"
+          }
+        ],
+        "strongest_up_day": {
+          "start_date": "2026-09-17",
+          "end_date": "2026-09-18",
+          "return_pct": "24.03846153846153846153846150"
+        },
+        "weakest_day": {
+          "start_date": "2026-09-11",
+          "end_date": "2026-09-14",
+          "return_pct": "-6.140350877192982456140350880"
+        },
+        "positive_days": 2,
+        "negative_days": 3,
+        "flat_days": 0,
+        "missing_comparisons": 0
+      }
+    },
+    {
+      "ticker": "PLAS3",
+      "cvm_code": "13471",
+      "main": {
+        "ticker": "PLAS3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "start_close": "3.74",
+        "end_close": "3.52",
+        "return_fraction": "-0.0588235294117647058823529412",
+        "return_pct": "-5.882352941176470588235294120"
+      },
+      "alternative": {
+        "ticker": "PLAS3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "start_close": "3.1",
+        "end_close": "3.52",
+        "return_fraction": "0.135483870967741935483870968",
+        "return_pct": "13.54838709677419354838709680"
+      },
+      "price_change_brl": "-0.22",
+      "window_difference_pp": "19.43074003795066413662239092",
+      "observations": {
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "-17.11229946524064171122994652"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "0.322580645161290322580645200"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "6.752411575562700964630225100"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": null
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": null
+          }
+        ],
+        "strongest_up_day": {
+          "start_date": "2026-09-15",
+          "end_date": "2026-09-16",
+          "return_pct": "6.752411575562700964630225100"
+        },
+        "weakest_day": {
+          "start_date": "2026-09-11",
+          "end_date": "2026-09-14",
+          "return_pct": "-17.11229946524064171122994652"
+        },
+        "positive_days": 2,
+        "negative_days": 1,
+        "flat_days": 0,
+        "missing_comparisons": 2
+      }
+    },
+    {
+      "ticker": "QUAL3",
+      "cvm_code": "22497",
+      "main": {
+        "ticker": "QUAL3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "start_close": "1.52",
+        "end_close": "1.65",
+        "return_fraction": "0.085526315789473684210526316",
+        "return_pct": "8.552631578947368421052631600"
+      },
+      "alternative": {
+        "ticker": "QUAL3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "start_close": "1.5",
+        "end_close": "1.65",
+        "return_fraction": "0.1",
+        "return_pct": "10.0"
+      },
+      "price_change_brl": "0.13",
+      "window_difference_pp": "1.447368421052631578947368400",
+      "observations": {
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "-1.315789473684210526315789470"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "6.00"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "3.773584905660377358490566000"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "1.212121212121212121212121200"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "-1.197604790419161676646706590"
+          }
+        ],
+        "strongest_up_day": {
+          "start_date": "2026-09-14",
+          "end_date": "2026-09-15",
+          "return_pct": "6.00"
+        },
+        "weakest_day": {
+          "start_date": "2026-09-11",
+          "end_date": "2026-09-14",
+          "return_pct": "-1.315789473684210526315789470"
+        },
+        "positive_days": 3,
+        "negative_days": 2,
+        "flat_days": 0,
+        "missing_comparisons": 0
+      }
+    },
+    {
+      "ticker": "RCSL3",
+      "cvm_code": "12572",
+      "main": {
+        "ticker": "RCSL3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "start_close": "0.44",
+        "end_close": "0.48",
+        "return_fraction": "0.090909090909090909090909091",
+        "return_pct": "9.090909090909090909090909100"
+      },
+      "alternative": {
+        "ticker": "RCSL3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "start_close": "0.42",
+        "end_close": "0.48",
+        "return_fraction": "0.142857142857142857142857143",
+        "return_pct": "14.28571428571428571428571430"
+      },
+      "price_change_brl": "0.04",
+      "window_difference_pp": "5.194805194805194805194805200",
+      "observations": {
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "-4.545454545454545454545454550"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "4.761904761904761904761904800"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "18.18181818181818181818181820"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "-9.615384615384615384615384620"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "2.127659574468085106382978700"
+          }
+        ],
+        "strongest_up_day": {
+          "start_date": "2026-09-15",
+          "end_date": "2026-09-16",
+          "return_pct": "18.18181818181818181818181820"
+        },
+        "weakest_day": {
+          "start_date": "2026-09-16",
+          "end_date": "2026-09-17",
+          "return_pct": "-9.615384615384615384615384620"
+        },
+        "positive_days": 3,
+        "negative_days": 2,
+        "flat_days": 0,
+        "missing_comparisons": 0
+      }
+    },
+    {
+      "ticker": "TASA3",
+      "cvm_code": "6173",
+      "main": {
+        "ticker": "TASA3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "start_close": "6.06",
+        "end_close": "8.13",
+        "return_fraction": "0.341584158415841584158415842",
+        "return_pct": "34.15841584158415841584158420"
+      },
+      "alternative": {
+        "ticker": "TASA3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "start_close": "6.49",
+        "end_close": "8.13",
+        "return_fraction": "0.252696456086286594761171032",
+        "return_pct": "25.26964560862865947611710320"
+      },
+      "price_change_brl": "2.07",
+      "window_difference_pp": "-8.88877023295549893972448100",
+      "observations": {
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "7.095709570957095709570957100"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "4.622496147919876733436055500"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "9.720176730486008836524300400"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "1.208053691275167785234899300"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "7.824933687002652519893899200"
+          }
+        ],
+        "strongest_up_day": {
+          "start_date": "2026-09-15",
+          "end_date": "2026-09-16",
+          "return_pct": "9.720176730486008836524300400"
+        },
+        "weakest_day": {
+          "start_date": "2026-09-16",
+          "end_date": "2026-09-17",
+          "return_pct": "1.208053691275167785234899300"
+        },
+        "positive_days": 5,
+        "negative_days": 0,
+        "flat_days": 0,
+        "missing_comparisons": 0
+      }
+    },
+    {
+      "ticker": "TASA4",
+      "cvm_code": "6173",
+      "main": {
+        "ticker": "TASA4",
+        "instrument_type": "acao_pn",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "start_close": "6.03",
+        "end_close": "8.06",
+        "return_fraction": "0.336650082918739635157545605",
+        "return_pct": "33.66500829187396351575456050"
+      },
+      "alternative": {
+        "ticker": "TASA4",
+        "instrument_type": "acao_pn",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "start_close": "6.54",
+        "end_close": "8.06",
+        "return_fraction": "0.232415902140672782874617737",
+        "return_pct": "23.24159021406727828746177370"
+      },
+      "price_change_brl": "2.03",
+      "window_difference_pp": "-10.42341807780668522829278680",
+      "observations": {
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "8.457711442786069651741293500"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "3.363914373088685015290519900"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "7.988165680473372781065088800"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "3.424657534246575342465753400"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "6.754966887417218543046357600"
+          }
+        ],
+        "strongest_up_day": {
+          "start_date": "2026-09-11",
+          "end_date": "2026-09-14",
+          "return_pct": "8.457711442786069651741293500"
+        },
+        "weakest_day": {
+          "start_date": "2026-09-14",
+          "end_date": "2026-09-15",
+          "return_pct": "3.363914373088685015290519900"
+        },
+        "positive_days": 5,
+        "negative_days": 0,
+        "flat_days": 0,
+        "missing_comparisons": 0
+      }
+    },
+    {
+      "ticker": "TXRX4",
+      "cvm_code": "7544",
+      "main": {
+        "ticker": "TXRX4",
+        "instrument_type": "acao_pn",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "start_close": "1.75",
+        "end_close": "2.14",
+        "return_fraction": "0.222857142857142857142857143",
+        "return_pct": "22.28571428571428571428571430"
+      },
+      "alternative": {
+        "ticker": "TXRX4",
+        "instrument_type": "acao_pn",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "start_close": "1.7",
+        "end_close": "2.14",
+        "return_fraction": "0.258823529411764705882352941",
+        "return_pct": "25.88235294117647058823529410"
+      },
+      "price_change_brl": "0.39",
+      "window_difference_pp": "3.59663865546218487394957980",
+      "observations": {
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "-2.857142857142857142857142860"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "2.941176470588235294117647100"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "1.142857142857142857142857100"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "20.90395480225988700564971750"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "0"
+          }
+        ],
+        "strongest_up_day": {
+          "start_date": "2026-09-16",
+          "end_date": "2026-09-17",
+          "return_pct": "20.90395480225988700564971750"
+        },
+        "weakest_day": {
+          "start_date": "2026-09-11",
+          "end_date": "2026-09-14",
+          "return_pct": "-2.857142857142857142857142860"
+        },
+        "positive_days": 3,
+        "negative_days": 1,
+        "flat_days": 1,
+        "missing_comparisons": 0
+      }
+    },
+    {
+      "ticker": "WDCN3",
+      "cvm_code": "25895",
+      "main": {
+        "ticker": "WDCN3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "start_close": "2.75",
+        "end_close": "3.11",
+        "return_fraction": "0.130909090909090909090909091",
+        "return_pct": "13.09090909090909090909090910"
+      },
+      "alternative": {
+        "ticker": "WDCN3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "start_close": "2.85",
+        "end_close": "3.11",
+        "return_fraction": "0.091228070175438596491228070",
+        "return_pct": "9.122807017543859649122807000"
+      },
+      "price_change_brl": "0.36",
+      "window_difference_pp": "-3.968102073365231259968102100",
+      "observations": {
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "3.636363636363636363636363600"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "11.22807017543859649122807020"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "-7.886435331230283911671924290"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "1.369863013698630136986301400"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "5.067567567567567567567567600"
+          }
+        ],
+        "strongest_up_day": {
+          "start_date": "2026-09-14",
+          "end_date": "2026-09-15",
+          "return_pct": "11.22807017543859649122807020"
+        },
+        "weakest_day": {
+          "start_date": "2026-09-15",
+          "end_date": "2026-09-16",
+          "return_pct": "-7.886435331230283911671924290"
+        },
+        "positive_days": 4,
+        "negative_days": 1,
+        "flat_days": 0,
+        "missing_comparisons": 0
+      }
+    },
+    {
+      "ticker": "WEST3",
+      "cvm_code": "25518",
+      "main": {
+        "ticker": "WEST3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "start_close": "3.05",
+        "end_close": "3.17",
+        "return_fraction": "0.039344262295081967213114754",
+        "return_pct": "3.934426229508196721311475400"
+      },
+      "alternative": {
+        "ticker": "WEST3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "start_close": "2.91",
+        "end_close": "3.17",
+        "return_fraction": "0.089347079037800687285223368",
+        "return_pct": "8.934707903780068728522336800"
+      },
+      "price_change_brl": "0.12",
+      "window_difference_pp": "5.000281674271872007210861400",
+      "observations": {
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "-4.590163934426229508196721310"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "7.903780068728522336769759500"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "-1.273885350318471337579617830"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "7.741935483870967741935483900"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "-5.089820359281437125748502990"
+          }
+        ],
+        "strongest_up_day": {
+          "start_date": "2026-09-14",
+          "end_date": "2026-09-15",
+          "return_pct": "7.903780068728522336769759500"
+        },
+        "weakest_day": {
+          "start_date": "2026-09-17",
+          "end_date": "2026-09-18",
+          "return_pct": "-5.089820359281437125748502990"
+        },
+        "positive_days": 2,
+        "negative_days": 3,
+        "flat_days": 0,
+        "missing_comparisons": 0
+      }
+    },
+    {
+      "ticker": "YDUQ3",
+      "cvm_code": "21016",
+      "main": {
+        "ticker": "YDUQ3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "start_close": "9.91",
+        "end_close": "10.6",
+        "return_fraction": "0.069626639757820383451059536",
+        "return_pct": "6.962663975782038345105953600"
+      },
+      "alternative": {
+        "ticker": "YDUQ3",
+        "instrument_type": "acao_on",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "start_close": "9.92",
+        "end_close": "10.6",
+        "return_fraction": "0.068548387096774193548387097",
+        "return_pct": "6.854838709677419354838709700"
+      },
+      "price_change_brl": "0.69",
+      "window_difference_pp": "-0.107825266104618990267243900",
+      "observations": {
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "0.100908173562058526740666000"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "2.318548387096774193548387100"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "-0.4926108374384236453201970400"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "3.069306930693069306930693100"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "1.825168107588856868395773300"
+          }
+        ],
+        "strongest_up_day": {
+          "start_date": "2026-09-16",
+          "end_date": "2026-09-17",
+          "return_pct": "3.069306930693069306930693100"
+        },
+        "weakest_day": {
+          "start_date": "2026-09-15",
+          "end_date": "2026-09-16",
+          "return_pct": "-0.4926108374384236453201970400"
+        },
+        "positive_days": 4,
+        "negative_days": 1,
+        "flat_days": 0,
+        "missing_comparisons": 0
+      }
+    }
+  ],
+  "limits": [
+    "Dated antecedents are not new weekly announcements.",
+    "No causal price effect, liquidity or traded volume is inferred.",
+    "Absence from this catalog is not proof of absence of all filings.",
+    "Quarter account definitions may include non-recurring items; no automatic EBITDA or debt ratio.",
+    "No chart-gap filling; observation of price patterns is not an explanation of investor motives."
+  ]
+}
