@@ -243,6 +243,8 @@
   font-weight: 400;
 }
 .docs-table th {
+  overflow-wrap: normal;
+  word-break: normal;
   background: #171719;
   color: #ededf2 !important;
   font-weight: 600;
