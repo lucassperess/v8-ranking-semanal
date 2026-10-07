@@ -4,6 +4,12 @@ O dashboard apresenta os resultados calculados pelo script Python utilizado para
 
 ## Leitura dos cards
 
+As capturas deste artigo mostram a janela “Semana completa” do case, com comparação de **11/09/2026 a 18/09/2026**. Outra análise pode apresentar datas, ações e valores diferentes.
+
+![Cards do case: média do top 20 de 17,78%, 308 ações elegíveis, 38,64% em alta e média alternativa de 15,93%.](assets/cards-20261007.png)
+
+*Os três primeiros cards mostram a opção selecionada; o último mostra a média da alternativa.* [Ver imagem em tamanho original](assets/cards-20261007.png).
+
 ### Média do top 20
 
 Mostra a média dos retornos das 20 ações apresentadas no ranking: somamos os 20 retornos e dividimos por 20. Cada ação tem o mesmo peso. O valor acompanha a opção selecionada, “Semana completa” ou “Dentro da semana”. Cada linha da tabela mostra o retorno individual de uma ação; este card mostra a média do grupo.
@@ -41,9 +47,17 @@ No desktop, a tabela apresenta estas colunas:
 | FINAL (R$) | Fechamento na data final |
 | RETORNO (%) | Variação percentual entre esses dois fechamentos |
 
+![Ranking das 20 ações do case, com posição, ticker, espécie, preços inicial e final e retorno individual; ECOM3 está selecionada.](assets/ranking-20261007.png)
+
+*A linha cinza indica a ação selecionada, ECOM3 neste exemplo. A marca de informação junto a BIED3 indica um alerta nos dados.* [Ver imagem em tamanho original](assets/ranking-20261007.png).
+
 Selecione uma linha do ranking ou escolha o ticker no seletor junto ao gráfico. Essa seleção atualiza o painel e o gráfico para a ação escolhida. O painel apresenta o ticker, a espécie, o retorno do período, os fechamentos inicial e final, a diferença em reais por ação e eventuais alertas.
 
 No desktop, o painel permanece visível ao lado da tabela. No celular, a tabela prioriza posição, ticker e retorno; selecionar uma linha atualiza a ação e leva a página até o painel. Use “Voltar ao ranking” para retornar à tabela.
+
+![Painel de ECOM3 com fechamento inicial de R$ 1,06, final de R$ 1,56, diferença de R$ 0,50 e retorno de 47,17%, acompanhado do gráfico de preços.](assets/painel-ecom3-20261007.png)
+
+*ECOM3 passou de R$ 1,06 para R$ 1,56: aumento de R$ 0,50 por ação, equivalente a 47,17% sobre o preço inicial.* [Ver imagem em tamanho original](assets/painel-ecom3-20261007.png).
 
 - **Preços (R$):** fechamentos observados em reais por ação, somente entre o início e o fim da janela selecionada.
 - **Retornos diários (%):** variações entre datas consecutivas da extração dentro da janela selecionada. Na alternativa, o primeiro dia aparece como “—”: seu fechamento é o preço inicial, e o primeiro retorno aparece na próxima data da extração com comparação válida.
@@ -56,11 +70,37 @@ Na alternativa, o primeiro dia também mostra “—”, mas por outro motivo: s
 
 ## Compare o contexto
 
-A distribuição agrupa os retornos das ações elegíveis. A proporção de altas e baixas descreve essa amostra, não todo o mercado.
+No dashboard, a tabela de movimentos diários vem depois do ranking e do gráfico da ação. “Além do top 20” aparece por último e reúne a distribuição dos retornos e a contagem de ações em alta, em baixa e estáveis.
 
-No dashboard, a matriz diária vem depois do ranking e do gráfico da ação. “Além do top 20” aparece por último, para ampliar a leitura para todas as ações elegíveis.
+### Movimento diário do top 20
 
-A matriz do top 20 apresenta movimentos diários com cores e valores. No celular, deslize dentro da matriz para consultar as datas e ações; ticker e cabeçalhos permanecem fixos. Tocar no ticker seleciona a ação e leva você ao seu painel. Na alternativa, a célula do primeiro dia mostra “—” porque aquele fechamento é o preço inicial: não é zero nem dado ausente. Nas outras datas, “—” significa que faltam preços utilizáveis para aquela comparação. A explicação acima da matriz acompanha a opção selecionada; a descrição de cada célula informa a comparação ou o motivo da ausência. A fórmula semanal usa suas próprias duas pontas; não soma os percentuais da matriz.
+Cada linha representa uma ação do top 20; cada coluna representa uma data. O percentual compara o fechamento daquela data com o da data anterior da extração. Verde indica alta; vermelho indica queda.
+
+![Tabela de retornos diários das 20 ações do case, de 14/09 a 18/09, com altas em verde, quedas em vermelho e comparações indisponíveis marcadas com traço.](assets/movimento-diario-20261007.png)
+
+*Na opção “Semana completa”, a coluna de 14/09 compara os fechamentos de 11/09 e 14/09. As demais colunas comparam datas consecutivas da extração.* [Ver imagem em tamanho original](assets/movimento-diario-20261007.png).
+
+**0,00% e “—” têm significados diferentes:** AMBP3 em 14/09 mostra 0,00% porque os dois fechamentos eram iguais. MGEL4 em 14/09 e 15/09 mostra “—” porque não havia dois preços utilizáveis para a comparação; dados ausentes ou conflitantes não são preenchidos.
+
+Na alternativa “Dentro da semana”, o primeiro dia mostra “—” por outro motivo: seu fechamento é o preço inicial. A primeira variação aparece na data seguinte com comparação válida. A captura acima mostra a opção “Semana completa”, não a alternativa.
+
+No celular, deslize dentro da tabela para consultar as datas e ações; ticker e cabeçalhos permanecem fixos. Tocar no ticker seleciona a ação e leva você ao seu painel. A descrição de cada célula informa as datas comparadas ou o motivo da ausência. O retorno semanal compara os fechamentos inicial e final; não é a soma dos percentuais diários.
+
+### Distribuição dos retornos
+
+Agrupa os retornos **semanais de todas as ações elegíveis** por faixa percentual. O número à direita informa quantas ações ficaram em cada faixa; a barra permite comparar essas quantidades. Não são apenas as 20 ações do ranking, nem os retornos diários.
+
+![Distribuição dos retornos semanais das 308 ações elegíveis em seis faixas percentuais, com barras azuis e contagens de 3, 12, 166, 116, 4 e 7 ações.](assets/distribuicao-20261007.png)
+
+*As seis faixas somam 308 ações elegíveis. A maior concentração está na faixa de −10% a 0%.* [Ver imagem em tamanho original](assets/distribuicao-20261007.png).
+
+### Ações em alta, em baixa e estáveis
+
+Conta quantas ações elegíveis terminaram a janela com fechamento maior, menor ou igual ao inicial. A barra mostra a proporção de cada grupo nessa amostra; não representa todo o mercado.
+
+![Amplitude da amostra do case: 119 ações em alta, 181 em baixa e 8 estáveis, totalizando 308 ações elegíveis.](assets/amplitude-20261007.png)
+
+*119 + 181 + 8 = 308 ações. As 119 em alta representam 38,64% das elegíveis, o mesmo percentual do card “Ações em alta”.* [Ver imagem em tamanho original](assets/amplitude-20261007.png).
 
 ## Baixe e confira
 
@@ -83,7 +123,7 @@ Se a análise falhar depois disso, a página apresenta o motivo e a orientação
 
 ## Navegação no celular
 
-Na documentação, “Assuntos” escolhe o artigo e “Nesta página” abre seu índice; as setas indicam abertura e fechamento. Os controles continuam acessíveis durante a leitura. Na auditoria, use o seletor de seção e consulte os arquivos agrupados em rankings, qualidade, classificação e reprodução. A tela cheia permanece disponível no desktop e é ocultada no mobile.
+Abra o menu principal pelo botão de três linhas. Na documentação, “Assuntos” escolhe o artigo e “Nesta página” abre seu índice; as setas indicam abertura e fechamento. Os controles continuam acessíveis durante a leitura. Na auditoria, use o seletor de seção e consulte os arquivos agrupados em rankings, qualidade, classificação e reprodução. A tela cheia permanece disponível no desktop e é ocultada no mobile.
 
 ## Interprete os destaques e a variação em reais
 
@@ -93,19 +133,6 @@ O painel da ação mostra os fechamentos inicial e final e a diferença **final 
 
 A marca de informação no ticker indica um alerta da janela selecionada. Ao selecionar a ação, o painel mostra data, campo, motivo e se o campo entra na fórmula. Esses alertas consideram as duas pontas; não garantem ausência de problemas nos dias intermediários. A auditoria contém o contexto mais amplo.
 
-“Contexto de negociação” explica a limitação da extração: volume bruto e quantidade ajustada podem usar bases diferentes. Sem confirmação de escala e comparabilidade, a interface não apresenta um indicador de liquidez ou inferências sobre facilidade de negociação. Nenhum filtro de liquidez foi aplicado.
-
-
-## Exemplos visuais da referência
-
-As capturas abaixo usam a referência de **22/09/2026**. Em outra análise, os tickers, as datas e os valores são os da sua execução.
-
-![Indicadores e resumo da referência: média de 17,78%, 308 elegíveis e destaque de ECOM3.](assets/ranking-20261006.jpg)
-
-**Como ler:** os cards descrevem a amostra; o resumo identifica o líder e a faixa de retornos do top. “Semana completa” e “Dentro da semana” escolhem as pontas usadas na comparação. O CSV ao lado do título acompanha essa escolha.
-
-![Painel de BIED3 com preços inicial e final, variação de R$ 0,82, alerta explicado e gráfico de fechamentos.](assets/alerta-20261006.jpg)
-
 **Exemplo de alerta:** em BIED3, o preço médio recebido em 18/09 ficou fora do mínimo e do máximo informados para o dia. Isso merece conferência no CSV, mas não prova que o fechamento esteja errado. O ranking usa os fechamentos de R$ 5,55 e R$ 6,37: a diferença é R$ 0,82 por ação ajustada, e o retorno é 14,77%. O preço médio não entra nessa fórmula.
 
-No celular, abra o menu pelo botão de três linhas. Selecione a ação no ranking para ir ao painel; use “Voltar ao ranking” para continuar. Os ícones de informação abrem com toque e fecham com outro toque ou ao tocar fora. A tela cheia é uma opção do desktop.
+“Contexto de negociação” explica a limitação da extração: volume bruto e quantidade ajustada podem usar bases diferentes. Sem confirmação de escala e comparabilidade, a interface não apresenta um indicador de liquidez ou inferências sobre facilidade de negociação. Nenhum filtro de liquidez foi aplicado.

@@ -480,3 +480,7 @@
   border-radius: 14px;
   margin: 24px 0 12px;
 }
+
+.docs-article img[src$='/painel-ecom3-20261007.png'] {
+  border: 0;
+}
