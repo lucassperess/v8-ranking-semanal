@@ -8,9 +8,9 @@
     <meta name="theme-color" content="#000" />
     <title>{{TITLE}} · Documentação · V8 Capital</title>
     <link rel="stylesheet" href="/static/styles.css?v=organized-20261006" />
-    <link rel="stylesheet" href="/static/documentation.css?v=1" />
+    <link rel="stylesheet" href="/static/documentation.css?v=viewer-20261007" />
     <link rel="stylesheet" href="/static/mobile.css?v=menu-20261006" />
-    <script src="/static/documentation.js?v=mobile-20261006" defer></script>
+    <script src="/static/documentation.js?v=viewer-20261007" defer></script>
     <script src="/static/header.js?v=menu-20261006" defer></script>
   </head>
   <body>
@@ -66,5 +66,37 @@
         </details>
       </div>
     </div>
+    <dialog
+      id="docs-image-viewer"
+      class="docs-image-viewer"
+      aria-labelledby="docs-image-title"
+      aria-describedby="docs-image-description"
+    >
+      <div class="docs-image-header">
+        <h2 id="docs-image-title">Imagem ampliada</h2>
+        <button id="docs-image-close" type="button" autofocus>
+          Fechar <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="docs-image-controls" aria-label="Ampliação da imagem">
+        <button id="docs-image-minus" type="button" aria-label="Diminuir imagem">−</button>
+        <output id="docs-image-scale" aria-live="polite">Ajustada</output>
+        <button id="docs-image-plus" type="button" aria-label="Ampliar imagem">+</button>
+        <button id="docs-image-fit" type="button">Ajustar à tela</button>
+      </div>
+      <div
+        id="docs-image-stage"
+        class="docs-image-stage"
+        tabindex="0"
+        role="region"
+        aria-label="Imagem: deslize ou use as setas para explorar após ampliar"
+      >
+        <div class="docs-image-canvas"><img id="docs-image-full" alt="" /></div>
+      </div>
+      <div class="docs-image-footer">
+        <p id="docs-image-description"></p>
+        <p>Use + para ampliar e deslize para explorar. Feche para continuar a leitura.</p>
+      </div>
+    </dialog>
   </body>
 </html>

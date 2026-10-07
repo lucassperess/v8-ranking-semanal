@@ -8,7 +8,7 @@ As capturas deste artigo mostram a janela “Semana completa” do case, com com
 
 ![Cards do case: média do top 20 de 17,78%, 308 ações elegíveis, 38,64% em alta e média alternativa de 15,93%.](assets/cards-20261007.png)
 
-*Os três primeiros cards mostram a opção selecionada; o último mostra a média da alternativa.* [Ver imagem em tamanho original](assets/cards-20261007.png).
+*Os três primeiros cards mostram a opção selecionada; o último mostra a média da alternativa.* [Ampliar imagem](assets/cards-20261007.png).
 
 ### Média do top 20
 
@@ -49,7 +49,7 @@ No desktop, a tabela apresenta estas colunas:
 
 ![Ranking das 20 ações do case, com posição, ticker, espécie, preços inicial e final e retorno individual; ECOM3 está selecionada.](assets/ranking-20261007.png)
 
-*A linha cinza indica a ação selecionada, ECOM3 neste exemplo. A marca de informação junto a BIED3 indica um alerta nos dados.* [Ver imagem em tamanho original](assets/ranking-20261007.png).
+*A linha cinza indica a ação selecionada, ECOM3 neste exemplo. A marca de informação junto a BIED3 indica um alerta nos dados.* [Ampliar imagem](assets/ranking-20261007.png).
 
 Selecione uma linha do ranking ou escolha o ticker no seletor junto ao gráfico. Essa seleção atualiza o painel e o gráfico para a ação escolhida. O painel apresenta o ticker, a espécie, o retorno do período, os fechamentos inicial e final, a diferença em reais por ação e eventuais alertas.
 
@@ -57,7 +57,7 @@ No desktop, o painel permanece visível ao lado da tabela. No celular, a tabela 
 
 ![Painel de ECOM3 com fechamento inicial de R$ 1,06, final de R$ 1,56, diferença de R$ 0,50 e retorno de 47,17%, acompanhado do gráfico de preços.](assets/painel-ecom3-20261007.png)
 
-*ECOM3 passou de R$ 1,06 para R$ 1,56: aumento de R$ 0,50 por ação, equivalente a 47,17% sobre o preço inicial.* [Ver imagem em tamanho original](assets/painel-ecom3-20261007.png).
+*ECOM3 passou de R$ 1,06 para R$ 1,56: aumento de R$ 0,50 por ação, equivalente a 47,17% sobre o preço inicial.* [Ampliar imagem](assets/painel-ecom3-20261007.png).
 
 - **Preços (R$):** fechamentos observados em reais por ação, somente entre o início e o fim da janela selecionada.
 - **Retornos diários (%):** variações entre datas consecutivas da extração dentro da janela selecionada. Na alternativa, o primeiro dia aparece como “—”: seu fechamento é o preço inicial, e o primeiro retorno aparece na próxima data da extração com comparação válida.
@@ -78,7 +78,7 @@ Cada linha representa uma ação do top 20; cada coluna representa uma data. O p
 
 ![Tabela de retornos diários das 20 ações do case, de 14/09 a 18/09, com altas em verde, quedas em vermelho e comparações indisponíveis marcadas com traço.](assets/movimento-diario-20261007.png)
 
-*Na opção “Semana completa”, a coluna de 14/09 compara os fechamentos de 11/09 e 14/09. As demais colunas comparam datas consecutivas da extração.* [Ver imagem em tamanho original](assets/movimento-diario-20261007.png).
+*Na opção “Semana completa”, a coluna de 14/09 compara os fechamentos de 11/09 e 14/09. As demais colunas comparam datas consecutivas da extração.* [Ampliar imagem](assets/movimento-diario-20261007.png).
 
 **0,00% e “—” têm significados diferentes:** AMBP3 em 14/09 mostra 0,00% porque os dois fechamentos eram iguais. MGEL4 em 14/09 e 15/09 mostra “—” porque não havia dois preços utilizáveis para a comparação; dados ausentes ou conflitantes não são preenchidos.
 
@@ -92,7 +92,7 @@ Agrupa os retornos **semanais de todas as ações elegíveis** por faixa percent
 
 ![Distribuição dos retornos semanais das 308 ações elegíveis em seis faixas percentuais, com barras azuis e contagens de 3, 12, 166, 116, 4 e 7 ações.](assets/distribuicao-20261007.png)
 
-*As seis faixas somam 308 ações elegíveis. A maior concentração está na faixa de −10% a 0%.* [Ver imagem em tamanho original](assets/distribuicao-20261007.png).
+*As seis faixas somam 308 ações elegíveis. A maior concentração está na faixa de −10% a 0%.* [Ampliar imagem](assets/distribuicao-20261007.png).
 
 ### Ações em alta, em baixa e estáveis
 
@@ -100,7 +100,7 @@ Conta quantas ações elegíveis terminaram a janela com fechamento maior, menor
 
 ![Amplitude da amostra do case: 119 ações em alta, 181 em baixa e 8 estáveis, totalizando 308 ações elegíveis.](assets/amplitude-20261007.png)
 
-*119 + 181 + 8 = 308 ações. As 119 em alta representam 38,64% das elegíveis, o mesmo percentual do card “Ações em alta”.* [Ver imagem em tamanho original](assets/amplitude-20261007.png).
+*119 + 181 + 8 = 308 ações. As 119 em alta representam 38,64% das elegíveis, o mesmo percentual do card “Ações em alta”.* [Ampliar imagem](assets/amplitude-20261007.png).
 
 ## Baixe e confira
 

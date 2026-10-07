@@ -138,3 +138,107 @@ document.querySelectorAll('.docs-menu,.docs-outline').forEach((menu) => {
     }
   });
 });
+
+// O diálogo mantém o contexto da leitura e oferece ampliação sem sair do artigo.
+const imageViewer = document.getElementById('docs-image-viewer');
+if (imageViewer && typeof imageViewer.showModal === 'function') {
+  const fullImage = document.getElementById('docs-image-full'),
+    stage = document.getElementById('docs-image-stage'),
+    scaleLabel = document.getElementById('docs-image-scale'),
+    minus = document.getElementById('docs-image-minus'),
+    plus = document.getElementById('docs-image-plus');
+  const scales = [1, 1.5, 2, 3, 4, 6, 8];
+  let scaleIndex = 0,
+    opener,
+    previousOverflow,
+    previousPadding,
+    readingPosition;
+  function sizeImage() {
+    if (!imageViewer.open || !fullImage.naturalWidth) return;
+    const fit = Math.min(
+      (stage.clientWidth - 32) / fullImage.naturalWidth,
+      (stage.clientHeight - 32) / fullImage.naturalHeight,
+      1,
+    );
+    fullImage.style.width = `${fullImage.naturalWidth * fit * scales[scaleIndex]}px`;
+    scaleLabel.textContent = scaleIndex
+      ? `${scales[scaleIndex].toLocaleString('pt-BR')}×`
+      : 'Ajustada';
+    minus.disabled = scaleIndex === 0;
+    plus.disabled = scaleIndex === scales.length - 1;
+  }
+  function openImage(image, trigger) {
+    opener = trigger;
+    scaleIndex = 0;
+    fullImage.alt = image.alt;
+    fullImage.src = image.src;
+    document.getElementById('docs-image-description').textContent = image.alt;
+    previousOverflow = document.body.style.overflow;
+    previousPadding = document.body.style.paddingRight;
+    readingPosition = { top: window.scrollY, left: window.scrollX };
+    const scrollbar = window.innerWidth - document.documentElement.clientWidth;
+    if (scrollbar)
+      document.body.style.paddingRight = `${parseFloat(getComputedStyle(document.body).paddingRight) + scrollbar}px`;
+    document.body.style.overflow = 'hidden';
+    imageViewer.showModal();
+    sizeImage();
+    stage.scrollTo(0, 0);
+  }
+  fullImage.addEventListener('load', () => {
+    sizeImage();
+    stage.scrollTo(0, 0);
+  });
+  new ResizeObserver(sizeImage).observe(stage);
+  minus.addEventListener('click', () => {
+    scaleIndex = Math.max(0, scaleIndex - 1);
+    sizeImage();
+  });
+  plus.addEventListener('click', () => {
+    scaleIndex = Math.min(scales.length - 1, scaleIndex + 1);
+    sizeImage();
+  });
+  document.getElementById('docs-image-fit').addEventListener('click', () => {
+    scaleIndex = 0;
+    sizeImage();
+    stage.scrollTo(0, 0);
+  });
+  document.getElementById('docs-image-close').addEventListener('click', () => imageViewer.close());
+  imageViewer.addEventListener('click', (event) => {
+    if (event.target !== imageViewer) return;
+    const bounds = imageViewer.getBoundingClientRect();
+    if (
+      event.clientX < bounds.left ||
+      event.clientX > bounds.right ||
+      event.clientY < bounds.top ||
+      event.clientY > bounds.bottom
+    )
+      imageViewer.close();
+  });
+  imageViewer.addEventListener('close', () => {
+    document.body.style.overflow = previousOverflow;
+    document.body.style.paddingRight = previousPadding;
+    opener?.focus({ preventScroll: true });
+    window.scrollTo({ ...readingPosition, behavior: 'instant' });
+  });
+  const links = [...document.querySelectorAll('.docs-article a[href]')];
+  document.querySelectorAll('.docs-article img').forEach((image) => {
+    const trigger = document.createElement('button');
+    trigger.type = 'button';
+    trigger.className = 'docs-image-trigger';
+    trigger.setAttribute('aria-label', `Ampliar imagem: ${image.alt}`);
+    image.before(trigger);
+    trigger.append(image);
+    trigger.addEventListener('click', () => openImage(image, trigger));
+    links
+      .filter((link) => link.href === image.src)
+      .forEach((link) => {
+        link.textContent = 'Ampliar imagem';
+        link.setAttribute('aria-haspopup', 'dialog');
+        link.addEventListener('click', (event) => {
+          if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+          event.preventDefault();
+          openImage(image, link);
+        });
+      });
+  });
+}
