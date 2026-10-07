@@ -105,3 +105,37 @@ Marketaux permanece candidato adicional, sem evidência suficiente para ser esco
 Também falta escolher e testar a síntese por uma API de IA com credencial disponível; nenhuma síntese via API de modelo foi executada. Isso pertence à etapa 5. A coleta completa por empresa pertence à etapa 4.
 
 Resultado: fontes públicas e busca disponível têm evidência suficiente para iniciar a coleta do case. Não foi comprovada cobertura de todos os ativos, todos os dias, nem de Marketaux/Tavily. O dashboard e a produção permanecem inalterados.
+
+## Complemento — testes autenticados após configuração das chaves
+
+Ainda em 07/10/2026, o usuário configurou as chaves gratuitas no `.env` local. O arquivo foi conferido como ignorado pelo Git; nenhuma chave foi exibida ou versionada. O comando PowerShell fornecido anteriormente concatenou as duas variáveis quando já havia uma única linha no arquivo. Essa separação foi corrigida antes das consultas. Ambas ficaram em linhas próprias, com valores não vazios.
+
+Este complemento substitui a pendência de autenticação acima. Ele não transforma os resultados de busca em contexto aprovado.
+
+### Marketaux
+
+- Três consultas autenticadas por símbolos `ECOM3.SA`, `TASA3.SA,TASA4.SA` e `AMBP3.SA`, no período de 14/09 a antes de 21/09: HTTP 200, `found=0` em todas.
+- Complemento por termos: `ECOM3` e `Ambipar`, também HTTP 200, sem resultados.
+- `Taurus`: nove resultados declarados, três devolvidos na primeira página. Os três eram sobre astrologia ou fundos homônimos e não foram aceitos como notícias da companhia. Os demais resultados não foram paginados; não afirmar ausência absoluta com base apenas nessa página.
+- Controle com `AAPL`, no mesmo período: HTTP 200, 108 resultados declarados e três retornados. Esse controle comprova funcionamento da credencial e recuperação histórica para outro símbolo; não comprova cobertura da B3.
+- As quatro consultas complementares inicialmente sem `User-Agent` retornaram 403; com o mesmo cabeçalho do primeiro teste, retornaram 200. Registrar a diferença técnica sem atribuí-la a limite de plano não demonstrado.
+- Total: sete consultas com HTTP 200 e quatro tentativas com HTTP 403. O débito efetivo da franquia não foi consultado no painel.
+
+Decisão: Marketaux não será o provedor principal desta primeira versão com a evidência disponível. A cobertura efetiva da amostra por ticker não foi demonstrada; também pode depender de convenções de símbolo ainda não verificadas. Credencial válida não equivale a fonte adequada para o case.
+
+### Tavily
+
+Seis consultas autenticadas, todas com HTTP 200: três em `topic=news` para a amostra de empresas e três em `topic=general`, com fontes selecionadas para Taurus, Ambipar e Copom. Todas usaram busca avançada, limitada ao período do case. Pela regra documentada, correspondem nominalmente a 12 créditos de busca; o consumo no painel não foi conferido.
+
+- ECOM: os cinco resultados de notícias retornados não tratavam do emissor. Rejeitados para contexto corporativo.
+- Taurus: notícias policiais mencionavam armas da marca, além de uma notícia de produto candidata a conferência. A pesquisa geral restrita à fonte sindical/companhia retornou vazia e não recuperou a publicação já encontrada pela Exa. Não tratar nome da marca em ocorrência policial como acontecimento financeiro da empresa.
+- Ambipar: retornaram páginas de outros assuntos com referências à companhia em seções de notícias relacionadas, e itens sem data. Rejeitados para contexto corporativo nesta avaliação. O conteúdo da barra lateral pode conter acontecimentos posteriores à data da matéria.
+- Copom: a consulta geral restrita ao BCB recuperou o comunicado `https://www.bcb.gov.br/detalhenoticia/21261/nota`, com trecho indicando publicação em 16/09/2026 às 18h32, além da ata e outros resultados. O leitor web não conseguiu abrir diretamente essa página; o trecho é uma pista útil, mas a leitura integral do comunicado permanece pendente antes de aprovar seu texto.
+
+Decisão: Tavily poderá complementar buscas de contexto geral e fontes selecionadas. Nesta amostra não demonstrou vantagem suficiente para substituir Exa na localização de notícias corporativas. Data retornada pelo provedor, menção em trecho e título não bastam para aprovar uma notícia.
+
+### Escolha atualizada
+
+Manter CVM/RI e fontes oficiais como evidência, Exa como busca principal já disponível para preparar o case e BCB PTAX para câmbio. Tavily fica como complemento selecionado, com credencial testada. Marketaux fica fora do fluxo principal por ora, sem necessidade de assinatura paga para continuar.
+
+Os testes autenticados da amostra estão concluídos. Permanecem para as próximas etapas a coleta de todos os emissores, revisão dos documentos e integração visual. A produção e a versão standby não foram alteradas.
