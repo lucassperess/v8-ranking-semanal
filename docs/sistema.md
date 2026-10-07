@@ -1,52 +1,71 @@
 # Como o sistema funciona
 
-O site utiliza o mesmo pipeline Python executável pelo comando local. A interface organiza o envio, acompanha o processamento e apresenta as saídas.
+Você envia um CSV, o servidor executa os scripts Python e o site apresenta os arquivos calculados. A interface utiliza o mesmo processo de análise disponível pelo comando local; os controles do dashboard mudam a visualização dos resultados.
 
 ## Caminho de uma análise
 
-1. **Envio:** o navegador envia CSV e referência à API, a porta de entrada do servidor.
-2. **Validação:** a API verifica formato, tamanho, data e limites; atribui um identificador imprevisível à execução.
-3. **Fila:** a execução aguarda sua vez em armazenamento persistente.
-4. **Worker:** um processo separado retira um trabalho da fila e executa o Python. Ele evita bloquear a aplicação que atende os visitantes.
-5. **Pipeline:** trata dados, seleciona datas, resolve classificações B3, calcula retornos e produz arquivos.
-6. **Apresentação:** um adaptador reúne os resultados e prepara uma série diária para cada janela, preservando lacunas. Na alternativa, o primeiro fechamento é o preço inicial e não tem retorno diário.
-7. **Resultado:** o navegador consulta a API e apresenta ranking, gráficos, alertas e downloads permitidos.
+1. **Envie o CSV e a referência:** na página Nova análise, escolha o arquivo e confira a semana indicada.
+2. **O site verifica a entrada:** confere formato, tamanho, referência, datas disponíveis e limites de envio. Se os dados terminarem antes da sexta-feira, pede revisão. Um envio recusado nesta etapa ainda não entrou na fila.
+3. **A análise aguarda sua vez:** após o envio aceito, o site abre uma página própria de acompanhamento. Guarde seu endereço web, a URL.
+4. **O servidor executa o Python:** interpreta os dados, escolhe as datas, confirma os instrumentos nas fontes B3, calcula os retornos e produz os arquivos.
+5. **O resultado aparece na mesma página:** quando a análise conclui, ficam disponíveis os cards, ranking, gráficos e acesso à auditoria. Uma falha apresenta o motivo, sem publicar um resultado com aparência de conclusão.
 
-Os estados públicos são aguardando, processando, concluída e falhou. Uma falha tem motivo legível; não vira uma tabela incompleta com aparência de sucesso.
+## O que significa cada estado?
 
-## Responsabilidades
+| Estado | O que está acontecendo | O que fazer |
+| --- | --- | --- |
+| Aguardando | O envio foi aceito e entrou na fila | Acompanhe pelo mesmo endereço; reenviar cria outro envio |
+| Processando | O servidor está executando as etapas | Consulte o andamento na página da análise |
+| Concluída | Os resultados foram produzidos | Explore o dashboard, abra a auditoria e baixe os arquivos |
+| Falhou | Uma condição impediu a conclusão | Leia o motivo e confira a orientação antes de enviar novamente |
 
-| Parte | Responsabilidade |
-| --- | --- |
-| `webapp/server.py` | Rotas, validação do envio e arquivos públicos permitidos |
-| `webapp/store.py` | Persistência das execuções e fila |
-| `webapp/worker.py` | Processamento e limpeza periódica |
-| `weekly_ranking.py` | Orquestração do cálculo e relatórios |
-| `webapp/presentation.py` | Adaptação dos resultados e contexto visual |
-| Navegador | Navegação, seleção e apresentação |
+Uma confirmação das datas no formulário permite aceitar que os dados terminem antes da sexta-feira. Ela não libera uma classificação pendente nem corrige um preço. Veja [o que fazer em cada problema](duvidas.md).
 
-## Limites públicos
+## Por que o resultado é independente do case?
 
-Uma análise ativa e até duas aguardando. Cada arquivo pode ter até 10 MB, cada processamento até dez minutos e cada origem até três envios por hora.
+Cada envio recebe uma identificação própria, uma entrada, uma referência e uma pasta de resultados. O case permanece disponível na página inicial, pela opção “Ranking”. Os números de outra análise aparecem no endereço e na auditoria dela.
 
-O bruto é removido após 24 horas; resultados de teste ficam disponíveis por sete dias. A referência do case é permanente. Não há lista pública de envios ou download do CSV original. Quem possui o link de uma análise pode consultar o resultado derivado enquanto existir; o link não é autenticação.
+Os arquivos de resultado são calculados em Python. O navegador escolhe quais dados apresentar conforme a ação e a janela selecionadas; não calcula novamente o ranking semanal. As séries diárias também correspondem à janela escolhida. Na alternativa, o primeiro fechamento é o preço inicial e não possui retorno diário dentro dela.
 
-## Hospedagem e fontes
+## Prazos e limites
 
-A VPS usa dois contêineres: aplicação web/API e worker. O armazenamento de execuções e o cache de fontes B3 persistem fora dos contêineres. Traefik encaminha o subdomínio com HTTPS.
+A fila comporta **uma análise em processamento e até duas aguardando**. Cada arquivo pode ter até 10 MB; o processamento tem limite de dez minutos após começar. A mesma origem de acesso pode criar até três análises por hora. Outros limites temporários do servidor também podem recusar novos envios, com mensagem na página.
 
-A rotina não depende de IA. A disponibilidade das fontes oficiais pode afetar uma nova análise se as evidências necessárias ainda não estiverem no cache.
+O CSV original é removido após 24 horas. O resultado de um novo envio, seus derivados e os guias associados ficam disponíveis por sete dias. Guardar a URL não prolonga esse prazo; baixe os arquivos que quiser conservar e mantenha sua própria cópia da entrada. O case é permanente.
 
-Para operar ou manter a implantação, consulte [as instruções de deploy](../deploy/README.md). Para reproduzir o cálculo sem a interface, veja [Auditoria e reprodução](auditoria.md).
-
+Não existe lista pública de envios nem download do CSV original. Quem possui a URL pode consultar os resultados derivados enquanto estiverem disponíveis.
 
 ## Guias associados ao resultado
 
-Ao concluir uma análise, o worker arquiva a documentação disponível nessa versão da aplicação. A API verifica a assinatura dos textos e a correspondência com a entrada e o código antes de oferecer a leitura. O ranking continua vindo dos mesmos derivados do pipeline; os guias são um registro separado. Artigos arquivados não usam a busca dos artigos atuais: o menu de assuntos navega dentro da cópia associada. A cópia tem o mesmo prazo de sete dias do resultado de teste.
+Ao concluir uma análise pela interface, o servidor guarda uma cópia dos artigos disponíveis naquela versão da aplicação. A auditoria oferece a leitura dessa cópia. Alterar os artigos atuais não reescreve os guias arquivados de uma execução.
 
+A cópia possui uma assinatura de conteúdo, que permite conferir sua integridade e ligação com a entrada e o código. Na leitura arquivada, o menu de assuntos navega dentro dessa cópia; a busca dos artigos atuais não é utilizada. Veja [como identificar a revisão](auditoria.md#versão-da-documentação).
+
+## Componentes técnicos e responsabilidades
+
+- **API:** parte da aplicação que recebe o envio e responde às consultas do navegador.
+- **Fila:** armazenamento dos trabalhos aceitos que aguardam processamento.
+- **Worker:** processo no servidor que retira um trabalho da fila e executa os scripts Python. Isso permite que o site continue atendendo os visitantes durante o cálculo.
+- **Pipeline:** sequência de etapas de tratamento, seleção das datas, classificação, cálculo e geração dos arquivos.
+- **Apresentação:** reúne os arquivos produzidos e prepara os dados que a interface mostra.
+
+| Arquivo | Responsabilidade |
+| --- | --- |
+| `webapp/server.py` | Receber envios, responder consultas e servir arquivos públicos permitidos |
+| `webapp/store.py` | Guardar execuções e organizar a fila |
+| `webapp/worker.py` | Executar análises e remover dados após os prazos |
+| `weekly_ranking.py` | Coordenar as etapas do cálculo e gerar relatórios |
+| `webapp/presentation.py` | Adaptar resultados e preparar o contexto visual |
+| Navegador | Navegação, seleção e apresentação dos dados recebidos |
+
+## Hospedagem e fontes
+
+A aplicação web e o worker funcionam em dois contêineres na VPS, o servidor onde o site está hospedado. As execuções e as fontes B3 guardadas persistem fora desses contêineres. O serviço Traefik encaminha o endereço do site para a aplicação usando HTTPS.
+
+A rotina de cálculo não depende de IA. A obtenção das fontes oficiais pode interromper uma análise quando faltam evidências necessárias. Consulte [as instruções de operação](../deploy/README.md) para manter a implantação e [Auditoria e reprodução](auditoria.md#reproduza-pelo-python) para executar localmente.
 
 ## Séries diárias e resultados anteriores
 
-O Python entrega preços, retornos diários e datas de comparação separados por janela. O navegador usa a série correspondente à opção selecionada tanto nos gráficos quanto na matriz. O retorno semanal e sua média continuam vindo dos arquivos auditados, sem novo cálculo no navegador.
+Resultados antigos que guardaram uma única série diária são adaptados durante a consulta: o servidor seleciona as observações de cada janela e remove a comparação anterior ao início da alternativa. Utiliza os dados diários já guardados, mesmo após a remoção do CSV original.
 
-Apresentações antigas que guardaram uma única série diária são adaptadas em memória ao serem consultadas: o servidor recorta as observações pelas datas de cada janela e retira a comparação anterior ao início da alternativa. Isso usa os dados diários já salvos, mesmo após a remoção do bruto. Não regrava o resultado histórico, os manifestos nem a documentação arquivada. A documentação atual explica a interface atual; a cópia arquivada registra os guias associados à execução.
+Essa adaptação não regrava o resultado histórico, os manifestos ou a documentação arquivada. O retorno semanal continua vindo dos arquivos da execução; os gráficos apresentam a janela selecionada.

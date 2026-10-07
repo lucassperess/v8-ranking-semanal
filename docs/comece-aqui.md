@@ -12,9 +12,9 @@ Esta ferramenta transforma uma extração de dados financeiros da plataforma Eco
 
 - **Ranking semanal:** as 20 ações ON e PN com os maiores retornos entre aquelas com preços válidos e classificação confirmada nas duas datas do cálculo. Cada linha mostra o retorno individual daquela ação no período.
 - **Média do top 20:** um card mostra a média aritmética dos 20 retornos do ranking selecionado. Cada ação tem o mesmo peso nessa média.
-- **Duas formas de medir a mesma semana:** a principal inclui a mudança de preço do primeiro dia; a alternativa começa no fechamento desse dia e mede a mudança a partir dali. Ambas terminam no mesmo fechamento final. Veja o exemplo abaixo.
+- **Duas formas de medir a mesma semana:** a principal inclui a mudança de preço até o primeiro fechamento disponível dentro da semana; a alternativa começa no fechamento desse dia e mede a mudança a partir dali. Ambas terminam no mesmo fechamento final. Veja o exemplo abaixo.
 - **Gráficos e tabela diária:** preços e retornos diários da ação selecionada; distribuição dos retornos semanais de todas as ações elegíveis; e uma tabela que cruza as ações do top 20 com as datas. Cada célula mostra a variação do fechamento anterior para o fechamento da data indicada, respeitando a janela selecionada.
-- **Detalhes das ações:** preços inicial e final, diferença em reais por ação, maior retorno do ranking e faixa de retornos do top 20. Quando há alertas nos dados das duas datas usadas para uma ação, uma marca aparece junto ao ticker. Selecionar a ação abre a explicação no painel.
+- **Detalhes das ações:** preços inicial e final, diferença em reais por ação, maior retorno do ranking e faixa de retornos do top 20. Quando há alertas nos dados das duas datas usadas para uma ação, uma marca aparece junto ao ticker. Selecionar a ação atualiza o painel com a explicação.
 - **Arquivos para conferir o resultado:** a auditoria reúne as datas do cálculo, os códigos excluídos e seus motivos, os rankings em CSV, as ocorrências nos dados e as evidências oficiais usadas na classificação. Também permite abrir a cópia da documentação associada àquela execução.
 
 ### Entenda as duas janelas com preços simples

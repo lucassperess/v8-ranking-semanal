@@ -64,11 +64,39 @@ Use este grupo para conferir as datas e regras aplicadas, a identificação dos 
 
 *“Guias arquivados” permite baixar o registro da documentação. O relatório reúne datas, contagens e assinaturas; o leia-me explica a execução, e o manifesto registra o tratamento da entrada.* [Ampliar imagem](assets/arquivos-execucao-20261007.png).
 
+## Percursos de conferência
+
+### Conferir um retorno
+
+1. Identifique a janela selecionada e suas datas na auditoria.
+2. Baixe “Ranking principal” ou “Ranking alternativo” em “Rankings e retornos”.
+3. Localize o ticker e confira `start_date`, `end_date`, `start_close` e `end_close`.
+4. Calcule `(fechamento final ÷ fechamento inicial − 1) × 100` e compare com `return_pct`, considerando o arredondamento da tela.
+
+No case, ECOM3 compara R$ 1,06 em 11/09 com R$ 1,56 em 18/09: aproximadamente 47,17%. Esse é o retorno individual. Para conferir a média do card, some os 20 valores `return_pct` da mesma janela e divida por 20.
+
+### Entender uma exclusão
+
+1. Procure o código em “Exclusões das pontas”, no grupo “Qualidade e exclusões”: esse arquivo informa a ausência de dois preços utilizáveis.
+2. Para instrumentos com preços, consulte “Decisões do universo”, em “Classificação e fontes B3”: ali estão as decisões por tipo e seus motivos.
+3. Confira a janela correspondente, pois a data inicial da alternativa é diferente.
+
+Exclusão de um código pode permitir que a análise continue. Uma classificação pendente registrada como revisão impede a conclusão do ranking; veja [as três decisões](classificacao.md#três-decisões-possíveis).
+
+### Investigar um alerta
+
+1. Selecione a ação e leia o campo, a data e o motivo no painel.
+2. Abra “Contexto de qualidade” e “Ocorrências por linha” para localizar a ocorrência e a linha original indicada.
+3. Compare com seu CSV original, que não é oferecido para download público.
+4. Verifique se o campo entra na fórmula e se a ocorrência gera aviso ou bloqueio. Consulte [os efeitos atuais](dados.md#controles-de-qualidade).
+
+Uma linha pode gerar vários alertas, portanto a quantidade de ocorrências não é a quantidade de ações. Os alertas próximos ao ticker consideram as duas datas usadas; a auditoria permite consultar o arquivo mais amplamente.
+
 ## Alcance dos alertas
 
 A auditoria permite alternar os detalhes entre janela principal e alternativa. A tabela de qualidade distingue a extração inteira, as duas pontas selecionadas, as ações ON/PN elegíveis e o top 20. As contagens representam ocorrências por campo e linha, não quantidades de ações; uma linha pode gerar vários alertas. Dias intermediários do gráfico não fazem parte da contagem das pontas.
 
-Abra os detalhes para conferir a linha original do CSV e o efeito de cada ocorrência nas ações elegíveis. Ausência ou erro bloqueador no fechamento não é preenchido. Alertas em outros campos não entram na fórmula do retorno. Um aviso provisório de tipo no ETL pode ser resolvido pela confirmação oficial posterior; não indica automaticamente uma classificação pendente.
+Abra os detalhes para conferir a linha original do CSV e o efeito de cada ocorrência nas ações elegíveis. Ausência ou erro bloqueador no fechamento não é preenchido. Outros campos, como preço médio e volume, não entram na fórmula do retorno. O fechamento entra: um aviso de fechamento fora do mínimo–máximo pode afetar o resultado, embora atualmente não bloqueie sozinho o cálculo. Um aviso provisório de tipo no ETL pode ser resolvido pela confirmação oficial posterior; não indica automaticamente uma classificação pendente.
 
 No case, o preço médio de BIED3 em 18/09 está fora do intervalo diário. O fechamento utilizado no retorno permanece preservado; o preço médio não é usado no cálculo. Isso descreve o alcance do alerta, sem afirmar que o fornecedor está correto ou inventar uma causa.
 
@@ -76,21 +104,34 @@ No case, o preço médio de BIED3 em 18/09 está fora do intervalo diário. O fe
 
 Hash SHA-256 é uma assinatura calculada a partir do conteúdo de um arquivo. Se o conteúdo mudar, sua assinatura também muda. Isso permite conferir integridade e identificar qual entrada foi usada. Não demonstra que os dados estejam corretos.
 
-Os manifestos registram parâmetros, arquivos, versões e assinaturas. Para repetir uma execução, preserve a entrada, a configuração, o código e as fontes B3 utilizadas. Uma nova versão de dados ou código pode produzir outro resultado.
+Um manifesto é um registro dos arquivos, parâmetros, versões e assinaturas utilizados em uma etapa. Esses registros permitem identificar o material que produziu o resultado. Para repetir uma execução, preserve a entrada, a configuração, o código e as fontes B3 utilizadas. Uma nova versão de dados ou código pode produzir outro resultado.
 
 A apresentação confere as assinaturas declaradas no relatório e nos manifestos antes de usar as evidências detalhadas, inclusive a correspondência entre tratamento, classificação e aquisição. Os arquivos preservam os nomes internos da pasta de execução; por exemplo, `manifest.json` é publicado como `etl_manifest.json`, e os derivados da outra janela recebem `_alternativo`. Para conferir uma assinatura, use o conteúdo do arquivo baixado. As fontes originais podem ser localizadas pelos endereços oficiais no registro de aquisição.
 
 Uma execução antiga sem os derivados necessários informa que a auditoria detalhada está indisponível; não inventa evidências. As novas análises recebem os detalhes automaticamente. Os derivados continuam acessíveis durante o prazo do resultado, mesmo após a remoção do bruto.
 
+## O que guardar para reproduzir
+
+| Material | Por que conservar | Como obter |
+| --- | --- | --- |
+| CSV original da Economatica | Contém a entrada exata dos preços | Preserve sua própria cópia; não há download público do bruto |
+| Referência e opções aceitas | Determinam a semana e as decisões do envio | Relatório e, quando disponível, `analysis_request.json` |
+| Rankings, exclusões e registros de qualidade/classificação | Permitem conferir a saída e as decisões | Downloads da auditoria durante os sete dias |
+| Versão do código e parâmetros | Identificam as regras executadas | Relatório, manifestos e repositório |
+| Fontes originais B3 utilizadas | Permitem repetir a confirmação oficial | Registros de aquisição e seu cache local; o site não oferece os originais |
+| Guias associados | Preservam a explicação vinculada à execução | “Guias arquivados” e “Ler os guias associados” |
+
+A URL e um print conservam referências ao resultado, mas não todos os insumos do cálculo. Guarde os derivados antes da expiração e preserve a entrada desde o envio. A obtenção posterior de uma fonte pode trazer outra versão; para comparar execuções, confira também suas assinaturas.
+
 ## Reproduza pelo Python
 
-Com Python 3.11+ disponível, na raiz do repositório:
+Prepare o ambiente conforme [Desenvolvimento](desenvolvimento.md#preparar-o-ambiente): Python 3.11+, repositório e dependências necessárias ao trabalho que será executado. Com o CSV original disponível, rode na raiz do repositório:
 
 ```powershell
 python weekly_ranking.py --input "CAMINHO\economatica.csv" --reference-date 2026-09-22 --output-dir "runs\reproducao"
 ```
 
-Substitua os caminhos e a referência pelos da análise. O pipeline busca fontes necessárias que ainda não estejam disponíveis. Adicione `--offline` somente quando todas as fontes necessárias já estiverem guardadas no cache.
+Substitua os caminhos e a referência pelos da análise e utilize uma pasta de saída própria. Confira a versão do código registrada no resultado que pretende reproduzir. O pipeline busca fontes necessárias que ainda não estejam disponíveis. Adicione `--offline` somente quando todas as fontes necessárias já estiverem guardadas no cache.
 
 Cada linha do ranking contém o retorno individual de uma ação; a média do top 20 aparece no card e no relatório da execução. Gráficos e matriz diária acompanham as datas da janela selecionada. Na alternativa, o primeiro fechamento é o preço inicial: não há retorno diário naquele dia.
 
@@ -112,4 +153,4 @@ O registro é conferido antes da leitura: assinaturas e identificação da execu
 
 ### Registro de um envio pela interface
 
-Novas análises oferecem `analysis_request.json`: referência, assinatura da entrada, datas verificadas e opções. Quando houver aceitação de semana encurtada, o arquivo também registra o horário da confirmação. A seção Semana e janelas destaca essa decisão. O registro não inclui nome original, endereço IP nem conteúdo bruto. Sua compatibilidade com o relatório é conferida antes de apresentar o resultado. Análises antigas e execuções pelo comando podem não ter esse arquivo; o relatório continua informando se o encerramento antes da sexta foi aceito.
+Novas análises oferecem `analysis_request.json`: referência, assinatura da entrada, datas verificadas e opções. Quando houver aceitação de dados da semana terminando antes da sexta-feira, o arquivo também registra o horário da confirmação. A seção Semana e janelas destaca essa decisão. O registro não inclui nome original, endereço IP nem conteúdo bruto. Sua compatibilidade com o relatório é conferida antes de apresentar o resultado. Análises antigas e execuções pelo comando podem não ter esse arquivo; o relatório continua informando se o encerramento antes da sexta foi aceito.

@@ -143,18 +143,18 @@ Pode ter sido um feriado, uma falha na exportação ou outro problema nos dados.
 
 ## Quais ações entram
 
-Uma ação precisa atender aos seguintes requisitos:
+Uma ação participa de uma opção do ranking quando:
 
-1. Ter fechamento positivo e utilizável nas duas datas da janela.
-2. Ser identificada como ON ou PN pelas regras de código do projeto.
-3. Ter confirmação oficial consistente da espécie nas duas datas de preço.
-4. Passar pelas verificações de conflito e de qualidade aplicáveis aos preços usados.
+1. Possui fechamento maior que zero e utilizável nas datas inicial e final dessa opção, chamadas pontas do cálculo.
+2. Seu código, o ticker, segue a indicação ON/PN adotada pelo projeto.
+3. Os registros oficiais da B3 confirmam o mesmo tipo de ação e uma identificação compatível nas duas datas.
+4. Não possui pendência de classificação nem erro bloqueador no fechamento utilizado.
 
-O final do ticker indica uma hipótese de classe para códigos completos no padrão esperado. A confirmação da B3 é necessária para incluir ON/PN. Um código fora do padrão que tenha evidência oficial de ação exige revisão.
+Uma ação ordinária é identificada como ON; uma preferencial, como PN. A confirmação oficial utiliza a espécie e identificadores do instrumento, não os preços da B3. Veja [como essa decisão é feita](classificacao.md).
 
-BDRs, units e outros instrumentos ficam fora da definição de universo adotada. A classificação detalhada de todo instrumento excluído não é requisito para o ranking; contradições oficiais e conflitos continuam sendo tratados como pendências. A lógica está em [ranking_universe.py](../ranking_universe.py).
+O universo elegível é o conjunto que atende a esses requisitos. BDRs, units e outros produtos ficam fora da definição de ação individual ON/PN adotada. Um código sem os dois preços utilizáveis recebe um motivo de exclusão; uma candidata com confirmação pendente ou identificação conflitante pode impedir a análise inteira.
 
-Não há filtro de liquidez. O universo é formado pelas ações elegíveis da extração, portanto não representa necessariamente todas as ações da B3.
+Não há filtro de liquidez. A quantidade elegível depende do arquivo recebido e das datas, e não representa necessariamente todas as ações da B3. Os avisos de qualidade possuem efeitos distintos: atualmente, fechamento fora do mínimo–máximo gera aviso, mas esse aviso sozinho não bloqueia o ranking. Confira [os limites da validação](dados.md#limites-atuais-da-validação).
 
 ### Exemplo da execução de referência
 
@@ -232,9 +232,9 @@ A alternativa compara o primeiro e o último fechamento **dentro da semana**: no
 
 As duas opções analisam a mesma semana-calendário anterior e terminam na mesma data. A alternativa não se estende até o dia atual: apenas começa no fechamento do primeiro dia disponível dentro da semana, deixando de fora a mudança até esse fechamento.
 
-**Exemplo ilustrativo:** uma ação fecha a sexta anterior a R$ 10, a segunda a R$ 11 e a sexta final a R$ 12. A principal compara R$ 10 com R$ 12: **20,00%**. A alternativa compara R$ 11 com R$ 12: **9,09%**. A alta de R$ 10 para R$ 11 durante a segunda entra somente na principal.
+O [exemplo de R$ 10,00, R$ 11,00 e R$ 12,00](#semana-completa-como-o-cálculo-inclui-a-variação-da-segunda-feira) mostra por que retirar a mudança até o primeiro fechamento altera o retorno.
 
-Ela mostra quanto o resultado muda ao começar por outro fechamento. Sua elegibilidade é avaliada novamente nas próprias pontas: uma ação pode ter preço em 11/09 e não ter em 14/09.
+A alternativa também pode mudar quais ações participam: uma ação pode ter preços em 11/09 e 18/09, mas não em 14/09. Nesse caso, pode atender à comparação principal e ficar de fora da alternativa. As ações são verificadas novamente nas duas datas da alternativa, e seu top 20 é ordenado com esses retornos. Não é apenas uma alteração do gráfico das mesmas 20 ações.
 
 | Resultado da referência | Principal | Alternativa |
 | --- | ---: | ---: |
@@ -278,10 +278,13 @@ Somar percentuais diários não reproduz, em geral, o retorno semanal. Quando to
 | Ausência de uma ponta para um código | Exclusão registrada desse código |
 | Semana sem dados suficientes ou cobertura de ponta insuficiente | Interrompe a seleção da janela |
 | ON/PN candidata sem confirmação oficial nas duas datas | Pendência de classificação; impede o ranking |
-| Conflito relevante de preço, espécie ou identificação | Exige revisão |
-| Erro de qualidade no fechamento de uma ação elegível em uma ponta | Interrompe o cálculo |
+| Duplicata de preço na classificação ou divergência de espécie ou identificação entre fontes/datas | Registra revisão e impede o ranking |
+| Ocorrência classificada como erro no fechamento de uma ação elegível numa data utilizada | Interrompe o cálculo |
+| Fechamento fora do intervalo mínimo–máximo informado | Registra aviso; esse aviso sozinho não bloqueia o cálculo |
 | Menos de 20 ações elegíveis | Interrompe o ranking |
 | Fonte B3 indisponível | Só continua se as fontes disponíveis forem suficientes; caso contrário informa a falha |
+
+Exclusão retira um código da comparação; revisão pendente ou erro bloqueador impede concluir a análise. Uma confirmação das datas no formulário não libera esses bloqueios.
 
 Nem toda ocorrência é bloqueadora. Um preço médio fora do intervalo mínimo–máximo é registrado; ele não é usado na fórmula e não prova que o fechamento esteja errado. Nenhuma ocorrência autoriza corrigir silenciosamente os preços.
 
@@ -304,7 +307,9 @@ Na pasta completa gerada pelo comando Python, `classification/principal/ranking_
 
 O relatório registra uma **assinatura do conteúdo do arquivo**, chamada hash SHA-256: ela permite verificar se dois arquivos têm o mesmo conteúdo. Essa assinatura identifica a entrada, mas não comprova que os dados estejam corretos. A procedência registra também a versão e a assinatura do código utilizado.
 
-Para reproduzir com Python 3.11+ e o CSV original disponível, rode na raiz do repositório:
+Os downloads públicos permitem conferir o resultado, mas não incluem o CSV original nem os arquivos originais B3. Para repetir o processamento, conserve sua própria entrada e os demais insumos. Consulte [o que guardar e como preparar o ambiente](auditoria.md#o-que-guardar-para-reproduzir).
+
+Com Python 3.11+, ambiente preparado e CSV original disponível, rode na raiz do repositório:
 
 ```powershell
 python weekly_ranking.py --input "CAMINHO\economatica.csv" --reference-date 2026-09-22 --output-dir "runs\semana-2026-09-22"
@@ -332,6 +337,6 @@ Para conferir a implementação:
 
 ## Revisão deste artigo
 
-Revisado em **07/10/2026** para explicar as duas janelas, separar retorno individual e média e alinhar os gráficos e a tabela diária ao período selecionado. Os exemplos numéricos pertencem à referência de 22/09/2026. A identificação da revisão dos guias aparece nesta página; a auditoria informa qual cópia foi associada a cada execução, sem alterar o registro histórico do cálculo.
+Revisado em **07/10/2026** para explicar datas, elegibilidade, retorno individual e média, distinguir exclusões de bloqueios e explicitar os avisos e limites atuais de validação. Os exemplos numéricos pertencem à referência de 22/09/2026. A identificação da revisão dos guias aparece nesta página; a auditoria informa qual cópia foi associada a cada execução, sem alterar o registro histórico do cálculo.
 
 Os artigos de [guia de uso](como-usar.md), [dados](dados.md), [classificação](classificacao.md) e [arquitetura](sistema.md) complementam esta explicação. Sempre que uma regra mudar, este artigo deve ser revisado junto com o código.
