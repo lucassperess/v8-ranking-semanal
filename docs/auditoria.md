@@ -28,6 +28,42 @@ Downloads públicos são limitados a uma lista de derivados permitidos. Classifi
 
 O arquivo de exclusões por ausência de preços não substitui o registro de instrumentos excluídos pelo tipo. Na referência, são 158 códigos sem comparação válida e outros 12 instrumentos com preços válidos excluídos pelo universo: nove units e três BDRs. Consulte os registros para outra extração; essas contagens não são fixas.
 
+### Como localizar os downloads na interface
+
+Na auditoria, os arquivos aparecem em quatro grupos recolhíveis. Abra o grupo correspondente ao que deseja conferir. As capturas abaixo mostram a auditoria do case; use os arquivos da execução que você está consultando. Os botões CSV, JSON e MD nas imagens são exemplos visuais; os downloads funcionam na página da auditoria.
+
+#### Rankings e retornos
+
+Use este grupo para baixar o top 20 e todos os retornos das ações elegíveis. Os arquivos principal e alternativo correspondem a datas de comparação próprias.
+
+![Grupo Rankings e retornos da auditoria, com downloads dos rankings e universos da janela principal e da alternativa.](assets/arquivos-rankings-20261007.png)
+
+*“Ranking principal” e “Ranking alternativo” contêm o top 20; “Universo completo” e “Universo alternativo” contêm todos os retornos elegíveis de cada opção.* [Ampliar imagem](assets/arquivos-rankings-20261007.png).
+
+#### Qualidade e exclusões
+
+Use este grupo para descobrir quais códigos ficaram sem preços utilizáveis, quais problemas foram registrados e como a quantidade de dados varia entre as datas.
+
+![Grupo Qualidade e exclusões da auditoria: contexto de qualidade, exclusões das pontas, cobertura por data, ocorrências por linha e arquivos da alternativa.](assets/arquivos-qualidade-20261007.png)
+
+*“Exclusões das pontas” explica a ausência de comparação válida; “Ocorrências por linha” identifica a linha original, o campo e o motivo. Esses arquivos não oferecem o CSV bruto para download.* [Ampliar imagem](assets/arquivos-qualidade-20261007.png).
+
+#### Classificação e fontes B3
+
+Use este grupo para conferir a decisão de inclusão, exclusão ou revisão de cada código e a evidência oficial que sustenta sua classificação.
+
+![Grupo Classificação e fontes B3 da auditoria, com decisões do universo, classificações nas datas, evidências, aquisição, manifestos e resumos para as duas janelas.](assets/arquivos-classificacao-20261007.png)
+
+*As decisões do universo informam o resultado por código. Os arquivos de evidências e classificação permitem conferir a espécie nas datas utilizadas; aquisição e manifestos registram as fontes, versões e assinaturas.* [Ampliar imagem](assets/arquivos-classificacao-20261007.png).
+
+#### Execução e reprodução
+
+Use este grupo para conferir as datas e regras aplicadas, a identificação dos arquivos e a versão da documentação associada ao resultado.
+
+![Grupo Execução e reprodução da auditoria, com guias arquivados, relatório da execução, leia-me e manifesto do tratamento.](assets/arquivos-execucao-20261007.png)
+
+*“Guias arquivados” permite baixar o registro da documentação. O relatório reúne datas, contagens e assinaturas; o leia-me explica a execução, e o manifesto registra o tratamento da entrada.* [Ampliar imagem](assets/arquivos-execucao-20261007.png).
+
 ## Alcance dos alertas
 
 A auditoria permite alternar os detalhes entre janela principal e alternativa. A tabela de qualidade distingue a extração inteira, as duas pontas selecionadas, as ações ON/PN elegíveis e o top 20. As contagens representam ocorrências por campo e linha, não quantidades de ações; uma linha pode gerar vários alertas. Dias intermediários do gráfico não fazem parte da contagem das pontas.
@@ -67,6 +103,10 @@ Os artigos são mantidos em Markdown no Git e publicados pelo site. A documenta�
 Cada nova análise pela interface grava `documentation_snapshot.json` na conclusão: cópia dos artigos e referências técnicas, assinatura SHA-256 da revisão, horário e identificação da entrada e do código. A auditoria permite ler os oito artigos dessa cópia e baixar o registro completo. Uma edição dos guias atuais não reescreve o arquivo da análise.
 
 A associação de uma execução antiga exige revisão e aparece como **associada após revisão**. Ela não significa que os textos já existiam no dia do processamento. A referência de 22/09/2026 recebeu esse tipo de associação. Se não houver registro, o site informa a ausência; não presume que os guias atuais eram os guias históricos.
+
+![Card Documentação desta execução na auditoria do case, com revisão b1e03182ad87, associação após revisão e acesso Ler os guias associados.](assets/guias-arquivados-20261007.png)
+
+*“Ler os guias associados” abre a cópia vinculada àquela execução. A revisão b1e03182ad87 identifica a cópia do case mostrada no print, não a versão atual destes artigos. “Associada após revisão” informa que essa cópia foi registrada depois do processamento.* [Ampliar imagem](assets/guias-arquivados-20261007.png).
 
 O registro é conferido antes da leitura: assinaturas e identificação da execução devem coincidir. A assinatura demonstra integridade, não garante que uma explicação esteja correta. O cálculo continua identificado pelo relatório e pelos manifestos. Execuções apenas pelo comando Python podem associar os guias depois da conferência, conforme o [roteiro técnico](desenvolvimento.md). Veja [metodologia](metodologia.md) e [README do projeto](../README.md).
 

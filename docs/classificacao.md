@@ -21,6 +21,10 @@ Para incluir uma ON/PN, o sistema exige classificação oficial consistente nas 
 
 **COTAHIST** é um arquivo histórico de negociações da B3. Ele ajuda a identificar instrumentos negociados na data; não contém necessariamente um ativo que ficou sem negociação. O cadastro de instrumentos complementa essa evidência. Os preços desses arquivos não entram no retorno.
 
+![Fontes oficiais usadas na classificação do case: COTAHIST de 11/09 e 18/09/2026 e cadastro B3 de 18/09/2026, com nomes dos arquivos e disponibilidade.](assets/fontes-b3-20261007.png)
+
+*A tabela da auditoria identifica as fontes oficiais consultadas para a janela selecionada. Estas datas pertencem ao case; outra análise usa as fontes necessárias para suas próprias datas. Os preços desses arquivos não substituem os da Economatica.* [Ampliar imagem](assets/fontes-b3-20261007.png).
+
 Os arquivos são guardados por data e identificação do conteúdo. O cache evita baixar e interpretar novamente a mesma fonte. Cache não transforma uma evidência de outra época em confirmação automática para a data solicitada.
 
 ## Três decisões possíveis

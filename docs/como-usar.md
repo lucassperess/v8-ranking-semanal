@@ -113,9 +113,9 @@ O link ao lado de “Maiores retornos da semana” baixa o ranking da janela exi
 3. Envie e acompanhe a etapa do processamento.
 4. Ao concluir, explore o resultado e abra sua auditoria. Se falhar, leia o motivo antes de tentar novamente.
 
-![Formulário Nova análise mostrando a semana de 28/09/2026 a 04/10/2026 e o botão Executar nova análise.](assets/nova-analise-executar-20261007.png)
+![Formulário completo de Nova análise: escolha do CSV, referência confirmada de 07/10/2026, semana de 28/09 a 04/10/2026 e botão Executar nova análise.](assets/nova-analise-formulario-20261007.png)
 
-*Este exemplo de formulário usa a referência de 07/10/2026, que seleciona a semana de 28/09 a 04/10. São datas diferentes das do case. O card mostra a semana-calendário; os fechamentos utilizados no cálculo serão definidos pelos dados do CSV. Após conferir, use “Executar nova análise” para seguir à página de acompanhamento.* [Ampliar imagem](assets/nova-analise-executar-20261007.png).
+*Siga as três etapas: selecione o CSV, confira a referência e a semana e execute a análise. Nesta captura, o campo de data está em formato mês/dia/ano; a confirmação ao lado apresenta a referência como 07/10/2026 (7 de outubro), que seleciona a semana de 28/09 a 04/10. São datas diferentes das do case. O card mostra a semana-calendário; os fechamentos utilizados no cálculo serão definidos pelos dados do CSV. Após conferir, use “Executar nova análise” para seguir à página de acompanhamento.* [Ampliar imagem](assets/nova-analise-formulario-20261007.png).
 
 ### Limites e disponibilidade da nova análise
 

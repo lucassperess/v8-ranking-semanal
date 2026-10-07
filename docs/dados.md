@@ -43,6 +43,10 @@ A granularidade esperada é **ativo × data**. Duplicatas exatas ou conflitantes
 
 Cobertura significa quantos ativos possuem dados numa data. Quedas acentuadas geram alertas e controles adicionais na seleção das pontas. Divergências entre quantidade, volume e preço médio não autorizam correção: quantidade ajustada e volume bruto podem estar em bases diferentes.
 
+![Painel de qualidade: estrutura e leitura do CSV, datas e preços, chaves e cobertura e preservação dos dados.](assets/qualidade-dados-20261007.png)
+
+*Este painel resume as verificações; não comprova que uma base esteja livre de problemas. As ocorrências registram linha, código, data, campo e motivo. Um alerta em outro campo não altera automaticamente o fechamento usado no retorno.* [Ampliar imagem](assets/qualidade-dados-20261007.png).
+
 ## Arquivos do tratamento
 
 O comando Python produz `normalized.csv`, `quality_issues.csv`, `quality_by_date.csv`, `quality_summary.json` e `manifest.json`, além da cópia original. As ocorrências registram código, campo, linha e motivo. Esses arquivos completos não são todos disponibilizados pelo site público.

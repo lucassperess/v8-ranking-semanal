@@ -53,6 +53,10 @@ No case, a referência de **22/09/2026** está na semana de 21 a 27/09. Portanto
 | Primeiro fechamento na semana | 14/09/2026 | Preço inicial da alternativa “Dentro da semana” |
 | Último fechamento na semana | 18/09/2026 | Preço final das duas opções |
 
+![Auditoria do case: referência de 22/09/2026 seleciona a semana de 14 a 20/09; Semana completa compara 11 a 18/09, e Dentro da semana compara 14 a 18/09.](assets/semana-janelas-20261007.png)
+
+*A captura mostra as duas opções do case lado a lado. Ambas terminam em 18/09; a principal começa em 11/09 e a alternativa em 14/09. As médias de 17,78% e 15,93% pertencem a essa execução.* [Ampliar imagem](assets/semana-janelas-20261007.png).
+
 ### Semana completa: como o cálculo inclui a variação da segunda-feira
 
 Para medir a semana completa, comparamos:
@@ -163,6 +167,10 @@ Não há filtro de liquidez. O universo é formado pelas ações elegíveis da e
 | Ações elegíveis | 308 |
 | Ações no ranking apresentado | 20 |
 
+![Universo do case na janela principal: 478 códigos avaliados, 320 com preços nas duas datas, 308 ações ON/PN elegíveis e 20 no ranking.](assets/universo-exclusoes-20261007.png)
+
+*De 478 códigos, 158 ficaram sem comparação válida. Dos 320 restantes, 12 não pertenciam ao universo ON/PN; sobraram 308 elegíveis, das quais são selecionadas as 20 de maior retorno. Essas contagens podem mudar em outra análise.* [Ampliar imagem](assets/universo-exclusoes-20261007.png).
+
 Os 158 códigos sem duas pontas não são perdas silenciosas: os motivos ficam registrados nas exclusões. Os 12 instrumentos com preços válidos, mas fora do universo, têm uma decisão distinta.
 
 ## Como o retorno é calculado
@@ -190,6 +198,10 @@ A B3 não substitui os preços da Economatica. Isso evita combinar séries de fo
 0,471698… × 100 = 47,169811…%
 Exibição com duas casas = 47,17%
 ```
+
+![Cálculo do retorno de ECOM3 no case: R$ 1,06 em 11/09 para R$ 1,56 em 18/09, com retorno semanal de 47,17%; explicações sobre ordenação, média e gráficos diários.](assets/calculo-retorno-media-20261007.png)
+
+*47,17% é o retorno individual de ECOM3, não a média do top 20. A média soma os retornos das 20 ações e divide por 20. O arredondamento ocorre na exibição, e somar retornos diários não reproduz o retorno semanal.* [Ampliar imagem](assets/calculo-retorno-media-20261007.png).
 
 Dividimos pela base inicial porque queremos saber quanto o preço variou em relação ao valor do início. A diferença de R$ 0,50, sozinha, não permite comparar ações com preços diferentes.
 
