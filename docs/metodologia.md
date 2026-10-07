@@ -1,8 +1,8 @@
 # Metodologia do ranking semanal
 
-O ranking apresenta as 20 maiores retornos de preço entre as ações ordinárias (ON) e preferenciais (PN) elegíveis na extração recebida. Os preços vêm da Economatica; a B3 fornece evidências para confirmar a espécie dos instrumentos.
+O ranking apresenta **os 20 maiores retornos de preço** entre as ações ordinárias (ON) e preferenciais (PN) elegíveis no arquivo recebido. Os preços vêm da plataforma de dados financeiros Economatica. Os registros oficiais da B3 são utilizados para confirmar se cada instrumento é uma ação ON ou PN.
 
-Este artigo explica o comportamento atual do pipeline. O exemplo usa a execução de referência de **22/09/2026**. Outra extração terá suas próprias datas, ações, contagens e resultados.
+Este artigo explica como os scripts Python selecionam as datas, verificam os dados e calculam o ranking. Os exemplos utilizam o case, com **data de referência de 22/09/2026**. Uma nova análise utiliza seu próprio arquivo e sua própria data de referência, produzindo datas, ações, contagens e resultados próprios.
 
 ## Nesta página
 
@@ -41,38 +41,101 @@ Os retornos do ranking e os dados dos gráficos são produzidos em Python. O nav
 
 ## Qual semana é analisada
 
-A **data de referência** determina qual é a semana-calendário anterior, de segunda-feira a domingo. Ela não significa que todas as cotações daquele dia estarão disponíveis.
+A **data de referência** serve para escolher a semana anterior à semana em que essa data está, considerando o período de segunda-feira a domingo. Ela não é uma data de preço utilizada diretamente no cálculo.
 
-Para uma referência em 22/09/2026:
+No case, a referência de **22/09/2026** está na semana de 21 a 27/09. Portanto, a semana analisada é **14 a 20/09/2026**.
 
 | Marco | Data | Papel |
 | --- | --- | --- |
 | Referência | 22/09/2026 | Define a semana anterior |
 | Semana anterior | 14 a 20/09/2026 | Período que queremos analisar |
-| Último fechamento antes da semana | 11/09/2026 | Preço inicial da janela principal |
-| Primeiro fechamento na semana | 14/09/2026 | Preço inicial da janela alternativa |
-| Último fechamento na semana | 18/09/2026 | Preço final das duas janelas |
+| Último fechamento antes da semana | 11/09/2026 | Preço inicial da opção “Semana completa” |
+| Primeiro fechamento na semana | 14/09/2026 | Preço inicial da alternativa “Dentro da semana” |
+| Último fechamento na semana | 18/09/2026 | Preço final das duas opções |
 
-### Janela principal: anterior à semana → último fechamento nela
+### Semana completa: como o cálculo inclui a variação da segunda-feira
 
-O movimento do primeiro pregão é medido contra o fechamento anterior. Por isso, a comparação principal vai de **11/09 a 18/09**, embora a semana-calendário comece em 14/09.
+Para medir a semana completa, comparamos:
 
-Se começássemos pelo fechamento de segunda-feira, o movimento ocorrido durante a segunda já estaria incorporado ao preço inicial e ficaria fora da comparação.
+- O último fechamento disponível **antes de a semana começar**.
+- O último fechamento disponível **dentro da semana**.
 
-As datas são escolhidas globalmente para a execução, com base nos dias da extração que possuem fechamentos positivos. Não usamos uma data inicial diferente para cada ação com preço faltante.
+No case, esses preços são os fechamentos de **sexta-feira, 11/09**, e de **sexta-feira, 18/09**.
 
-### Controles na seleção das datas
+A comparação começa no fechamento anterior à semana porque a mudança de preço da segunda-feira acontece entre esse fechamento e o fechamento da própria segunda-feira. Se começássemos pelo preço ao fim da segunda-feira, essa mudança ficaria de fora. Se o primeiro dia com dados for outro dia da semana, o mesmo raciocínio se aplica a ele.
 
-O sistema verifica se existe fechamento anterior e se há dados na semana. Também:
+**Exemplo fictício:** uma ação fecha a sexta-feira anterior a R$ 10,00, a segunda-feira a R$ 11,00 e a sexta-feira seguinte a R$ 12,00.
 
-- Interrompe quando o último dia disponível é anterior à sexta-feira, até que a semana encurtada seja revisada e aceita explicitamente pelo formulário ou pelo comando `--allow-nonfriday-end`.
-- Interrompe se o fechamento anterior estiver mais de dez dias antes da segunda-feira da semana.
-- Compara a cobertura das três datas escolhidas com uma referência de cobertura recente: o valor central superior das contagens ordenadas de até dez datas anteriores com preços positivos. Uma ponta com menos da metade dessa cobertura impede o cálculo.
-- Exige pelo menos duas datas com cotação dentro da semana para produzir a alternativa.
+- **Semana completa:** compara R$ 10,00 com R$ 12,00. Retorno de **20,00%**, incluindo a mudança até o fechamento da segunda-feira.
+- **Dentro da semana:** compara R$ 11,00 com R$ 12,00. Retorno de **9,09%**, deixando de fora a mudança até o fechamento da segunda-feira.
 
-No formulário, a revisão mostra o fechamento anterior, o primeiro e o último dentro da semana, com suas contagens de linhas com fechamento positivo. O usuário precisa confirmar a aceitação antes de enfileirar uma semana encurtada. A confirmação vale apenas para aquele arquivo e referência, fica disponível na auditoria e no arquivo `analysis_request.json`, e é invalidada ao trocar a entrada. O pipeline verifica tudo novamente no worker.
+As datas são escolhidas a partir da **extração: o arquivo CSV exportado da Economatica**, que contém os instrumentos, as datas e os preços recebidos. O sistema procura datas com fechamentos positivos, isto é, maiores que zero.
 
-Esses controles ajudam a detectar uma extração incompleta. O calendário e a cobertura observada não comprovam, sozinhos, que uma ausência é feriado.
+Cada opção utiliza as mesmas datas inicial e final para todas as ações. Se uma ação não tiver preço utilizável em uma dessas datas, ela não participa daquele ranking. O sistema não escolhe outra data apenas para incluí-la.
+
+### Verificações antes de calcular o ranking
+
+Os scripts Python verificam se o arquivo contém preços antes da semana e dentro dela. Também aplicam os controles abaixo.
+
+#### 1. Pedir revisão quando os dados terminam antes da sexta-feira
+
+Se o último dia com fechamento positivo dentro da semana for uma quinta-feira ou um dia anterior, o sistema pede revisão antes de continuar.
+
+**Exemplo:** a semana deveria ser analisada até sexta-feira, mas o arquivo só possui preços até quinta-feira.
+
+Isso pode acontecer porque não houve negociação na sexta-feira ou porque o arquivo está incompleto. Continuar automaticamente poderia apresentar como resultado da semana uma comparação que terminou antes do esperado.
+
+A revisão permite aceitar explicitamente a última data disponível. **Essa aceitação não cria preços para os dias ausentes** e não dispensa as outras verificações.
+
+#### 2. Impedir o uso de um preço inicial muito antigo
+
+O cálculo é interrompido se o último fechamento disponível antes da semana estiver **mais de dez dias corridos antes da segunda-feira**.
+
+O objetivo é evitar que a comparação inclua um período anterior muito maior do que a semana que queremos analisar.
+
+**Exemplo:** para uma semana iniciada em 14/09, usar um preço de 01/09 como ponto inicial incluiria também mudanças ocorridas muito antes daquela semana.
+
+Dez dias é um limite definido neste projeto, não uma regra da B3. É uma proteção adotada pela ferramenta para impedir uma comparação com um preço inicial muito distante.
+
+#### 3. Verificar se as datas escolhidas possuem dados suficientes
+
+O sistema conta quantas linhas têm fechamento positivo em cada uma das três datas: anterior à semana, primeira dentro dela e última dentro dela. Essa contagem de linhas ainda não é a quantidade de ações elegíveis; a confirmação de ON/PN acontece depois.
+
+Depois, compara essas contagens com um valor de referência calculado a partir de até dez datas recentes do arquivo, com preços positivos, até a última data da semana. Essas datas podem incluir dias da própria semana analisada.
+
+Se alguma das três datas tiver **menos da metade desse valor**, o cálculo é interrompido.
+
+**Exemplo:** se o valor de referência for 300 linhas, uma data com apenas 100 não passa na verificação. Ela pode representar uma parte incompleta do arquivo, reduzindo as ações disponíveis e afetando o ranking. Uma data com 150 atende a esse limite, pois possui exatamente a metade; as demais verificações continuam necessárias.
+
+Esse controle identifica uma redução acentuada na quantidade de dados. **Não comprova que o arquivo esteja completo.** O limite de metade também é uma decisão do projeto.
+
+**Detalhe do cálculo:** são utilizadas as até dez datas mais recentes com fechamentos positivos, até a última data da semana. As contagens são ordenadas da menor para a maior, e o valor central é escolhido como referência. Se houver duas posições centrais, utiliza-se a maior delas, chamada mediana superior.
+
+#### 4. Exigir duas datas diferentes dentro da semana
+
+A alternativa compara o primeiro fechamento dentro da semana com o último. Por isso, precisa de **pelo menos duas datas diferentes com preços**.
+
+Com apenas uma data, teríamos um único ponto de preço: não seria possível medir a mudança entre o início e o fim.
+
+Atualmente, essa situação interrompe a análise inteira, pois a ferramenta produz as duas comparações na mesma execução.
+
+### Como revisar as datas em uma nova análise
+
+Na página [Nova análise](/nova-analise), você envia o CSV e escolhe a data de referência.
+
+Quando os dados da semana terminam antes da sexta-feira, o formulário apresenta as três datas escolhidas e a quantidade de linhas com fechamento positivo em cada uma. Confira essas informações no arquivo original antes de aceitar a comparação.
+
+A confirmação vale apenas para **aquele arquivo e aquela data de referência**. Se você trocar qualquer um deles, precisará revisar novamente. A aceitação fica registrada na auditoria e no arquivo `analysis_request.json`.
+
+Após o envio, um processo no servidor executa os scripts Python e repete as verificações antes de gerar o resultado. Esse processo é chamado de *worker* no código.
+
+Para quem executa pelo terminal, a aceitação é informada pelo parâmetro `--allow-nonfriday-end`.
+
+### Por que o sistema não identifica automaticamente um feriado?
+
+Um arquivo sem preços na sexta-feira não informa, por si só, a causa dessa ausência.
+
+Pode ter sido um feriado, uma falha na exportação ou outro problema nos dados. Por isso, a ferramenta pede conferência em vez de afirmar que foi feriado.
 
 ## Quais ações entram
 

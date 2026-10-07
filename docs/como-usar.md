@@ -4,7 +4,7 @@ O dashboard apresenta os resultados calculados pelo script Python utilizado para
 
 ## Leitura dos cards
 
-As capturas deste artigo mostram a janela “Semana completa” do case, com comparação de **11/09/2026 a 18/09/2026**. Outra análise pode apresentar datas, ações e valores diferentes.
+As capturas dos cards, do ranking e dos gráficos mostram a janela “Semana completa” do case, com comparação de **11/09/2026 a 18/09/2026**. Outra análise pode apresentar datas, ações e valores diferentes.
 
 ![Cards do case: média do top 20 de 17,78%, 308 ações elegíveis, 38,64% em alta e média alternativa de 15,93%.](assets/cards-20261007.png)
 
@@ -112,6 +112,18 @@ O link ao lado de “Maiores retornos da semana” baixa o ranking da janela exi
 2. Confira a data de referência e a semana indicada. A referência define a semana-calendário anterior.
 3. Envie e acompanhe a etapa do processamento.
 4. Ao concluir, explore o resultado e abra sua auditoria. Se falhar, leia o motivo antes de tentar novamente.
+
+![Formulário Nova análise mostrando a semana de 28/09/2026 a 04/10/2026 e o botão Executar nova análise.](assets/nova-analise-executar-20261007.png)
+
+*Este exemplo de formulário usa a referência de 07/10/2026, que seleciona a semana de 28/09 a 04/10. São datas diferentes das do case. O card mostra a semana-calendário; os fechamentos utilizados no cálculo serão definidos pelos dados do CSV. Após conferir, use “Executar nova análise” para seguir à página de acompanhamento.* [Ampliar imagem](assets/nova-analise-executar-20261007.png).
+
+### Limites e disponibilidade da nova análise
+
+O arquivo deve ter até **10 MB**, e cada análise tem um limite de **dez minutos de processamento**, contado após começar a ser executada. A fila aceita uma análise em processamento e até duas aguardando; a mesma origem de acesso pode criar até três análises por hora. A obtenção e a confirmação das fontes oficiais da B3 também podem interromper a análise, com o motivo apresentado na página de acompanhamento.
+
+![Limites da nova análise: CSV de até 10 MB, processamento de até dez minutos, uma análise ativa e duas aguardando, três envios por origem por hora e resultado disponível por sete dias; aviso para guardar o link e sobre remoção do CSV após 24 horas.](assets/nova-analise-limites-20261007.png)
+
+*Guarde o endereço web (URL) da sua análise: os envios não aparecem em uma lista pública. Baixe os resultados que quiser conservar durante os sete dias de disponibilidade.* [Ampliar imagem](assets/nova-analise-limites-20261007.png).
 
 O resultado de teste fica disponível por sete dias. O CSV bruto é removido após 24 horas e não é oferecido para download. Consulte [formato e tratamento](dados.md) antes de enviar outro esquema.
 
