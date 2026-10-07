@@ -1,0 +1,31 @@
+{
+  "reference_date": "2026-09-22",
+  "week_start": "2026-09-14",
+  "week_end": "2026-09-20",
+  "identity_sources": ["resultados/2026-09-22/b3_evidence.csv", "https://dados.cvm.gov.br/dados/CIA_ABERTA/CAD/DADOS/cad_cia_aberta.csv"],
+  "issuers": [
+    {"cvm_code": "24961", "tickers": ["AMBP3"], "search_name": "Ambipar"},
+    {"cvm_code": "26069", "tickers": ["ARML3"], "search_name": "Armac Locação"},
+    {"cvm_code": "26620", "tickers": ["AURE3"], "search_name": "Auren Energia"},
+    {"cvm_code": "701", "tickers": ["BIED3"], "search_name": "Bioma Educação"},
+    {"cvm_code": "25232", "tickers": ["CASH3"], "search_name": "Méliuz"},
+    {"cvm_code": "19623", "tickers": ["DASA3"], "search_name": "Dasa Diagnósticos da América"},
+    {"cvm_code": "25836", "tickers": ["DOTZ3"], "search_name": "Dotz"},
+    {"cvm_code": "26077", "tickers": ["ECOM3"], "search_name": "Economatica ECOM3"},
+    {"cvm_code": "8427", "tickers": ["ESTR4"], "search_name": "Manufatura de Brinquedos Estrela"},
+    {"cvm_code": "15423", "tickers": ["FASA3"], "search_name": "Fasa FASA3"},
+    {"cvm_code": "18376", "tickers": ["ISAE3"], "search_name": "ISA Energia Brasil"},
+    {"cvm_code": "8192", "tickers": ["LUXM4"], "search_name": "Trevisa Investimentos"},
+    {"cvm_code": "23574", "tickers": ["MEAL3"], "search_name": "International Meal Company IMC"},
+    {"cvm_code": "8397", "tickers": ["MGEL4"], "search_name": "Mangels Industrial"},
+    {"cvm_code": "26123", "tickers": ["ONCO3"], "search_name": "Oncoclínicas"},
+    {"cvm_code": "13471", "tickers": ["PLAS3"], "search_name": "Plascar Participações"},
+    {"cvm_code": "22497", "tickers": ["QUAL3"], "search_name": "Qualicorp"},
+    {"cvm_code": "12572", "tickers": ["RCSL3"], "search_name": "Recrusul"},
+    {"cvm_code": "6173", "tickers": ["TASA3", "TASA4"], "search_name": "Taurus Armas"},
+    {"cvm_code": "7544", "tickers": ["TXRX4"], "search_name": "Têxtil Renauxview"},
+    {"cvm_code": "25895", "tickers": ["WDCN3"], "search_name": "WDC Networks Livetech"},
+    {"cvm_code": "25518", "tickers": ["WEST3"], "search_name": "Westwing"},
+    {"cvm_code": "21016", "tickers": ["YDUQ3"], "search_name": "Yduqs"}
+  ]
+}

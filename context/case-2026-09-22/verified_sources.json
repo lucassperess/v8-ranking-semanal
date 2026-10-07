@@ -1,0 +1,68 @@
+{
+  "reference_date": "2026-09-22",
+  "status": "source_metadata_checked_not_generated_dashboard_text",
+  "sources": [
+    {
+      "id": "taurus-union-20260918",
+      "cvm_code": "6173",
+      "tickers": ["TASA3", "TASA4"],
+      "title": "Trabalhadores da Taurus rejeitam proposta e aprovam estado de greve",
+      "url": "https://metalsaoleo.org.br/2026/09/18/trabalhadores-da-taurus-rejeitam-proposta-e-aprovam-estado-de-greve/",
+      "publisher": "STIMMMESL",
+      "source_type": "stakeholder_primary_report",
+      "event_date": "2026-09-17",
+      "publication_date": "2026-09-18",
+      "publication_time": null,
+      "attribution_required": true,
+      "causal_effect_on_return": "not_established",
+      "retrieval_method": "web_reader_full_page",
+      "review_note": "É relato do sindicato. Estado de greve não equivale a comprovação de paralisação."
+    },
+    {
+      "id": "bcb-copom-20260916",
+      "scope": "macro_brazil",
+      "title": "Copom reduz a taxa Selic para 13,75% a.a.",
+      "url": "https://www.bcb.gov.br/detalhenoticia/21261/nota",
+      "publisher": "Banco Central do Brasil",
+      "source_type": "official_statement",
+      "event_date": "2026-09-16",
+      "publication_date": "2026-09-16",
+      "publication_time": "18:32",
+      "publication_timezone": "America/Sao_Paulo",
+      "page_updated_date": "2026-09-23",
+      "causal_effect_on_individual_returns": "not_established",
+      "retrieval_method": "jina_reader_of_official_page",
+      "review_note": "Página atualizada depois da semana; não é uma captura contemporânea. O horário da publicação deve acompanhar a contextualização diária."
+    },
+    {
+      "id": "fed-fomc-20260916",
+      "scope": "macro_us",
+      "title": "Federal Reserve issues FOMC statement",
+      "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+      "publisher": "Federal Reserve",
+      "source_type": "official_statement",
+      "event_date": "2026-09-16",
+      "publication_date": "2026-09-16",
+      "publication_time": "14:00",
+      "publication_timezone": "America/New_York",
+      "causal_effect_on_individual_returns": "not_established",
+      "retrieval_method": "web_reader_full_page"
+    },
+    {
+      "id": "senado-ifi-20260917",
+      "scope": "macro_fiscal",
+      "title": "Governo terá que cortar despesas para fechar as contas em 2027, diz IFI",
+      "url": "https://www12.senado.leg.br/noticias/materias/2026/09/17/governo-tera-que-cortar-despesas-para-fechar-as-contas-em-2027-diz-ifi",
+      "publisher": "Agência Senado",
+      "source_type": "official_agency_report",
+      "event_date": null,
+      "publication_date": "2026-09-17",
+      "publication_time": "17:27",
+      "publication_timezone": "America/Sao_Paulo",
+      "attribution_required": true,
+      "causal_effect_on_individual_returns": "not_established",
+      "retrieval_method": "web_reader_full_page",
+      "review_note": "São projeções e avaliações da IFI sobre o orçamento de 2027, não resultados realizados. A data do relatório original ainda requer conferência."
+    }
+  ]
+}

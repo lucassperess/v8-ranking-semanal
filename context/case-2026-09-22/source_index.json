@@ -1,0 +1,2528 @@
+{
+  "reference_date": "2026-09-22",
+  "week_start": "2026-09-14",
+  "week_end": "2026-09-20",
+  "collected_at": "2026-10-07T22:40:53.707765+00:00",
+  "status": "collected_pending_editorial_review",
+  "collection_sha256": "825a36e87ed3a00cc7bec6f152a5759c7b48d7adb212e7134cc770ba199b9600",
+  "official_document_texts_sha256": "6953f691b5b7f91c0ae9691ecfb0707d027ded5d6f1c3ac05d9ffd74646ad392",
+  "official_sources": [
+    {
+      "url": "https://dados.cvm.gov.br/dados/CIA_ABERTA/CAD/DADOS/cad_cia_aberta.csv",
+      "sha256": "2c66942b9e6d75fb7c223e0b8f85a836bbd5241ae9b248c44e8849238f72e511"
+    },
+    {
+      "url": "https://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/IPE/DADOS/ipe_cia_aberta_2026.zip",
+      "sha256": "f74f4d5e00c7993d94bf541b860c5f33be5729504971c4e7236f973d3ab7a4e1",
+      "row_count": 36032
+    }
+  ],
+  "issuers": [
+    {
+      "cvm_code": "24961",
+      "cnpj": "12.648.266/0001-24",
+      "legal_name": "AMBIPAR PARTICIPAÇÕES E EMPREENDIMENTOS S.A.",
+      "tickers": [
+        "AMBP3"
+      ],
+      "review_status": "pending_review",
+      "official_documents": [],
+      "search_candidates": [
+        {
+          "title": "Especializada no mercado financeiro e registrada na CVM, ...",
+          "url": "https://www.instagram.com/p/DdcFOtRI82g",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Vale (VALE3) no olho do furacão? CEO da mineradora ...",
+          "url": "https://www.seudinheiro.com/2026/empresas/vale-vale3-no-olho-do-furacao-ceo-da-mineradora-abre-o-jogo-citi-e-itau-bba-dizem-o-que-voce-deve-fazer-com-a-acao-ccgg",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Assaí (ASAI3), IMC, Vinci, TIM (TIMS3) e mais - Valor Investe",
+          "url": "https://valorinveste.globo.com/mercados/renda-variavel/empresas/noticia/2026/09/18/assai-asai3-imc-vinci-tim-tims3-e-mais-veja-os-destaques-das-empresas.ghtml",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Ibovespa abre em alta com o petróleo renovando máximas",
+          "url": "https://trademap.com.br/noticias/news-8305638",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "TRXF11 DESPENCA: Por Que O Fundo Está Tão Abaixo Do Valor Patrimonial? | PLOTOS",
+          "url": "https://plotos.com.br/trxf11-queda-cotacao-aluguel-cotas-dividendos-emissao",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Avisos, Comunicados e Fatos Relevantes - RI Ambipar",
+          "url": "https://ri.ambipar.com/informacoes-financeiras/fatos-relevantes/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Ambipar obtém aval da Justiça dos EUA para centralizar recuperação judicial no Brasil | Empresas | Valor Econômico",
+          "url": "https://valor.globo.com/empresas/noticia/2026/09/28/ambipar-obtm-aval-da-justia-dos-eua-para-centralizar-recuperao-judicial-no-brasil.ghtml",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-28T20:55:26.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Ambipar (AMBP3): Justiça dos EUA reconhece recuperação no Brasil e suspende processo americano - Estadão",
+          "url": "https://www.estadao.com.br/einvestidor/cenarios-e-mercado/justica-dos-eua-reconhece-recuperacao-judicial-da-ambipar-no-brasil-e-suspende-chapter-11/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-28T21:42:11.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Ações da Ambipar (AMBP3): história, recuperação judicial e riscos - Investidor10",
+          "url": "https://investidor10.com.br/conteudo/acoes-da-ambipar-ambp3-historia-recuperacao-judicial-e-riscos-122718/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-18T00:00:00.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Ambipar (AMBP3) registra suspensão de assembleia de credores",
+          "url": "https://visnoinvest.com.br/news/15083/ambipar-ambp3-registra-suspensao-de-assembleia-de-credores",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-02T10:12:54.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        }
+      ],
+      "later_document_count": 0
+    },
+    {
+      "cvm_code": "26069",
+      "cnpj": "00.242.184/0001-04",
+      "legal_name": "ARMAC LOCAÇÃO, LOGÍSTICA E SERVIÇOS S.A.",
+      "tickers": [
+        "ARML3"
+      ],
+      "review_status": "pending_review",
+      "official_documents": [
+        {
+          "category": "Valores Mobiliários negociados e detidos (art. 11 da Instr. CVM nº 358)",
+          "subject": "",
+          "filing_date": "2026-09-16",
+          "reference_date": "2026-06-01",
+          "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1568535&numSequencia=1093241&numVersao=2",
+          "version": "2"
+        },
+        {
+          "category": "Valores Mobiliários negociados e detidos (art. 11 da Instr. CVM nº 358)",
+          "subject": "",
+          "filing_date": "2026-09-16",
+          "reference_date": "2026-06-01",
+          "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1568671&numSequencia=1093377&numVersao=3",
+          "version": "3"
+        },
+        {
+          "category": "Valores Mobiliários negociados e detidos (art. 11 da Instr. CVM nº 358)",
+          "subject": "",
+          "filing_date": "2026-09-16",
+          "reference_date": "2025-12-01",
+          "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1568675&numSequencia=1093381&numVersao=1",
+          "version": "1"
+        },
+        {
+          "category": "Valores Mobiliários negociados e detidos (art. 11 da Instr. CVM nº 358)",
+          "subject": "",
+          "filing_date": "2026-09-16",
+          "reference_date": "2026-05-01",
+          "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1568725&numSequencia=1093431&numVersao=1",
+          "version": "1"
+        },
+        {
+          "category": "Valores Mobiliários negociados e detidos (art. 11 da Instr. CVM nº 358)",
+          "subject": "",
+          "filing_date": "2026-09-16",
+          "reference_date": "2026-08-01",
+          "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1568744&numSequencia=1093450&numVersao=1",
+          "version": "1"
+        }
+      ],
+      "search_candidates": [
+        {
+          "title": "Itaú BBA aponta 14 ações com potencial de alta acima de 7% nesta semana; veja lista com Bradesco (BBDC4), Ânima (ANIM3) e Eztec (EZTC3) - Seu Dinheiro",
+          "url": "https://www.seudinheiro.com/2026/financas-pessoais/compre-bradesco-bbdc4-anima-anim3-eztec-eztc3-e-outras-11-acoes-para-ganhar-mais-de-7-nesta-semana-segundo-itau-bba-cbcb",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Fitch Affirms Armac’s Ratings at ‘AA-(bra)’; Outlook Stable",
+          "url": "https://investidor10.com.br/acoes/link_comunicado/ARML3/49209/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Armac atinge receita de R$ 2 bilhões em 2025 com crescimento de 5% | Construa Negócios",
+          "url": "https://revistaconstrua.com.br/equipamentos/armac-atinge-receita-de-r-2-bilhoes-em-2025-com-crescimento-de-5/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-15T00:00:00.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Armac Locação, Logística e Serviços S.A. — informes CVM e reapresentações | Tomé",
+          "url": "https://www.agentetome.com/f/armac-locacao-logistica-e-servicos-s-a-00242184000104",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Fitch afirma ratings ‘AA-(bra)’ da Armac (ARML3) - Finance News",
+          "url": "https://financenews.com.br/2026/09/fitch-afirma-ratings-aa-bra-da-armac-arml3/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-09T23:51:49.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Armac debate aumento da demanda e gestão de frotas na Paving",
+          "url": "https://eaemaq.com.br/noticias-sobre-eventos-e-feiras/armac-debate-aumento-da-demanda-e-gestao-de-frotas-na-paving-expo-2026/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-23T10:40:35.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        }
+      ],
+      "later_document_count": 0
+    },
+    {
+      "cvm_code": "26620",
+      "cnpj": "28.594.234/0001-23",
+      "legal_name": "AUREN ENERGIA S.A",
+      "tickers": [
+        "AURE3"
+      ],
+      "review_status": "pending_review",
+      "official_documents": [],
+      "search_candidates": [
+        {
+          "title": "DR. VINÍCIUS - Deputado Estadual em Minas Gerais",
+          "url": "https://www.cnnbrasil.com.br/eleicoes/2026/candidatos/mg/deputado-estadual/solidariedade/dr-vinicius/77369",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Prostitutas andorra marconi prostitutas",
+          "url": "https://netrisaba.blog/2026/09/598686",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "👉 @matheusacoes | 🔋 A Auren Energia está em processo ...",
+          "url": "https://www.instagram.com/reel/Ddd9dFKhxv0",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Free Float: por que esse indicador define a liquidez da sua ...",
+          "url": "https://renovainvest.com.br/blog/free-float-por-que-voce-precisa-entender-esse-indicador",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Dr. Vinícius - Candidato a Deputado Estadual · MG",
+          "url": "https://www.itatiaia.com.br/politica/eleicoes/2026/candidatos/mg/deputado-estadual/solidariedade/dr-vinicius/77369",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Comunicados, Avisos e Fatos Relevantes - RI - Auren Energia",
+          "url": "https://ri.aurenenergia.com.br/arquivos-cvm/comunicados-avisos-e-fatos-relevantes-auren/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "ATA DA REUNIÃO DO CONSELHO DE ADMINISTRAÇÃO REALIZADA EM 22 DE SETEMBRO DE 2026",
+          "url": "https://investidor10.com.br/acoes/link_comunicado/AURE3/50280/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Auren Energia: Cesp avança na reorganização societária e pede registro na categoria A",
+          "url": "https://br.advfn.com/noticias/PAPERBR/2026/artigo/99361232",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-23T00:00:00.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "CESP pede conversão de registro para categoria A na CVM",
+          "url": "https://visnoinvest.com.br/news/15383/cesp-pede-conversao-de-registro-para-categoria-a-na-cvm",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-22T00:00:00.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Auren vê espaço limitado para novas grandes hidrelétricas nos próximos anos | CNN Brasil",
+          "url": "https://www.cnnbrasil.com.br/infra/auren-ve-espaco-limitado-para-novas-grandes-hidreletricas-nos-proximos-anos/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-25T02:47:43.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        }
+      ],
+      "later_document_count": 0
+    },
+    {
+      "cvm_code": "701",
+      "cnpj": "45.987.245/0001-92",
+      "legal_name": "BIOMA EDUCAÇÃO S.A.",
+      "tickers": [
+        "BIED3"
+      ],
+      "review_status": "pending_review",
+      "official_documents": [],
+      "search_candidates": [
+        {
+          "title": "Correr antes que o Cerrado acabe | Luiz André Ferreira - O Dia",
+          "url": "https://odia.ig.com.br/colunas/luiz-andre-ferreira/2026/09/7284797-correr-antes-que-o-cerrado-acabe.html",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Cientistas salvam filhostes de araras dos pais assassinos - 20/09/2026 - Ambiente - Folha",
+          "url": "https://www1.folha.uol.com.br/ambiente/2026/09/os-cientistas-que-salvam-filhotes-de-araras-de-seus-pais-assassinos.shtml",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Natureza no coração da capital. O Parque Nacional de ...",
+          "url": "https://www.instagram.com/p/DdZq1MPmX0B",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "MEIO AMBIENTE | AMAZÔNIA A crise climática ... - Instagram",
+          "url": "https://www.instagram.com/reel/DdZABNyMVQL",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Cartilha reúne orientações para a redação do Enem 2026",
+          "url": "https://www.enicomputer.com.br/2026/09/19/cartilha-reune-orientacoes-para-a-redacao-do-enem-2026",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Notícias",
+          "url": "https://www.biomaeducacao.com.br/noticias/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2017-10-24T13:04:05.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "BIOMA EDUCAÇÃO S.A. BIED3 Cotação, Abertura, Fechamento e Volume | Clube FII",
+          "url": "https://www.clubefii.com.br/ativos/acao/BIED3/bioma-educacao-sa",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Fato Relevante - Fechamento de Operação - Bioma Educação",
+          "url": "https://www.biomaeducacao.com.br/noticia/fato-relevante-fechamento-de-operacao/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2025-09-10T21:14:29.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "BIOMA EDUCAÇÃO S.A. Companhia Aberta – BIED3 CNPJ 45.987.245/0001-92 NIRE 35.300.185.366",
+          "url": "https://investidor10.com.br/acoes/link_comunicado/BIED3/14846/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Bioma Educacao SA (BIED3) Price & Analysis",
+          "url": "https://www.tipranks.com/stocks/br:bied3",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        }
+      ],
+      "later_document_count": 0
+    },
+    {
+      "cvm_code": "25232",
+      "cnpj": "14.110.585/0001-07",
+      "legal_name": "MELIUZ S.A.",
+      "tickers": [
+        "CASH3"
+      ],
+      "review_status": "pending_review",
+      "official_documents": [
+        {
+          "category": "Aviso aos Acionistas",
+          "subject": "",
+          "filing_date": "2026-09-14",
+          "reference_date": "2026-09-08",
+          "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1567787&numSequencia=1092493&numVersao=1",
+          "version": "1"
+        },
+        {
+          "category": "Reunião da Administração",
+          "subject": "Aumento do capital social da Companhia, dentro do limite do capital autorizado, em razão do exercício de opções de compra de ações detidas por beneficiários do Plano de Opção de Compra de Ações||Autorizar a Diretoria da Companhia a praticar todos os atos necessários para implementar e dar efeito às deliberações acima.||Homologação do aumento do capital social da Companhia referido no item acima",
+          "filing_date": "2026-09-14",
+          "reference_date": "2026-09-08",
+          "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1567785&numSequencia=1092491&numVersao=1",
+          "version": "1"
+        }
+      ],
+      "search_candidates": [
+        {
+          "title": "Méliuz (CASH3) vê crescimento voltar ao foco e amplia caminhos de monetização, diz XP",
+          "url": "https://www.infomoney.com.br/mercados/meliuz-cash3-ve-crescimento-voltar-ao-foco-e-amplia-caminhos-de-monetizacao-diz-xp",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Meliuz SA (CASH3) Cotação - Ações Bovespa - ADVFN",
+          "url": "https://br.advfn.com/bolsa-de-valores/bovespa/meliuz-s-a-on-CASH3/cotacao",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Quais são os FIIs de tijolos mais endividados em 2026?",
+          "url": "https://investidor10.com.br/noticias/quais-sao-os-fiis-de-tijolos-mais-endividados-em-2026-122623",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Méliuz: XP vê crescimento voltar ao foco e amplia caminhos de monetização | ADVFN News",
+          "url": "https://br.advfn.com/jornal/2026/09/meliuz-xp-ve-crescimento-voltar-ao-foco-e-amplia-caminhos-de-monetizacao",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Informações sobre Méliuz ON (CASH3) - Investing.com",
+          "url": "https://br.investing.com/equities/meliuz-sa-company-profile",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "CASH3 - Relações com Investidores | Central de Resultados ...",
+          "url": "https://ri.meliuz.com.br/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Méliuz (CASH3) propõe reduzir capital social para constituição de reserva",
+          "url": "https://www.infomoney.com.br/mercados/meliuz-cash3-propoe-reduzir-capital-social-para-constituicao-de-reserva/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-04T13:04:15.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "CASH3 dispara no radar da XP: Méliuz vira a chave e aposta em nova avenida bilionária de crescimento – Guia do Investidor",
+          "url": "https://guiadoinvestidor.com.br/mercado/cash3-dispara-no-radar-da-xp-meliuz-vira-a-chave-e-aposta-em-nova-avenida-bilionaria-de-crescimento/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-18T10:10:00.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Méliuz informa sobre proposta de redução de capital social para constituição de reserva de capital  - Finance News",
+          "url": "https://financenews.com.br/2026/09/meliuz-informa-sobre-proposta-de-reducao-de-capital-social-para-constituicao-de-reserva-de-capital/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-04T00:00:00.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Méliuz (CASH3) diz que tem capital demais e quer 'cortar' R$ 160 milhões da própria conta; entenda - Seu Dinheiro",
+          "url": "https://www.seudinheiro.com/2026/empresas/meliuz-cash3-diz-que-tem-capital-demais-e-quer-cortar-r-160-milhoes-da-propria-conta-entenda-miql/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-04T19:37:00.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        }
+      ],
+      "later_document_count": 0
+    },
+    {
+      "cvm_code": "19623",
+      "cnpj": "61.486.650/0001-83",
+      "legal_name": "DIAGNOSTICOS DA AMERICA SA",
+      "tickers": [
+        "DASA3"
+      ],
+      "review_status": "pending_review",
+      "official_documents": [],
+      "search_candidates": [
+        {
+          "title": "Transporte e Logística +1,3% e Materiais Básicos -2,5% na ...",
+          "url": "https://visnoinvest.com.br/news/15335/transporte-e-logistica-13-e-materiais-basicos-25-na-semana",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "VAI TER JCP DA VIVO! 👀💰 A Telefônica Brasil ...",
+          "url": "https://www.facebook.com/analisedeacoes/posts/vai-ter-jcp-da-vivo-a-telef%C3%B4nica-brasil-vivt3-dona-da-vivo-aprovou-a-distribui%C3%A7%C3%A3/1718362463628466",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "TIMS3 tem mudança de controle e aprova JCP no 3T26",
+          "url": "https://visnoinvest.com.br/news/15329/tims3-tem-mudanca-de-controle-e-aprova-jcp-no-3t26",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Trade eleitoral: como os tubarões do mercado estão se ...",
+          "url": "https://www.seudinheiro.com/2026/bolsa-dolar/trade-eleitoral-como-os-tubaroes-do-mercado-estao-se-posicionando-para-ganhar-com-as-eleicoes-e-limitar-o-prejuizo-se-a-aposta-der-errado-miql",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Gestão da Qualidade em Medicina Laboratorial. ...",
+          "url": "https://www.instagram.com/reel/DdXNvLwJVfv",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Dasa Educa amplia acesso à atualização científica em medicina diagnóstica",
+          "url": "https://www.pptasaude.com.br/noticias/26225/dasa-educa-amplia-acesso-a-atualizacao-cientifica-em-medicina-diagnostica/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-15T00:00:00.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Morgan eleva Dasa para compra e ações disparam; Hapvida segue sob pressão",
+          "url": "https://www.infomoney.com.br/mercados/morgan-eleva-dasa-para-compra-e-ve-melhor-momento-mas-hapvida-segue-sob-pressao/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-24T13:15:25.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Dasa (DASA3): UBS BB inicia recomendação de compra com preço-alvo de R$ 3,90 | Bolsa e Mercado Brasil",
+          "url": "https://bolsaemercado.com.br/dasa-dasa3-ubs-bb-inicia-recomendacao-de-compra-com-preco-alvo-de-r-390/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-21T21:18:56.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Dasa inaugura centro em Brasília para ampliar apoio laboratorial e capacidade de exames Por Reuters",
+          "url": "https://br.investing.com/news/stock-market-news/dasa-inaugura-centro-em-brasilia-para-ampliar-apoio-laboratorial-e-capacidade-de-exames-2080066",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-30T22:07:32.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Dasa (DASA3) | TradeMap",
+          "url": "https://trademap.com.br/ativos/DASA3",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        }
+      ],
+      "later_document_count": 0
+    },
+    {
+      "cvm_code": "25836",
+      "cnpj": "18.174.270/0001-84",
+      "legal_name": "DOTZ S.A.",
+      "tickers": [
+        "DOTZ3"
+      ],
+      "review_status": "pending_review",
+      "official_documents": [],
+      "search_candidates": [
+        {
+          "title": "WEG (WEGE3) aprova JCP de R$ 0,107212121 por ação",
+          "url": "https://visnoinvest.com.br/news/15258/weg-wege3-aprova-jcp-de-r-0107212121-por-acao",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Encerramos mais uma Semana da SIPAT! 💙 Ao longo ...",
+          "url": "https://www.facebook.com/deltasuper/posts/encerramos-mais-uma-semana-da-sipat-ao-longo-desta-semana-1409-a-18092026-tivemo/1578251787682035",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "A semana mais esperada do ano começou ...",
+          "url": "https://www.instagram.com/p/DdZfaeziQSW",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Pedra Letícia - Tour 2026 - São Bernardo do Campo",
+          "url": "https://www.ingresso.com/evento/pedra-leticia-tour-2026-sao-bernardo-do-campo/informacoes?city=curitiba",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "O Gemini agora tem aplicativo oficial para Windows 10 e ...",
+          "url": "https://www.facebook.com/tecmundo/videos/o-gemini-agora-tem-aplicativo-oficial-para-windows-10-e-11-a-ia-da-google-pode-s/1609074820573186",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Empresas Listadas",
+          "url": "https://sistemaswebb3-listados.b3.com.br/listedCompaniesPage/main/25836/DOTZ/overview?language=pt-br",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "(DOTZ3) - ATENCAO:NOVO PRECO-BASE PARA O LIMITE ESTATICO - R$ 11.44",
+          "url": "https://br.advfn.com/noticias/BOV/2026/artigo/99255153",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-04T15:53:09.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Dotz e Decolar permitem pagar até 95% de viagens com pontos",
+          "url": "https://turisnews.com.br/dotz-e-decolar-fecham-parceria-para-permitir-viagens-com-ate-95-do-valor-pago-em-pontos/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-01T12:16:00.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Notícias sobre Dotz (DOTZ3)",
+          "url": "https://investidor10.com.br/noticias/ativo/dotz/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Relações com Investidores",
+          "url": "https://investidor10.com.br/acoes/link_comunicado/DOTZ3/48007/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        }
+      ],
+      "later_document_count": 0
+    },
+    {
+      "cvm_code": "26077",
+      "cnpj": "26.345.998/0001-50",
+      "legal_name": "ECONOMATICA S.A.",
+      "tickers": [
+        "ECOM3"
+      ],
+      "review_status": "pending_review",
+      "official_documents": [],
+      "search_candidates": [
+        {
+          "title": "Consenso de analistas: o alvo, quem publicou e o quanto",
+          "url": "https://www.economatica.com/blog/consenso-de-analistas-o-alvo-quem-publicou-e-o-quanto-eles-discordam",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-14T19:29:47.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Empresas Listadas",
+          "url": "https://sistemaswebb3-listados.b3.com.br/listedCompaniesPage/main/26077/ECOM/overview?language=pt-br",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "FUNDAMENTUS - Invista consciente - Fatos Relevantes - ECONOMATICA - ECOM3",
+          "url": "https://fundamentus.com.br/fatos_relevantes.php?papel=ECOM3",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Economatica lança conector oficial no Perplexity via Kento",
+          "url": "https://www.economatica.com/blog/economatica-lanca-conector-oficial-no-perplexity-via-kento",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-23T18:23:02.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Fato Relevante",
+          "url": "https://investidor10.com.br/acoes/link_comunicado/ECOM3/45577/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        }
+      ],
+      "later_document_count": 0
+    },
+    {
+      "cvm_code": "8427",
+      "cnpj": "61.082.004/0001-50",
+      "legal_name": "MANUFATURA DE  BRINQUEDOS ESTRELA SA",
+      "tickers": [
+        "ESTR4"
+      ],
+      "review_status": "pending_review",
+      "official_documents": [
+        {
+          "category": "Comunicado ao Mercado",
+          "subject": "resposta oficio 279",
+          "filing_date": "2026-09-15",
+          "reference_date": "2026-09-15",
+          "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1568451&numSequencia=1093157&numVersao=1",
+          "version": "1"
+        }
+      ],
+      "search_candidates": [
+        {
+          "title": "Panorama de Mercado - 15/09/2026 #MercadoFinanceiro ...",
+          "url": "https://www.instagram.com/reel/DdUiO6giWFT",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "O Ibovespa enfrenta uma queda de 0,91% em meio a ...",
+          "url": "https://www.instagram.com/p/DdSAQ-klySe",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "MANUFATURA DE BRINQUEDOS ESTRELA S.A",
+          "url": "https://investidor10.com.br/acoes/link_comunicado/ESTR3/49436/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Fato relevante Estrela (ESTR4): vende controle da Estrela Del Paraguay - AVNews",
+          "url": "https://www.ativovirtual.com.br/avnews/artigos/fato-relevante-estrela-estr4-vende-controle-da-estrela-del-paraguay",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-07T03:27:55.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "manufatura de brinquedos estrela sa",
+          "url": "https://sistemaswebb3-listados.b3.com.br/listedCompaniesPage/main/8427/ESTR/overview?language=pt-br",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Selecione o que você deseja",
+          "url": "https://www.estrela.com.br/relacao-com-investidores",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Estrela (ESTR3) Protocola Plano para Renegociar Dívida de R$ 109 Milhões na Recuperação Judicial",
+          "url": "https://forbes.com.br/forbes-money/2026/08/estrela-plano-recuperacao-judicial/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-08-21T15:37:56.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        }
+      ],
+      "later_document_count": 0
+    },
+    {
+      "cvm_code": "15423",
+      "cnpj": "00.359.742/0001-08",
+      "legal_name": "FASA S.A. - EM RECUPERAÇÃO JUDICIAL",
+      "tickers": [
+        "FASA3"
+      ],
+      "review_status": "pending_review",
+      "official_documents": [
+        {
+          "category": "Assembleia",
+          "subject": "",
+          "filing_date": "2026-09-18",
+          "reference_date": "2026-10-20",
+          "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1569639&numSequencia=1094345&numVersao=1",
+          "version": "1"
+        },
+        {
+          "category": "Assembleia",
+          "subject": "Grupamento de Ações",
+          "filing_date": "2026-09-18",
+          "reference_date": "2026-10-20",
+          "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1569607&numSequencia=1094313&numVersao=1",
+          "version": "1"
+        },
+        {
+          "category": "Assembleia",
+          "subject": "",
+          "filing_date": "2026-09-18",
+          "reference_date": "2026-10-20",
+          "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1569635&numSequencia=1094341&numVersao=1",
+          "version": "1"
+        },
+        {
+          "category": "Assembleia",
+          "subject": "Grupamento de Ações",
+          "filing_date": "2026-09-18",
+          "reference_date": "2026-10-20",
+          "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1569608&numSequencia=1094314&numVersao=1",
+          "version": "1"
+        },
+        {
+          "category": "Comunicado ao Mercado",
+          "subject": "Prorrogação do Prazo para Reenquadramento da Cotação ao Valor Mínimo",
+          "filing_date": "2026-09-16",
+          "reference_date": "2026-09-16",
+          "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1568745&numSequencia=1093451&numVersao=1",
+          "version": "1"
+        }
+      ],
+      "search_candidates": [
+        {
+          "title": "Prostitutas andorra marconi prostitutas",
+          "url": "https://netrisaba.blog/2026/09/598686",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Fasa (FASA3), ex-Fictor, propõe grupamento de 37 ações para 1; acionistas votam em outubro – Money Times",
+          "url": "https://www.moneytimes.com.br/fasa-fasa3-ex-fictor-propoe-grupamento-de-37-acoes-para-1-acionistas-votam-em-outubro-pads",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "KUALA LUMPUR, 18 September – Kerajaan ...",
+          "url": "https://www.instagram.com/p/DdbBn4Ny8cf",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Transporte e Logística +1,3% e Materiais Básicos -2,5% na ...",
+          "url": "https://visnoinvest.com.br/news/15335/transporte-e-logistica-13-e-materiais-basicos-25-na-semana",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Bila Bayaran Syukur Fasa 3",
+          "url": "https://www.tiktok.com/discover/bila-bayaran-syukur-fasa-3",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Comunicados ao Mercado - Fictor Alimentos",
+          "url": "https://ri.fictoralimentos.com.br/comunicados-ao-mercado/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "FICTOR ALIMENTOS S.A. — Regulatory Filings 2026",
+          "url": "https://financialfilings.com/filings/fictor-alimentos-sa/regulatory-filings/2026/61545151/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Fasa (FASA3), antiga Fictor, convoca credores para votar plano de recuperação judicial – Money Times",
+          "url": "https://www.moneytimes.com.br/fasa-fasa3-ex-fictor-convoca-credores-para-votar-plano-de-recuperacao-judicial-pads/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-24T00:00:00.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Informes por Período",
+          "url": "https://sistemaswebb3-listados.b3.com.br/reportsPeriodPage/material-facts",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "FICTOR ALIMENTOS S.A. — Proxy Solicitation & Information Statement 2026",
+          "url": "https://financialfilings.com/filings/fictor-alimentos-sa/proxy-solicitation-information-statement/2026/60339049/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        }
+      ],
+      "later_document_count": 0
+    },
+    {
+      "cvm_code": "18376",
+      "cnpj": "02.998.611/0001-04",
+      "legal_name": "ISA ENERGIA BRASIL S.A.",
+      "tickers": [
+        "ISAE3"
+      ],
+      "review_status": "pending_review",
+      "official_documents": [
+        {
+          "category": "Aviso aos Debenturistas",
+          "subject": "Pagamento de juros/remuneração",
+          "filing_date": "2026-09-14",
+          "reference_date": "2026-09-14",
+          "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1567916&numSequencia=1092622&numVersao=1",
+          "version": "1"
+        }
+      ],
+      "search_candidates": [
+        {
+          "title": "Vislo Capital (@vislocapital) · São Paulo, SP",
+          "url": "https://www.instagram.com/vislocapital",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Programa de Trainee -1. ISA Energia Brasil",
+          "url": "https://www.seesp.org.br/site/emprego/5053-programa-de-trainee-1-isa-energia-brasil",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "TASA4 avança 4,0% e Ibovespa sobe 0,25% hoje na B3",
+          "url": "https://visnoinvest.com.br/news/15252/tasa4-avanca-40-e-ibovespa-sobe-025-hoje-na-b3",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Ativo: ISAE4F Qtd: 5 Preço médio: R$27 ...",
+          "url": "https://www.instagram.com/reel/DdbqVbFR8kl?hl=en",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Taesa (TAEE11) elege nova presidente do conselho de ...",
+          "url": "https://visnoinvest.com.br/news/15281/taesa-taee11-elege-nova-presidente-do-conselho-de-administracao",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "ISA ENERGIA BRASIL abre inscrições para Programa de ...",
+          "url": "https://www.isaenergiabrasil.com.br/centro-de-midia/noticias/isa-energia-brasil-abre-inscricoes-para-programa-de-trainee-2027-no-estado-de-sao-paulo/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-15T00:00:00.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "ISA ENERGIA BRASIL amplia automação de  inspeções com drones em subestações",
+          "url": "https://www.isaenergiabrasil.com.br/centro-de-midia/noticias/isa-energia-brasil-amplia-automacao-de-inspecoes-com-drones-em-subestacoes/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-24T00:00:00.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "ISA ENERGIA BRASIL amplia capacidade do sistema de transmissão de 138 kV em São Paulo com tecnologia FACTS",
+          "url": "https://www.isaenergiabrasil.com.br/centro-de-midia/noticias/isa-energia-brasil-amplia-capacidade-do-sistema-de-transmissao-de-138-kv-em-sao-paulo-com-tecnologia-facts/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-30T00:00:00.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "ISA ENERGIA BRASIL | Notícias",
+          "url": "https://www.isaenergiabrasil.com.br/centro-de-midia/noticias/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-08-27T00:00:00.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "ISA ENERGIA BRASIL investe R$ 815,4 milhões na modernização da rede de transmissão no 1º semestre",
+          "url": "https://www.isaenergiabrasil.com.br/centro-de-midia/noticias/isa-energia-brasil-investe-r-8154-milhoes-na-modernizacao-da-rede-de-transmissao-no-1-semestre/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-03T00:00:00.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        }
+      ],
+      "later_document_count": 0
+    },
+    {
+      "cvm_code": "8192",
+      "cnpj": "92.660.570/0001-26",
+      "legal_name": "TREVISA  INVESTIMENTOS SA",
+      "tickers": [
+        "LUXM4"
+      ],
+      "review_status": "pending_review",
+      "official_documents": [],
+      "search_candidates": [
+        {
+          "title": "(LUXM4) - ATENCAO:NOVO PRECO-BASE PARA O LIMITE ESTATICO - R$3,26",
+          "url": "https://br.advfn.com/noticias/BOV/2026/artigo/99363631",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-23T00:00:00.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "LUXM4 - Cotação e análises | BTG Pactual Content Research",
+          "url": "https://content.btgpactual.com/research/ativo/LUXM4",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Modus Investimentos - O Dashboard do Investidor",
+          "url": "https://www.modusinvestimentos.com.br/ativo.php?pesquisa=LUXM4",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "FUNDAMENTUS - Invista consciente - Fatos Relevantes - TREVISA INVESTIMENTOS SA - LUXM4",
+          "url": "https://www.fundamentus.com.br/fatos_relevantes.php?papel=LUXM4",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Modus Investimentos - O Dashboard do Investidor",
+          "url": "https://modusinvestimentos.com.br/ativo.php?pesquisa=LUXM4F",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        }
+      ],
+      "later_document_count": 0
+    },
+    {
+      "cvm_code": "23574",
+      "cnpj": "17.314.329/0001-20",
+      "legal_name": "INTERNATIONAL MEAL COMPANY ALIMENTAÇÃO S.A.",
+      "tickers": [
+        "MEAL3"
+      ],
+      "review_status": "pending_review",
+      "official_documents": [
+        {
+          "category": "Assembleia",
+          "subject": "ATA DA ASSEMBLEIA GERAL DE DEBENTURISTAS",
+          "filing_date": "2026-09-15",
+          "reference_date": "2026-09-15",
+          "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1568379&numSequencia=1093085&numVersao=1",
+          "version": "1"
+        },
+        {
+          "category": "Fato Relevante",
+          "subject": "Esclarecimentos sobre notícia veiculada na mídia",
+          "filing_date": "2026-09-18",
+          "reference_date": "2026-09-18",
+          "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1569362&numSequencia=1094068&numVersao=1",
+          "version": "1"
+        },
+        {
+          "category": "Fato Relevante",
+          "subject": "Esclarecimentos em atendimento ao ofício numero 213/2026/CVM/SPEP/GE-2, de 18 de Setembro de 2026||Esclarecimentos sobre notícia veiculada na mídia",
+          "filing_date": "2026-09-20",
+          "reference_date": "2026-09-18",
+          "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1569750&numSequencia=1094456&numVersao=2",
+          "version": "2"
+        },
+        {
+          "category": "Reunião da Administração",
+          "subject": "ATA DE REUNIÃO DO CONSELHO DE ADMINISTRAÇÃO",
+          "filing_date": "2026-09-17",
+          "reference_date": "2026-09-16",
+          "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1569128&numSequencia=1093834&numVersao=1",
+          "version": "1"
+        }
+      ],
+      "search_candidates": [
+        {
+          "title": "A presidência da operação brasileira da FMC Corporation ...",
+          "url": "https://www.instagram.com/p/DdbGUkSIGnk",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Valor Econômico, Reuters, Vinci Compass. #IMC ...",
+          "url": "https://www.instagram.com/p/DdbmeirFzKY",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "IMC E FUNDO VCP IV DA VINCI A operadora de redes de ...",
+          "url": "https://www.instagram.com/p/DdcYLftjBgh",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "A gestora Vinci Compass, que controla no Brasil as redes ...",
+          "url": "https://www.instagram.com/p/Ddc4WwyjiER",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Conversa é preliminar e criaria grupo de R$ 5,5 bilhões ...",
+          "url": "https://www.instagram.com/p/DdZzXvdjCur",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "IMC - International Meal Company Alimentação SA (via Public) / Fato Relevante",
+          "url": "https://www.publicnow.com/view/F72D941709AB05562703E5414D65D339EB5E8DD8",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-18T00:00:00.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "IMC faz esclarecimento e diz que conversa com Vinci está em ‘estágio exploratório’ | Empresas | Valor Econômico",
+          "url": "https://valor.globo.com/empresas/noticia/2026/09/21/imc-faz-esclarecimento-e-diz-que-conversa-com-vinci-est-em-estgio-exploratrio.ghtml",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-21T11:56:40.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Natália Lacava Diretora Financeira e de Relações com Investidores",
+          "url": "https://investidor10.com.br/acoes/link_comunicado/MEAL3/49609/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "IMC e Fundo da Vinci Compass Avaliam Fusão de Operações de Restaurantes",
+          "url": "https://forbes.com.br/forbes-money/2026/09/imc-vinci-compass-fusao-restaurantes/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-18T16:56:04.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Natália Lacava Diretora Financeira e de Relações com Investidores",
+          "url": "https://investidor10.com.br/acoes/link_comunicado/MEAL3/49610/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        }
+      ],
+      "later_document_count": 0
+    },
+    {
+      "cvm_code": "8397",
+      "cnpj": "61.065.298/0001-02",
+      "legal_name": "MANGELS INDUSTRIAL S.A.",
+      "tickers": [
+        "MGEL4"
+      ],
+      "review_status": "pending_review",
+      "official_documents": [],
+      "search_candidates": [
+        {
+          "title": "ASSEMBLEIA DOS TRABALHADORES NA MANGELS – SMABC",
+          "url": "https://smabc.org.br/assembleia-dos-trabalhadores-na-mangels/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-14T16:11:00.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Relação com investidores",
+          "url": "https://mangels.com.br/en/relacao-com-investidores/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Os Bancos Credores signatários do Acordo detêm, em conjunto, aproximadamente 91,43% da dívida, no valor total de R$ 518.910.518,19.",
+          "url": "https://mangels.com.br/wp-content/uploads/2026/08/2026.08.17_MISA_Comunicado-ao-Mercado.pdf",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "MGEL4: ROE 202.1%, P/E 0.8 (2025) — Dados B3",
+          "url": "https://dadosb3.com/acoes/MGEL4?lang=en",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Os Bancos Credores signatários do Acordo detêm, em conjunto, aproximadamente 91,43% da dívida, no valor total de R$ 518.910.518,19.",
+          "url": "https://siteempresas.bovespa.com.br/DWL/FormDetalheDownload.asp?prot=1558399&site=C",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        }
+      ],
+      "later_document_count": 0
+    },
+    {
+      "cvm_code": "26123",
+      "cnpj": "12.104.241/0004-02",
+      "legal_name": "ONCOCLÍNICAS DO BRASIL SERVIÇOS MÉDICOS S.A.",
+      "tickers": [
+        "ONCO3"
+      ],
+      "review_status": "pending_review",
+      "official_documents": [
+        {
+          "category": "Fato Relevante",
+          "subject": "Mudanças na Diretoria",
+          "filing_date": "2026-09-14",
+          "reference_date": "2026-09-14",
+          "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1567780&numSequencia=1092486&numVersao=1",
+          "version": "1"
+        },
+        {
+          "category": "Reunião da Administração",
+          "subject": "Eleição de Diretor(es)",
+          "filing_date": "2026-09-17",
+          "reference_date": "2026-09-14",
+          "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1569072&numSequencia=1093778&numVersao=1",
+          "version": "1"
+        }
+      ],
+      "search_candidates": [
+        {
+          "title": "Momento B3: Brisanet, Cemig, Petrobras e os principais destaques desta segunda-feira (14) | ADVFN News",
+          "url": "https://br.advfn.com/jornal/2026/09/momento-b3-brisanet-cemig-petrobras-e-os-principais-destaques-desta-segunda-feira-14",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Oncoclínicas elege Maurício Hasson como novo diretor ...",
+          "url": "https://br.advfn.com/jornal/2026/09/oncoclinicas-elege-mauricio-hasson-como-novo-diretor-financeiro",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Oncoclínicas (ONCO3) anuncia troca de CFO em meio à recuperação extrajudicial; veja quem entra – Money Times",
+          "url": "https://www.moneytimes.com.br/oncoclinicas-onco3-anuncia-troca-de-cfo-em-meio-a-recuperacao-extrajudicial-veja-quem-entra-lmrs",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Ações | Mercado Financeiro E Dados",
+          "url": "https://plotos.com.br/mercado-financeiro/acoes",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "TIMS3 tem mudança de controle e aprova JCP no 3T26",
+          "url": "https://visnoinvest.com.br/news/15329/tims3-tem-mudanca-de-controle-e-aprova-jcp-no-3t26",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Avisos, Comunicados e Fatos Relevantes",
+          "url": "https://ri.grupooncoclinicas.com/informacoes-financeiras/avisos-comunicados-e-fatos-relevantes/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Diretor Executivo de Relações com Investidores",
+          "url": "https://investidor10.com.br/acoes/link_comunicado/ONCO3/49318/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Oncoclínicas (ONCO3) convoca AGE sobre suspensão de direitos de acionista - Estadão",
+          "url": "https://www.estadao.com.br/einvestidor/cenarios-e-mercado/oncoclinicas-leva-a-acionistas-pedido-para-suspender-direitos-de-fundo-apos-solicitacao-da-latache/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-24T11:47:09.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Oncoclínicas (ONCO3) convoca AGE para votar direitos de acionista",
+          "url": "https://visnoinvest.com.br/news/15400/oncoclinicas-onco3-convoca-age-para-votar-direitos-de-acionista",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-24T00:00:00.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Oncoclínicas (ONCO3) registra pedido de AGE para trocar conselho",
+          "url": "https://visnoinvest.com.br/news/15488/oncoclinicas-onco3-registra-pedido-de-age-para-trocar-conselho",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-29T00:00:00.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        }
+      ],
+      "later_document_count": 0
+    },
+    {
+      "cvm_code": "13471",
+      "cnpj": "51.928.174/0001-50",
+      "legal_name": "PLASCAR PARTICIPAÇÕES INDUSTRIAIS S.A",
+      "tickers": [
+        "PLAS3"
+      ],
+      "review_status": "pending_review",
+      "official_documents": [],
+      "search_candidates": [
+        {
+          "title": "BUEN DÍA! Hoy Lunes 14 de Setiembre de 2026",
+          "url": "https://www.facebook.com/groups/138648932977173/posts/3519533561555343",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Masami Kurumada: artes autografadas do criador dos ...",
+          "url": "https://m.cavzodiaco.com.br/noticia/14/09/2026/masami-kurumada-artes-autografadas-do-criador-dos-cavaleiros-do-zodiaco-serao-sorteadas-no-japao",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "noticias paso de la patria miercoles 16 de septiembre de ...",
+          "url": "https://www.facebook.com/groups/1532844624506078/posts/1751726692617869",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "EDITAL DE LEILÃO MÓVEIS ESCRITÓRIO/RESIDENCIAIS ...",
+          "url": "https://www.parquedosleiloes.com.br/leilao/1506/edital",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Terá de esperar por 2027 para jogar o modo online de \"GTA VI\" - Notícias ao Minuto",
+          "url": "https://www.noticiasaominuto.com/tech/3053499/tera-de-esperar-por-2027-para-jogar-o-modo-online-de-gta-vi",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Plascar Participações Industriais stock rises 6.02 percent",
+          "url": "https://www.ad-hoc-news.de/boerse/news/nebenwerte/plascar-participacoes-industriais-stock-rises-6-02-percent/70174451",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-24T00:00:00.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "PLAS3 — PLASCAR PARTICIPAÇÕES INDUSTRIAIS S.A: ROE, ROIC, P/E and 16 years of auditable fundamentals | Dados B3",
+          "url": "https://dadosb3.com/acoes/PLAS3?lang=en",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Plascar (PLAS3) | TradeMap",
+          "url": "https://trademap.com.br/ativos/PLAS3",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Plascar | PLAS3 - Valor Econômico - Globo",
+          "url": "https://valor.globo.com/empresas/valor-empresas-360/plascar/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Plascar Participações Industriais (BOVESPA:PLAS3)",
+          "url": "https://simplywall.st/stocks/br/automobiles/bovespa-plas3/plascar-participacoes-industriais-shares",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        }
+      ],
+      "later_document_count": 0
+    },
+    {
+      "cvm_code": "22497",
+      "cnpj": "11.992.680/0001-93",
+      "legal_name": "QUALICORP CONSULTORIA E CORRETORA DE SEGUROS S.A.",
+      "tickers": [
+        "QUAL3"
+      ],
+      "review_status": "pending_review",
+      "official_documents": [],
+      "search_candidates": [
+        {
+          "title": "TASA4 avança 4,0% e Ibovespa sobe 0,25% hoje na B3",
+          "url": "https://visnoinvest.com.br/news/15252/tasa4-avanca-40-e-ibovespa-sobe-025-hoje-na-b3",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Opções de ações - GPS Investidor",
+          "url": "https://www.gpsinvestidor.com/opcoes",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Notícias",
+          "url": "https://ri.qualicorp.com.br/noticias/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2021-08-20T20:58:00.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "QUAL3 na CVM: Fatos Relevantes e comunicados de Qualicorp Consultoria e Corretora de Seguros S.A. no seu WhatsApp | iAções",
+          "url": "https://iacoes.com.br/airton/QUAL3/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Qualicorp (QUAL3) convoca assembleia para trocar CEO e renovar cargos no conselho – Guia do Investidor",
+          "url": "https://guiadoinvestidor.com.br/mercado/qualicorp-qual3-convoca-assembleia-para-trocar-ceo-e-renovar-cargos-no-conselho/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-23T15:07:02.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Qualicorp anuncia novo CEO e reorganiza conselho de administração | ADVFN News",
+          "url": "https://br.advfn.com/jornal/2026/09/qualicorp-anuncia-novo-ceo-e-reorganiza-conselho-de-administracao",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-01T13:06:07.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Qualicorp apresenta novas condições da NotreDame a corretores - Revista Apólice",
+          "url": "https://revistaapolice.com.br/2026/09/qualicorp-apresenta-novas-condicoes-da-notredame-a-corretores/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-24T13:56:28.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        }
+      ],
+      "later_document_count": 0
+    },
+    {
+      "cvm_code": "12572",
+      "cnpj": "91.333.666/0001-17",
+      "legal_name": "RECRUSUL SA",
+      "tickers": [
+        "RCSL3"
+      ],
+      "review_status": "pending_review",
+      "official_documents": [
+        {
+          "category": "Assembleia",
+          "subject": "Reforma Estatutária",
+          "filing_date": "2026-09-15",
+          "reference_date": "2026-10-02",
+          "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1568277&numSequencia=1092983&numVersao=1",
+          "version": "1"
+        },
+        {
+          "category": "Assembleia",
+          "subject": "Reforma Estatutária",
+          "filing_date": "2026-09-15",
+          "reference_date": "2026-10-02",
+          "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1568278&numSequencia=1092984&numVersao=1",
+          "version": "1"
+        }
+      ],
+      "search_candidates": [
+        {
+          "title": "Bom dia ADVFN – Decisões do Fed e Copom movimentam os mercados, IBC-Br, WEG anuncia o pagamento de proventos | ADVFN News",
+          "url": "https://br.advfn.com/jornal/2026/09/bom-dia-advfn-decisoes-do-fed-e-copom-movimentam-os-mercados-ibc-br-weg-anuncia-o-pagamento-de-proventos",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Recrusul stock reports a BRL 14.99 million Q2 loss",
+          "url": "https://www.ad-hoc-news.de/boerse/news/nebenwerte/recrusul-stock-reports-a-brl-14-99-million-q2-loss/70199534",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-29T00:00:00.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "RCSL3 - Cotação e análises | BTG Pactual Content Research",
+          "url": "https://content.btgpactual.com/research/ativo/RCSL3",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Die Recrusul-Aktie meldet einen Nettoverlust von 2,9 Mio. BRL",
+          "url": "https://www.ad-hoc-news.de/boerse/news/nebenwerte/die-recrusul-aktie-meldet-einen-nettoverlust-von-2-9-mio-brl/70207651",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-10-01T04:42:35.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Modus Investimentos - O Dashboard do Investidor",
+          "url": "https://www.modusinvestimentos.com.br/ativo.php?pesquisa=RCSL3",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Notícias Recrusul Sa - RCSL3 | Ações Bovespa | ADVFN Brasil",
+          "url": "https://br.advfn.com/bolsa-de-valores/bovespa/recrusul-on-RCSL3/noticias",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        }
+      ],
+      "later_document_count": 0
+    },
+    {
+      "cvm_code": "6173",
+      "cnpj": "92.781.335/0001-02",
+      "legal_name": "TAURUS ARMAS S.A.",
+      "tickers": [
+        "TASA3",
+        "TASA4"
+      ],
+      "review_status": "pending_review",
+      "official_documents": [],
+      "search_candidates": [
+        {
+          "title": "Ações | Mercado Financeiro E Dados | Plotos",
+          "url": "https://plotos.com.br/mercado-financeiro/acoes",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "TRXF11 DESPENCA: Por Que O Fundo Está Tão Abaixo Do Valor Patrimonial? | PLOTOS",
+          "url": "https://plotos.com.br/trxf11-queda-cotacao-aluguel-cotas-dividendos-emissao",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "TASA4 Dispara: O Mercado Descobriu Uma Nova Taurus? | PLOTOS",
+          "url": "https://plotos.com.br/tasa4-dispara-taurus-drones-exercito-nova-taurus/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-15T01:05:46.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "(TASA3) - ATENCAO:NOVO PRECO-BASE PARA O LIMITE ESTATICO - R$8,17",
+          "url": "https://br.advfn.com/noticias/BOV/2026/artigo/99355877",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-22T16:15:35.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "ATA DA REUNIÃO DO CONSELHO DE ADMINISTRAÇÃO REALIZADA EM 25 DE SETEMBRO DE 2026",
+          "url": "https://investidor10.com.br/acoes/link_comunicado/TASA3/50251/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Nem PETR4 nem BBAS3: É a Taurus (TASA4) que dobra de preço com 'trade eleitoral' de Flávio Bolsonaro; entenda o movimento — e os riscos – Money Times",
+          "url": "https://www.moneytimes.com.br/nem-petr4-nem-bbas3-e-a-taurus-tasa4-que-dobra-de-preco-com-trade-eleitoral-de-flavio-bolsonaro-entenda-o-movimento-e-os-riscos-rnda/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-23T22:15:35.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "TASA4: Taurus Está Virando O Jogo Em 2026? | PLOTOS",
+          "url": "https://plotos.com.br/tasa4-taurus-virando-o-jogo-2026/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-27T17:45:41.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        }
+      ],
+      "later_document_count": 0
+    },
+    {
+      "cvm_code": "7544",
+      "cnpj": "82.982.075/0001-80",
+      "legal_name": "TÊXTIL RENAUXVIEW S/A",
+      "tickers": [
+        "TXRX4"
+      ],
+      "review_status": "pending_review",
+      "official_documents": [],
+      "search_candidates": [
+        {
+          "title": "Dólar estável, ouro sobe e Ibovespa sobe - INCONFIDENTE",
+          "url": "https://www.barone.adm.br/37523",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Vale impulsiona Ibovespa e Bolsa encerra pregão em alta | Conexão Itajubá",
+          "url": "https://conexaoitajuba.com.br/noticia/vale-impulsiona-ibovespa-e-bolsa-encerra-pregao-em-alta-mu64hof3",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "TXRX4 - TEXTIL RENAUXVIEW S.A. - Cotações e Preços Hoje - Suno Analítica",
+          "url": "https://www.suno.com.br/analitica/acoes/txrx4/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2024-05-14T17:55:15.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Têxtil Renauxview S.A. (TXRX4) Company Information",
+          "url": "https://simplywall.st/stocks/br/consumer-durables/bovespa-txrx4/textil-renauxview-shares/information",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "TXRX4 - Renauxview - Resultados, Dividendos, Cotação e",
+          "url": "https://investidor10.com.br/acoes/txrx4/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Têxtil Renauxview (BOVESPA:TXRX4) - Stock Analysis - Simply Wall St",
+          "url": "https://simplywall.st/stocks/br/consumer-durables/bovespa-txrx4/textil-renauxview-shares",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "TXRX4 Stock Price, News, Filings & Events — Textil Renauxview S.a. | 6ix",
+          "url": "https://6ix.com/stock/bmfbovespa-txrx4/textil-renauxview-sa",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        }
+      ],
+      "later_document_count": 0
+    },
+    {
+      "cvm_code": "25895",
+      "cnpj": "05.917.486/0001-40",
+      "legal_name": "LIVETECH DA BAHIA INDÚSTRIA E COMÉRCIO S.A.",
+      "tickers": [
+        "WDCN3"
+      ],
+      "review_status": "pending_review",
+      "official_documents": [
+        {
+          "category": "Comunicado ao Mercado",
+          "subject": "Proposta vinculante de aquisição da Teki",
+          "filing_date": "2026-09-14",
+          "reference_date": "2026-09-14",
+          "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1567741&numSequencia=1092447&numVersao=1",
+          "version": "1"
+        }
+      ],
+      "search_candidates": [
+        {
+          "title": "WDC acerta compra de distribuidora de software por R$ 900 mil | Empresas | Valor Econômico",
+          "url": "https://valor.globo.com/empresas/noticia/2026/09/14/wdc-acerta-compra-de-distribuidora-de-software-por-r-900-mil.ghtml",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-14T11:56:41.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Cibersegurança: WDC Networks compra a distribuidora Teki | TI INSIDE Online",
+          "url": "https://tiinside.com.br/14/09/2026/ciberseguranca-wdc-networks-compra-a-distribuidora-teki/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-14T20:23:18.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "WDC Networks adquire 100% da distribuidora Teki e ...",
+          "url": "https://itforum.com.br/noticias/wdc-networks-adquire-amplia-ciberseguranca/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-14T00:00:00.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Empresas Listadas",
+          "url": "https://sistemaswebb3-listados.b3.com.br/listedCompaniesPage/main/25895/WDCN/overview?language=pt-br",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "A WDC Networks anunciou a aquisição de 100% da Teki, distribuidora especializada em cibersegurança, em um movimento para ampliar sua presença no mercado de segurança digital.",
+          "url": "https://www.linkedin.com/feed/update/urn:li:activity:7505324549874499585",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-14T00:00:00.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        }
+      ],
+      "later_document_count": 0
+    },
+    {
+      "cvm_code": "25518",
+      "cnpj": "14.776.142/0001-50",
+      "legal_name": "WESTWING COMÉRCIO VAREJISTA S.A.",
+      "tickers": [
+        "WEST3"
+      ],
+      "review_status": "pending_review",
+      "official_documents": [],
+      "search_candidates": [
+        {
+          "title": "Fatos Relevantes e Comunicados ao Mercado",
+          "url": "https://ri.westwing.com.br/documentos-cvm/fatos-relevantes-e-comunicados-ao-mercado/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "A estratégia da Westwing para não repetir a crise da Tok&Stok | Exame",
+          "url": "https://exame.com/invest/mercados/a-estrategia-da-westwing-para-nao-repetir-a-crise-da-tokstok/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-03T05:00:31.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Westwing eröffnet Flagship Store in München - Münster Journal",
+          "url": "https://muenster-journal.de/westwing-eroeffnet-flagship-store-in-muenchen/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-14T09:56:05.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Há cinco anos, a Westwing abria seu capital na B3, marcando uma nova etapa na trajetória da companhia e do negócio.",
+          "url": "https://pt.linkedin.com/posts/westwing-brasil_westwing-5-anos-na-b3-activity-7509272978900078606-TlrV",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-25T00:00:00.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "WEST3 na CVM: Fatos Relevantes e comunicados de Westwing Comercio Varejista SA no seu WhatsApp | iAções",
+          "url": "https://iacoes.com.br/airton/WEST3/",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        }
+      ],
+      "later_document_count": 0
+    },
+    {
+      "cvm_code": "21016",
+      "cnpj": "08.807.432/0001-10",
+      "legal_name": "YDUQS PARTICIPACOES S.A.",
+      "tickers": [
+        "YDUQ3"
+      ],
+      "review_status": "pending_review",
+      "official_documents": [],
+      "search_candidates": [
+        {
+          "title": "Yduqs: BBI vê valuation atrativo, eleva preço-alvo e ...",
+          "url": "https://www.infomoney.com.br/mercados/yduqs-yduq3-bradesco-bbi-ve-valuation-atrativo-eleva-preco-alvo-e-destaca-como-preferida-do-setor",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "TradeLetter Semanal | 13 – 19 Setembro 2026 - TradeMap",
+          "url": "https://trademap.com.br/noticias/news-8323871",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "BRAP4 - BRADESPAR: cotação, indicadores e análises",
+          "url": "https://kinvo.com.br/acoes/BRAP4",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "As 3 ações do varejo que se dão bem com o aumento ...",
+          "url": "https://www.seudinheiro.com/2026/empresas/as-3-acoes-do-varejo-que-se-dao-bem-com-o-aumento-do-bolsa-familia-e-a-pegadinha-desvendada-pelo-j-p-morgan-ccgg",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "📆DESTAQUES DO DIA (14/09/2026): -IBOVESPA fecha ...",
+          "url": "https://www.instagram.com/reel/DdSIiarDnCp",
+          "providers": [
+            "tavily"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "1. DATA, HORA E LOCAL: Em 23 de setembro de 2026, às 15:00 horas, realizada presencialmente, na Rua Sumidouro nº 89, São Paulo - SP.",
+          "url": "https://siteempresas.bovespa.com.br/DWL/FormDetalheDownload.asp?prot=1571028&site=C",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Notícias - YDUQS | Relações com Investidores",
+          "url": "https://www.yduqs.com.br/Noticias.aspx?idCanal=5vda3icriz1qMU9TuMfPgg%3D%3D&linguagem=pt",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Yduqs: BBI eleva preço-alvo e destaca potencial de fusão com Afya | ADVFN News",
+          "url": "https://br.advfn.com/jornal/2026/09/yduqs-bbi-eleva-preco-alvo-e-destaca-potencial-de-fusao-com-afya",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-18T18:55:47.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Companhia combinada chega ao mercado com caixa e interesse por aquisições, diz Yduqs | Empresas | Valor Econômico",
+          "url": "https://valor.globo.com/empresas/noticia/2026/09/24/companhia-combinada-chega-ao-mercado-com-caixa-e-interesse-por-aquisicoes-diz-yduqs.ghtml",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-24T13:42:53.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Como ficam as ações da Yduqs (YDUQ3) após fusão com ...",
+          "url": "https://valorinveste.globo.com/mercados/renda-variavel/empresas/noticia/2026/09/24/como-ficam-as-acoes-da-yduqs-yduq3-apos-fusao-com-afya-para-nova-empresa-de-r-9-bilhoes.ghtml",
+          "providers": [
+            "exa"
+          ],
+          "reported_publication_dates": [
+            "2026-09-24T00:00:00.000Z"
+          ],
+          "review_status": "pending_page_and_date_review"
+        }
+      ],
+      "later_document_count": 0
+    }
+  ],
+  "macro_candidates": [
+    {
+      "topic": "macro_brazil",
+      "provider": "tavily",
+      "status": "retrieved_pending_review",
+      "candidates": [
+        {
+          "title": "Copom reduz a taxa Selic para 13,75% ao ano. Veja comunicado | ADVFN News",
+          "url": "https://br.advfn.com/jornal/2026/09/copom-reduz-a-taxa-selic-para-13-75-ao-ano-veja",
+          "reported_publication_date": null,
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Copom cuts Selic rate by 0.25 p.p. to 13.75%; decision was unanimous | September 2026",
+          "url": "https://www.youtube.com/watch?v=lNxVfsw1urU",
+          "reported_publication_date": null,
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Selic: Copom reduz taxa de juros para 13,75% ao ano | G1",
+          "url": "https://g1.globo.com/economia/noticia/2026/09/16/copom-reduz-a-taxa-basica-de-juros-da-economia-a-selic-de-14percent-para-1375percent-ao-ano.ghtml",
+          "reported_publication_date": null,
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Instagram",
+          "url": "https://www.instagram.com/reel/DdXR_FVh5Cd",
+          "reported_publication_date": null,
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Na reunião desta quarta-feira, 16/09/2026, o Comitê de ...",
+          "url": "https://www.instagram.com/p/DdXSISoRXH6",
+          "reported_publication_date": null,
+          "review_status": "pending_page_and_date_review"
+        }
+      ]
+    },
+    {
+      "topic": "macro_us",
+      "provider": "tavily",
+      "status": "retrieved_pending_review",
+      "candidates": [
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/monetarypolicy/files/monetary20260916a1.pdf",
+          "reported_publication_date": null,
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Transcript of Chairman Warsh's Press Conference",
+          "url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260916.pdf",
+          "reported_publication_date": null,
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "September 16, 2026: FOMC Projections materials, accessible version",
+          "url": "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
+          "reported_publication_date": null,
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Summary of Economic Projections, September 16, 2026",
+          "url": "https://www.federalreserve.gov/monetarypolicy/files/fomcprojtabl20260916.pdf",
+          "reported_publication_date": null,
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "The Fed - September 15-16, 2026 FOMC Meeting",
+          "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20260916.htm",
+          "reported_publication_date": null,
+          "review_status": "pending_page_and_date_review"
+        }
+      ]
+    },
+    {
+      "topic": "macro_fiscal",
+      "provider": "tavily",
+      "status": "retrieved_pending_review",
+      "candidates": [
+        {
+          "title": "IFI ANALISA PLOA 2027 E APRESENTA PROJEÇÕES DIFERENTES DAS ENCAMINHADAS PELO GOVERNO AO CONGRESSO — Instituição Fiscal Independente",
+          "url": "https://www12.senado.leg.br/ifi/noticias/ifi-analisa-ploa-2027-e-apresenta-projecoes-diferentes-das-encaminhadas-pelo-governo-ao-congresso",
+          "reported_publication_date": null,
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Governo terá que cortar despesas para fechar as contas em 2027, diz IFI — Senado Notícias",
+          "url": "https://www12.senado.leg.br/noticias/materias/2026/09/17/governo-tera-que-cortar-despesas-para-fechar-as-contas-em-2027-diz-ifi",
+          "reported_publication_date": null,
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Relatório de Acompanhamento Fiscal Nº 116",
+          "url": "https://www12.senado.leg.br/ifi/publicacoes-1/relatorio/2026/setembro/relatorio-de-acompanhamento-fiscal-set-2026",
+          "reported_publication_date": null,
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Íntegra da Voz do Brasil — Rádio Senado",
+          "url": "https://www12.senado.leg.br/radio/1/voz-do-brasil/2026/09/17/integra-da-voz-do-brasil",
+          "reported_publication_date": null,
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Banner - RAF 116 — Instituição Fiscal Independente",
+          "url": "https://www12.senado.leg.br/ifi/destaques/banner-raf-116",
+          "reported_publication_date": null,
+          "review_status": "pending_page_and_date_review"
+        }
+      ]
+    },
+    {
+      "topic": "macro_brazil",
+      "provider": "exa",
+      "status": "retrieved_pending_review",
+      "candidates": [
+        {
+          "title": "Comunicados do Copom",
+          "url": "https://www.bcb.gov.br/controleinflacao/comunicadoscopom",
+          "reported_publication_date": "N/A",
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Comitê de Política Monetária — Copom",
+          "url": "https://www.bcb.gov.br/content/copom/atascopom/Copom281-not20260916281.pdf",
+          "reported_publication_date": "N/A",
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Atas do Comitê de Política Monetária - Copom",
+          "url": "https://www.bcb.gov.br/publicacoes/atascopom",
+          "reported_publication_date": "N/A",
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Copom aponta que cortes futuros dependerão de dados; leia comunicado | CNN Brasil",
+          "url": "https://www.cnnbrasil.com.br/economia/money/macroeconomia/copom-aponta-que-cortes-futuros-dependerao-de-dados-leia-comunicado/",
+          "reported_publication_date": "2026-09-16T21:57:09.000Z",
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Comunicado BACEN Nº 45963 DE 16/09/2026 - Federal - LegisWeb",
+          "url": "https://www.legisweb.com.br/legislacao/?id=501416",
+          "reported_publication_date": "2026-09-16T00:00:00.000Z",
+          "review_status": "pending_page_and_date_review"
+        }
+      ]
+    },
+    {
+      "topic": "macro_us",
+      "provider": "exa",
+      "status": "retrieved_pending_review",
+      "candidates": [
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+          "reported_publication_date": "2026-09-16T00:00:00.000Z",
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/monetarypolicy/files/monetary20260916a1.pdf",
+          "reported_publication_date": "N/A",
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "The Fed - September 15-16, 2026 FOMC Meeting",
+          "url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20260916.htm",
+          "reported_publication_date": "2026-09-16T00:00:00.000Z",
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Transcript of Chairman Warsh's Press Conference",
+          "url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260916.pdf",
+          "reported_publication_date": "2026-09-16T00:00:00.000Z",
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Federal Reserve Board - 2026 FOMC Press Releases",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/2026-press-fomc.htm",
+          "reported_publication_date": "N/A",
+          "review_status": "pending_page_and_date_review"
+        }
+      ]
+    },
+    {
+      "topic": "macro_fiscal",
+      "provider": "exa",
+      "status": "retrieved_pending_review",
+      "candidates": [
+        {
+          "title": "Governo terá que cortar despesas para fechar as contas ...",
+          "url": "https://www12.senado.leg.br/noticias/materias/2026/09/17/governo-tera-que-cortar-despesas-para-fechar-as-contas-em-2027-diz-ifi",
+          "reported_publication_date": "2026-09-17T00:00:00.000Z",
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Relatório de Acompanhamento Fiscal",
+          "url": "https://www12.senado.leg.br/ifi/pdf/raf116_set2026.pdf",
+          "reported_publication_date": "N/A",
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Projeções — Instituição Fiscal Independente",
+          "url": "https://www12.senado.leg.br/ifi/projecoes-1",
+          "reported_publication_date": "N/A",
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "Enquanto governo prevê contas no azul, Instituição Fiscal ...",
+          "url": "https://www12.senado.leg.br/tv/programas/noticias-1/2026/09/enquanto-governo-preve-contas-no-azul-instituicao-fiscal-aponta-deficit-de-r-86-bi-em-2027",
+          "reported_publication_date": "2026-09-17T00:00:00.000Z",
+          "review_status": "pending_page_and_date_review"
+        },
+        {
+          "title": "IFI diverge do governo e alerta para riscos fiscais e pressões nos juros — Rádio Senado",
+          "url": "https://www12.senado.leg.br/radio/1/noticia/2026/09/18/ifi-diverge-do-governo-e-alerta-para-riscos-fiscais-e-pressoes-nos-juros",
+          "reported_publication_date": "2026-09-18T00:00:00.000Z",
+          "review_status": "pending_page_and_date_review"
+        }
+      ]
+    }
+  ]
+}
