@@ -45,4 +45,4 @@ Exemplo de uma passagem por 26 unidades (23 empresas e três temas gerais), cada
 
 Esses números são estimativas, não consumo já realizado. Raciocínio, textos maiores, novas chamadas e repetições aumentam o custo. Não incluem consultas Tavily/Exa nem assinaturas de fontes. Definir limite inicial de US$ 2 para a geração/revisão do case, acompanhando os tokens reais e interrompendo a geração ao atingir o limite. Esse limite será implementado na etapa de síntese; não altera configurações da conta OpenAI.
 
-Até aqui foram feitos somente os testes descritos. Os resumos do case ainda não foram gerados.
+Depois dos testes, Luna foi usado para propor a triagem dos materiais reais das 23 empresas. Consumo, falhas e correções editoriais estão em [contexto-triagem.md](contexto-triagem.md). O resultado mostrou erros que o cenário sintético não havia captado; seleção automática não basta. Os resumos finais do case ainda não foram gerados.

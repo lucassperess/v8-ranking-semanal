@@ -70,4 +70,4 @@ A extração desta primeira coleta foi executada diretamente com o runtime, e os
 
 ## Próxima etapa
 
-Selecionar evidências relevantes, conferir referências e datas e preparar as explicações com IA. O índice é matéria-prima de revisão, não uma lista aprovada de fatos. A camada visual e a publicação ainda não foram executadas; a produção continua na revisão standby.
+A seleção inicial de evidências e a conferência das fontes aprovadas foram registradas em [contexto-triagem.md](contexto-triagem.md). O índice original continua preservado como matéria-prima; as decisões ficam em `triage.json`. A próxima etapa é preparar e revisar os rascunhos com as fontes aprovadas e as lacunas explícitas. A camada visual e a publicação ainda não foram executadas; a produção continua na revisão standby.
