@@ -13,6 +13,10 @@ O dashboard apresenta os resultados calculados pelo Python. Os controles mudam a
 
 Os ícones de informação exibem explicações curtas ao passar o mouse ou receber foco pelo teclado. No celular, toque para abrir ou fechar; tocar fora também fecha a explicação. Para aprofundar os critérios, consulte a [metodologia](metodologia.md).
 
+Os percentuais dos cards usam duas casas decimais; a quantidade de ações permanece inteira. Na referência, 119 de 308 ações tiveram retorno positivo: **38,64%**. Essa proporção conta as ações que subiram, independentemente da intensidade de cada alta.
+
+**Semana completa:** usa o fechamento antes de a semana começar e o último disponível nela. Na referência, compara o preço no fim de 11/09 com o preço no fim de 18/09; assim, inclui também a mudança do primeiro dia com dados, 14/09. **Dentro da semana:** começa no preço ao fim de 14/09 e termina ao fim de 18/09. A mudança até o fechamento de 14/09 fica de fora, pois esse fechamento já é o ponto de partida. Os textos de informação mostram as datas da execução consultada.
+
 ## Explore uma ação
 
 Selecione uma linha do ranking ou escolha o ticker no controle junto ao gráfico. O painel mostra o ativo selecionado e o retorno da janela exibida. No celular, o ranking prioriza posição, ticker e retorno; selecionar a linha abre o gráfico, onde é possível conferir os preços e a espécie. Use “Voltar ao ranking” para continuar a exploração.
@@ -28,11 +32,13 @@ Uma lacuna não é uma variação de zero. Veja [por que podem faltar dados](duv
 
 A distribuição agrupa os retornos das ações elegíveis. A proporção de altas e baixas descreve essa amostra, não todo o mercado.
 
+No dashboard, a matriz diária vem depois do ranking e do gráfico da ação. “Além do top 20” aparece por último, para ampliar a leitura para todas as ações elegíveis.
+
 A matriz do top 20 apresenta movimentos diários com cores e valores. No celular, deslize dentro da matriz para consultar as datas e ações; ticker e cabeçalhos permanecem fixos. Tocar no ticker abre seu gráfico. Uma célula vazia significa que faltam preços utilizáveis para aquela comparação. A fórmula semanal usa suas próprias duas pontas; não soma os percentuais da matriz.
 
 ## Baixe e confira
 
-O link ao lado de “Maiores altas da semana” baixa o ranking da janela exibida. A auditoria da execução reúne os demais arquivos permitidos, as datas e os alertas. Guarde o link da análise enviada enquanto ela estiver disponível.
+O link ao lado de “Maiores retornos da semana” baixa o ranking da janela exibida. A auditoria da execução reúne os demais arquivos permitidos, as datas e os alertas. Guarde o link da análise enviada enquanto ela estiver disponível.
 
 ## Envie outra extração
 

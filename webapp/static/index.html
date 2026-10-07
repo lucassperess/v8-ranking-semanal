@@ -11,9 +11,9 @@
       name="description"
       content="Ranking semanal de ações brasileiras com metodologia, alertas e teste de novas extrações da Economatica."
     />
-    <link rel="stylesheet" href="/static/styles.css?v=interpretation-20261006" />
-    <link rel="stylesheet" href="/static/mobile.css?v=menu-20261006" />
-    <script src="/static/app.js?v=alerts-20261006" defer></script>
+    <link rel="stylesheet" href="/static/styles.css?v=dashboard-20261007" />
+    <link rel="stylesheet" href="/static/mobile.css?v=dashboard-20261007" />
+    <script src="/static/app.js?v=dashboard-20261007" defer></script>
     <script src="/static/header.js?v=menu-20261006" defer></script>
   </head>
   <body>
@@ -32,7 +32,8 @@
                 >
               </div>
               <p>
-                Maiores altas entre ações ON e PN · preços de fechamento ajustados da Economatica
+                20 maiores retornos entre ações ON e PN · preços de fechamento ajustados da
+                Economatica
               </p>
             </div>
           </div>
@@ -87,8 +88,8 @@
                 >
                   i</button
                 ><span id="metric-up-help" class="info-tooltip metric-tooltip" role="tooltip"
-                  >Percentual das ações elegíveis com retorno positivo na janela selecionada.
-                  <span id="metric-up-note"></span>.</span
+                  >Percentual das ações elegíveis com retorno positivo na janela selecionada. Cada
+                  ação é contada uma vez.</span
                 ></span
               >
             </div>
@@ -118,7 +119,7 @@
             <div class="section-head">
               <div>
                 <div class="ranking-title-row">
-                  <h2>Maiores altas da semana</h2>
+                  <h2>Maiores retornos da semana</h2>
                   <a id="ranking-download" class="download-button" download
                     >Baixar este ranking · CSV ↓</a
                   >
@@ -223,32 +224,10 @@
             </div>
           </section>
 
-          <section class="section context-section">
-            <div class="section-head">
-              <div>
-                <span class="section-kicker">02 / CONTEXTO</span>
-                <h2>Além do top 20</h2>
-                <p>Distribuição e amplitude das ações elegíveis nesta extração.</p>
-              </div>
-            </div>
-            <div class="context-grid">
-              <div class="context-panel">
-                <h3>Distribuição dos retornos</h3>
-                <div id="distribution" class="distribution"></div>
-              </div>
-              <div class="context-panel breadth-panel">
-                <h3>Amplitude da amostra</h3>
-                <div id="breadth-counts" class="breadth-counts"></div>
-                <div id="breadth-bar" class="breadth-bar"></div>
-                <p id="breadth-note" class="muted"></p>
-              </div>
-            </div>
-          </section>
-
           <section class="section heatmap-section">
             <div class="section-head">
               <div>
-                <span class="section-kicker">03 / TRAJETÓRIA</span>
+                <span class="section-kicker">02 / TRAJETÓRIA</span>
                 <h2>Movimento diário do top 20</h2>
                 <p>
                   Variação entre datas consecutivas da extração. Células vazias não são preenchidas.
@@ -269,6 +248,28 @@
               role="region"
               aria-label="Movimento diário; role para consultar todas as datas e ações"
             ></div>
+          </section>
+
+          <section class="section context-section">
+            <div class="section-head">
+              <div>
+                <span class="section-kicker">03 / CONTEXTO</span>
+                <h2>Além do top 20</h2>
+                <p>Distribuição e amplitude das ações elegíveis nesta extração.</p>
+              </div>
+            </div>
+            <div class="context-grid">
+              <div class="context-panel">
+                <h3>Distribuição dos retornos</h3>
+                <div id="distribution" class="distribution"></div>
+              </div>
+              <div class="context-panel breadth-panel">
+                <h3>Amplitude da amostra</h3>
+                <div id="breadth-counts" class="breadth-counts"></div>
+                <div id="breadth-bar" class="breadth-bar"></div>
+                <p id="breadth-note" class="muted"></p>
+              </div>
+            </div>
           </section>
         </div>
       </main>

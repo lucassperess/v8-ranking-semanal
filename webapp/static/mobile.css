@@ -293,12 +293,14 @@
     background: #131315;
     min-height: 44px;
   }
-  .heatmap-grid .ticker {
+  .heatmap-grid button.ticker {
     position: sticky;
     left: 0;
     z-index: 1;
     background: #101012;
     min-height: 44px;
+    align-self: stretch;
+    border-right: 1px solid var(--line);
   }
   .heatmap-grid .head:first-child {
     left: 0;

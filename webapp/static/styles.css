@@ -13,6 +13,11 @@
   --selection: #2c2c2e;
   --mono: Consolas, 'Courier New', monospace;
 }
+#metric-mean-help,
+#metric-alternative-help,
+#window-explanation {
+  white-space: pre-line;
+}
 * {
   box-sizing: border-box;
 }

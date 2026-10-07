@@ -68,23 +68,33 @@ function renderWindow() {
   if (!data) return;
   const current = data.windows[state.window];
   const alt = state.window === 'alternative';
+  const week = data.week;
+  const primaryHelp = `Semana completa\nComparamos o preço no fim de ${day(week.preceding_close)}, antes de a semana começar, com o preço no fim de ${day(week.last_week_close)}, último dia com fechamento disponível nela.\n\nComeçamos antes da semana para incluir também a mudança de preço do primeiro dia com dados (${day(week.first_week_close)}).`;
+  const alternativeHelp = `Dentro da semana\nComparamos o preço no fim de ${day(week.first_week_close)}, primeiro dia com fechamento disponível na semana, com o preço no fim de ${day(week.last_week_close)}, último dia com fechamento disponível.\n\nA mudança de preço até o fechamento de ${day(week.first_week_close)} fica de fora, pois esse preço já é o ponto de partida.`;
+  text(
+    'metric-mean-help',
+    `Média dos retornos das 20 ações do ranking selecionado.\n\n${alt ? alternativeHelp : primaryHelp}`,
+  );
+  text(
+    'metric-alternative-help',
+    `Média dos 20 maiores retornos calculados pela alternativa.\n\n${alternativeHelp}`,
+  );
   $('primary-button').classList.toggle('active', !alt);
   $('alternative-button').classList.toggle('active', alt);
   $('primary-button').setAttribute('aria-pressed', String(!alt));
   $('alternative-button').setAttribute('aria-pressed', String(alt));
-  text(
-    'window-explanation',
-    alt
-      ? 'Compara o primeiro e o último fechamento disponíveis dentro da semana.'
-      : 'Inclui o movimento do primeiro pregão: compara o fechamento anterior à semana com o último fechamento dela.',
-  );
+  text('window-explanation', alt ? alternativeHelp : primaryHelp);
   $('ranking-download').href =
     `${data.kind === 'featured' ? '/api/featured/files' : `/api/analyses/${state.runId}/files`}/${alt ? 'top20_alternativo.csv' : 'top20.csv'}`;
   text('metric-mean', pct(current.mean_pct));
   text('metric-eligible', current.eligible.toLocaleString('pt-BR'));
   const b = current.breadth;
-  text('metric-up', `${((b.up / b.denominator) * 100).toFixed(1).replace('.', ',')}%`);
-  text('metric-up-note', `${b.up} de ${b.denominator} ações elegíveis`);
+  const upShare = pct((b.up / b.denominator) * 100);
+  text('metric-up', upShare);
+  text(
+    'metric-up-help',
+    `${b.up.toLocaleString('pt-BR')} das ${b.denominator.toLocaleString('pt-BR')} ações elegíveis tiveram retorno positivo na janela selecionada. Isso corresponde a ${upShare} das ações elegíveis. Cada ação é contada uma vez, independentemente do tamanho de sua alta.`,
+  );
   text(
     'ranking-subtitle',
     `${day(current.start_date)} → ${day(current.end_date)} · fechamento ajustado da Economatica · ${current.excluded} instrumentos excluídos`,
