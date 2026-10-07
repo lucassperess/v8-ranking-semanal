@@ -1,0 +1,583 @@
+{
+  "status": "editorial_facts_revised_after_source_and_model_review",
+  "prepared_date": "2026-10-07",
+  "additional_sources": [
+    {
+      "id": "antecedent:ambipar-auction",
+      "cvm_code": "24961",
+      "url": "https://www.seudinheiro.com/2026/bolsa-dolar/crise-na-bolsa-ambipar-ambp3-passa-a-negociar-em-leilao-na-b3-apos-atraso-kaes/",
+      "title": "Seu Dinheiro — negociação não contínua da Ambipar",
+      "publication_date": "2026-09-01",
+      "event_date": "2026-08-31",
+      "after_price_end": false,
+      "context_type": "dated_antecedent",
+      "date_basis": "article_publication_and_body",
+      "date_evidence": "01 de setembro de 2026 — 10:15",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "evidence_sha256": "73956ee5d8cc7ff8d28075db7cafe58924fc8e0e0f0efcd9e876334478ab8c73"
+    },
+    {
+      "id": "antecedent:armac-fitch",
+      "cvm_code": "26069",
+      "url": "https://investidor10.com.br/acoes/link_comunicado/ARML3/49209/",
+      "title": "Relatório Fitch — AA-(bra), perspectiva estável",
+      "publication_date": "2026-09-09",
+      "event_date": "2026-09-09",
+      "after_price_end": false,
+      "context_type": "dated_antecedent",
+      "date_basis": "dated_fitch_report_body",
+      "date_evidence": "09 Sep 2026",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "evidence_sha256": "eb4d2f7ffc858e4c6167ae615695396861ddc8b5299f81345f7093d70175a150"
+    },
+    {
+      "id": "antecedent:qualicorp-ceo",
+      "cvm_code": "22497",
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1563347&numSequencia=1088053&numVersao=1",
+      "title": "Sucessao da Presidencia Executiva",
+      "publication_date": "2026-09-01",
+      "event_date": "2026-08-31",
+      "after_price_end": false,
+      "context_type": "dated_antecedent",
+      "date_basis": "cvm_delivery_and_official_document",
+      "date_evidence": "2026-09-01",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "evidence_sha256": "fa4d4467bb120650036caeebfd9b827b2cd9bdb6e12d653b6eeefabe202a8771"
+    },
+    {
+      "id": "antecedent:westwing-results",
+      "cvm_code": "25518",
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1556949&numSequencia=1081655&numVersao=1",
+      "title": "Westwing - Apresentação de Resultados - 2T26",
+      "publication_date": "2026-08-13",
+      "event_date": "2026-08-13",
+      "after_price_end": false,
+      "context_type": "dated_antecedent",
+      "date_basis": "cvm_delivery_and_official_document",
+      "date_evidence": "2026-08-13",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "evidence_sha256": "ebe733d4597d0d496bd40c8fab9f31e1c0bd895f2be84a4efd1342bf999d4855"
+    },
+    {
+      "id": "antecedent:ecom-eqi",
+      "cvm_code": "26077",
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1557562&numSequencia=1082268&numVersao=1",
+      "title": "Cessão de Plataforma e de Carteira de Clientes à EQI Investimentos",
+      "publication_date": "2026-08-14",
+      "event_date": "2026-08-13",
+      "after_price_end": false,
+      "context_type": "dated_antecedent",
+      "date_basis": "cvm_delivery_and_official_document",
+      "date_evidence": "2026-08-14",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "evidence_sha256": "37139a7342a6222988b9fc2498da3290892cbc79d72342e55069f6902247f023"
+    }
+  ],
+  "issuers": [
+    {
+      "cvm_code": "24961",
+      "interpretation": {
+        "text": "Segundo o Seu Dinheiro, a B3 colocou o papel em negociação por leilão a partir de 31/08, por atraso na entrega de informações periódicas. Isso muda a forma de fechar os negócios. A reportagem também descreve a recuperação judicial da empresa. A alta percentual precisa ser lida junto desse cenário de restrição e de preços baixos; ela não confirma a recuperação financeira da companhia.",
+        "source_ids": [
+          "antecedent:ambipar-auction"
+        ]
+      },
+      "unresolved_question": "Não foi encontrada evidência verificada de um acontecimento novo que explique a alta de AMBP3 em cada pregão.",
+      "events": [
+        {
+          "title": "Antecedente: negociação por leilão",
+          "text": "A reportagem de 01/09 informa que o regime passou a valer em 31/08. Os negócios ocorrem no encerramento do pregão, enquanto as ofertas são reunidas em leilão. A empresa continuava listada na B3.",
+          "source_ids": [
+            "antecedent:ambipar-auction"
+          ],
+          "publication_date": "2026-09-01",
+          "event_date": "2026-08-31",
+          "after_price_end": false
+        }
+      ]
+    },
+    {
+      "cvm_code": "26069",
+      "interpretation": {
+        "text": "O trimestre mostra receita maior e passagem de prejuízo para lucro na comparação anual. Em 09/09, a Fitch manteve a classificação de crédito AA-(bra), com perspectiva estável, destacando a escala dos negócios e a geração de caixa. Essa classificação avalia crédito, não o potencial de valorização da ação. São antecedentes favoráveis documentados, sem prova de que provocaram o movimento daquela semana.",
+        "source_ids": [
+          "itr:26069",
+          "antecedent:armac-fitch"
+        ]
+      },
+      "unresolved_question": "Permanece sem identificação um catalisador específico para o dia de maior variação.",
+      "events": [
+        {
+          "title": "Antecedente: avaliação de crédito mantida",
+          "text": "A Fitch manteve AA-(bra) e perspectiva estável. Também apontou riscos de alavancagem e dependência de vendas de ativos para reduzir a dívida. Projeções da agência não são resultados já realizados.",
+          "source_ids": [
+            "antecedent:armac-fitch"
+          ],
+          "publication_date": "2026-09-09",
+          "event_date": "2026-09-09",
+          "after_price_end": false
+        }
+      ]
+    },
+    {
+      "cvm_code": "26620",
+      "interpretation": {
+        "text": "A Auren ainda registrava prejuízo, embora menor que no mesmo trimestre de 2025. O resultado antes das despesas e receitas financeiras e dos tributos era positivo, mas o resultado financeiro era negativo em R$ 732,15 milhões. Essa diferença ajuda a entender por que receita elevada não significava lucro. A variação da ação na semana não comprova que esse quadro mudou.",
+        "source_ids": [
+          "itr:26620"
+        ]
+      },
+      "unresolved_question": "Falta uma relação documentada entre um acontecimento semanal e a alta do papel.",
+      "events": []
+    },
+    {
+      "cvm_code": "701",
+      "interpretation": {
+        "text": "A Bioma aumentou a receita e reduziu o prejuízo trimestral em relação a um ano antes. Isso descreve melhora nessa comparação, mas a companhia ainda não tinha lucro nesse trimestre. O resultado acumulado do semestre corresponde a outro período e não deve substituir esse número. As altas diárias do papel precisam ser distinguidas desse antecedente financeiro.",
+        "source_ids": [
+          "itr:701"
+        ]
+      },
+      "unresolved_question": "Não foi confirmado um anúncio semanal que explique a sequência de altas de BIED3.",
+      "events": []
+    },
+    {
+      "cvm_code": "25232",
+      "interpretation": {
+        "text": "A Méliuz aumentou a receita, mas passou de lucro para prejuízo trimestral na comparação anual. Em 17/09, uma reportagem trouxe uma avaliação da XP sobre crescimento e formas de monetização. É uma opinião identificada, não um resultado financeiro novo nem prova de causa da alta. Documentos entregues em 14/09 tratam de um aumento de capital decidido em 08/09, por exercício de opções.",
+        "source_ids": [
+          "itr:25232",
+          "25232:web-0",
+          "25232:cvm-14"
+        ]
+      },
+      "unresolved_question": "Não foi estabelecido quanto a avaliação da XP ou o aumento de capital contribuiu para o retorno.",
+      "events": [
+        {
+          "title": "Avaliação da XP divulgada em 17/09",
+          "text": "O InfoMoney relata a avaliação da XP sobre crescimento e monetização da Méliuz. A análise deve ser lida como opinião da instituição.",
+          "source_ids": [
+            "25232:web-0"
+          ],
+          "publication_date": "2026-09-17",
+          "event_date": null,
+          "after_price_end": false
+        },
+        {
+          "title": "Aumento de capital: decisão anterior à semana",
+          "text": "O aviso foi entregue à CVM em 14/09 e trata de decisão de 08/09. A primeira divulgação ao público não foi estabelecida; a data de entrega não torna a decisão um fato novo de segunda-feira.",
+          "source_ids": [
+            "25232:cvm-14",
+            "25232:cvm-15"
+          ],
+          "publication_date": "2026-09-14",
+          "event_date": "2026-09-08",
+          "after_price_end": false
+        }
+      ]
+    },
+    {
+      "cvm_code": "19623",
+      "interpretation": {
+        "text": "A Dasa registrou prejuízo menor que um ano antes, apesar da receita menor. O resultado financeiro negativo de R$ 305,81 milhões contrasta com o resultado positivo antes das despesas e receitas financeiras e dos tributos. O lançamento de uma biblioteca científica encontrado na pesquisa não fornece uma relação suficiente com o preço; por isso, não é usado como explicação da alta.",
+        "source_ids": [
+          "itr:19623",
+          "19623:web-5"
+        ]
+      },
+      "unresolved_question": "Ainda falta um acontecimento semanal relevante com ligação documentada ao movimento da ação.",
+      "events": []
+    },
+    {
+      "cvm_code": "25836",
+      "interpretation": {
+        "text": "A Dotz apresentou receita e lucro trimestrais maiores que os de um ano antes, mas ainda tinha patrimônio líquido negativo. Lucro em um trimestre e situação patrimonial acumulada são medidas diferentes. Os dados não permitem concluir que todo o lucro era recorrente nem que a alta semanal refletiu esse resultado.",
+        "source_ids": [
+          "itr:25836"
+        ]
+      },
+      "unresolved_question": "Não foi confirmado um acontecimento da semana que explique o movimento; a composição recorrente do lucro também não foi estabelecida.",
+      "events": []
+    },
+    {
+      "cvm_code": "26077",
+      "interpretation": {
+        "text": "A Economatica reduziu o prejuízo trimestral, mas a receita também caiu na comparação anual. Um antecedente estratégico foi a cessão da plataforma TradersClub e da carteira de clientes da subsidiária TC AI à EQI por R$ 3,00 milhões, anunciada em agosto. Não se tratou da venda da Economatica inteira. A companhia declarou foco em tecnologia e dados e informou contratação de Mover Pro e Kento AI pela EQI.",
+        "source_ids": [
+          "itr:26077",
+          "antecedent:ecom-eqi"
+        ]
+      },
+      "unresolved_question": "A mudança estratégica está documentada, mas sua contribuição para a alta semanal de ECOM3 não foi demonstrada.",
+      "events": [
+        {
+          "title": "Antecedente: cessão à EQI e foco em tecnologia",
+          "text": "O contrato foi celebrado em 13/08 e divulgado à CVM em 14/08. Abrangeu direitos da plataforma TradersClub e carteira de clientes de assessoria; a EQI também contratou Mover Pro e Kento AI.",
+          "source_ids": [
+            "antecedent:ecom-eqi"
+          ],
+          "publication_date": "2026-08-14",
+          "event_date": "2026-08-13",
+          "after_price_end": false
+        }
+      ]
+    },
+    {
+      "cvm_code": "8427",
+      "interpretation": {
+        "text": "Na resposta à B3 divulgada em 15/09, a Estrela explicou o andamento da recuperação judicial. Segundo a companhia, ainda não havia objeções ao plano porque o prazo para apresentá-las não tinha começado. Isso não significa que os credores aprovaram o plano. A alta do papel deve ser lida como movimento de uma empresa nesse processo, sem transformar o esclarecimento em confirmação de recuperação concluída.",
+        "source_ids": [
+          "8427:cvm-20"
+        ]
+      },
+      "unresolved_question": "O documento não estabelece que o esclarecimento provocou a alta nem confirma aprovação do plano.",
+      "events": [
+        {
+          "title": "Esclarecimento sobre recuperação judicial",
+          "text": "A companhia respondeu à B3 sobre o andamento do processo. A ausência de objeções relatada não equivale à aprovação do plano.",
+          "source_ids": [
+            "8427:cvm-20"
+          ],
+          "publication_date": "2026-09-15",
+          "event_date": "2026-09-15",
+          "after_price_end": false
+        }
+      ]
+    },
+    {
+      "cvm_code": "15423",
+      "interpretation": {
+        "text": "A Fasa divulgou medidas relacionadas à cotação: prorrogação do prazo para reenquadramento e proposta de reunir 37 ações em uma. Um grupamento muda a quantidade de ações e o preço por ação proporcionalmente; por si só, não cria valor econômico. Na semana analisada, a proposta ainda dependia de votação. A valorização registrada não deve ser descrita como efeito de um grupamento já executado. O maior avanço diário da janela principal foi de 32,00% em 15/09, antes das divulgações identificadas de 16/09 e 18/09. A primeira formação dessas expectativas não foi estabelecida.",
+        "source_ids": [
+          "15423:cvm-9",
+          "15423:cvm-8"
+        ]
+      },
+      "unresolved_question": "Não foi estabelecido se a expectativa em torno dessas medidas explica a valorização de FASA3.",
+      "events": [
+        {
+          "title": "Prazo para reenquadramento prorrogado",
+          "text": "O comunicado de 16/09 informa o novo prazo de 30/11 para reenquadramento da cotação. 30/11 é o prazo futuro, não a data do anúncio.",
+          "source_ids": [
+            "15423:cvm-9"
+          ],
+          "publication_date": "2026-09-16",
+          "event_date": "2026-09-16",
+          "after_price_end": false
+        },
+        {
+          "title": "Proposta de grupamento de 37 para 1",
+          "text": "Documentos entregues em 18/09 apresentam proposta para votação na assembleia de 20/10. Naquele momento, o grupamento ainda não estava aprovado.",
+          "source_ids": [
+            "15423:cvm-5",
+            "15423:cvm-6",
+            "15423:cvm-7",
+            "15423:cvm-8"
+          ],
+          "publication_date": "2026-09-18",
+          "event_date": null,
+          "after_price_end": false
+        }
+      ]
+    },
+    {
+      "cvm_code": "18376",
+      "interpretation": {
+        "text": "A ISA Energia registrou receita e lucro trimestrais maiores que um ano antes. A pesquisa também encontrou aviso de juros de debêntures: trata-se de remuneração de títulos de dívida, não de dividendos das ações. Esse aviso não explica, por si só, o retorno de ISAE3. A composição do aumento do lucro e sua recorrência não foram estabelecidas nesta análise.",
+        "source_ids": [
+          "itr:18376",
+          "18376:cvm-10"
+        ]
+      },
+      "unresolved_question": "Não foi documentado um catalisador semanal diretamente relacionado à alta de ISAE3.",
+      "events": []
+    },
+    {
+      "cvm_code": "8192",
+      "interpretation": {
+        "text": "A Trevisa aumentou a receita, mas o lucro trimestral ficou ligeiramente abaixo do registrado um ano antes. O salto e a devolução de parte da alta observados no gráfico são movimentos do papel; não há documento verificado que permita atribuí-los a uma melhora dos resultados. Os valores trimestrais não devem ser confundidos com o acumulado do semestre.",
+        "source_ids": [
+          "itr:8192"
+        ]
+      },
+      "unresolved_question": "Ainda não foi identificado o motivo específico do salto de quarta-feira e da queda de quinta-feira.",
+      "events": []
+    },
+    {
+      "cvm_code": "23574",
+      "interpretation": {
+        "text": "A IMC apresentou prejuízo menor, com receita também menor na comparação anual. Na semana, divulgou atos de renegociação de debêntures e esclarecimentos sobre notícia envolvendo a Vinci. Os documentos sobre a dívida têm condições divergentes e não permitem apresentar um único vencimento definitivo. Em 18/09, a empresa informou ausência de instrumento firmado.",
+        "source_ids": [
+          "itr:23574",
+          "23574:cvm-16",
+          "23574:cvm-17",
+          "23574:cvm-19"
+        ]
+      },
+      "unresolved_question": "Não está estabelecido o efeito de cada divulgação no preço; as condições finais da renegociação não foram conciliadas.",
+      "events": [
+        {
+          "title": "Renegociação de dívida: atos distintos",
+          "text": "A assembleia de debenturistas de 15/09 e o conselho de 16/09, cuja ata foi entregue em 17/09, trataram de renegociação. As condições divergem, por isso não se resume um único vencimento definitivo.",
+          "source_ids": [
+            "23574:cvm-16",
+            "23574:cvm-19"
+          ],
+          "publication_date": "2026-09-17",
+          "event_date": null,
+          "after_price_end": false
+        },
+        {
+          "title": "Esclarecimento sobre a Vinci em 18/09",
+          "text": "A companhia informou que não havia instrumento firmado relacionado à possível combinação. Isso não confirma uma operação concluída.",
+          "source_ids": [
+            "23574:cvm-17"
+          ],
+          "publication_date": "2026-09-18",
+          "event_date": "2026-09-18",
+          "after_price_end": false
+        },
+        {
+          "title": "Informação posterior ao último fechamento",
+          "text": "No domingo, 20/09, a IMC divulgou esclarecimento adicional sobre interlocuções exploratórias. Essa informação é posterior ao fechamento de sexta-feira e não pode ser tratada como conhecida durante os pregões do ranking.",
+          "source_ids": [
+            "23574:cvm-18"
+          ],
+          "publication_date": "2026-09-20",
+          "event_date": "2026-09-20",
+          "after_price_end": true
+        }
+      ]
+    },
+    {
+      "cvm_code": "8397",
+      "interpretation": {
+        "text": "A Mangels aumentou a receita, mas o lucro trimestral foi menor que um ano antes. Na semana, o sindicato convocou assembleia para discutir proposta de participação nos lucros e resultados, a PLR. A convocação não comprova aprovação da proposta. O tema trabalhista descreve um acontecimento da empresa, sem estabelecer seu efeito sobre MGEL4.",
+        "source_ids": [
+          "itr:8397",
+          "8397:web-0"
+        ]
+      },
+      "unresolved_question": "O resultado da assembleia e sua relação com o preço não foram confirmados.",
+      "events": [
+        {
+          "title": "Convocação de assembleia sobre PLR",
+          "text": "Em 14/09, o sindicato publicou convocação de assembleia para 18/09. Não foi confirmado o resultado da votação.",
+          "source_ids": [
+            "8397:web-0"
+          ],
+          "publication_date": "2026-09-14",
+          "event_date": null,
+          "after_price_end": false
+        }
+      ]
+    },
+    {
+      "cvm_code": "26123",
+      "interpretation": {
+        "text": "A Oncoclínicas registrou receita menor e prejuízo trimestral maior que um ano antes. Em 14/09, elegeu Maurício Hasson para as funções de diretor financeiro e de relações com investidores; a ata foi entregue em 17/09. A mudança administrativa é um fato da semana. Ela não demonstra, sozinha, solução para os prejuízos nem explica a valorização da ação.",
+        "source_ids": [
+          "itr:26123",
+          "26123:cvm-12",
+          "26123:cvm-13"
+        ]
+      },
+      "unresolved_question": "A ligação entre a eleição e o retorno de ONCO3 não foi estabelecida.",
+      "events": [
+        {
+          "title": "Eleição do diretor financeiro e de RI",
+          "text": "A eleição ocorreu em 14/09. O fato relevante e a ata entregue em 17/09 descrevem o mesmo acontecimento, não duas mudanças de diretoria.",
+          "source_ids": [
+            "26123:cvm-12",
+            "26123:cvm-13"
+          ],
+          "publication_date": "2026-09-14",
+          "event_date": "2026-09-14",
+          "after_price_end": false
+        }
+      ]
+    },
+    {
+      "cvm_code": "13471",
+      "interpretation": {
+        "text": "A Plascar registrou prejuízo e patrimônio líquido negativo, embora a receita tenha sido maior que um ano antes. O resultado financeiro negativo de R$ 53,55 milhões superou o resultado positivo antes das despesas e receitas financeiras e dos tributos, de R$ 5,91 milhões. O sinal diferente entre as janelas vem da forte queda de segunda-feira, excluída na alternativa, e não comprova uma recuperação financeira.",
+        "source_ids": [
+          "itr:13471"
+        ]
+      },
+      "unresolved_question": "Não foi identificado um acontecimento que explique a queda de segunda-feira; a lacuna de quinta limita a leitura diária.",
+      "events": []
+    },
+    {
+      "cvm_code": "22497",
+      "interpretation": {
+        "text": "A Qualicorp aumentou o lucro trimestral, mesmo com receita menor que um ano antes. Antes da semana, concluiu a sucessão da presidência executiva: Eduardo Oliveira substituiu Maurício Lopes, que passou à presidência do conselho. É um antecedente de administração, anunciado em 01/09. Não foi estabelecido que essa mudança explique a alta de QUAL3 na semana do ranking.",
+        "source_ids": [
+          "itr:22497",
+          "antecedent:qualicorp-ceo"
+        ]
+      },
+      "unresolved_question": "Permanece sem comprovação a relação entre o movimento semanal e a sucessão ou os resultados.",
+      "events": [
+        {
+          "title": "Antecedente: sucessão da presidência executiva",
+          "text": "A decisão do conselho ocorreu em 31/08 e foi divulgada em 01/09. A companhia informou a conclusão do processo de sucessão anunciado em maio.",
+          "source_ids": [
+            "antecedent:qualicorp-ceo"
+          ],
+          "publication_date": "2026-09-01",
+          "event_date": "2026-08-31",
+          "after_price_end": false
+        }
+      ]
+    },
+    {
+      "cvm_code": "12572",
+      "interpretation": {
+        "text": "A Recrusul registrou receita trimestral de apenas R$ 3,00 mil, prejuízo e patrimônio líquido negativo. Isso ajuda a distinguir alta do papel de desempenho operacional. Documentos entregues em 15/09 propõem reunir quatro ações em uma, ainda sujeito à votação. O edital é datado de 21/08; sua primeira publicação não foi estabelecida. O grupamento não cria valor econômico por si só.",
+        "source_ids": [
+          "itr:12572",
+          "12572:cvm-21",
+          "12572:cvm-22"
+        ]
+      },
+      "unresolved_question": "Não foi comprovado que a proposta de grupamento explique a alta nem que já tivesse sido aprovada.",
+      "events": [
+        {
+          "title": "Proposta de grupamento de 4 para 1",
+          "text": "Os documentos foram entregues em 15/09. A data de entrega não comprova que a proposta foi anunciada pela primeira vez nesse dia; o edital é anterior. A aprovação ainda dependia de assembleia.",
+          "source_ids": [
+            "12572:cvm-21",
+            "12572:cvm-22"
+          ],
+          "publication_date": "2026-09-15",
+          "event_date": "2026-08-21",
+          "after_price_end": false
+        }
+      ]
+    },
+    {
+      "cvm_code": "6173",
+      "interpretation": {
+        "text": "A Taurus registrou lucro maior que um ano antes, apesar da receita menor. A composição do lucro não permite concluir aqui que esse crescimento era recorrente. Em 18/09, o sindicato relatou rejeição de uma proposta e aprovação de estado de greve na assembleia de 17/09. Estado de greve não comprova paralisação. O acontecimento é compartilhado por TASA3 e TASA4, mas cada papel tem seu próprio retorno. Os dois papéis tiveram comparações diárias positivas em toda a semana. Os maiores avanços diários da janela principal ocorreram em 16/09 para TASA3 e em 14/09 para TASA4, antes da publicação sindical de 18/09.",
+        "source_ids": [
+          "itr:6173",
+          "taurus-union-20260918"
+        ]
+      },
+      "unresolved_question": "Não foi comprovada paralisação nem efeito do relato sindical sobre os retornos das duas espécies.",
+      "events": [
+        {
+          "title": "Relato sindical sobre estado de greve",
+          "text": "Segundo o sindicato, a assembleia de 17/09 rejeitou a proposta e aprovou estado de greve. O relato foi publicado em 18/09. Não se afirma que a produção parou.",
+          "source_ids": [
+            "taurus-union-20260918"
+          ],
+          "publication_date": "2026-09-18",
+          "event_date": "2026-09-17",
+          "after_price_end": false
+        }
+      ]
+    },
+    {
+      "cvm_code": "7544",
+      "interpretation": {
+        "text": "A Têxtil Renauxview apresentou receita menor e prejuízo maior que no segundo trimestre de 2025. Em 30/06/2026, tinha patrimônio líquido negativo de R$ 440,14 milhões. Portanto, a alta concentrada na quinta-feira não é evidência de melhora dos resultados. O gráfico registra a variação dos preços; não há fonte verificada que identifique a motivação das negociações daquele salto.",
+        "source_ids": [
+          "itr:7544"
+        ]
+      },
+      "unresolved_question": "Ainda falta evidência específica para explicar o salto de quinta-feira de TXRX4.",
+      "events": []
+    },
+    {
+      "cvm_code": "25895",
+      "interpretation": {
+        "text": "A WDC passou de prejuízo para lucro trimestral, apesar da receita menor. Em 14/09, anunciou assinatura de proposta vinculante para adquirir a Teki por R$ 900,00 mil. A operação ainda dependia de condições, documentos definitivos e aprovações. A proposta descreve um movimento estratégico, mas não confirma aquisição concluída nem estabelece a causa da alta de WDCN3.",
+        "source_ids": [
+          "itr:25895",
+          "25895:cvm-11"
+        ]
+      },
+      "unresolved_question": "A conclusão da aquisição e sua contribuição para o retorno semanal não foram comprovadas.",
+      "events": [
+        {
+          "title": "Proposta vinculante para adquirir a Teki",
+          "text": "O documento de 14/09 informa a proposta de R$ 900,00 mil. O fechamento ainda dependia das condições e aprovações indicadas pela companhia.",
+          "source_ids": [
+            "25895:cvm-11"
+          ],
+          "publication_date": "2026-09-14",
+          "event_date": "2026-09-14",
+          "after_price_end": false
+        }
+      ]
+    },
+    {
+      "cvm_code": "25518",
+      "interpretation": {
+        "text": "A Westwing registrou prejuízo trimestral maior e receita ligeiramente menor que um ano antes. Na apresentação de agosto, atribuiu parte das despesas a efeitos da migração tecnológica e destacou maior participação de marcas próprias nas vendas. É uma explicação da companhia sobre seus resultados, não prova de causa da alta semanal. A empresa brasileira WEST3 foi distinguida do grupo alemão homônimo.",
+        "source_ids": [
+          "itr:25518",
+          "antecedent:westwing-results"
+        ]
+      },
+      "unresolved_question": "Não foi identificado um anúncio novo da semana com efeito documentado sobre WEST3.",
+      "events": [
+        {
+          "title": "Antecedente: transição tecnológica e marcas próprias",
+          "text": "A apresentação de 13/08 descreve despesas da migração para Salesforce e aumento da participação de marcas próprias. O material trata de resultados do trimestre e do semestre, que devem ser distinguidos.",
+          "source_ids": [
+            "antecedent:westwing-results"
+          ],
+          "publication_date": "2026-08-13",
+          "event_date": "2026-08-13",
+          "after_price_end": false
+        }
+      ]
+    },
+    {
+      "cvm_code": "21016",
+      "interpretation": {
+        "text": "A Yduqs registrou receita um pouco maior, mas passou de lucro para prejuízo trimestral na comparação anual. Em 18/09, uma reportagem trouxe revisão de estimativas e preço-alvo pelo Bradesco BBI. A avaliação é opinião da instituição. Uma possível combinação com a Afya aparecia como hipótese; não deve ser apresentada como operação confirmada na semana.",
+        "source_ids": [
+          "itr:21016",
+          "21016:web-0"
+        ]
+      },
+      "unresolved_question": "Não foi estabelecida a contribuição da análise do BBI para a variação do preço.",
+      "events": [
+        {
+          "title": "Avaliação do Bradesco BBI em 18/09",
+          "text": "A reportagem relata revisão de estimativas e preço-alvo. A hipótese de combinação com a Afya não é confirmação de transação.",
+          "source_ids": [
+            "21016:web-0"
+          ],
+          "publication_date": "2026-09-18",
+          "event_date": null,
+          "after_price_end": false
+        }
+      ]
+    }
+  ],
+  "excluded_additional_sources": [
+    {
+      "url": "https://exame.com/invest/mercados/a-estrategia-da-westwing-para-nao-repetir-a-crise-da-tokstok/",
+      "reason": "Atualizada em 06/10/2026; não usar sua versão atual como evidência do conteúdo conhecido em setembro."
+    },
+    {
+      "url": "https://turisnews.com.br/dotz-e-decolar-fecham-parceria-para-permitir-viagens-com-ate-95-do-valor-pago-em-pontos/",
+      "reason": "Corpo pertinente, mas data de publicação ainda não confirmada; não incluída."
+    }
+  ]
+}

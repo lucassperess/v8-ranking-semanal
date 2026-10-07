@@ -1,0 +1,135 @@
+{
+  "status": "company_content_reviewed_for_integration_not_published",
+  "review_date": "2026-10-07",
+  "reviewed_issuers": [
+    "24961",
+    "26069",
+    "26620",
+    "701",
+    "25232",
+    "19623",
+    "25836",
+    "26077",
+    "8427",
+    "15423",
+    "18376",
+    "8192",
+    "23574",
+    "8397",
+    "26123",
+    "13471",
+    "22497",
+    "12572",
+    "6173",
+    "7544",
+    "25895",
+    "25518",
+    "21016"
+  ],
+  "reviewed_tickers": [
+    "AMBP3",
+    "ARML3",
+    "AURE3",
+    "BIED3",
+    "CASH3",
+    "DASA3",
+    "DOTZ3",
+    "ECOM3",
+    "ESTR4",
+    "FASA3",
+    "ISAE3",
+    "LUXM4",
+    "MEAL3",
+    "MGEL4",
+    "ONCO3",
+    "PLAS3",
+    "QUAL3",
+    "RCSL3",
+    "TASA3",
+    "TASA4",
+    "TXRX4",
+    "WDCN3",
+    "WEST3",
+    "YDUQ3"
+  ],
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "low",
+  "model_review_scope": "Verificação dos textos, metadados e contas enviadas; não confirmação automática do corpo das fontes nem validação de causalidade.",
+  "response_usage": {
+    "input_tokens": 71679,
+    "input_tokens_details": {
+      "cache_write_tokens": 71676,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1846,
+    "output_tokens_details": {
+      "reasoning_tokens": 59
+    },
+    "total_tokens": 73525
+  },
+  "successful_review_estimated_cost_usd": "0.161818",
+  "model_suggested_findings": 9,
+  "editorial_resolutions": [
+    {
+      "cvm_code": "701",
+      "finding": "Resultado semestral não aparece no pacote de contas enviado à IA.",
+      "resolution": "Texto fala de resultado semestral, sem afirmar seu sinal."
+    },
+    {
+      "cvm_code": "8397",
+      "finding": "Maior variação precisa respeitar lacunas; alternativa não disponível.",
+      "resolution": "Leitura restringe maior movimento às comparações válidas e explica falta do fechamento de 14/09."
+    },
+    {
+      "cvm_code": "13471",
+      "finding": "Lacunas não permitem reconstruir todo o retorno pela série diária.",
+      "resolution": "Leitura diferencia pontas válidas das duas comparações diárias ausentes."
+    },
+    {
+      "cvm_code": "7544",
+      "finding": "Saldo patrimonial não possui comparativo anual no pacote.",
+      "resolution": "Texto separa resultado trimestral comparativo de patrimônio de 30/06."
+    },
+    {
+      "cvm_code": "23574",
+      "finding": "Interpretação principal mencionava domingo sem fonte correspondente.",
+      "resolution": "A menção foi retirada da interpretação principal; a informação permanece só no bloco posterior, com fonte e data próprias."
+    },
+    {
+      "cvm_code": "22497",
+      "finding": "Metadado de evento confundia decisão e divulgação.",
+      "resolution": "Decisão em 31/08 e divulgação em 01/09 separadas."
+    },
+    {
+      "cvm_code": "26077",
+      "finding": "Metadado de evento confundia celebração e divulgação.",
+      "resolution": "Celebração em 13/08 e divulgação em 14/08 separadas."
+    },
+    {
+      "cvm_code": "15423",
+      "finding": "Cronologia de preços ajuda a interpretar os anúncios.",
+      "resolution": "Texto informa salto em 15/09 anterior aos documentos identificados; conferido no arquivo de preços."
+    },
+    {
+      "cvm_code": "6173",
+      "finding": "Relato sindical não explica retroativamente as altas anteriores.",
+      "resolution": "Texto informa movimentos anteriores à publicação, conferidos para TASA3 e TASA4."
+    }
+  ],
+  "sources": {
+    "quarter_filings": 20,
+    "other_source_records": 28,
+    "unique_companies": 23,
+    "ticker_price_dossiers": 24
+  },
+  "content_file": "company_context_v2.json",
+  "content_sha256": "6a4a6c6b6987dc91dfc9ff4f96ff875e49eb1d05b2df1067089bed960e4ed57f",
+  "raw_model_review_sha256": "5e3b4bd8fc19a7b8a58369964c6744f43bc9907b1ac0ed97dd5208406bd5cb73",
+  "initial_content_sha256": "4086ba4fe640067a50720b72cf88cea9003bbbf6ad3f60bf6536a77b3b7f3c9b",
+  "limitations": [
+    "A causa de cada alta ou queda continua não estabelecida.",
+    "Conteúdo preparado apenas para o case; integração, contexto geral e revisão visual são etapas posteriores.",
+    "Presença de fonte semanal não mede porcentagem do retorno explicado.",
+    "Antecedentes empresariais não são anúncios novos da semana."
+  ]
+}

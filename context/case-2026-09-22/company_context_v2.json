@@ -1,0 +1,3630 @@
+{
+  "schema_version": 1,
+  "reference_date": "2026-09-22",
+  "price_end": "2026-09-18",
+  "calendar_week_end": "2026-09-20",
+  "status": "prepared_for_editorial_review_not_published",
+  "scope": "Case apenas; não gera contexto automaticamente para novos envios.",
+  "issuer_count": 23,
+  "asset_count": 24,
+  "issuers": [
+    {
+      "cvm_code": "24961",
+      "name": "Ambipar",
+      "tickers": [
+        "AMBP3"
+      ],
+      "financial_context": null,
+      "events": [
+        {
+          "title": "Antecedente: negociação por leilão",
+          "text": "A reportagem de 01/09 informa que o regime passou a valer em 31/08. Os negócios ocorrem no encerramento do pregão, enquanto as ofertas são reunidas em leilão. A empresa continuava listada na B3.",
+          "source_ids": [
+            "antecedent:ambipar-auction"
+          ],
+          "publication_date": "2026-09-01",
+          "event_date": "2026-08-31",
+          "after_price_end": false
+        }
+      ],
+      "interpretation": {
+        "text": "Segundo o Seu Dinheiro, a B3 colocou o papel em negociação por leilão a partir de 31/08, por atraso na entrega de informações periódicas. Isso muda a forma de fechar os negócios. A reportagem também descreve a recuperação judicial da empresa. A alta percentual precisa ser lida junto desse cenário de restrição e de preços baixos; ela não confirma a recuperação financeira da companhia.",
+        "source_ids": [
+          "antecedent:ambipar-auction"
+        ]
+      },
+      "unresolved_question": "Não foi encontrada evidência verificada de um acontecimento novo que explique a alta de AMBP3 em cada pregão.",
+      "causal_effect_on_return": "not_established"
+    },
+    {
+      "cvm_code": "26069",
+      "name": "Armac Locação",
+      "tickers": [
+        "ARML3"
+      ],
+      "financial_context": {
+        "text": "No segundo trimestre de 2026 (abril a junho), a receita registrada foi de R$ 545,81 milhões e o lucro consolidado foi de R$ 7,69 milhões. No mesmo trimestre de 2025, houve prejuízo de R$ 6,72 milhões. Este demonstrativo foi entregue à CVM em 12/08/2026, antes da semana analisada: é um antecedente, não uma notícia nova daquela semana.",
+        "source_ids": [
+          "itr:26069"
+        ],
+        "scope": "con",
+        "period_start": "2026-04-01",
+        "period_end": "2026-06-30"
+      },
+      "events": [
+        {
+          "title": "Antecedente: avaliação de crédito mantida",
+          "text": "A Fitch manteve AA-(bra) e perspectiva estável. Também apontou riscos de alavancagem e dependência de vendas de ativos para reduzir a dívida. Projeções da agência não são resultados já realizados.",
+          "source_ids": [
+            "antecedent:armac-fitch"
+          ],
+          "publication_date": "2026-09-09",
+          "event_date": "2026-09-09",
+          "after_price_end": false
+        }
+      ],
+      "interpretation": {
+        "text": "O trimestre mostra receita maior e passagem de prejuízo para lucro na comparação anual. Em 09/09, a Fitch manteve a classificação de crédito AA-(bra), com perspectiva estável, destacando a escala dos negócios e a geração de caixa. Essa classificação avalia crédito, não o potencial de valorização da ação. São antecedentes favoráveis documentados, sem prova de que provocaram o movimento daquela semana.",
+        "source_ids": [
+          "itr:26069",
+          "antecedent:armac-fitch"
+        ]
+      },
+      "unresolved_question": "Permanece sem identificação um catalisador específico para o dia de maior variação.",
+      "causal_effect_on_return": "not_established"
+    },
+    {
+      "cvm_code": "26620",
+      "name": "Auren Energia",
+      "tickers": [
+        "AURE3"
+      ],
+      "financial_context": {
+        "text": "No segundo trimestre de 2026 (abril a junho), a receita registrada foi de R$ 3055,50 milhões e o prejuízo consolidado foi de R$ 379,06 milhões. No mesmo trimestre de 2025, houve prejuízo de R$ 562,85 milhões. Este demonstrativo foi entregue à CVM em 05/08/2026, antes da semana analisada: é um antecedente, não uma notícia nova daquela semana.",
+        "source_ids": [
+          "itr:26620"
+        ],
+        "scope": "con",
+        "period_start": "2026-04-01",
+        "period_end": "2026-06-30"
+      },
+      "events": [],
+      "interpretation": {
+        "text": "A Auren ainda registrava prejuízo, embora menor que no mesmo trimestre de 2025. O resultado antes das despesas e receitas financeiras e dos tributos era positivo, mas o resultado financeiro era negativo em R$ 732,15 milhões. Essa diferença ajuda a entender por que receita elevada não significava lucro. A variação da ação na semana não comprova que esse quadro mudou.",
+        "source_ids": [
+          "itr:26620"
+        ]
+      },
+      "unresolved_question": "Falta uma relação documentada entre um acontecimento semanal e a alta do papel.",
+      "causal_effect_on_return": "not_established"
+    },
+    {
+      "cvm_code": "701",
+      "name": "Bioma Educação",
+      "tickers": [
+        "BIED3"
+      ],
+      "financial_context": {
+        "text": "No segundo trimestre de 2026 (abril a junho), a receita registrada foi de R$ 90,92 milhões e o prejuízo consolidado foi de R$ 4,84 milhões. No mesmo trimestre de 2025, houve prejuízo de R$ 10,62 milhões. Este demonstrativo foi entregue à CVM em 14/08/2026, antes da semana analisada: é um antecedente, não uma notícia nova daquela semana.",
+        "source_ids": [
+          "itr:701"
+        ],
+        "scope": "con",
+        "period_start": "2026-04-01",
+        "period_end": "2026-06-30"
+      },
+      "events": [],
+      "interpretation": {
+        "text": "A Bioma aumentou a receita e reduziu o prejuízo trimestral em relação a um ano antes. Isso descreve melhora nessa comparação, mas a companhia ainda não tinha lucro nesse trimestre. O resultado acumulado do semestre corresponde a outro período e não deve substituir esse número. As altas diárias do papel precisam ser distinguidas desse antecedente financeiro.",
+        "source_ids": [
+          "itr:701"
+        ]
+      },
+      "unresolved_question": "Não foi confirmado um anúncio semanal que explique a sequência de altas de BIED3.",
+      "causal_effect_on_return": "not_established"
+    },
+    {
+      "cvm_code": "25232",
+      "name": "Méliuz",
+      "tickers": [
+        "CASH3"
+      ],
+      "financial_context": {
+        "text": "No segundo trimestre de 2026 (abril a junho), a receita registrada foi de R$ 115,66 milhões e o prejuízo consolidado foi de R$ 22,43 milhões. No mesmo trimestre de 2025, houve lucro de R$ 7,57 milhões. Este demonstrativo foi entregue à CVM em 05/08/2026, antes da semana analisada: é um antecedente, não uma notícia nova daquela semana.",
+        "source_ids": [
+          "itr:25232"
+        ],
+        "scope": "con",
+        "period_start": "2026-04-01",
+        "period_end": "2026-06-30"
+      },
+      "events": [
+        {
+          "title": "Avaliação da XP divulgada em 17/09",
+          "text": "O InfoMoney relata a avaliação da XP sobre crescimento e monetização da Méliuz. A análise deve ser lida como opinião da instituição.",
+          "source_ids": [
+            "25232:web-0"
+          ],
+          "publication_date": "2026-09-17",
+          "event_date": null,
+          "after_price_end": false
+        },
+        {
+          "title": "Aumento de capital: decisão anterior à semana",
+          "text": "O aviso foi entregue à CVM em 14/09 e trata de decisão de 08/09. A primeira divulgação ao público não foi estabelecida; a data de entrega não torna a decisão um fato novo de segunda-feira.",
+          "source_ids": [
+            "25232:cvm-14",
+            "25232:cvm-15"
+          ],
+          "publication_date": "2026-09-14",
+          "event_date": "2026-09-08",
+          "after_price_end": false
+        }
+      ],
+      "interpretation": {
+        "text": "A Méliuz aumentou a receita, mas passou de lucro para prejuízo trimestral na comparação anual. Em 17/09, uma reportagem trouxe uma avaliação da XP sobre crescimento e formas de monetização. É uma opinião identificada, não um resultado financeiro novo nem prova de causa da alta. Documentos entregues em 14/09 tratam de um aumento de capital decidido em 08/09, por exercício de opções.",
+        "source_ids": [
+          "itr:25232",
+          "25232:web-0",
+          "25232:cvm-14"
+        ]
+      },
+      "unresolved_question": "Não foi estabelecido quanto a avaliação da XP ou o aumento de capital contribuiu para o retorno.",
+      "causal_effect_on_return": "not_established"
+    },
+    {
+      "cvm_code": "19623",
+      "name": "Dasa Diagnósticos da América",
+      "tickers": [
+        "DASA3"
+      ],
+      "financial_context": {
+        "text": "No segundo trimestre de 2026 (abril a junho), a receita registrada foi de R$ 2223,50 milhões e o prejuízo consolidado foi de R$ 31,21 milhões. No mesmo trimestre de 2025, houve prejuízo de R$ 175,65 milhões. Este demonstrativo foi entregue à CVM em 13/08/2026, antes da semana analisada: é um antecedente, não uma notícia nova daquela semana.",
+        "source_ids": [
+          "itr:19623"
+        ],
+        "scope": "con",
+        "period_start": "2026-04-01",
+        "period_end": "2026-06-30"
+      },
+      "events": [],
+      "interpretation": {
+        "text": "A Dasa registrou prejuízo menor que um ano antes, apesar da receita menor. O resultado financeiro negativo de R$ 305,81 milhões contrasta com o resultado positivo antes das despesas e receitas financeiras e dos tributos. O lançamento de uma biblioteca científica encontrado na pesquisa não fornece uma relação suficiente com o preço; por isso, não é usado como explicação da alta.",
+        "source_ids": [
+          "itr:19623",
+          "19623:web-5"
+        ]
+      },
+      "unresolved_question": "Ainda falta um acontecimento semanal relevante com ligação documentada ao movimento da ação.",
+      "causal_effect_on_return": "not_established"
+    },
+    {
+      "cvm_code": "25836",
+      "name": "Dotz",
+      "tickers": [
+        "DOTZ3"
+      ],
+      "financial_context": {
+        "text": "No segundo trimestre de 2026 (abril a junho), a receita registrada foi de R$ 146,13 milhões e o lucro consolidado foi de R$ 23,30 milhões. No mesmo trimestre de 2025, houve lucro de R$ 1,96 milhões. Este demonstrativo foi entregue à CVM em 13/08/2026, antes da semana analisada: é um antecedente, não uma notícia nova daquela semana. Em 30/06/2026, o patrimônio líquido era negativo em R$ 217,32 milhões: os passivos superavam os ativos nesse balanço.",
+        "source_ids": [
+          "itr:25836"
+        ],
+        "scope": "con",
+        "period_start": "2026-04-01",
+        "period_end": "2026-06-30"
+      },
+      "events": [],
+      "interpretation": {
+        "text": "A Dotz apresentou receita e lucro trimestrais maiores que os de um ano antes, mas ainda tinha patrimônio líquido negativo. Lucro em um trimestre e situação patrimonial acumulada são medidas diferentes. Os dados não permitem concluir que todo o lucro era recorrente nem que a alta semanal refletiu esse resultado.",
+        "source_ids": [
+          "itr:25836"
+        ]
+      },
+      "unresolved_question": "Não foi confirmado um acontecimento da semana que explique o movimento; a composição recorrente do lucro também não foi estabelecida.",
+      "causal_effect_on_return": "not_established"
+    },
+    {
+      "cvm_code": "26077",
+      "name": "Economatica ECOM3",
+      "tickers": [
+        "ECOM3"
+      ],
+      "financial_context": {
+        "text": "No segundo trimestre de 2026 (abril a junho), a receita registrada foi de R$ 8,07 milhões e o prejuízo consolidado foi de R$ 4,13 milhões. No mesmo trimestre de 2025, houve prejuízo de R$ 9,03 milhões. Este demonstrativo foi entregue à CVM em 13/08/2026, antes da semana analisada: é um antecedente, não uma notícia nova daquela semana.",
+        "source_ids": [
+          "itr:26077"
+        ],
+        "scope": "con",
+        "period_start": "2026-04-01",
+        "period_end": "2026-06-30"
+      },
+      "events": [
+        {
+          "title": "Antecedente: cessão à EQI e foco em tecnologia",
+          "text": "O contrato foi celebrado em 13/08 e divulgado à CVM em 14/08. Abrangeu direitos da plataforma TradersClub e carteira de clientes de assessoria; a EQI também contratou Mover Pro e Kento AI.",
+          "source_ids": [
+            "antecedent:ecom-eqi"
+          ],
+          "publication_date": "2026-08-14",
+          "event_date": "2026-08-13",
+          "after_price_end": false
+        }
+      ],
+      "interpretation": {
+        "text": "A Economatica reduziu o prejuízo trimestral, mas a receita também caiu na comparação anual. Um antecedente estratégico foi a cessão da plataforma TradersClub e da carteira de clientes da subsidiária TC AI à EQI por R$ 3,00 milhões, anunciada em agosto. Não se tratou da venda da Economatica inteira. A companhia declarou foco em tecnologia e dados e informou contratação de Mover Pro e Kento AI pela EQI.",
+        "source_ids": [
+          "itr:26077",
+          "antecedent:ecom-eqi"
+        ]
+      },
+      "unresolved_question": "A mudança estratégica está documentada, mas sua contribuição para a alta semanal de ECOM3 não foi demonstrada.",
+      "causal_effect_on_return": "not_established"
+    },
+    {
+      "cvm_code": "8427",
+      "name": "Manufatura de Brinquedos Estrela",
+      "tickers": [
+        "ESTR4"
+      ],
+      "financial_context": null,
+      "events": [
+        {
+          "title": "Esclarecimento sobre recuperação judicial",
+          "text": "A companhia respondeu à B3 sobre o andamento do processo. A ausência de objeções relatada não equivale à aprovação do plano.",
+          "source_ids": [
+            "8427:cvm-20"
+          ],
+          "publication_date": "2026-09-15",
+          "event_date": "2026-09-15",
+          "after_price_end": false
+        }
+      ],
+      "interpretation": {
+        "text": "Na resposta à B3 divulgada em 15/09, a Estrela explicou o andamento da recuperação judicial. Segundo a companhia, ainda não havia objeções ao plano porque o prazo para apresentá-las não tinha começado. Isso não significa que os credores aprovaram o plano. A alta do papel deve ser lida como movimento de uma empresa nesse processo, sem transformar o esclarecimento em confirmação de recuperação concluída.",
+        "source_ids": [
+          "8427:cvm-20"
+        ]
+      },
+      "unresolved_question": "O documento não estabelece que o esclarecimento provocou a alta nem confirma aprovação do plano.",
+      "causal_effect_on_return": "not_established"
+    },
+    {
+      "cvm_code": "15423",
+      "name": "Fasa FASA3",
+      "tickers": [
+        "FASA3"
+      ],
+      "financial_context": null,
+      "events": [
+        {
+          "title": "Prazo para reenquadramento prorrogado",
+          "text": "O comunicado de 16/09 informa o novo prazo de 30/11 para reenquadramento da cotação. 30/11 é o prazo futuro, não a data do anúncio.",
+          "source_ids": [
+            "15423:cvm-9"
+          ],
+          "publication_date": "2026-09-16",
+          "event_date": "2026-09-16",
+          "after_price_end": false
+        },
+        {
+          "title": "Proposta de grupamento de 37 para 1",
+          "text": "Documentos entregues em 18/09 apresentam proposta para votação na assembleia de 20/10. Naquele momento, o grupamento ainda não estava aprovado.",
+          "source_ids": [
+            "15423:cvm-5",
+            "15423:cvm-6",
+            "15423:cvm-7",
+            "15423:cvm-8"
+          ],
+          "publication_date": "2026-09-18",
+          "event_date": null,
+          "after_price_end": false
+        }
+      ],
+      "interpretation": {
+        "text": "A Fasa divulgou medidas relacionadas à cotação: prorrogação do prazo para reenquadramento e proposta de reunir 37 ações em uma. Um grupamento muda a quantidade de ações e o preço por ação proporcionalmente; por si só, não cria valor econômico. Na semana analisada, a proposta ainda dependia de votação. A valorização registrada não deve ser descrita como efeito de um grupamento já executado. O maior avanço diário da janela principal foi de 32,00% em 15/09, antes das divulgações identificadas de 16/09 e 18/09. A primeira formação dessas expectativas não foi estabelecida.",
+        "source_ids": [
+          "15423:cvm-9",
+          "15423:cvm-8"
+        ]
+      },
+      "unresolved_question": "Não foi estabelecido se a expectativa em torno dessas medidas explica a valorização de FASA3.",
+      "causal_effect_on_return": "not_established"
+    },
+    {
+      "cvm_code": "18376",
+      "name": "ISA Energia Brasil",
+      "tickers": [
+        "ISAE3"
+      ],
+      "financial_context": {
+        "text": "No segundo trimestre de 2026 (abril a junho), a receita registrada foi de R$ 2597,52 milhões e o lucro consolidado foi de R$ 703,37 milhões. No mesmo trimestre de 2025, houve lucro de R$ 232,28 milhões. Este demonstrativo foi entregue à CVM em 03/08/2026, antes da semana analisada: é um antecedente, não uma notícia nova daquela semana.",
+        "source_ids": [
+          "itr:18376"
+        ],
+        "scope": "con",
+        "period_start": "2026-04-01",
+        "period_end": "2026-06-30"
+      },
+      "events": [],
+      "interpretation": {
+        "text": "A ISA Energia registrou receita e lucro trimestrais maiores que um ano antes. A pesquisa também encontrou aviso de juros de debêntures: trata-se de remuneração de títulos de dívida, não de dividendos das ações. Esse aviso não explica, por si só, o retorno de ISAE3. A composição do aumento do lucro e sua recorrência não foram estabelecidas nesta análise.",
+        "source_ids": [
+          "itr:18376",
+          "18376:cvm-10"
+        ]
+      },
+      "unresolved_question": "Não foi documentado um catalisador semanal diretamente relacionado à alta de ISAE3.",
+      "causal_effect_on_return": "not_established"
+    },
+    {
+      "cvm_code": "8192",
+      "name": "Trevisa Investimentos",
+      "tickers": [
+        "LUXM4"
+      ],
+      "financial_context": {
+        "text": "No segundo trimestre de 2026 (abril a junho), a receita registrada foi de R$ 39,53 milhões e o lucro consolidado foi de R$ 3,18 milhões. No mesmo trimestre de 2025, houve lucro de R$ 3,31 milhões. Este demonstrativo foi entregue à CVM em 14/08/2026, antes da semana analisada: é um antecedente, não uma notícia nova daquela semana.",
+        "source_ids": [
+          "itr:8192"
+        ],
+        "scope": "con",
+        "period_start": "2026-04-01",
+        "period_end": "2026-06-30"
+      },
+      "events": [],
+      "interpretation": {
+        "text": "A Trevisa aumentou a receita, mas o lucro trimestral ficou ligeiramente abaixo do registrado um ano antes. O salto e a devolução de parte da alta observados no gráfico são movimentos do papel; não há documento verificado que permita atribuí-los a uma melhora dos resultados. Os valores trimestrais não devem ser confundidos com o acumulado do semestre.",
+        "source_ids": [
+          "itr:8192"
+        ]
+      },
+      "unresolved_question": "Ainda não foi identificado o motivo específico do salto de quarta-feira e da queda de quinta-feira.",
+      "causal_effect_on_return": "not_established"
+    },
+    {
+      "cvm_code": "23574",
+      "name": "International Meal Company IMC",
+      "tickers": [
+        "MEAL3"
+      ],
+      "financial_context": {
+        "text": "No segundo trimestre de 2026 (abril a junho), a receita registrada foi de R$ 419,82 milhões e o prejuízo consolidado foi de R$ 12,73 milhões. No mesmo trimestre de 2025, houve prejuízo de R$ 32,45 milhões. Este demonstrativo foi entregue à CVM em 13/08/2026, antes da semana analisada: é um antecedente, não uma notícia nova daquela semana.",
+        "source_ids": [
+          "itr:23574"
+        ],
+        "scope": "con",
+        "period_start": "2026-04-01",
+        "period_end": "2026-06-30"
+      },
+      "events": [
+        {
+          "title": "Renegociação de dívida: atos distintos",
+          "text": "A assembleia de debenturistas de 15/09 e o conselho de 16/09, cuja ata foi entregue em 17/09, trataram de renegociação. As condições divergem, por isso não se resume um único vencimento definitivo.",
+          "source_ids": [
+            "23574:cvm-16",
+            "23574:cvm-19"
+          ],
+          "publication_date": "2026-09-17",
+          "event_date": null,
+          "after_price_end": false
+        },
+        {
+          "title": "Esclarecimento sobre a Vinci em 18/09",
+          "text": "A companhia informou que não havia instrumento firmado relacionado à possível combinação. Isso não confirma uma operação concluída.",
+          "source_ids": [
+            "23574:cvm-17"
+          ],
+          "publication_date": "2026-09-18",
+          "event_date": "2026-09-18",
+          "after_price_end": false
+        },
+        {
+          "title": "Informação posterior ao último fechamento",
+          "text": "No domingo, 20/09, a IMC divulgou esclarecimento adicional sobre interlocuções exploratórias. Essa informação é posterior ao fechamento de sexta-feira e não pode ser tratada como conhecida durante os pregões do ranking.",
+          "source_ids": [
+            "23574:cvm-18"
+          ],
+          "publication_date": "2026-09-20",
+          "event_date": "2026-09-20",
+          "after_price_end": true
+        }
+      ],
+      "interpretation": {
+        "text": "A IMC apresentou prejuízo menor, com receita também menor na comparação anual. Na semana, divulgou atos de renegociação de debêntures e esclarecimentos sobre notícia envolvendo a Vinci. Os documentos sobre a dívida têm condições divergentes e não permitem apresentar um único vencimento definitivo. Em 18/09, a empresa informou ausência de instrumento firmado.",
+        "source_ids": [
+          "itr:23574",
+          "23574:cvm-16",
+          "23574:cvm-17",
+          "23574:cvm-19"
+        ]
+      },
+      "unresolved_question": "Não está estabelecido o efeito de cada divulgação no preço; as condições finais da renegociação não foram conciliadas.",
+      "causal_effect_on_return": "not_established"
+    },
+    {
+      "cvm_code": "8397",
+      "name": "Mangels Industrial",
+      "tickers": [
+        "MGEL4"
+      ],
+      "financial_context": {
+        "text": "No segundo trimestre de 2026 (abril a junho), a receita registrada foi de R$ 314,08 milhões e o lucro consolidado foi de R$ 10,10 milhões. No mesmo trimestre de 2025, houve lucro de R$ 12,67 milhões. Este demonstrativo foi entregue à CVM em 13/08/2026, antes da semana analisada: é um antecedente, não uma notícia nova daquela semana.",
+        "source_ids": [
+          "itr:8397"
+        ],
+        "scope": "con",
+        "period_start": "2026-04-01",
+        "period_end": "2026-06-30"
+      },
+      "events": [
+        {
+          "title": "Convocação de assembleia sobre PLR",
+          "text": "Em 14/09, o sindicato publicou convocação de assembleia para 18/09. Não foi confirmado o resultado da votação.",
+          "source_ids": [
+            "8397:web-0"
+          ],
+          "publication_date": "2026-09-14",
+          "event_date": null,
+          "after_price_end": false
+        }
+      ],
+      "interpretation": {
+        "text": "A Mangels aumentou a receita, mas o lucro trimestral foi menor que um ano antes. Na semana, o sindicato convocou assembleia para discutir proposta de participação nos lucros e resultados, a PLR. A convocação não comprova aprovação da proposta. O tema trabalhista descreve um acontecimento da empresa, sem estabelecer seu efeito sobre MGEL4.",
+        "source_ids": [
+          "itr:8397",
+          "8397:web-0"
+        ]
+      },
+      "unresolved_question": "O resultado da assembleia e sua relação com o preço não foram confirmados.",
+      "causal_effect_on_return": "not_established"
+    },
+    {
+      "cvm_code": "26123",
+      "name": "Oncoclínicas",
+      "tickers": [
+        "ONCO3"
+      ],
+      "financial_context": {
+        "text": "No segundo trimestre de 2026 (abril a junho), a receita registrada foi de R$ 1047,75 milhões e o prejuízo consolidado foi de R$ 475,74 milhões. No mesmo trimestre de 2025, houve prejuízo de R$ 142,29 milhões. Este demonstrativo foi entregue à CVM em 14/08/2026, antes da semana analisada: é um antecedente, não uma notícia nova daquela semana.",
+        "source_ids": [
+          "itr:26123"
+        ],
+        "scope": "con",
+        "period_start": "2026-04-01",
+        "period_end": "2026-06-30"
+      },
+      "events": [
+        {
+          "title": "Eleição do diretor financeiro e de RI",
+          "text": "A eleição ocorreu em 14/09. O fato relevante e a ata entregue em 17/09 descrevem o mesmo acontecimento, não duas mudanças de diretoria.",
+          "source_ids": [
+            "26123:cvm-12",
+            "26123:cvm-13"
+          ],
+          "publication_date": "2026-09-14",
+          "event_date": "2026-09-14",
+          "after_price_end": false
+        }
+      ],
+      "interpretation": {
+        "text": "A Oncoclínicas registrou receita menor e prejuízo trimestral maior que um ano antes. Em 14/09, elegeu Maurício Hasson para as funções de diretor financeiro e de relações com investidores; a ata foi entregue em 17/09. A mudança administrativa é um fato da semana. Ela não demonstra, sozinha, solução para os prejuízos nem explica a valorização da ação.",
+        "source_ids": [
+          "itr:26123",
+          "26123:cvm-12",
+          "26123:cvm-13"
+        ]
+      },
+      "unresolved_question": "A ligação entre a eleição e o retorno de ONCO3 não foi estabelecida.",
+      "causal_effect_on_return": "not_established"
+    },
+    {
+      "cvm_code": "13471",
+      "name": "Plascar Participações",
+      "tickers": [
+        "PLAS3"
+      ],
+      "financial_context": {
+        "text": "No segundo trimestre de 2026 (abril a junho), a receita registrada foi de R$ 308,95 milhões e o prejuízo consolidado foi de R$ 47,64 milhões. No mesmo trimestre de 2025, houve prejuízo de R$ 49,83 milhões. Este demonstrativo foi entregue à CVM em 13/08/2026, antes da semana analisada: é um antecedente, não uma notícia nova daquela semana. Em 30/06/2026, o patrimônio líquido era negativo em R$ 825,28 milhões: os passivos superavam os ativos nesse balanço.",
+        "source_ids": [
+          "itr:13471"
+        ],
+        "scope": "con",
+        "period_start": "2026-04-01",
+        "period_end": "2026-06-30"
+      },
+      "events": [],
+      "interpretation": {
+        "text": "A Plascar registrou prejuízo e patrimônio líquido negativo, embora a receita tenha sido maior que um ano antes. O resultado financeiro negativo de R$ 53,55 milhões superou o resultado positivo antes das despesas e receitas financeiras e dos tributos, de R$ 5,91 milhões. O sinal diferente entre as janelas vem da forte queda de segunda-feira, excluída na alternativa, e não comprova uma recuperação financeira.",
+        "source_ids": [
+          "itr:13471"
+        ]
+      },
+      "unresolved_question": "Não foi identificado um acontecimento que explique a queda de segunda-feira; a lacuna de quinta limita a leitura diária.",
+      "causal_effect_on_return": "not_established"
+    },
+    {
+      "cvm_code": "22497",
+      "name": "Qualicorp",
+      "tickers": [
+        "QUAL3"
+      ],
+      "financial_context": {
+        "text": "No segundo trimestre de 2026 (abril a junho), a receita registrada foi de R$ 317,74 milhões e o lucro consolidado foi de R$ 31,68 milhões. No mesmo trimestre de 2025, houve lucro de R$ 19,40 milhões. Este demonstrativo foi entregue à CVM em 12/08/2026, antes da semana analisada: é um antecedente, não uma notícia nova daquela semana.",
+        "source_ids": [
+          "itr:22497"
+        ],
+        "scope": "con",
+        "period_start": "2026-04-01",
+        "period_end": "2026-06-30"
+      },
+      "events": [
+        {
+          "title": "Antecedente: sucessão da presidência executiva",
+          "text": "A decisão do conselho ocorreu em 31/08 e foi divulgada em 01/09. A companhia informou a conclusão do processo de sucessão anunciado em maio.",
+          "source_ids": [
+            "antecedent:qualicorp-ceo"
+          ],
+          "publication_date": "2026-09-01",
+          "event_date": "2026-08-31",
+          "after_price_end": false
+        }
+      ],
+      "interpretation": {
+        "text": "A Qualicorp aumentou o lucro trimestral, mesmo com receita menor que um ano antes. Antes da semana, concluiu a sucessão da presidência executiva: Eduardo Oliveira substituiu Maurício Lopes, que passou à presidência do conselho. É um antecedente de administração, anunciado em 01/09. Não foi estabelecido que essa mudança explique a alta de QUAL3 na semana do ranking.",
+        "source_ids": [
+          "itr:22497",
+          "antecedent:qualicorp-ceo"
+        ]
+      },
+      "unresolved_question": "Permanece sem comprovação a relação entre o movimento semanal e a sucessão ou os resultados.",
+      "causal_effect_on_return": "not_established"
+    },
+    {
+      "cvm_code": "12572",
+      "name": "Recrusul",
+      "tickers": [
+        "RCSL3"
+      ],
+      "financial_context": {
+        "text": "No segundo trimestre de 2026 (abril a junho), a receita registrada foi de R$ 3,00 mil e o prejuízo consolidado foi de R$ 2,90 milhões. No mesmo trimestre de 2025, houve prejuízo de R$ 4,59 milhões. Este demonstrativo foi entregue à CVM em 12/08/2026, antes da semana analisada: é um antecedente, não uma notícia nova daquela semana. Em 30/06/2026, o patrimônio líquido era negativo em R$ 14,92 milhões: os passivos superavam os ativos nesse balanço.",
+        "source_ids": [
+          "itr:12572"
+        ],
+        "scope": "con",
+        "period_start": "2026-04-01",
+        "period_end": "2026-06-30"
+      },
+      "events": [
+        {
+          "title": "Proposta de grupamento de 4 para 1",
+          "text": "Os documentos foram entregues em 15/09. A data de entrega não comprova que a proposta foi anunciada pela primeira vez nesse dia; o edital é anterior. A aprovação ainda dependia de assembleia.",
+          "source_ids": [
+            "12572:cvm-21",
+            "12572:cvm-22"
+          ],
+          "publication_date": "2026-09-15",
+          "event_date": "2026-08-21",
+          "after_price_end": false
+        }
+      ],
+      "interpretation": {
+        "text": "A Recrusul registrou receita trimestral de apenas R$ 3,00 mil, prejuízo e patrimônio líquido negativo. Isso ajuda a distinguir alta do papel de desempenho operacional. Documentos entregues em 15/09 propõem reunir quatro ações em uma, ainda sujeito à votação. O edital é datado de 21/08; sua primeira publicação não foi estabelecida. O grupamento não cria valor econômico por si só.",
+        "source_ids": [
+          "itr:12572",
+          "12572:cvm-21",
+          "12572:cvm-22"
+        ]
+      },
+      "unresolved_question": "Não foi comprovado que a proposta de grupamento explique a alta nem que já tivesse sido aprovada.",
+      "causal_effect_on_return": "not_established"
+    },
+    {
+      "cvm_code": "6173",
+      "name": "Taurus Armas",
+      "tickers": [
+        "TASA3",
+        "TASA4"
+      ],
+      "financial_context": {
+        "text": "No segundo trimestre de 2026 (abril a junho), a receita registrada foi de R$ 360,91 milhões e o lucro consolidado foi de R$ 97,41 milhões. No mesmo trimestre de 2025, houve lucro de R$ 33,16 milhões. Este demonstrativo foi entregue à CVM em 11/08/2026, antes da semana analisada: é um antecedente, não uma notícia nova daquela semana.",
+        "source_ids": [
+          "itr:6173"
+        ],
+        "scope": "con",
+        "period_start": "2026-04-01",
+        "period_end": "2026-06-30"
+      },
+      "events": [
+        {
+          "title": "Relato sindical sobre estado de greve",
+          "text": "Segundo o sindicato, a assembleia de 17/09 rejeitou a proposta e aprovou estado de greve. O relato foi publicado em 18/09. Não se afirma que a produção parou.",
+          "source_ids": [
+            "taurus-union-20260918"
+          ],
+          "publication_date": "2026-09-18",
+          "event_date": "2026-09-17",
+          "after_price_end": false
+        }
+      ],
+      "interpretation": {
+        "text": "A Taurus registrou lucro maior que um ano antes, apesar da receita menor. A composição do lucro não permite concluir aqui que esse crescimento era recorrente. Em 18/09, o sindicato relatou rejeição de uma proposta e aprovação de estado de greve na assembleia de 17/09. Estado de greve não comprova paralisação. O acontecimento é compartilhado por TASA3 e TASA4, mas cada papel tem seu próprio retorno. Os dois papéis tiveram comparações diárias positivas em toda a semana. Os maiores avanços diários da janela principal ocorreram em 16/09 para TASA3 e em 14/09 para TASA4, antes da publicação sindical de 18/09.",
+        "source_ids": [
+          "itr:6173",
+          "taurus-union-20260918"
+        ]
+      },
+      "unresolved_question": "Não foi comprovada paralisação nem efeito do relato sindical sobre os retornos das duas espécies.",
+      "causal_effect_on_return": "not_established"
+    },
+    {
+      "cvm_code": "7544",
+      "name": "Têxtil Renauxview",
+      "tickers": [
+        "TXRX4"
+      ],
+      "financial_context": {
+        "text": "No segundo trimestre de 2026 (abril a junho), a receita registrada foi de R$ 28,61 milhões e o prejuízo consolidado foi de R$ 22,84 milhões. No mesmo trimestre de 2025, houve prejuízo de R$ 13,56 milhões. Este demonstrativo foi entregue à CVM em 14/08/2026, antes da semana analisada: é um antecedente, não uma notícia nova daquela semana. Em 30/06/2026, o patrimônio líquido era negativo em R$ 440,14 milhões: os passivos superavam os ativos nesse balanço.",
+        "source_ids": [
+          "itr:7544"
+        ],
+        "scope": "con",
+        "period_start": "2026-04-01",
+        "period_end": "2026-06-30"
+      },
+      "events": [],
+      "interpretation": {
+        "text": "A Têxtil Renauxview apresentou receita menor e prejuízo maior que no segundo trimestre de 2025. Em 30/06/2026, tinha patrimônio líquido negativo de R$ 440,14 milhões. Portanto, a alta concentrada na quinta-feira não é evidência de melhora dos resultados. O gráfico registra a variação dos preços; não há fonte verificada que identifique a motivação das negociações daquele salto.",
+        "source_ids": [
+          "itr:7544"
+        ]
+      },
+      "unresolved_question": "Ainda falta evidência específica para explicar o salto de quinta-feira de TXRX4.",
+      "causal_effect_on_return": "not_established"
+    },
+    {
+      "cvm_code": "25895",
+      "name": "WDC Networks Livetech",
+      "tickers": [
+        "WDCN3"
+      ],
+      "financial_context": {
+        "text": "No segundo trimestre de 2026 (abril a junho), a receita registrada foi de R$ 198,32 milhões e o lucro consolidado foi de R$ 2,84 milhões. No mesmo trimestre de 2025, houve prejuízo de R$ 16,74 milhões. Este demonstrativo foi entregue à CVM em 12/08/2026, antes da semana analisada: é um antecedente, não uma notícia nova daquela semana.",
+        "source_ids": [
+          "itr:25895"
+        ],
+        "scope": "con",
+        "period_start": "2026-04-01",
+        "period_end": "2026-06-30"
+      },
+      "events": [
+        {
+          "title": "Proposta vinculante para adquirir a Teki",
+          "text": "O documento de 14/09 informa a proposta de R$ 900,00 mil. O fechamento ainda dependia das condições e aprovações indicadas pela companhia.",
+          "source_ids": [
+            "25895:cvm-11"
+          ],
+          "publication_date": "2026-09-14",
+          "event_date": "2026-09-14",
+          "after_price_end": false
+        }
+      ],
+      "interpretation": {
+        "text": "A WDC passou de prejuízo para lucro trimestral, apesar da receita menor. Em 14/09, anunciou assinatura de proposta vinculante para adquirir a Teki por R$ 900,00 mil. A operação ainda dependia de condições, documentos definitivos e aprovações. A proposta descreve um movimento estratégico, mas não confirma aquisição concluída nem estabelece a causa da alta de WDCN3.",
+        "source_ids": [
+          "itr:25895",
+          "25895:cvm-11"
+        ]
+      },
+      "unresolved_question": "A conclusão da aquisição e sua contribuição para o retorno semanal não foram comprovadas.",
+      "causal_effect_on_return": "not_established"
+    },
+    {
+      "cvm_code": "25518",
+      "name": "Westwing",
+      "tickers": [
+        "WEST3"
+      ],
+      "financial_context": {
+        "text": "No segundo trimestre de 2026 (abril a junho), a receita registrada foi de R$ 33,99 milhões e o prejuízo individual foi de R$ 10,76 milhões. No mesmo trimestre de 2025, houve prejuízo de R$ 2,74 milhões. Este demonstrativo foi entregue à CVM em 12/08/2026, antes da semana analisada: é um antecedente, não uma notícia nova daquela semana.",
+        "source_ids": [
+          "itr:25518"
+        ],
+        "scope": "ind",
+        "period_start": "2026-04-01",
+        "period_end": "2026-06-30"
+      },
+      "events": [
+        {
+          "title": "Antecedente: transição tecnológica e marcas próprias",
+          "text": "A apresentação de 13/08 descreve despesas da migração para Salesforce e aumento da participação de marcas próprias. O material trata de resultados do trimestre e do semestre, que devem ser distinguidos.",
+          "source_ids": [
+            "antecedent:westwing-results"
+          ],
+          "publication_date": "2026-08-13",
+          "event_date": "2026-08-13",
+          "after_price_end": false
+        }
+      ],
+      "interpretation": {
+        "text": "A Westwing registrou prejuízo trimestral maior e receita ligeiramente menor que um ano antes. Na apresentação de agosto, atribuiu parte das despesas a efeitos da migração tecnológica e destacou maior participação de marcas próprias nas vendas. É uma explicação da companhia sobre seus resultados, não prova de causa da alta semanal. A empresa brasileira WEST3 foi distinguida do grupo alemão homônimo.",
+        "source_ids": [
+          "itr:25518",
+          "antecedent:westwing-results"
+        ]
+      },
+      "unresolved_question": "Não foi identificado um anúncio novo da semana com efeito documentado sobre WEST3.",
+      "causal_effect_on_return": "not_established"
+    },
+    {
+      "cvm_code": "21016",
+      "name": "Yduqs",
+      "tickers": [
+        "YDUQ3"
+      ],
+      "financial_context": {
+        "text": "No segundo trimestre de 2026 (abril a junho), a receita registrada foi de R$ 1392,06 milhões e o prejuízo consolidado foi de R$ 1,45 milhões. No mesmo trimestre de 2025, houve lucro de R$ 3,11 milhões. Este demonstrativo foi entregue à CVM em 13/08/2026, antes da semana analisada: é um antecedente, não uma notícia nova daquela semana.",
+        "source_ids": [
+          "itr:21016"
+        ],
+        "scope": "con",
+        "period_start": "2026-04-01",
+        "period_end": "2026-06-30"
+      },
+      "events": [
+        {
+          "title": "Avaliação do Bradesco BBI em 18/09",
+          "text": "A reportagem relata revisão de estimativas e preço-alvo. A hipótese de combinação com a Afya não é confirmação de transação.",
+          "source_ids": [
+            "21016:web-0"
+          ],
+          "publication_date": "2026-09-18",
+          "event_date": null,
+          "after_price_end": false
+        }
+      ],
+      "interpretation": {
+        "text": "A Yduqs registrou receita um pouco maior, mas passou de lucro para prejuízo trimestral na comparação anual. Em 18/09, uma reportagem trouxe revisão de estimativas e preço-alvo pelo Bradesco BBI. A avaliação é opinião da instituição. Uma possível combinação com a Afya aparecia como hipótese; não deve ser apresentada como operação confirmada na semana.",
+        "source_ids": [
+          "itr:21016",
+          "21016:web-0"
+        ]
+      },
+      "unresolved_question": "Não foi estabelecida a contribuição da análise do BBI para a variação do preço.",
+      "causal_effect_on_return": "not_established"
+    }
+  ],
+  "assets": [
+    {
+      "ticker": "AMBP3",
+      "cvm_code": "24961",
+      "main": {
+        "status": "available",
+        "text": "Entre 11/09/2026 e 18/09/2026, AMBP3 teve retorno de +28,57%. O fechamento passou de R$ 0,14 para R$ 0,18 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +12,50%, entre 17/09/2026 e 18/09/2026.",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "0"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "7.142857142857142857142857100"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "0"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "6.666666666666666666666666700"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "12.500"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "28.57142857142857142857142860"
+      },
+      "alternative": {
+        "status": "available",
+        "text": "Entre 14/09/2026 e 18/09/2026, AMBP3 teve retorno de +28,57%. O fechamento passou de R$ 0,14 para R$ 0,18 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +12,50%, entre 17/09/2026 e 18/09/2026.",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "7.142857142857142857142857100"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "0"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "6.666666666666666666666666700"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "12.500"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "28.57142857142857142857142860"
+      },
+      "window_explanation": "A semana completa inclui o movimento de 11/09/2026 a 14/09/2026: +0,00%. Dentro da semana começa no fechamento de segunda-feira e exclui esse movimento. Por isso, os resultados são +28,57% e +28,57%, respectivamente. Os retornos sucessivos se acumulam por multiplicação, não por soma."
+    },
+    {
+      "ticker": "ARML3",
+      "cvm_code": "26069",
+      "main": {
+        "status": "available",
+        "text": "Entre 11/09/2026 e 18/09/2026, ARML3 teve retorno de +7,39%. O fechamento passou de R$ 3,79 para R$ 4,07 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +3,12%, entre 16/09/2026 e 17/09/2026.",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "-2.374670184696569920844327180"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "1.621621621621621621621621600"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "2.393617021276595744680851100"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "3.116883116883116883116883100"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "2.518891687657430730478589400"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "7.387862796833773087071240100"
+      },
+      "alternative": {
+        "status": "available",
+        "text": "Entre 14/09/2026 e 18/09/2026, ARML3 teve retorno de +10,00%. O fechamento passou de R$ 3,70 para R$ 4,07 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +3,12%, entre 16/09/2026 e 17/09/2026. Todas as comparações diárias dessa janela foram positivas.",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "1.621621621621621621621621600"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "2.393617021276595744680851100"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "3.116883116883116883116883100"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "2.518891687657430730478589400"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "10.0"
+      },
+      "window_explanation": "A semana completa inclui o movimento de 11/09/2026 a 14/09/2026: -2,37%. Dentro da semana começa no fechamento de segunda-feira e exclui esse movimento. Por isso, os resultados são +7,39% e +10,00%, respectivamente. Os retornos sucessivos se acumulam por multiplicação, não por soma."
+    },
+    {
+      "ticker": "AURE3",
+      "cvm_code": "26620",
+      "main": {
+        "status": "available",
+        "text": "Entre 11/09/2026 e 18/09/2026, AURE3 teve retorno de +4,31%. O fechamento passou de R$ 11,84 para R$ 12,35 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +3,43%, entre 17/09/2026 e 18/09/2026.",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "-2.618243243243243243243243240"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "0.433651344319167389418907200"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "0.777202072538860103626943000"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "2.313624678663239074550128500"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "3.433835845896147403685092100"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "4.307432432432432432432432400"
+      },
+      "alternative": {
+        "status": "available",
+        "text": "Entre 14/09/2026 e 18/09/2026, AURE3 teve retorno de +7,11%. O fechamento passou de R$ 11,53 para R$ 12,35 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +3,43%, entre 17/09/2026 e 18/09/2026. Todas as comparações diárias dessa janela foram positivas.",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "0.433651344319167389418907200"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "0.777202072538860103626943000"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "2.313624678663239074550128500"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "3.433835845896147403685092100"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "7.111882046834345186470078100"
+      },
+      "window_explanation": "A semana completa inclui o movimento de 11/09/2026 a 14/09/2026: -2,62%. Dentro da semana começa no fechamento de segunda-feira e exclui esse movimento. Por isso, os resultados são +4,31% e +7,11%, respectivamente. Os retornos sucessivos se acumulam por multiplicação, não por soma."
+    },
+    {
+      "ticker": "BIED3",
+      "cvm_code": "701",
+      "main": {
+        "status": "available",
+        "text": "Entre 11/09/2026 e 18/09/2026, BIED3 teve retorno de +14,77%. O fechamento passou de R$ 5,55 para R$ 6,37 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +4,91%, entre 14/09/2026 e 15/09/2026. Todas as comparações diárias dessa janela foram positivas.",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "2.702702702702702702702702700"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "4.912280701754385964912280700"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "2.006688963210702341137123700"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "1.639344262295081967213114800"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "2.741935483870967741935483900"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "14.77477477477477477477477480"
+      },
+      "alternative": {
+        "status": "available",
+        "text": "Entre 14/09/2026 e 18/09/2026, BIED3 teve retorno de +11,75%. O fechamento passou de R$ 5,70 para R$ 6,37 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +4,91%, entre 14/09/2026 e 15/09/2026. Todas as comparações diárias dessa janela foram positivas.",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "4.912280701754385964912280700"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "2.006688963210702341137123700"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "1.639344262295081967213114800"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "2.741935483870967741935483900"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "11.75438596491228070175438600"
+      },
+      "window_explanation": "A semana completa inclui o movimento de 11/09/2026 a 14/09/2026: +2,70%. Dentro da semana começa no fechamento de segunda-feira e exclui esse movimento. Por isso, os resultados são +14,77% e +11,75%, respectivamente. Os retornos sucessivos se acumulam por multiplicação, não por soma."
+    },
+    {
+      "ticker": "CASH3",
+      "cvm_code": "25232",
+      "main": {
+        "status": "available",
+        "text": "Entre 11/09/2026 e 18/09/2026, CASH3 teve retorno de +9,14%. O fechamento passou de R$ 5,25 para R$ 5,73 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +3,99%, entre 17/09/2026 e 18/09/2026.",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "1.142857142857142857142857100"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "-0.3766478342749529190207156300"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "1.890359168241965973534971600"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "2.226345083487940630797773700"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "3.992740471869328493647912900"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "9.142857142857142857142857100"
+      },
+      "alternative": {
+        "status": "available",
+        "text": "Entre 14/09/2026 e 18/09/2026, CASH3 teve retorno de +7,91%. O fechamento passou de R$ 5,31 para R$ 5,73 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +3,99%, entre 17/09/2026 e 18/09/2026.",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "-0.3766478342749529190207156300"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "1.890359168241965973534971600"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "2.226345083487940630797773700"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "3.992740471869328493647912900"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "7.909604519774011299435028200"
+      },
+      "window_explanation": "A semana completa inclui o movimento de 11/09/2026 a 14/09/2026: +1,14%. Dentro da semana começa no fechamento de segunda-feira e exclui esse movimento. Por isso, os resultados são +9,14% e +7,91%, respectivamente. Os retornos sucessivos se acumulam por multiplicação, não por soma."
+    },
+    {
+      "ticker": "DASA3",
+      "cvm_code": "19623",
+      "main": {
+        "status": "available",
+        "text": "Entre 11/09/2026 e 18/09/2026, DASA3 teve retorno de +7,17%. O fechamento passou de R$ 2,65 para R$ 2,84 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +6,79%, entre 11/09/2026 e 14/09/2026.",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "6.792452830188679245283018900"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "-2.473498233215547703180212010"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "2.536231884057971014492753600"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "1.413427561837455830388692600"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "-1.045296167247386759581881530"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "7.169811320754716981132075500"
+      },
+      "alternative": {
+        "status": "available",
+        "text": "Entre 14/09/2026 e 18/09/2026, DASA3 teve retorno de +0,35%. O fechamento passou de R$ 2,83 para R$ 2,84 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +2,54%, entre 15/09/2026 e 16/09/2026.",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "-2.473498233215547703180212010"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "2.536231884057971014492753600"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "1.413427561837455830388692600"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "-1.045296167247386759581881530"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "0.353356890459363957597173100"
+      },
+      "window_explanation": "A semana completa inclui o movimento de 11/09/2026 a 14/09/2026: +6,79%. Dentro da semana começa no fechamento de segunda-feira e exclui esse movimento. Por isso, os resultados são +7,17% e +0,35%, respectivamente. Os retornos sucessivos se acumulam por multiplicação, não por soma."
+    },
+    {
+      "ticker": "DOTZ3",
+      "cvm_code": "25836",
+      "main": {
+        "status": "available",
+        "text": "Entre 11/09/2026 e 18/09/2026, DOTZ3 teve retorno de +8,37%. O fechamento passou de R$ 10,15 para R$ 11,00 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +4,24%, entre 11/09/2026 e 14/09/2026.",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "4.236453201970443349753694600"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "2.457466918714555765595463100"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "1.383763837638376383763837600"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "-1.273885350318471337579617830"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "1.382488479262672811059907800"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "8.374384236453201970443349800"
+      },
+      "alternative": {
+        "status": "available",
+        "text": "Entre 14/09/2026 e 18/09/2026, DOTZ3 teve retorno de +3,97%. O fechamento passou de R$ 10,58 para R$ 11,00 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +2,46%, entre 14/09/2026 e 15/09/2026.",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "2.457466918714555765595463100"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "1.383763837638376383763837600"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "-1.273885350318471337579617830"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "1.382488479262672811059907800"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "3.969754253308128544423440500"
+      },
+      "window_explanation": "A semana completa inclui o movimento de 11/09/2026 a 14/09/2026: +4,24%. Dentro da semana começa no fechamento de segunda-feira e exclui esse movimento. Por isso, os resultados são +8,37% e +3,97%, respectivamente. Os retornos sucessivos se acumulam por multiplicação, não por soma."
+    },
+    {
+      "ticker": "ECOM3",
+      "cvm_code": "26077",
+      "main": {
+        "status": "available",
+        "text": "Entre 11/09/2026 e 18/09/2026, ECOM3 teve retorno de +47,17%. O fechamento passou de R$ 1,06 para R$ 1,56 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +16,98%, entre 11/09/2026 e 14/09/2026.",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "16.98113207547169811320754720"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "15.32258064516129032258064520"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "-3.496503496503496503496503500"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "14.49275362318840579710144930"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "-1.265822784810126582278481010"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "47.16981132075471698113207550"
+      },
+      "alternative": {
+        "status": "available",
+        "text": "Entre 14/09/2026 e 18/09/2026, ECOM3 teve retorno de +25,81%. O fechamento passou de R$ 1,24 para R$ 1,56 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +15,32%, entre 14/09/2026 e 15/09/2026.",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "15.32258064516129032258064520"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "-3.496503496503496503496503500"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "14.49275362318840579710144930"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "-1.265822784810126582278481010"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "25.80645161290322580645161290"
+      },
+      "window_explanation": "A semana completa inclui o movimento de 11/09/2026 a 14/09/2026: +16,98%. Dentro da semana começa no fechamento de segunda-feira e exclui esse movimento. Por isso, os resultados são +47,17% e +25,81%, respectivamente. Os retornos sucessivos se acumulam por multiplicação, não por soma."
+    },
+    {
+      "ticker": "ESTR4",
+      "cvm_code": "8427",
+      "main": {
+        "status": "available",
+        "text": "Entre 11/09/2026 e 18/09/2026, ESTR4 teve retorno de +20,13%. O fechamento passou de R$ 1,54 para R$ 1,85 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +18,54%, entre 15/09/2026 e 16/09/2026.",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "-11.68831168831168831168831169"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "11.02941176470588235294117650"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "18.54304635761589403973509930"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "-5.027932960893854748603351960"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "8.823529411764705882352941200"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "20.12987012987012987012987010"
+      },
+      "alternative": {
+        "status": "available",
+        "text": "Entre 14/09/2026 e 18/09/2026, ESTR4 teve retorno de +36,03%. O fechamento passou de R$ 1,36 para R$ 1,85 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +18,54%, entre 15/09/2026 e 16/09/2026.",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "11.02941176470588235294117650"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "18.54304635761589403973509930"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "-5.027932960893854748603351960"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "8.823529411764705882352941200"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "36.02941176470588235294117650"
+      },
+      "window_explanation": "A semana completa inclui o movimento de 11/09/2026 a 14/09/2026: -11,69%. Dentro da semana começa no fechamento de segunda-feira e exclui esse movimento. Por isso, os resultados são +20,13% e +36,03%, respectivamente. Os retornos sucessivos se acumulam por multiplicação, não por soma."
+    },
+    {
+      "ticker": "FASA3",
+      "cvm_code": "15423",
+      "main": {
+        "status": "available",
+        "text": "Entre 11/09/2026 e 18/09/2026, FASA3 teve retorno de +38,10%. O fechamento passou de R$ 0,21 para R$ 0,29 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +32,00%, entre 14/09/2026 e 15/09/2026.",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "19.04761904761904761904761900"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "32.00"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "12.12121212121212121212121210"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "-8.108108108108108108108108110"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "-14.70588235294117647058823529"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "38.09523809523809523809523810"
+      },
+      "alternative": {
+        "status": "available",
+        "text": "Entre 14/09/2026 e 18/09/2026, FASA3 teve retorno de +16,00%. O fechamento passou de R$ 0,25 para R$ 0,29 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +32,00%, entre 14/09/2026 e 15/09/2026.",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "32.00"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "12.12121212121212121212121210"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "-8.108108108108108108108108110"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "-14.70588235294117647058823529"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "16.00"
+      },
+      "window_explanation": "A semana completa inclui o movimento de 11/09/2026 a 14/09/2026: +19,05%. Dentro da semana começa no fechamento de segunda-feira e exclui esse movimento. Por isso, os resultados são +38,10% e +16,00%, respectivamente. Os retornos sucessivos se acumulam por multiplicação, não por soma."
+    },
+    {
+      "ticker": "ISAE3",
+      "cvm_code": "18376",
+      "main": {
+        "status": "available",
+        "text": "Entre 11/09/2026 e 18/09/2026, ISAE3 teve retorno de +9,47%. O fechamento passou de R$ 32,31 para R$ 35,37 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +8,42%, entre 15/09/2026 e 16/09/2026.",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "1.826060043330238316310739700"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "1.063829787234042553191489400"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "8.421052631578947368421052600"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "-1.914008321775312066574202500"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "0.028280542986425339366515800"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "9.470752089136490250696378800"
+      },
+      "alternative": {
+        "status": "available",
+        "text": "Entre 14/09/2026 e 18/09/2026, ISAE3 teve retorno de +7,51%. O fechamento passou de R$ 32,90 para R$ 35,37 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +8,42%, entre 15/09/2026 e 16/09/2026.",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "1.063829787234042553191489400"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "8.421052631578947368421052600"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "-1.914008321775312066574202500"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "0.028280542986425339366515800"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "7.507598784194528875379939200"
+      },
+      "window_explanation": "A semana completa inclui o movimento de 11/09/2026 a 14/09/2026: +1,83%. Dentro da semana começa no fechamento de segunda-feira e exclui esse movimento. Por isso, os resultados são +9,47% e +7,51%, respectivamente. Os retornos sucessivos se acumulam por multiplicação, não por soma."
+    },
+    {
+      "ticker": "LUXM4",
+      "cvm_code": "8192",
+      "main": {
+        "status": "available",
+        "text": "Entre 11/09/2026 e 18/09/2026, LUXM4 teve retorno de +9,93%. O fechamento passou de R$ 2,72 para R$ 2,99 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +15,44%, entre 15/09/2026 e 16/09/2026.",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "6.2500"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "3.114186851211072664359861600"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "15.43624161073825503355704700"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "-12.79069767441860465116279070"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "-0.3333333333333333333333333300"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "9.926470588235294117647058800"
+      },
+      "alternative": {
+        "status": "available",
+        "text": "Entre 14/09/2026 e 18/09/2026, LUXM4 teve retorno de +3,46%. O fechamento passou de R$ 2,89 para R$ 2,99 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +15,44%, entre 15/09/2026 e 16/09/2026.",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "3.114186851211072664359861600"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "15.43624161073825503355704700"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "-12.79069767441860465116279070"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "-0.3333333333333333333333333300"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "3.460207612456747404844290700"
+      },
+      "window_explanation": "A semana completa inclui o movimento de 11/09/2026 a 14/09/2026: +6,25%. Dentro da semana começa no fechamento de segunda-feira e exclui esse movimento. Por isso, os resultados são +9,93% e +3,46%, respectivamente. Os retornos sucessivos se acumulam por multiplicação, não por soma."
+    },
+    {
+      "ticker": "MEAL3",
+      "cvm_code": "23574",
+      "main": {
+        "status": "available",
+        "text": "Entre 11/09/2026 e 18/09/2026, MEAL3 teve retorno de +7,78%. O fechamento passou de R$ 0,90 para R$ 0,97 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +4,49%, entre 16/09/2026 e 17/09/2026.",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "-2.222222222222222222222222220"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "0"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "1.136363636363636363636363600"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "4.494382022471910112359550600"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "4.301075268817204301075268800"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "7.777777777777777777777777800"
+      },
+      "alternative": {
+        "status": "available",
+        "text": "Entre 14/09/2026 e 18/09/2026, MEAL3 teve retorno de +10,23%. O fechamento passou de R$ 0,88 para R$ 0,97 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +4,49%, entre 16/09/2026 e 17/09/2026.",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "0"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "1.136363636363636363636363600"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "4.494382022471910112359550600"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "4.301075268817204301075268800"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "10.22727272727272727272727270"
+      },
+      "window_explanation": "A semana completa inclui o movimento de 11/09/2026 a 14/09/2026: -2,22%. Dentro da semana começa no fechamento de segunda-feira e exclui esse movimento. Por isso, os resultados são +7,78% e +10,23%, respectivamente. Os retornos sucessivos se acumulam por multiplicação, não por soma."
+    },
+    {
+      "ticker": "MGEL4",
+      "cvm_code": "8397",
+      "main": {
+        "status": "available",
+        "text": "Entre 11/09/2026 e 18/09/2026, MGEL4 teve retorno de +13,55%. O fechamento passou de R$ 5,24 para R$ 5,95 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de -4,68%, entre 15/09/2026 e 16/09/2026. Faltam dois preços válidos em 2 das comparações diárias; as lacunas permanecem no gráfico e não viram retorno zero.",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": null
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": null
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "-4.677419354838709677419354840"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "1.522842639593908629441624400"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "-0.8333333333333333333333333300"
+          }
+        ],
+        "missing_comparisons": 2,
+        "return_pct": "13.54961832061068702290076340"
+      },
+      "alternative": {
+        "status": "unavailable",
+        "text": "Falta um fechamento válido em 14/09/2026, a data inicial da alternativa. Por isso, o retorno dessa janela não pode ser calculado. O retorno da semana completa continua disponível, porque seus fechamentos inicial e final são válidos."
+      },
+      "window_explanation": "A semana completa tem preços válidos em suas duas pontas. A alternativa exige um fechamento inicial dentro da semana, que não está disponível para este ativo. Por isso, só o retorno da semana completa pode ser apresentado."
+    },
+    {
+      "ticker": "ONCO3",
+      "cvm_code": "26123",
+      "main": {
+        "status": "available",
+        "text": "Entre 11/09/2026 e 18/09/2026, ONCO3 teve retorno de +13,16%. O fechamento passou de R$ 1,14 para R$ 1,29 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +24,04%, entre 17/09/2026 e 18/09/2026.",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "-6.140350877192982456140350880"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "-1.869158878504672897196261680"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "-1.904761904761904761904761900"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "0.970873786407766990291262100"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "24.03846153846153846153846150"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "13.15789473684210526315789470"
+      },
+      "alternative": {
+        "status": "available",
+        "text": "Entre 14/09/2026 e 18/09/2026, ONCO3 teve retorno de +20,56%. O fechamento passou de R$ 1,07 para R$ 1,29 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +24,04%, entre 17/09/2026 e 18/09/2026.",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "-1.869158878504672897196261680"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "-1.904761904761904761904761900"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "0.970873786407766990291262100"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "24.03846153846153846153846150"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "20.56074766355140186915887850"
+      },
+      "window_explanation": "A semana completa inclui o movimento de 11/09/2026 a 14/09/2026: -6,14%. Dentro da semana começa no fechamento de segunda-feira e exclui esse movimento. Por isso, os resultados são +13,16% e +20,56%, respectivamente. Os retornos sucessivos se acumulam por multiplicação, não por soma."
+    },
+    {
+      "ticker": "PLAS3",
+      "cvm_code": "13471",
+      "main": {
+        "status": "available",
+        "text": "Entre 11/09/2026 e 18/09/2026, PLAS3 teve retorno de -5,88%. O fechamento passou de R$ 3,74 para R$ 3,52 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de -17,11%, entre 11/09/2026 e 14/09/2026. Faltam dois preços válidos em 2 das comparações diárias; as lacunas permanecem no gráfico e não viram retorno zero.",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "-17.11229946524064171122994652"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "0.322580645161290322580645200"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "6.752411575562700964630225100"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": null
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": null
+          }
+        ],
+        "missing_comparisons": 2,
+        "return_pct": "-5.882352941176470588235294120"
+      },
+      "alternative": {
+        "status": "available",
+        "text": "Entre 14/09/2026 e 18/09/2026, PLAS3 teve retorno de +13,55%. O fechamento passou de R$ 3,10 para R$ 3,52 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +6,75%, entre 15/09/2026 e 16/09/2026. Faltam dois preços válidos em 2 das comparações diárias; as lacunas permanecem no gráfico e não viram retorno zero.",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "0.322580645161290322580645200"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "6.752411575562700964630225100"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": null
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": null
+          }
+        ],
+        "missing_comparisons": 2,
+        "return_pct": "13.54838709677419354838709680"
+      },
+      "window_explanation": "A semana completa inclui o movimento de 11/09/2026 a 14/09/2026: -17,11%. Dentro da semana começa no fechamento de segunda-feira e exclui esse movimento. Por isso, os resultados são -5,88% e +13,55%, respectivamente. Os retornos sucessivos se acumulam por multiplicação, não por soma. Os resultados totais usam os preços das pontas. As comparações diárias ausentes não são preenchidas e impedem reconstruir toda a sequência diária."
+    },
+    {
+      "ticker": "QUAL3",
+      "cvm_code": "22497",
+      "main": {
+        "status": "available",
+        "text": "Entre 11/09/2026 e 18/09/2026, QUAL3 teve retorno de +8,55%. O fechamento passou de R$ 1,52 para R$ 1,65 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +6,00%, entre 14/09/2026 e 15/09/2026.",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "-1.315789473684210526315789470"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "6.00"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "3.773584905660377358490566000"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "1.212121212121212121212121200"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "-1.197604790419161676646706590"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "8.552631578947368421052631600"
+      },
+      "alternative": {
+        "status": "available",
+        "text": "Entre 14/09/2026 e 18/09/2026, QUAL3 teve retorno de +10,00%. O fechamento passou de R$ 1,50 para R$ 1,65 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +6,00%, entre 14/09/2026 e 15/09/2026.",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "6.00"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "3.773584905660377358490566000"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "1.212121212121212121212121200"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "-1.197604790419161676646706590"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "10.0"
+      },
+      "window_explanation": "A semana completa inclui o movimento de 11/09/2026 a 14/09/2026: -1,32%. Dentro da semana começa no fechamento de segunda-feira e exclui esse movimento. Por isso, os resultados são +8,55% e +10,00%, respectivamente. Os retornos sucessivos se acumulam por multiplicação, não por soma."
+    },
+    {
+      "ticker": "RCSL3",
+      "cvm_code": "12572",
+      "main": {
+        "status": "available",
+        "text": "Entre 11/09/2026 e 18/09/2026, RCSL3 teve retorno de +9,09%. O fechamento passou de R$ 0,44 para R$ 0,48 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +18,18%, entre 15/09/2026 e 16/09/2026.",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "-4.545454545454545454545454550"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "4.761904761904761904761904800"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "18.18181818181818181818181820"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "-9.615384615384615384615384620"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "2.127659574468085106382978700"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "9.090909090909090909090909100"
+      },
+      "alternative": {
+        "status": "available",
+        "text": "Entre 14/09/2026 e 18/09/2026, RCSL3 teve retorno de +14,29%. O fechamento passou de R$ 0,42 para R$ 0,48 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +18,18%, entre 15/09/2026 e 16/09/2026.",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "4.761904761904761904761904800"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "18.18181818181818181818181820"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "-9.615384615384615384615384620"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "2.127659574468085106382978700"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "14.28571428571428571428571430"
+      },
+      "window_explanation": "A semana completa inclui o movimento de 11/09/2026 a 14/09/2026: -4,55%. Dentro da semana começa no fechamento de segunda-feira e exclui esse movimento. Por isso, os resultados são +9,09% e +14,29%, respectivamente. Os retornos sucessivos se acumulam por multiplicação, não por soma."
+    },
+    {
+      "ticker": "TASA3",
+      "cvm_code": "6173",
+      "main": {
+        "status": "available",
+        "text": "Entre 11/09/2026 e 18/09/2026, TASA3 teve retorno de +34,16%. O fechamento passou de R$ 6,06 para R$ 8,13 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +9,72%, entre 15/09/2026 e 16/09/2026. Todas as comparações diárias dessa janela foram positivas.",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "7.095709570957095709570957100"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "4.622496147919876733436055500"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "9.720176730486008836524300400"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "1.208053691275167785234899300"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "7.824933687002652519893899200"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "34.15841584158415841584158420"
+      },
+      "alternative": {
+        "status": "available",
+        "text": "Entre 14/09/2026 e 18/09/2026, TASA3 teve retorno de +25,27%. O fechamento passou de R$ 6,49 para R$ 8,13 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +9,72%, entre 15/09/2026 e 16/09/2026. Todas as comparações diárias dessa janela foram positivas.",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "4.622496147919876733436055500"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "9.720176730486008836524300400"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "1.208053691275167785234899300"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "7.824933687002652519893899200"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "25.26964560862865947611710320"
+      },
+      "window_explanation": "A semana completa inclui o movimento de 11/09/2026 a 14/09/2026: +7,10%. Dentro da semana começa no fechamento de segunda-feira e exclui esse movimento. Por isso, os resultados são +34,16% e +25,27%, respectivamente. Os retornos sucessivos se acumulam por multiplicação, não por soma."
+    },
+    {
+      "ticker": "TASA4",
+      "cvm_code": "6173",
+      "main": {
+        "status": "available",
+        "text": "Entre 11/09/2026 e 18/09/2026, TASA4 teve retorno de +33,67%. O fechamento passou de R$ 6,03 para R$ 8,06 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +8,46%, entre 11/09/2026 e 14/09/2026. Todas as comparações diárias dessa janela foram positivas.",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "8.457711442786069651741293500"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "3.363914373088685015290519900"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "7.988165680473372781065088800"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "3.424657534246575342465753400"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "6.754966887417218543046357600"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "33.66500829187396351575456050"
+      },
+      "alternative": {
+        "status": "available",
+        "text": "Entre 14/09/2026 e 18/09/2026, TASA4 teve retorno de +23,24%. O fechamento passou de R$ 6,54 para R$ 8,06 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +7,99%, entre 15/09/2026 e 16/09/2026. Todas as comparações diárias dessa janela foram positivas.",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "3.363914373088685015290519900"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "7.988165680473372781065088800"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "3.424657534246575342465753400"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "6.754966887417218543046357600"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "23.24159021406727828746177370"
+      },
+      "window_explanation": "A semana completa inclui o movimento de 11/09/2026 a 14/09/2026: +8,46%. Dentro da semana começa no fechamento de segunda-feira e exclui esse movimento. Por isso, os resultados são +33,67% e +23,24%, respectivamente. Os retornos sucessivos se acumulam por multiplicação, não por soma."
+    },
+    {
+      "ticker": "TXRX4",
+      "cvm_code": "7544",
+      "main": {
+        "status": "available",
+        "text": "Entre 11/09/2026 e 18/09/2026, TXRX4 teve retorno de +22,29%. O fechamento passou de R$ 1,75 para R$ 2,14 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +20,90%, entre 16/09/2026 e 17/09/2026.",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "-2.857142857142857142857142860"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "2.941176470588235294117647100"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "1.142857142857142857142857100"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "20.90395480225988700564971750"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "0"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "22.28571428571428571428571430"
+      },
+      "alternative": {
+        "status": "available",
+        "text": "Entre 14/09/2026 e 18/09/2026, TXRX4 teve retorno de +25,88%. O fechamento passou de R$ 1,70 para R$ 2,14 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +20,90%, entre 16/09/2026 e 17/09/2026.",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "2.941176470588235294117647100"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "1.142857142857142857142857100"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "20.90395480225988700564971750"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "0"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "25.88235294117647058823529410"
+      },
+      "window_explanation": "A semana completa inclui o movimento de 11/09/2026 a 14/09/2026: -2,86%. Dentro da semana começa no fechamento de segunda-feira e exclui esse movimento. Por isso, os resultados são +22,29% e +25,88%, respectivamente. Os retornos sucessivos se acumulam por multiplicação, não por soma."
+    },
+    {
+      "ticker": "WDCN3",
+      "cvm_code": "25895",
+      "main": {
+        "status": "available",
+        "text": "Entre 11/09/2026 e 18/09/2026, WDCN3 teve retorno de +13,09%. O fechamento passou de R$ 2,75 para R$ 3,11 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +11,23%, entre 14/09/2026 e 15/09/2026.",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "3.636363636363636363636363600"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "11.22807017543859649122807020"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "-7.886435331230283911671924290"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "1.369863013698630136986301400"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "5.067567567567567567567567600"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "13.09090909090909090909090910"
+      },
+      "alternative": {
+        "status": "available",
+        "text": "Entre 14/09/2026 e 18/09/2026, WDCN3 teve retorno de +9,12%. O fechamento passou de R$ 2,85 para R$ 3,11 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +11,23%, entre 14/09/2026 e 15/09/2026.",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "11.22807017543859649122807020"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "-7.886435331230283911671924290"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "1.369863013698630136986301400"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "5.067567567567567567567567600"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "9.122807017543859649122807000"
+      },
+      "window_explanation": "A semana completa inclui o movimento de 11/09/2026 a 14/09/2026: +3,64%. Dentro da semana começa no fechamento de segunda-feira e exclui esse movimento. Por isso, os resultados são +13,09% e +9,12%, respectivamente. Os retornos sucessivos se acumulam por multiplicação, não por soma."
+    },
+    {
+      "ticker": "WEST3",
+      "cvm_code": "25518",
+      "main": {
+        "status": "available",
+        "text": "Entre 11/09/2026 e 18/09/2026, WEST3 teve retorno de +3,93%. O fechamento passou de R$ 3,05 para R$ 3,17 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +7,90%, entre 14/09/2026 e 15/09/2026.",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "-4.590163934426229508196721310"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "7.903780068728522336769759500"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "-1.273885350318471337579617830"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "7.741935483870967741935483900"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "-5.089820359281437125748502990"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "3.934426229508196721311475400"
+      },
+      "alternative": {
+        "status": "available",
+        "text": "Entre 14/09/2026 e 18/09/2026, WEST3 teve retorno de +8,93%. O fechamento passou de R$ 2,91 para R$ 3,17 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +7,90%, entre 14/09/2026 e 15/09/2026.",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "7.903780068728522336769759500"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "-1.273885350318471337579617830"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "7.741935483870967741935483900"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "-5.089820359281437125748502990"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "8.934707903780068728522336800"
+      },
+      "window_explanation": "A semana completa inclui o movimento de 11/09/2026 a 14/09/2026: -4,59%. Dentro da semana começa no fechamento de segunda-feira e exclui esse movimento. Por isso, os resultados são +3,93% e +8,93%, respectivamente. Os retornos sucessivos se acumulam por multiplicação, não por soma."
+    },
+    {
+      "ticker": "YDUQ3",
+      "cvm_code": "21016",
+      "main": {
+        "status": "available",
+        "text": "Entre 11/09/2026 e 18/09/2026, YDUQ3 teve retorno de +6,96%. O fechamento passou de R$ 9,91 para R$ 10,60 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +3,07%, entre 16/09/2026 e 17/09/2026.",
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-11",
+            "end_date": "2026-09-14",
+            "return_pct": "0.100908173562058526740666000"
+          },
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "2.318548387096774193548387100"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "-0.4926108374384236453201970400"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "3.069306930693069306930693100"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "1.825168107588856868395773300"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "6.962663975782038345105953600"
+      },
+      "alternative": {
+        "status": "available",
+        "text": "Entre 14/09/2026 e 18/09/2026, YDUQ3 teve retorno de +6,85%. O fechamento passou de R$ 9,92 para R$ 10,60 por ação. O maior movimento diário entre as comparações com dois preços válidos foi de +3,07%, entre 16/09/2026 e 17/09/2026.",
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "daily_comparisons": [
+          {
+            "start_date": "2026-09-14",
+            "end_date": "2026-09-15",
+            "return_pct": "2.318548387096774193548387100"
+          },
+          {
+            "start_date": "2026-09-15",
+            "end_date": "2026-09-16",
+            "return_pct": "-0.4926108374384236453201970400"
+          },
+          {
+            "start_date": "2026-09-16",
+            "end_date": "2026-09-17",
+            "return_pct": "3.069306930693069306930693100"
+          },
+          {
+            "start_date": "2026-09-17",
+            "end_date": "2026-09-18",
+            "return_pct": "1.825168107588856868395773300"
+          }
+        ],
+        "missing_comparisons": 0,
+        "return_pct": "6.854838709677419354838709700"
+      },
+      "window_explanation": "A semana completa inclui o movimento de 11/09/2026 a 14/09/2026: +0,10%. Dentro da semana começa no fechamento de segunda-feira e exclui esse movimento. Por isso, os resultados são +6,96% e +6,85%, respectivamente. Os retornos sucessivos se acumulam por multiplicação, não por soma."
+    }
+  ],
+  "sources": [
+    {
+      "id": "25232:web-0",
+      "local_id": "web-0",
+      "cvm_code": "25232",
+      "tickers": [
+        "CASH3"
+      ],
+      "url": "https://www.infomoney.com.br/mercados/meliuz-cash3-ve-crescimento-voltar-ao-foco-e-amplia-caminhos-de-monetizacao-diz-xp",
+      "title": "Méliuz (CASH3) vê crescimento voltar ao foco e amplia caminhos de monetização, diz XP",
+      "disposition": "approved",
+      "reason": "Opinião da XP relatada pelo InfoMoney; não prova causa da alta.",
+      "screening_basis": "editorial_source_body_review",
+      "reported_publication_dates_unverified": [],
+      "page_retrieval": {
+        "status": "extracted",
+        "sha256": "6c47787682393e7f9a785527183eb09ce614278b11a1d1b0de54251b894a424e"
+      },
+      "publication_date": "2026-09-17",
+      "date_verified": true,
+      "model_proposed_date_unverified": "2026-09-17",
+      "causal_effect_on_return": "not_established",
+      "event_group": "cash-xp-analysis",
+      "event_label": "Avaliação da XP sobre crescimento e monetização da Méliuz",
+      "date_basis": "article_body_and_html",
+      "date_evidence": "17/09/2026 14h20",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "event_date": null,
+      "scheduled_date": null,
+      "context_type": "analyst_opinion",
+      "first_publication_date": null,
+      "after_price_end": false,
+      "intraday_availability": "not_established"
+    },
+    {
+      "id": "25232:cvm-14",
+      "local_id": "cvm-14",
+      "cvm_code": "25232",
+      "tickers": [
+        "CASH3"
+      ],
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1567787&numSequencia=1092493&numVersao=1",
+      "title": "Aviso aos Acionistas",
+      "version": "1",
+      "document_sha256": "7fca8af806ffd9dc28c9529033f5715bd09b59f34e18431bdc4db8543a33ef95",
+      "reference_date": "2026-09-08",
+      "delivery_date": "2026-09-14",
+      "causal_effect_on_return": "not_established",
+      "disposition": "approved",
+      "reason": "Decisão anterior à semana, protocolada em 14/09. Primeira divulgação ao público não foi estabelecida.",
+      "event_group": "cash-stock-options-capital",
+      "event_label": "Divulgação de aumento de capital por exercício de opções",
+      "publication_date": "2026-09-14",
+      "date_basis": "cvm_delivery_record_and_document_body",
+      "date_evidence": "2026-09-14",
+      "first_publication_date": null,
+      "date_verified": true,
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "event_date": "2026-09-08",
+      "scheduled_date": null,
+      "context_type": "regulatory_disclosure",
+      "after_price_end": false,
+      "intraday_availability": "not_established",
+      "screening_basis": "editorial_official_document_review"
+    },
+    {
+      "id": "25232:cvm-15",
+      "local_id": "cvm-15",
+      "cvm_code": "25232",
+      "tickers": [
+        "CASH3"
+      ],
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1567785&numSequencia=1092491&numVersao=1",
+      "title": "Aumento do capital social da Companhia, dentro do limite do capital autorizado, em razão do exercício de opções de compra de ações detidas por beneficiários do Plano de Opção de Compra de Ações||Autorizar a Diretoria da Companhia a praticar todos os atos necessários para implementar e dar efeito às deliberações acima.||Homologação do aumento do capital social da Companhia referido no item acima",
+      "version": "1",
+      "document_sha256": "95c147fd4ccc15dc3a7f9748dd1c3452b376242695f1440dd435f2ec78aab806",
+      "reference_date": "2026-09-08",
+      "delivery_date": "2026-09-14",
+      "causal_effect_on_return": "not_established",
+      "disposition": "approved",
+      "reason": "Mesmo fato do aviso; entrega em 14/09 não transforma a decisão de 08/09 em fato novo dessa data.",
+      "event_group": "cash-stock-options-capital",
+      "event_label": "Ata do aumento de capital por exercício de opções",
+      "publication_date": "2026-09-14",
+      "date_basis": "cvm_delivery_record_and_document_body",
+      "date_evidence": "2026-09-14",
+      "first_publication_date": null,
+      "date_verified": true,
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "event_date": "2026-09-08",
+      "scheduled_date": null,
+      "context_type": "regulatory_disclosure",
+      "after_price_end": false,
+      "intraday_availability": "not_established",
+      "screening_basis": "editorial_official_document_review"
+    },
+    {
+      "id": "19623:web-5",
+      "local_id": "web-5",
+      "cvm_code": "19623",
+      "tickers": [
+        "DASA3"
+      ],
+      "url": "https://www.pptasaude.com.br/noticias/26225/dasa-educa-amplia-acesso-a-atualizacao-cientifica-em-medicina-diagnostica/",
+      "title": "Dasa Educa amplia acesso à atualização científica em medicina diagnóstica",
+      "disposition": "approved",
+      "reason": "Iniciativa operacional de baixa relevância direta para explicar preços; data do lançamento não explicitada.",
+      "screening_basis": "editorial_source_body_review",
+      "reported_publication_dates_unverified": [
+        "2026-09-15T00:00:00.000Z"
+      ],
+      "page_retrieval": {
+        "status": "extracted",
+        "sha256": "9d49665d404be175470a198b42e8cbc71001f1f218296858f428f1c5ffa11731"
+      },
+      "publication_date": "2026-09-15",
+      "date_verified": true,
+      "model_proposed_date_unverified": "2026-09-15",
+      "causal_effect_on_return": "not_established",
+      "event_group": "dasa-digital-library",
+      "event_label": "Lançamento de biblioteca científica digital Dasa Educa",
+      "date_basis": "article_body",
+      "date_evidence": "15/09/2026",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "event_date": null,
+      "scheduled_date": null,
+      "context_type": "operational_notice",
+      "first_publication_date": null,
+      "after_price_end": false,
+      "intraday_availability": "not_established"
+    },
+    {
+      "id": "8427:cvm-20",
+      "local_id": "cvm-20",
+      "cvm_code": "8427",
+      "tickers": [
+        "ESTR4"
+      ],
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1568451&numSequencia=1093157&numVersao=1",
+      "title": "resposta oficio 279",
+      "version": "1",
+      "document_sha256": "ce6182467a523d7c73fac3b7dc1dfe097a3b9d49375a72996341da13b37a9d40",
+      "reference_date": "2026-09-15",
+      "delivery_date": "2026-09-15",
+      "causal_effect_on_return": "not_established",
+      "disposition": "approved",
+      "reason": "Ausência de objeções não é aprovação do plano; o prazo para objeções ainda não havia começado, segundo a companhia.",
+      "event_group": "estrela-recovery-status",
+      "event_label": "Resposta à B3 sobre andamento da recuperação judicial",
+      "publication_date": "2026-09-15",
+      "date_basis": "cvm_delivery_record_and_document_body",
+      "date_evidence": "2026-09-15",
+      "first_publication_date": null,
+      "date_verified": true,
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "event_date": "2026-09-15",
+      "scheduled_date": null,
+      "context_type": "regulatory_disclosure",
+      "after_price_end": false,
+      "intraday_availability": "not_established",
+      "screening_basis": "editorial_official_document_review"
+    },
+    {
+      "id": "15423:cvm-5",
+      "local_id": "cvm-5",
+      "cvm_code": "15423",
+      "tickers": [
+        "FASA3"
+      ],
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1569639&numSequencia=1094345&numVersao=1",
+      "title": "Assembleia",
+      "version": "1",
+      "document_sha256": "ce1d6b8cc6cc906362f9f7a438a7445cab376a37ee2e0f3fc54b17106d4d424a",
+      "reference_date": "2026-10-20",
+      "delivery_date": "2026-09-18",
+      "causal_effect_on_return": "not_established",
+      "disposition": "approved",
+      "reason": "Boletim da mesma AGE; não é aprovação do grupamento.",
+      "event_group": "fasa-37to1",
+      "event_label": "Convocação e proposta de grupamento 37:1",
+      "publication_date": "2026-09-18",
+      "date_basis": "cvm_delivery_record_and_document_body",
+      "date_evidence": "2026-09-18",
+      "first_publication_date": null,
+      "date_verified": true,
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "event_date": null,
+      "scheduled_date": "2026-10-20",
+      "context_type": "regulatory_disclosure",
+      "after_price_end": false,
+      "intraday_availability": "not_established",
+      "screening_basis": "editorial_official_document_review"
+    },
+    {
+      "id": "15423:cvm-6",
+      "local_id": "cvm-6",
+      "cvm_code": "15423",
+      "tickers": [
+        "FASA3"
+      ],
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1569607&numSequencia=1094313&numVersao=1",
+      "title": "Grupamento de Ações",
+      "version": "1",
+      "document_sha256": "a5d4e1dad2515f9d19517ded639ed9d83c7594379b9d4c5578e7bcb8e078aa20",
+      "reference_date": "2026-10-20",
+      "delivery_date": "2026-09-18",
+      "causal_effect_on_return": "not_established",
+      "disposition": "approved",
+      "reason": "Edital; proposta ainda sujeita à votação.",
+      "event_group": "fasa-37to1",
+      "event_label": "Convocação e proposta de grupamento 37:1",
+      "publication_date": "2026-09-18",
+      "date_basis": "cvm_delivery_record_and_document_body",
+      "date_evidence": "2026-09-18",
+      "first_publication_date": null,
+      "date_verified": true,
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "event_date": null,
+      "scheduled_date": "2026-10-20",
+      "context_type": "regulatory_disclosure",
+      "after_price_end": false,
+      "intraday_availability": "not_established",
+      "screening_basis": "editorial_official_document_review"
+    },
+    {
+      "id": "15423:cvm-7",
+      "local_id": "cvm-7",
+      "cvm_code": "15423",
+      "tickers": [
+        "FASA3"
+      ],
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1569635&numSequencia=1094341&numVersao=1",
+      "title": "Assembleia",
+      "version": "1",
+      "document_sha256": "cb336d1a0b8e6a45f8e916cb74cae7e21dc1e2238d3b5d6394663b1addbc48d5",
+      "reference_date": "2026-10-20",
+      "delivery_date": "2026-09-18",
+      "causal_effect_on_return": "not_established",
+      "disposition": "approved",
+      "reason": "Manual da mesma AGE, não um novo acontecimento.",
+      "event_group": "fasa-37to1",
+      "event_label": "Convocação e proposta de grupamento 37:1",
+      "publication_date": "2026-09-18",
+      "date_basis": "cvm_delivery_record_and_document_body",
+      "date_evidence": "2026-09-18",
+      "first_publication_date": null,
+      "date_verified": true,
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "event_date": null,
+      "scheduled_date": "2026-10-20",
+      "context_type": "regulatory_disclosure",
+      "after_price_end": false,
+      "intraday_availability": "not_established",
+      "screening_basis": "editorial_official_document_review"
+    },
+    {
+      "id": "15423:cvm-8",
+      "local_id": "cvm-8",
+      "cvm_code": "15423",
+      "tickers": [
+        "FASA3"
+      ],
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1569608&numSequencia=1094314&numVersao=1",
+      "title": "Grupamento de Ações",
+      "version": "1",
+      "document_sha256": "cb336d1a0b8e6a45f8e916cb74cae7e21dc1e2238d3b5d6394663b1addbc48d5",
+      "reference_date": "2026-10-20",
+      "delivery_date": "2026-09-18",
+      "causal_effect_on_return": "not_established",
+      "disposition": "approved",
+      "reason": "Proposta da mesma AGE, não operação concluída.",
+      "event_group": "fasa-37to1",
+      "event_label": "Convocação e proposta de grupamento 37:1",
+      "publication_date": "2026-09-18",
+      "date_basis": "cvm_delivery_record_and_document_body",
+      "date_evidence": "2026-09-18",
+      "first_publication_date": null,
+      "date_verified": true,
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "event_date": null,
+      "scheduled_date": "2026-10-20",
+      "context_type": "regulatory_disclosure",
+      "after_price_end": false,
+      "intraday_availability": "not_established",
+      "screening_basis": "editorial_official_document_review"
+    },
+    {
+      "id": "15423:cvm-9",
+      "local_id": "cvm-9",
+      "cvm_code": "15423",
+      "tickers": [
+        "FASA3"
+      ],
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1568745&numSequencia=1093451&numVersao=1",
+      "title": "Prorrogação do Prazo para Reenquadramento da Cotação ao Valor Mínimo",
+      "version": "1",
+      "document_sha256": "a853db072e83703be6ac696ee3424cf3ce0c5423411419a8bb7141c67ffb163f",
+      "reference_date": "2026-09-16",
+      "delivery_date": "2026-09-16",
+      "causal_effect_on_return": "not_established",
+      "disposition": "approved",
+      "reason": "30/11 é o novo prazo, não a data da decisão anunciada.",
+      "event_group": "fasa-minimum-price-deadline",
+      "event_label": "Prorrogação do prazo de reenquadramento da cotação",
+      "publication_date": "2026-09-16",
+      "date_basis": "cvm_delivery_record_and_document_body",
+      "date_evidence": "2026-09-16",
+      "first_publication_date": null,
+      "date_verified": true,
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "event_date": "2026-09-16",
+      "scheduled_date": "2026-11-30",
+      "context_type": "regulatory_disclosure",
+      "after_price_end": false,
+      "intraday_availability": "not_established",
+      "screening_basis": "editorial_official_document_review"
+    },
+    {
+      "id": "18376:cvm-10",
+      "local_id": "cvm-10",
+      "cvm_code": "18376",
+      "tickers": [
+        "ISAE3"
+      ],
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1567916&numSequencia=1092622&numVersao=1",
+      "title": "Pagamento de juros/remuneração",
+      "version": "1",
+      "document_sha256": "462412404a36d885f660d239faf802367080d9221aed4b0b1eb5f50c7996e24d",
+      "reference_date": "2026-09-14",
+      "delivery_date": "2026-09-14",
+      "causal_effect_on_return": "not_established",
+      "disposition": "approved",
+      "reason": "Aviso de pagamento previsto; não são dividendos das ações. Não comprova pagamento realizado nem explica o retorno.",
+      "event_group": "isa-debenture-interest",
+      "event_label": "Aviso de juros de debêntures",
+      "publication_date": "2026-09-14",
+      "date_basis": "cvm_delivery_record_and_document_body",
+      "date_evidence": "2026-09-14",
+      "first_publication_date": null,
+      "date_verified": true,
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "event_date": null,
+      "scheduled_date": "2026-09-15",
+      "context_type": "regulatory_disclosure",
+      "after_price_end": false,
+      "intraday_availability": "not_established",
+      "screening_basis": "editorial_official_document_review"
+    },
+    {
+      "id": "23574:cvm-16",
+      "local_id": "cvm-16",
+      "cvm_code": "23574",
+      "tickers": [
+        "MEAL3"
+      ],
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1568379&numSequencia=1093085&numVersao=1",
+      "title": "ATA DA ASSEMBLEIA GERAL DE DEBENTURISTAS",
+      "version": "1",
+      "document_sha256": "8ac637f30dba2520f77115c161530980ff267868d499b872403bb49c3418c9ea",
+      "reference_date": "2026-09-15",
+      "delivery_date": "2026-09-15",
+      "causal_effect_on_return": "not_established",
+      "disposition": "approved",
+      "reason": "As condições e vencimentos desta ata divergem dos aprovados pelo conselho em 16/09; não fundir parâmetros ou afirmar uma única condição definitiva.",
+      "event_group": "imc-debenture-holder-meeting",
+      "event_label": "Renegociação aprovada em assembleia de debenturistas",
+      "publication_date": "2026-09-15",
+      "date_basis": "cvm_delivery_record_and_document_body",
+      "date_evidence": "2026-09-15",
+      "first_publication_date": null,
+      "date_verified": true,
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "event_date": "2026-09-15",
+      "scheduled_date": null,
+      "context_type": "regulatory_disclosure",
+      "after_price_end": false,
+      "intraday_availability": "not_established",
+      "screening_basis": "editorial_official_document_review"
+    },
+    {
+      "id": "23574:cvm-17",
+      "local_id": "cvm-17",
+      "cvm_code": "23574",
+      "tickers": [
+        "MEAL3"
+      ],
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1569362&numSequencia=1094068&numVersao=1",
+      "title": "Esclarecimentos sobre notícia veiculada na mídia",
+      "version": "1",
+      "document_sha256": "286c262fce46f8e4f50e0fd4a3296fc74be18f81d37c9f76190e49a25e821fd2",
+      "reference_date": "2026-09-18",
+      "delivery_date": "2026-09-18",
+      "causal_effect_on_return": "not_established",
+      "disposition": "approved",
+      "reason": "A companhia informou ausência de instrumento firmado; não é fusão concluída.",
+      "event_group": "imc-vinci-clarifications",
+      "event_label": "Esclarecimento sobre notícia de possível combinação com a Vinci",
+      "publication_date": "2026-09-18",
+      "date_basis": "cvm_delivery_record_and_document_body",
+      "date_evidence": "2026-09-18",
+      "first_publication_date": null,
+      "date_verified": true,
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "event_date": "2026-09-18",
+      "scheduled_date": null,
+      "context_type": "regulatory_disclosure",
+      "after_price_end": false,
+      "intraday_availability": "not_established",
+      "screening_basis": "editorial_official_document_review"
+    },
+    {
+      "id": "23574:cvm-18",
+      "local_id": "cvm-18",
+      "cvm_code": "23574",
+      "tickers": [
+        "MEAL3"
+      ],
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1569750&numSequencia=1094456&numVersao=2",
+      "title": "Esclarecimentos em atendimento ao ofício numero 213/2026/CVM/SPEP/GE-2, de 18 de Setembro de 2026||Esclarecimentos sobre notícia veiculada na mídia",
+      "version": "2",
+      "document_sha256": "8084b453922c091ec6f83a072a7cd81f1c18d9ded295e7780b4378dea0e2fe03",
+      "reference_date": "2026-09-18",
+      "delivery_date": "2026-09-20",
+      "causal_effect_on_return": "not_established",
+      "disposition": "approved",
+      "reason": "Nova informação divulgada domingo, depois do último fechamento do ranking. Não retroagir seu conhecimento para sexta-feira.",
+      "event_group": "imc-vinci-clarifications",
+      "event_label": "Esclarecimento adicional sobre interlocuções exploratórias com a Vinci",
+      "publication_date": "2026-09-20",
+      "date_basis": "cvm_delivery_record_and_document_body",
+      "date_evidence": "2026-09-20",
+      "first_publication_date": null,
+      "date_verified": true,
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "event_date": "2026-09-20",
+      "scheduled_date": null,
+      "context_type": "regulatory_disclosure",
+      "after_price_end": true,
+      "intraday_availability": "not_established",
+      "screening_basis": "editorial_official_document_review"
+    },
+    {
+      "id": "23574:cvm-19",
+      "local_id": "cvm-19",
+      "cvm_code": "23574",
+      "tickers": [
+        "MEAL3"
+      ],
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1569128&numSequencia=1093834&numVersao=1",
+      "title": "ATA DE REUNIÃO DO CONSELHO DE ADMINISTRAÇÃO",
+      "version": "1",
+      "document_sha256": "fca5dfa47b7e367e6fa58285b17094ae96ace60f472f20a80c2f0fa94a83be7b",
+      "reference_date": "2026-09-16",
+      "delivery_date": "2026-09-17",
+      "causal_effect_on_return": "not_established",
+      "disposition": "approved",
+      "reason": "Conselho e assembleia de debenturistas são atos distintos; divergência de prazos impede resumir vencimentos sem conciliação adicional.",
+      "event_group": "imc-board-debt-renegotiation",
+      "event_label": "Aprovação pelo conselho de termos de renegociação de debêntures",
+      "publication_date": "2026-09-17",
+      "date_basis": "cvm_delivery_record_and_document_body",
+      "date_evidence": "2026-09-17",
+      "first_publication_date": null,
+      "date_verified": true,
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "event_date": "2026-09-16",
+      "scheduled_date": null,
+      "context_type": "regulatory_disclosure",
+      "after_price_end": false,
+      "intraday_availability": "not_established",
+      "screening_basis": "editorial_official_document_review"
+    },
+    {
+      "id": "8397:web-0",
+      "local_id": "web-0",
+      "cvm_code": "8397",
+      "tickers": [
+        "MGEL4"
+      ],
+      "url": "https://smabc.org.br/assembleia-dos-trabalhadores-na-mangels/",
+      "title": "ASSEMBLEIA DOS TRABALHADORES NA MANGELS – SMABC",
+      "disposition": "approved",
+      "reason": "Convocação do sindicato para 18/09; resultado da votação não foi confirmado.",
+      "screening_basis": "editorial_source_body_review",
+      "reported_publication_dates_unverified": [
+        "2026-09-14T16:11:00.000Z"
+      ],
+      "page_retrieval": {
+        "status": "extracted",
+        "sha256": "41e0dfd85a06d5b5c49188d09cb6a848ab57b65a0d4cd1c7f3ef9db074bce757"
+      },
+      "publication_date": "2026-09-14",
+      "date_verified": true,
+      "model_proposed_date_unverified": "2026-09-14",
+      "causal_effect_on_return": "not_established",
+      "event_group": "mangels-plr-assembly",
+      "event_label": "Convocação de assembleia sobre proposta de PLR",
+      "date_basis": "stakeholder_notice_body",
+      "date_evidence": "Postou 14/09/2026",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "event_date": null,
+      "scheduled_date": null,
+      "context_type": "stakeholder_notice",
+      "first_publication_date": null,
+      "after_price_end": false,
+      "intraday_availability": "not_established"
+    },
+    {
+      "id": "26123:cvm-12",
+      "local_id": "cvm-12",
+      "cvm_code": "26123",
+      "tickers": [
+        "ONCO3"
+      ],
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1567780&numSequencia=1092486&numVersao=1",
+      "title": "Mudanças na Diretoria",
+      "version": "1",
+      "document_sha256": "1bf65590ab304e350cb0027b789dbca4bb3cc20b5bcd6aeb20e2cb4ad493a307",
+      "reference_date": "2026-09-14",
+      "delivery_date": "2026-09-14",
+      "causal_effect_on_return": "not_established",
+      "disposition": "approved",
+      "reason": "Troca de diretoria, sem evidência de efeito causal no retorno.",
+      "event_group": "onco-cfo-election",
+      "event_label": "Eleição de Maurício Hasson para CFO e RI",
+      "publication_date": "2026-09-14",
+      "date_basis": "cvm_delivery_record_and_document_body",
+      "date_evidence": "2026-09-14",
+      "first_publication_date": null,
+      "date_verified": true,
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "event_date": "2026-09-14",
+      "scheduled_date": null,
+      "context_type": "regulatory_disclosure",
+      "after_price_end": false,
+      "intraday_availability": "not_established",
+      "screening_basis": "editorial_official_document_review"
+    },
+    {
+      "id": "26123:cvm-13",
+      "local_id": "cvm-13",
+      "cvm_code": "26123",
+      "tickers": [
+        "ONCO3"
+      ],
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1569072&numSequencia=1093778&numVersao=1",
+      "title": "Eleição de Diretor(es)",
+      "version": "1",
+      "document_sha256": "13ce4d1e2a37767e155cbcf0dd6d4ca9a1a1497763345d76d9ca49d4702929e9",
+      "reference_date": "2026-09-14",
+      "delivery_date": "2026-09-17",
+      "causal_effect_on_return": "not_established",
+      "disposition": "approved",
+      "reason": "Mesma eleição do fato relevante; ata entregue em 17/09, reunião em 14/09.",
+      "event_group": "onco-cfo-election",
+      "event_label": "Ata da eleição de Maurício Hasson",
+      "publication_date": "2026-09-17",
+      "date_basis": "cvm_delivery_record_and_document_body",
+      "date_evidence": "2026-09-17",
+      "first_publication_date": null,
+      "date_verified": true,
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "event_date": "2026-09-14",
+      "scheduled_date": null,
+      "context_type": "regulatory_disclosure",
+      "after_price_end": false,
+      "intraday_availability": "not_established",
+      "screening_basis": "editorial_official_document_review"
+    },
+    {
+      "id": "12572:cvm-21",
+      "local_id": "cvm-21",
+      "cvm_code": "12572",
+      "tickers": [
+        "RCSL3"
+      ],
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1568277&numSequencia=1092983&numVersao=1",
+      "title": "Reforma Estatutária",
+      "version": "1",
+      "document_sha256": "b2d99626e206aac7d5e1d7460004d24950fee65564765c43379535968b1fdc16",
+      "reference_date": "2026-10-02",
+      "delivery_date": "2026-09-15",
+      "causal_effect_on_return": "not_established",
+      "disposition": "approved",
+      "reason": "Edital datado de 21/08 e entregue em 15/09; primeira publicação não estabelecida. Grupamento ainda sujeito à aprovação.",
+      "event_group": "recrusul-4to1-proposal",
+      "event_label": "Protocolo de edital de AGE com proposta de grupamento 4:1",
+      "publication_date": "2026-09-15",
+      "date_basis": "cvm_delivery_record_and_document_body",
+      "date_evidence": "2026-09-15",
+      "first_publication_date": null,
+      "date_verified": true,
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "event_date": "2026-08-21",
+      "scheduled_date": "2026-10-02",
+      "context_type": "regulatory_disclosure",
+      "after_price_end": false,
+      "intraday_availability": "not_established",
+      "screening_basis": "editorial_official_document_review"
+    },
+    {
+      "id": "12572:cvm-22",
+      "local_id": "cvm-22",
+      "cvm_code": "12572",
+      "tickers": [
+        "RCSL3"
+      ],
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1568278&numSequencia=1092984&numVersao=1",
+      "title": "Reforma Estatutária",
+      "version": "1",
+      "document_sha256": "ebe95b68207bf1428e0abbee4fe0dd03de7ae64c880d3497dda43d26f639ad6f",
+      "reference_date": "2026-10-02",
+      "delivery_date": "2026-09-15",
+      "causal_effect_on_return": "not_established",
+      "disposition": "approved",
+      "reason": "Mesmo assunto do edital; entrega em 15/09 confirmada. Data original da proposta e primeira divulgação não estabelecidas.",
+      "event_group": "recrusul-4to1-proposal",
+      "event_label": "Proposta de grupamento 4:1 submetida à AGE",
+      "publication_date": "2026-09-15",
+      "date_basis": "cvm_delivery_record_and_document_body",
+      "date_evidence": "2026-09-15",
+      "first_publication_date": null,
+      "date_verified": true,
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "event_date": null,
+      "scheduled_date": "2026-10-02",
+      "context_type": "regulatory_disclosure",
+      "after_price_end": false,
+      "intraday_availability": "not_established",
+      "screening_basis": "editorial_official_document_review"
+    },
+    {
+      "id": "taurus-union-20260918",
+      "cvm_code": "6173",
+      "tickers": [
+        "TASA3",
+        "TASA4"
+      ],
+      "title": "Trabalhadores da Taurus rejeitam proposta e aprovam estado de greve",
+      "url": "https://metalsaoleo.org.br/2026/09/18/trabalhadores-da-taurus-rejeitam-proposta-e-aprovam-estado-de-greve/",
+      "publisher": "STIMMMESL",
+      "source_type": "stakeholder_primary_report",
+      "event_date": "2026-09-17",
+      "publication_date": "2026-09-18",
+      "publication_time": null,
+      "attribution_required": true,
+      "causal_effect_on_return": "not_established",
+      "retrieval_method": "web_reader_full_page",
+      "review_note": "É relato do sindicato. Estado de greve não equivale a comprovação de paralisação.",
+      "disposition": "approved",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "date_basis": "stakeholder_article_body",
+      "date_evidence": "18/09/2026",
+      "event_group": "taurus-strike-status",
+      "event_label": "Relato sindical de rejeição de proposta e aprovação de estado de greve",
+      "first_publication_date": null,
+      "after_price_end": false,
+      "intraday_availability": "not_established",
+      "context_type": "stakeholder_report",
+      "reason": "É relato do sindicato. Estado de greve não equivale a comprovação de paralisação.",
+      "screening_basis": "previous_editorial_full_page_review"
+    },
+    {
+      "id": "25895:cvm-11",
+      "local_id": "cvm-11",
+      "cvm_code": "25895",
+      "tickers": [
+        "WDCN3"
+      ],
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1567741&numSequencia=1092447&numVersao=1",
+      "title": "Proposta vinculante de aquisição da Teki",
+      "version": "1",
+      "document_sha256": "0cf814b881cdbd82be2ed5111d65bd1416ecac57405539ce0b8f7ff9716d7f69",
+      "reference_date": "2026-09-14",
+      "delivery_date": "2026-09-14",
+      "causal_effect_on_return": "not_established",
+      "disposition": "approved",
+      "reason": "Aquisição sujeita a condições, documentos definitivos e aprovações. Não foi confirmada a conclusão.",
+      "event_group": "wdc-teki-binding-proposal",
+      "event_label": "Assinatura de proposta vinculante para adquirir a Teki",
+      "publication_date": "2026-09-14",
+      "date_basis": "cvm_delivery_record_and_document_body",
+      "date_evidence": "2026-09-14",
+      "first_publication_date": null,
+      "date_verified": true,
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "event_date": "2026-09-14",
+      "scheduled_date": null,
+      "context_type": "regulatory_disclosure",
+      "after_price_end": false,
+      "intraday_availability": "not_established",
+      "screening_basis": "editorial_official_document_review"
+    },
+    {
+      "id": "21016:web-0",
+      "local_id": "web-0",
+      "cvm_code": "21016",
+      "tickers": [
+        "YDUQ3"
+      ],
+      "url": "https://www.infomoney.com.br/mercados/yduqs-yduq3-bradesco-bbi-ve-valuation-atrativo-eleva-preco-alvo-e-destaca-como-preferida-do-setor",
+      "title": "Yduqs: BBI vê valuation atrativo, eleva preço-alvo e ...",
+      "disposition": "approved",
+      "reason": "Opinião do BBI; combinação com Afya era hipótese nessa fonte, não operação confirmada.",
+      "screening_basis": "editorial_source_body_review",
+      "reported_publication_dates_unverified": [],
+      "page_retrieval": {
+        "status": "extracted",
+        "sha256": "7077da6f9c963ccea14cf2010df27f4268388ef04edc0083ff7534dea156b688"
+      },
+      "publication_date": "2026-09-18",
+      "date_verified": true,
+      "model_proposed_date_unverified": null,
+      "causal_effect_on_return": "not_established",
+      "event_group": "yduqs-bbi-analysis",
+      "event_label": "Revisão de estimativas e preço-alvo pelo Bradesco BBI",
+      "date_basis": "publisher_html_metadata",
+      "date_evidence": "2026-09-18T15:23:39+00:00",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "event_date": null,
+      "scheduled_date": null,
+      "context_type": "analyst_opinion",
+      "first_publication_date": null,
+      "after_price_end": false,
+      "intraday_availability": "not_established"
+    },
+    {
+      "id": "antecedent:ambipar-auction",
+      "cvm_code": "24961",
+      "url": "https://www.seudinheiro.com/2026/bolsa-dolar/crise-na-bolsa-ambipar-ambp3-passa-a-negociar-em-leilao-na-b3-apos-atraso-kaes/",
+      "title": "Seu Dinheiro — negociação não contínua da Ambipar",
+      "publication_date": "2026-09-01",
+      "event_date": "2026-08-31",
+      "after_price_end": false,
+      "context_type": "dated_antecedent",
+      "date_basis": "article_publication_and_body",
+      "date_evidence": "01 de setembro de 2026 — 10:15",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "evidence_sha256": "73956ee5d8cc7ff8d28075db7cafe58924fc8e0e0f0efcd9e876334478ab8c73"
+    },
+    {
+      "id": "antecedent:armac-fitch",
+      "cvm_code": "26069",
+      "url": "https://investidor10.com.br/acoes/link_comunicado/ARML3/49209/",
+      "title": "Relatório Fitch — AA-(bra), perspectiva estável",
+      "publication_date": "2026-09-09",
+      "event_date": "2026-09-09",
+      "after_price_end": false,
+      "context_type": "dated_antecedent",
+      "date_basis": "dated_fitch_report_body",
+      "date_evidence": "09 Sep 2026",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "evidence_sha256": "eb4d2f7ffc858e4c6167ae615695396861ddc8b5299f81345f7093d70175a150"
+    },
+    {
+      "id": "antecedent:qualicorp-ceo",
+      "cvm_code": "22497",
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1563347&numSequencia=1088053&numVersao=1",
+      "title": "Sucessao da Presidencia Executiva",
+      "publication_date": "2026-09-01",
+      "event_date": "2026-08-31",
+      "after_price_end": false,
+      "context_type": "dated_antecedent",
+      "date_basis": "cvm_delivery_and_official_document",
+      "date_evidence": "2026-09-01",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "evidence_sha256": "fa4d4467bb120650036caeebfd9b827b2cd9bdb6e12d653b6eeefabe202a8771"
+    },
+    {
+      "id": "antecedent:westwing-results",
+      "cvm_code": "25518",
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1556949&numSequencia=1081655&numVersao=1",
+      "title": "Westwing - Apresentação de Resultados - 2T26",
+      "publication_date": "2026-08-13",
+      "event_date": "2026-08-13",
+      "after_price_end": false,
+      "context_type": "dated_antecedent",
+      "date_basis": "cvm_delivery_and_official_document",
+      "date_evidence": "2026-08-13",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "evidence_sha256": "ebe733d4597d0d496bd40c8fab9f31e1c0bd895f2be84a4efd1342bf999d4855"
+    },
+    {
+      "id": "antecedent:ecom-eqi",
+      "cvm_code": "26077",
+      "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&descTipo=IPE&CodigoInstituicao=1&numProtocolo=1557562&numSequencia=1082268&numVersao=1",
+      "title": "Cessão de Plataforma e de Carteira de Clientes à EQI Investimentos",
+      "publication_date": "2026-08-14",
+      "event_date": "2026-08-13",
+      "after_price_end": false,
+      "context_type": "dated_antecedent",
+      "date_basis": "cvm_delivery_and_official_document",
+      "date_evidence": "2026-08-14",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "evidence_sha256": "37139a7342a6222988b9fc2498da3290892cbc79d72342e55069f6902247f023"
+    },
+    {
+      "id": "itr:26069",
+      "cvm_code": "26069",
+      "url": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160454",
+      "title": "Demonstrativo trimestral CVM — abril a junho de 2026",
+      "publication_date": "2026-08-12",
+      "event_date": "2026-06-30",
+      "after_price_end": false,
+      "context_type": "financial_antecedent",
+      "date_basis": "cvm_itr_delivery_catalog",
+      "date_evidence": "2026-08-12",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "version": "2",
+      "document_id": "160454"
+    },
+    {
+      "id": "itr:26620",
+      "cvm_code": "26620",
+      "url": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160171",
+      "title": "Demonstrativo trimestral CVM — abril a junho de 2026",
+      "publication_date": "2026-08-05",
+      "event_date": "2026-06-30",
+      "after_price_end": false,
+      "context_type": "financial_antecedent",
+      "date_basis": "cvm_itr_delivery_catalog",
+      "date_evidence": "2026-08-05",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "version": "1",
+      "document_id": "160171"
+    },
+    {
+      "id": "itr:701",
+      "cvm_code": "701",
+      "url": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160857",
+      "title": "Demonstrativo trimestral CVM — abril a junho de 2026",
+      "publication_date": "2026-08-14",
+      "event_date": "2026-06-30",
+      "after_price_end": false,
+      "context_type": "financial_antecedent",
+      "date_basis": "cvm_itr_delivery_catalog",
+      "date_evidence": "2026-08-14",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "version": "1",
+      "document_id": "160857"
+    },
+    {
+      "id": "itr:25232",
+      "cvm_code": "25232",
+      "url": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160198",
+      "title": "Demonstrativo trimestral CVM — abril a junho de 2026",
+      "publication_date": "2026-08-05",
+      "event_date": "2026-06-30",
+      "after_price_end": false,
+      "context_type": "financial_antecedent",
+      "date_basis": "cvm_itr_delivery_catalog",
+      "date_evidence": "2026-08-05",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "version": "1",
+      "document_id": "160198"
+    },
+    {
+      "id": "itr:19623",
+      "cvm_code": "19623",
+      "url": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160684",
+      "title": "Demonstrativo trimestral CVM — abril a junho de 2026",
+      "publication_date": "2026-08-13",
+      "event_date": "2026-06-30",
+      "after_price_end": false,
+      "context_type": "financial_antecedent",
+      "date_basis": "cvm_itr_delivery_catalog",
+      "date_evidence": "2026-08-13",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "version": "1",
+      "document_id": "160684"
+    },
+    {
+      "id": "itr:25836",
+      "cvm_code": "25836",
+      "url": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160708",
+      "title": "Demonstrativo trimestral CVM — abril a junho de 2026",
+      "publication_date": "2026-08-13",
+      "event_date": "2026-06-30",
+      "after_price_end": false,
+      "context_type": "financial_antecedent",
+      "date_basis": "cvm_itr_delivery_catalog",
+      "date_evidence": "2026-08-13",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "version": "1",
+      "document_id": "160708"
+    },
+    {
+      "id": "itr:26077",
+      "cvm_code": "26077",
+      "url": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160719",
+      "title": "Demonstrativo trimestral CVM — abril a junho de 2026",
+      "publication_date": "2026-08-13",
+      "event_date": "2026-06-30",
+      "after_price_end": false,
+      "context_type": "financial_antecedent",
+      "date_basis": "cvm_itr_delivery_catalog",
+      "date_evidence": "2026-08-13",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "version": "1",
+      "document_id": "160719"
+    },
+    {
+      "id": "itr:18376",
+      "cvm_code": "18376",
+      "url": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160110",
+      "title": "Demonstrativo trimestral CVM — abril a junho de 2026",
+      "publication_date": "2026-08-03",
+      "event_date": "2026-06-30",
+      "after_price_end": false,
+      "context_type": "financial_antecedent",
+      "date_basis": "cvm_itr_delivery_catalog",
+      "date_evidence": "2026-08-03",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "version": "1",
+      "document_id": "160110"
+    },
+    {
+      "id": "itr:8192",
+      "cvm_code": "8192",
+      "url": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160773",
+      "title": "Demonstrativo trimestral CVM — abril a junho de 2026",
+      "publication_date": "2026-08-14",
+      "event_date": "2026-06-30",
+      "after_price_end": false,
+      "context_type": "financial_antecedent",
+      "date_basis": "cvm_itr_delivery_catalog",
+      "date_evidence": "2026-08-14",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "version": "1",
+      "document_id": "160773"
+    },
+    {
+      "id": "itr:23574",
+      "cvm_code": "23574",
+      "url": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160721",
+      "title": "Demonstrativo trimestral CVM — abril a junho de 2026",
+      "publication_date": "2026-08-13",
+      "event_date": "2026-06-30",
+      "after_price_end": false,
+      "context_type": "financial_antecedent",
+      "date_basis": "cvm_itr_delivery_catalog",
+      "date_evidence": "2026-08-13",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "version": "1",
+      "document_id": "160721"
+    },
+    {
+      "id": "itr:8397",
+      "cvm_code": "8397",
+      "url": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160653",
+      "title": "Demonstrativo trimestral CVM — abril a junho de 2026",
+      "publication_date": "2026-08-13",
+      "event_date": "2026-06-30",
+      "after_price_end": false,
+      "context_type": "financial_antecedent",
+      "date_basis": "cvm_itr_delivery_catalog",
+      "date_evidence": "2026-08-13",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "version": "1",
+      "document_id": "160653"
+    },
+    {
+      "id": "itr:26123",
+      "cvm_code": "26123",
+      "url": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160814",
+      "title": "Demonstrativo trimestral CVM — abril a junho de 2026",
+      "publication_date": "2026-08-14",
+      "event_date": "2026-06-30",
+      "after_price_end": false,
+      "context_type": "financial_antecedent",
+      "date_basis": "cvm_itr_delivery_catalog",
+      "date_evidence": "2026-08-14",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "version": "1",
+      "document_id": "160814"
+    },
+    {
+      "id": "itr:13471",
+      "cvm_code": "13471",
+      "url": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160604",
+      "title": "Demonstrativo trimestral CVM — abril a junho de 2026",
+      "publication_date": "2026-08-13",
+      "event_date": "2026-06-30",
+      "after_price_end": false,
+      "context_type": "financial_antecedent",
+      "date_basis": "cvm_itr_delivery_catalog",
+      "date_evidence": "2026-08-13",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "version": "1",
+      "document_id": "160604"
+    },
+    {
+      "id": "itr:22497",
+      "cvm_code": "22497",
+      "url": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160498",
+      "title": "Demonstrativo trimestral CVM — abril a junho de 2026",
+      "publication_date": "2026-08-12",
+      "event_date": "2026-06-30",
+      "after_price_end": false,
+      "context_type": "financial_antecedent",
+      "date_basis": "cvm_itr_delivery_catalog",
+      "date_evidence": "2026-08-12",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "version": "1",
+      "document_id": "160498"
+    },
+    {
+      "id": "itr:12572",
+      "cvm_code": "12572",
+      "url": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160565",
+      "title": "Demonstrativo trimestral CVM — abril a junho de 2026",
+      "publication_date": "2026-08-12",
+      "event_date": "2026-06-30",
+      "after_price_end": false,
+      "context_type": "financial_antecedent",
+      "date_basis": "cvm_itr_delivery_catalog",
+      "date_evidence": "2026-08-12",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "version": "1",
+      "document_id": "160565"
+    },
+    {
+      "id": "itr:6173",
+      "cvm_code": "6173",
+      "url": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160446",
+      "title": "Demonstrativo trimestral CVM — abril a junho de 2026",
+      "publication_date": "2026-08-11",
+      "event_date": "2026-06-30",
+      "after_price_end": false,
+      "context_type": "financial_antecedent",
+      "date_basis": "cvm_itr_delivery_catalog",
+      "date_evidence": "2026-08-11",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "version": "1",
+      "document_id": "160446"
+    },
+    {
+      "id": "itr:7544",
+      "cvm_code": "7544",
+      "url": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160768",
+      "title": "Demonstrativo trimestral CVM — abril a junho de 2026",
+      "publication_date": "2026-08-14",
+      "event_date": "2026-06-30",
+      "after_price_end": false,
+      "context_type": "financial_antecedent",
+      "date_basis": "cvm_itr_delivery_catalog",
+      "date_evidence": "2026-08-14",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "version": "1",
+      "document_id": "160768"
+    },
+    {
+      "id": "itr:25895",
+      "cvm_code": "25895",
+      "url": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160522",
+      "title": "Demonstrativo trimestral CVM — abril a junho de 2026",
+      "publication_date": "2026-08-12",
+      "event_date": "2026-06-30",
+      "after_price_end": false,
+      "context_type": "financial_antecedent",
+      "date_basis": "cvm_itr_delivery_catalog",
+      "date_evidence": "2026-08-12",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "version": "1",
+      "document_id": "160522"
+    },
+    {
+      "id": "itr:25518",
+      "cvm_code": "25518",
+      "url": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160503",
+      "title": "Demonstrativo trimestral CVM — abril a junho de 2026",
+      "publication_date": "2026-08-12",
+      "event_date": "2026-06-30",
+      "after_price_end": false,
+      "context_type": "financial_antecedent",
+      "date_basis": "cvm_itr_delivery_catalog",
+      "date_evidence": "2026-08-12",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "version": "1",
+      "document_id": "160503"
+    },
+    {
+      "id": "itr:21016",
+      "cvm_code": "21016",
+      "url": "http://www.rad.cvm.gov.br/ENETCONSULTA/frmDownloadDocumento.aspx?CodigoInstituicao=1&NumeroSequencialDocumento=160633",
+      "title": "Demonstrativo trimestral CVM — abril a junho de 2026",
+      "publication_date": "2026-08-13",
+      "event_date": "2026-06-30",
+      "after_price_end": false,
+      "context_type": "financial_antecedent",
+      "date_basis": "cvm_itr_delivery_catalog",
+      "date_evidence": "2026-08-13",
+      "identity_confirmed": true,
+      "body_reviewed": true,
+      "date_verified": true,
+      "version": "1",
+      "document_id": "160633"
+    }
+  ],
+  "input_sha256": {
+    "issuers.json": "91c702b70b1d989c99777a279a0a608020e7c7d82404939273c8e0b996294cb3",
+    "expanded_evidence.json": "d850fe421d305f724f54e101ea872548eebbb05835c0722b6833d760724d076d",
+    "triage.json": "d4af40ed34ed9a2a29acdda53852d130195bb062817a3470f6d958c115c9c518",
+    "editorial_notes.json": "7f9135001f440ef67d30f70a574aee9befcea4f5ed1d839b0432dce15cc9261e"
+  },
+  "disclosure": "Contexto preparado com auxílio de IA e revisão editorial. A leitura dos preços é calculada diretamente dos arquivos da execução. As fontes descrevem fatos e antecedentes; não comprovam a causa de cada retorno."
+}
