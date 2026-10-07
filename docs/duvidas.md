@@ -2,9 +2,17 @@
 
 ## Por que a matriz tem células vazias?
 
-Um retorno diário precisa do preço da data e do preço da data consecutiva anterior na extração. Se um estiver ausente, inválido ou conflitante, a célula fica vazia. Ela não significa retorno zero.
+Na opção “Dentro da semana”, o primeiro dia tem “—” porque seu fechamento é o preço inicial. Não falta necessariamente um preço, e não é retorno zero. O primeiro retorno aparece na próxima data com comparação válida.
+
+Nas demais datas, um retorno diário precisa do preço da data e do preço da data consecutiva anterior na extração. Se um estiver ausente, inválido ou conflitante, a célula fica vazia. Ela não significa retorno zero.
 
 Exemplo: há preço na sexta, falta na segunda e há preço na terça. Não calculamos segunda; também não apresentamos sexta → terça como um retorno diário de terça. Veja [gráficos diários](metodologia.md#como-interpretar-os-gráficos-diários).
+
+## Por que a alternativa não mostra retorno na segunda-feira?
+
+No case, a alternativa começa no fechamento de segunda, 14/09. Para ter retorno na própria segunda, precisaríamos comparar com a sexta anterior, 11/09, que fica fora dessa janela. Por isso a segunda aparece como “— / preço inicial”. A terça compara 14/09 → 15/09 e é o primeiro retorno da alternativa. Se a primeira data disponível cair em outro dia, a mesma regra se aplica a ela.
+
+As duas opções terminam no mesmo último fechamento da semana anterior. “Dentro da semana” não significa uma semana em andamento até o dia atual.
 
 ## Como uma ação com lacunas aparece no top 20?
 

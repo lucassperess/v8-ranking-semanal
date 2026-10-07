@@ -325,6 +325,41 @@ def build_presentation(root: Path, *, featured: bool = False,
     return enrich_interpretation(payload)
 
 
+def enrich_daily_windows(payload: dict) -> dict:
+    """Recorta séries auditadas em memória, inclusive apresentações antigas.
+
+    Não depende do bruto, não grava derivados e não recalcula retornos.
+    O primeiro fechamento da alternativa não tem comparação dentro da janela.
+    """
+    daily = payload.get('daily', {})
+    source_dates = daily.get('dates', [])
+    for key, window in payload['windows'].items():
+        dates = [day for day in source_dates if window['start_date'] <= day <= window['end_date']]
+        return_dates = dates if key == 'alternative' else dates[1:]
+        series, heatmap = {}, {}
+        prior_dates = dict(zip(source_dates[1:], source_dates[:-1]))
+        for row in window['top20']:
+            ticker = row['ticker']
+            prices = {point['date']: point for point in daily.get('series', {}).get(ticker, [])}
+            changes = {point['date']: point for point in daily.get('heatmap', {}).get(ticker, [])}
+            series[ticker] = [dict(prices.get(day, {'date': day, 'close': None})) for day in dates]
+            heatmap[ticker] = []
+            for day in return_dates:
+                initial = key == 'alternative' and day == window['start_date']
+                prior = prior_dates.get(day)
+                inside = prior is not None and window['start_date'] <= prior < day
+                value = changes.get(day, {}).get('return_pct') if inside and not initial else None
+                heatmap[ticker].append({'date': day, 'previous_date': prior if inside and not initial else None,
+                                        'return_pct': value,
+                                        'reason': 'window_start' if initial else 'missing_comparison' if value is None else None})
+        window['daily'] = {'dates': dates, 'return_dates': return_dates, 'series': series, 'heatmap': heatmap,
+                           'note': ('O fechamento do primeiro dia é o preço inicial: — nesse dia não é zero nem dado ausente. '
+                                    'O primeiro retorno compara esse fechamento com o da próxima data da extração. '
+                                    if key == 'alternative' else '') +
+                                   'Retornos entre datas consecutivas da extração; outras células vazias indicam preços ausentes ou conflitantes.'}
+    return payload
+
+
 def enrich_interpretation(payload: dict) -> dict:
     """Contexto determinístico em Decimal, separado dos derivados auditados."""
     for key, window in payload['windows'].items():
@@ -352,6 +387,8 @@ def enrich_interpretation(payload: dict) -> dict:
                                 'sem confirmação de escala e comparabilidade, não há medida de liquidez nesta tela. '
                                 'O ranking não usa filtro de liquidez.',
         }
+    if 'daily' in payload:
+        enrich_daily_windows(payload)
     return payload
 
 

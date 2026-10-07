@@ -73,22 +73,23 @@ def render(slug: str, *, snapshot: dict | None = None, archive_base: str = '') -
     pos = keys.index(slug)
     adjacent = ''.join(f'<a href="/documentacao/{keys[index]}"><small>{direction}</small>{html.escape(PAGES[keys[index]][0])} {arrow}</a>' for index, direction, arrow in [(pos - 1, "Anterior", "←"), (pos + 1, "Próximo", "→")] if 0 <= index < len(keys))
     template = render_page("documentation.html")
-    for key, value in {"TITLE": html.escape(PAGES[slug][0]), "NAV": nav, "CONTENT": content, "TOC": engine.toc,
+    context = '<div id="docs-context" class="docs-context" hidden></div>'
+    if snapshot:
+        message = 'Cópia arquivada desta execução · ' + (
+            'associada após revisão; não foi registrada na data do processamento.'
+            if snapshot['mode'] == 'reviewed_after_execution' else 'registrada na conclusão do processamento.')
+        context = '<div id="docs-context" class="docs-context" data-archived="true">' + html.escape(message) + '</div>'
+    for key, value in {"TITLE": html.escape(PAGES[slug][0]), "NAV": nav, "CONTENT": content, "TOC": engine.toc, 'CONTEXT': context,
                        "CARDS": cards, "ADJACENT": adjacent, "SOURCE": REPO + "docs/" + PAGES[slug][1],
                        'REVISION': (snapshot['revision'] if snapshot else current_revision())[:12]}.items():
         template = template.replace("{{" + key + "}}", value)
     if snapshot:
         template = re.sub(r'href="/documentacao/([^"?#]+)',
                           lambda m: f'href="{archive_base}/{m[1]}', template)
-        template = template.replace('Regras e guias da ferramenta · exemplos históricos identificados no artigo.',
-            'Cópia arquivada desta execução · ' + (
-            'associada após revisão; não foi registrada na data do processamento.'
-            if snapshot['mode'] == 'reviewed_after_execution' else 'registrada na conclusão do processamento.'))
         template = template.replace('id="docs-search"', 'id="docs-search" disabled')
         template = template.replace('class="docs-search-area"', 'class="docs-search-area" hidden')
         template = template.replace('Ex.: preço ausente, semana, B3', 'Use o menu de assuntos nesta revisão')
         template = template.replace('Consultar fonte e histórico no GitHub ↗', 'Consultar artigo atual no GitHub ↗')
-        template = template.replace('id="docs-context"', 'id="docs-context" data-archived="true"')
     return template
 
 

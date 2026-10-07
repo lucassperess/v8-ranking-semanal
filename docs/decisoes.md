@@ -68,7 +68,7 @@ Consolidado em 06/10/2026 a partir da implementação existente. Estas decisões
 
 **Motivo:** compartilhar a lógica entre comando e site e evitar dois cálculos concorrentes.
 
-**Consequências:** retorno diário exige preços das datas consecutivas da extração; lacuna não vira zero nem variação de vários dias rotulada diária. A soma dos percentuais diários não substitui o retorno semanal. Gráficos são históricos, sem cotação em tempo real.
+**Consequências:** retorno diário exige preços das datas consecutivas da extração; lacuna não vira zero nem variação de vários dias rotulada diária. A soma dos percentuais diários não substitui o retorno semanal. Gráficos são históricos, sem cotação em tempo real. Preços, retornos diários e matriz acompanham o recorte da janela selecionada. Na alternativa, o primeiro fechamento é a base inicial e recebe retorno nulo com motivo `window_start`, distinguindo-o de zero e de preço ausente. Apresentações anteriores são adaptadas em memória a partir das séries salvas, sem modificar derivados, manifestos ou guias históricos.
 
 **Implementação:** `webapp/presentation.py`, `webapp/static/app.js`, testes de apresentação.
 

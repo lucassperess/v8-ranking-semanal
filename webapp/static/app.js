@@ -70,7 +70,7 @@ function renderWindow() {
   const alt = state.window === 'alternative';
   const week = data.week;
   const primaryHelp = `Semana completa\nComparamos o preço no fim de ${day(week.preceding_close)}, antes de a semana começar, com o preço no fim de ${day(week.last_week_close)}, último dia com fechamento disponível nela.\n\nComeçamos antes da semana para incluir também a mudança de preço do primeiro dia com dados (${day(week.first_week_close)}).`;
-  const alternativeHelp = `Dentro da semana\nComparamos o preço no fim de ${day(week.first_week_close)}, primeiro dia com fechamento disponível na semana, com o preço no fim de ${day(week.last_week_close)}, último dia com fechamento disponível.\n\nA mudança de preço até o fechamento de ${day(week.first_week_close)} fica de fora, pois esse preço já é o ponto de partida.`;
+  const alternativeHelp = `Dentro da semana\nComparamos o preço no fim de ${day(week.first_week_close)}, primeiro dia com fechamento disponível na semana, com o preço no fim de ${day(week.last_week_close)}. É a mesma semana anterior e a mesma data final da opção “Semana completa”; não vai até o dia atual.\n\nA mudança de preço até o fechamento de ${day(week.first_week_close)} fica de fora: esse preço é o ponto de partida. Por isso, nesse primeiro dia o retorno diário aparece como —. O primeiro retorno compara esse preço com o fechamento da próxima data da extração.`;
   text(
     'metric-mean-help',
     `Média dos retornos das 20 ações do ranking selecionado.\n\n${alt ? alternativeHelp : primaryHelp}`,
@@ -215,22 +215,25 @@ function renderDetail() {
     alerts.append(node('p', '', explanation.impact));
   }
   const returns = state.chartMode === 'returns';
+  const daily = state.data.windows[state.window].daily;
   $('chart-price').classList.toggle('active', !returns);
   $('chart-returns').classList.toggle('active', returns);
   $('chart-price').setAttribute('aria-pressed', String(!returns));
   $('chart-returns').setAttribute('aria-pressed', String(returns));
   text(
     'detail-note',
-    `${returns ? 'Retorno entre fechamentos ajustados de datas consecutivas da extração. Uma lacuna indica ausência de comparação válida.' : 'Preço de fechamento ajustado em reais (R$) por ação.'} O ranking compara os fechamentos de ${day(row.start_date)} e ${day(row.end_date)}. Variação em R$ = final − inicial, por ação ajustada; não representa o resultado de uma operação com custos.`,
+    `${returns ? daily.note : 'Preço de fechamento ajustado em reais (R$) por ação, no período selecionado.'} O ranking compara os fechamentos de ${day(row.start_date)} e ${day(row.end_date)}. Variação em R$ = final − inicial, por ação ajustada; não representa o resultado de uma operação com custos.`,
   );
   const box = $('detail-chart');
   clear(box);
   const series = returns
-    ? (state.data.daily.heatmap[row.ticker] || []).map((p) => ({
+    ? (daily.heatmap[row.ticker] || []).map((p) => ({
         date: p.date,
         value: p.return_pct,
+        previousDate: p.previous_date,
+        reason: p.reason,
       }))
-    : (state.data.daily.series[row.ticker] || []).map((p) => ({ date: p.date, value: p.close }));
+    : (daily.series[row.ticker] || []).map((p) => ({ date: p.date, value: p.close }));
   const points = series.filter((p) => p.value !== null && Number.isFinite(Number(p.value)));
   if (points.length < (returns ? 1 : 2)) {
     box.append(
@@ -262,7 +265,7 @@ function renderDetail() {
     minimumFractionDigits: 2,
     maximumFractionDigits: tickStep < 0.01 ? 5 : tickStep < 0.1 ? 3 : 2,
   });
-  const allDates = returns ? state.data.daily.dates.slice(1) : state.data.daily.dates;
+  const allDates = returns ? daily.return_dates : daily.dates;
   const plotWidth = w - left - right;
   const x = (d) =>
     returns
@@ -404,7 +407,7 @@ function renderDetail() {
     guide.setAttribute('x1', xx);
     guide.setAttribute('x2', xx);
     guide.setAttribute('visibility', 'visible');
-    tip.textContent = `${day(p.date)} · ${returns ? signedPct(p.value) : `R$ ${preciseMoney(p.value)} / ação`}`;
+    tip.textContent = observationLabel(p);
     tip.style.left = `${Math.min(72, Math.max(28, (xx / w) * 100))}%`;
     tip.style.top = `${(Math.max(30, y(Number(p.value))) / h) * 100}%`;
     tip.hidden = false;
@@ -413,12 +416,29 @@ function renderDetail() {
     guide.setAttribute('visibility', 'hidden');
     tip.hidden = true;
   };
-  points.forEach((p) => {
+  const observationLabel = (p) => {
+    if (returns && p.reason === 'window_start')
+      return `${day(p.date)} · Preço inicial da janela. Ainda não há retorno: a comparação começa no próximo dia da extração. Não significa zero nem preço ausente.`;
+    if (returns && p.value === null)
+      return `${day(p.previousDate)} → ${day(p.date)} · Sem comparação válida: preço ausente ou conflitante.`;
+    return returns
+      ? `${day(p.previousDate)} → ${day(p.date)} · ${signedPct(p.value)}`
+      : `${day(p.date)} · R$ ${preciseMoney(p.value)} / ação`;
+  };
+  (returns ? series : points).forEach((p) => {
     const value = Number(p.value),
       xx = x(p.date),
       yy = y(value),
       barWidth = Math.min(42, (plotWidth / Math.max(1, allDates.length)) * 0.55);
-    if (returns) {
+    if (returns && p.value === null) {
+      axisLabel('—', {
+        x: xx,
+        y: y(0) - 10,
+        fill: '#a4a8af',
+        'font-size': 14,
+        'text-anchor': 'middle',
+      });
+    } else if (returns) {
       chart.append(
         svg('rect', {
           x: xx - barWidth / 2,
@@ -446,7 +466,7 @@ function renderDetail() {
       fill: 'transparent',
       tabindex: 0,
       role: 'button',
-      'aria-label': `${day(p.date)}: ${returns ? `retorno diário ${signedPct(p.value)}` : `fechamento ajustado R$ ${preciseMoney(p.value)}`}`,
+      'aria-label': observationLabel(p),
     });
     hit.addEventListener('pointerenter', () => show(p, xx));
     hit.addEventListener('pointerleave', hide);
@@ -536,7 +556,9 @@ function heatColor(raw) {
 function renderHeatmap(rows) {
   const wrap = $('heatmap');
   clear(wrap);
-  const dates = state.data.daily.dates.slice(1);
+  const daily = state.data.windows[state.window].daily;
+  const dates = daily.return_dates;
+  text('heatmap-note', daily.note);
   if (!dates.length) {
     wrap.append(node('p', 'muted', 'Sem série diária disponível para esta extração.'));
     return;
@@ -561,11 +583,10 @@ function renderHeatmap(rows) {
       });
     });
     grid.append(ticker);
-    const changes = new Map(
-      (state.data.daily.heatmap[row.ticker] || []).map((c) => [c.date, c.return_pct]),
-    );
+    const changes = new Map((daily.heatmap[row.ticker] || []).map((c) => [c.date, c]));
     dates.forEach((d) => {
-      const raw = changes.get(d) ?? null;
+      const change = changes.get(d);
+      const raw = change?.return_pct ?? null;
       const cell = node(
         'span',
         `heat-cell${raw === null ? ' missing' : ''}`,
@@ -573,7 +594,9 @@ function renderHeatmap(rows) {
       );
       const color = heatColor(raw);
       if (color) cell.style.background = color;
-      cell.title = `${row.ticker} · ${day(d)}: ${raw === null ? 'sem comparação válida' : pct(raw)}`;
+      cell.title = `${row.ticker} · ${change?.reason === 'window_start' ? `${day(d)}: preço inicial da janela; sem retorno nesse dia, não é zero nem preço ausente` : `${day(change?.previous_date)} → ${day(d)}: ${raw === null ? 'sem comparação válida; preço ausente ou conflitante' : signedPct(raw)}`}`;
+      cell.setAttribute('aria-label', cell.title);
+      cell.tabIndex = 0;
       grid.append(cell);
     });
   });

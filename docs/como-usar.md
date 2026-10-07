@@ -15,15 +15,15 @@ Os ícones de informação exibem explicações curtas ao passar o mouse ou rece
 
 Os percentuais dos cards usam duas casas decimais; a quantidade de ações permanece inteira. Na referência, 119 de 308 ações tiveram retorno positivo: **38,64%**. Essa proporção conta as ações que subiram, independentemente da intensidade de cada alta.
 
-**Semana completa:** usa o fechamento antes de a semana começar e o último disponível nela. Na referência, compara o preço no fim de 11/09 com o preço no fim de 18/09; assim, inclui também a mudança do primeiro dia com dados, 14/09. **Dentro da semana:** começa no preço ao fim de 14/09 e termina ao fim de 18/09. A mudança até o fechamento de 14/09 fica de fora, pois esse fechamento já é o ponto de partida. Os textos de informação mostram as datas da execução consultada.
+**Semana completa:** usa o fechamento antes de a semana começar e o último disponível nela. Na referência, compara o preço no fim de 11/09 com o preço no fim de 18/09; assim, inclui também a mudança do primeiro dia com dados, 14/09. **Dentro da semana:** começa no preço ao fim de 14/09 e termina ao fim de 18/09. A mudança até o fechamento de 14/09 fica de fora, pois esse fechamento já é o ponto de partida. As duas opções terminam na mesma data da semana anterior; a alternativa não acompanha os dados até o dia atual. Os textos de informação mostram as datas da execução consultada.
 
 ## Explore uma ação
 
 Selecione uma linha do ranking ou escolha o ticker no controle junto ao gráfico. O painel mostra o ativo selecionado e o retorno da janela exibida. No celular, o ranking prioriza posição, ticker e retorno; selecionar a linha abre o gráfico, onde é possível conferir os preços e a espécie. Use “Voltar ao ranking” para continuar a exploração.
 
-- **Preços (R$):** fechamentos observados em reais por ação.
-- **Retornos diários (%):** variações entre datas consecutivas da extração.
-- **Hover ou foco nos pontos:** detalhes do valor e da data. No dispositivo móvel, toque na região da observação; o valor aparece abaixo do gráfico.
+- **Preços (R$):** fechamentos observados em reais por ação, somente entre o início e o fim da janela selecionada.
+- **Retornos diários (%):** variações entre datas consecutivas da extração dentro da janela selecionada. Na alternativa, o primeiro dia aparece como “—”: seu fechamento é o preço inicial, e o primeiro retorno aparece na próxima data da extração com comparação válida.
+- **Hover ou foco nos pontos:** detalhes do valor e da data; para um retorno, aparecem as duas datas comparadas. No dispositivo móvel, toque na região da observação; o valor aparece abaixo do gráfico.
 - **Valores nas extremidades:** preços inicial e final da série exibida no modo de preços.
 
 Uma lacuna não é uma variação de zero. Veja [por que podem faltar dados](duvidas.md).
@@ -34,11 +34,11 @@ A distribuição agrupa os retornos das ações elegíveis. A proporção de alt
 
 No dashboard, a matriz diária vem depois do ranking e do gráfico da ação. “Além do top 20” aparece por último, para ampliar a leitura para todas as ações elegíveis.
 
-A matriz do top 20 apresenta movimentos diários com cores e valores. No celular, deslize dentro da matriz para consultar as datas e ações; ticker e cabeçalhos permanecem fixos. Tocar no ticker abre seu gráfico. Uma célula vazia significa que faltam preços utilizáveis para aquela comparação. A fórmula semanal usa suas próprias duas pontas; não soma os percentuais da matriz.
+A matriz do top 20 apresenta movimentos diários com cores e valores. No celular, deslize dentro da matriz para consultar as datas e ações; ticker e cabeçalhos permanecem fixos. Tocar no ticker abre seu gráfico. Na alternativa, a célula do primeiro dia mostra “—” porque aquele fechamento é o preço inicial: não é zero nem dado ausente. Nas outras datas, “—” significa que faltam preços utilizáveis para aquela comparação. A explicação acima da matriz acompanha a opção selecionada; a descrição de cada célula informa a comparação ou o motivo da ausência. A fórmula semanal usa suas próprias duas pontas; não soma os percentuais da matriz.
 
 ## Baixe e confira
 
-O link ao lado de “Maiores retornos da semana” baixa o ranking da janela exibida. A auditoria da execução reúne os demais arquivos permitidos, as datas e os alertas. Guarde o link da análise enviada enquanto ela estiver disponível.
+O link ao lado de “Maiores retornos da semana” baixa o ranking da janela exibida. A auditoria da execução reúne os demais arquivos permitidos, as datas e os alertas. Guarde o endereço web (URL) da sua análise e baixe os arquivos que quiser conservar nos sete dias de disponibilidade. O case continua na página inicial; um novo envio não o substitui.
 
 ## Envie outra extração
 

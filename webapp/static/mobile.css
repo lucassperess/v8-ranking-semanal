@@ -253,6 +253,7 @@
     transform: none;
     min-width: 0;
     width: 100%;
+    max-width: 100%;
     margin: 8px 0;
     font:
       13px/1.5 Arial,

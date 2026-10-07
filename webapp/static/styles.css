@@ -361,8 +361,10 @@ td.positive,
   border: 1px solid #59636a;
   background: #181d20;
   color: #f3f5f5;
-  white-space: nowrap;
-  font: 12px var(--mono);
+  white-space: normal;
+  width: max-content;
+  max-width: min(280px, 90%);
+  font: 12px/1.5 var(--mono);
   pointer-events: none;
 }
 .chart-tooltip[hidden] {

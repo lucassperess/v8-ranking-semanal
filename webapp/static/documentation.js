@@ -14,9 +14,11 @@ if (id) {
   document.getElementById('docs-audit').href = `/analise/${id}/metodologia`;
   document.getElementById('docs-audit').textContent = 'Auditoria da sua análise ↗';
   document.getElementById('nav-result').href = `/analise/${id}`;
-  if (!document.getElementById('docs-context').dataset.archived)
+  if (!document.getElementById('docs-context').dataset.archived) {
+    document.getElementById('docs-context').hidden = false;
     document.getElementById('docs-context').textContent =
       'Documentação geral · confira datas e números na auditoria da sua análise.';
+  }
 }
 function keepContext() {
   if (id)
@@ -121,6 +123,18 @@ document.querySelectorAll('.docs-menu,.docs-outline').forEach((menu) => {
     }
   });
   menu.addEventListener('click', (event) => {
-    if (event.target.closest('a') && matchMedia('(max-width:800px)').matches) menu.open = false;
+    const link = event.target.closest('a');
+    if (link && matchMedia('(max-width:800px)').matches) {
+      menu.open = false;
+      if (link.hash && new URL(link.href).pathname === location.pathname) {
+        requestAnimationFrame(() =>
+          requestAnimationFrame(() => {
+            document
+              .getElementById(decodeURIComponent(link.hash.slice(1)))
+              ?.scrollIntoView({ block: 'start', behavior: 'instant' });
+          }),
+        );
+      }
+    }
   });
 });

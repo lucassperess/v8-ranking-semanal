@@ -6,6 +6,8 @@ import re
 import shutil
 import tempfile
 import unittest
+from copy import deepcopy
+from decimal import Decimal
 from datetime import timedelta
 from pathlib import Path
 from unittest.mock import patch
@@ -14,7 +16,7 @@ from fastapi.testclient import TestClient
 
 import etl
 from webapp import store
-from webapp.presentation import DOWNLOADS, audit_details, build_presentation, daily_context, enrich_interpretation, output_path
+from webapp.presentation import DOWNLOADS, audit_details, build_presentation, daily_context, enrich_daily_windows, enrich_interpretation, output_path
 from webapp.server import app
 
 
@@ -61,6 +63,65 @@ class PresentationTests(unittest.TestCase):
         self.assertEqual(result["windows"]["primary"]["breadth"]["denominator"], 308)
         self.assertEqual(result["windows"]["primary"]["breadth"]["up"] + result["windows"]["primary"]["breadth"]["down"] + result["windows"]["primary"]["breadth"]["flat"], 308)
         self.assertGreaterEqual(len(result["daily"]["dates"]), 4)
+        alt = result['windows']['alternative']
+        self.assertEqual(alt['mean_pct'], '15.93')
+        self.assertEqual(alt['daily']['dates'][0], '2026-09-14')
+        for window in result['windows'].values():
+            for row in window['top20']:
+                prices = window['daily']['series'][row['ticker']]
+                self.assertEqual(prices[0]['close'], row['start_close'])
+                self.assertEqual(prices[-1]['close'], row['end_close'])
+        self.assertIsNone(alt['daily']['heatmap']['ECOM3'][0]['return_pct'])
+        self.assertEqual(alt['daily']['heatmap']['ECOM3'][0]['reason'], 'window_start')
+        self.assertEqual(alt['daily']['heatmap']['ECOM3'][1]['previous_date'], '2026-09-14')
+
+    def test_window_series_with_other_year_holiday_and_short_week(self):
+        # First date is Tuesday; end is Thursday. No dates from the case.
+        dates = ['2025-04-17', '2025-04-22', '2025-04-23', '2025-04-24']
+        with tempfile.TemporaryDirectory() as temporary:
+            source = Path(temporary) / 'normalized.csv'
+            lines = ['ticker,trade_date,close,parse_status']
+            for ticker, prices in {'TEST3': ['10', '11', '11.5', '12'],
+                                   'GAPS4': ['10', '11', '', '12']}.items():
+                lines += [f'{ticker},{day},{price},ok' for day, price in zip(dates, prices)]
+            source.write_text('\n'.join(lines), encoding='utf-8')
+            daily = daily_context(source, {'TEST3', 'GAPS4'}, dates[0], dates[-1])
+        original = deepcopy(daily)
+        payload = {'daily': daily, 'windows': {
+            key: {'start_date': start, 'end_date': dates[-1],
+                  'top20': [{'ticker': 'TEST3'}, {'ticker': 'GAPS4'}]}
+            for key, start in [('primary', dates[0]), ('alternative', dates[1])]}}
+        enrich_daily_windows(payload)
+        self.assertEqual(daily, original)
+        main = payload['windows']['primary']['daily']
+        alt = payload['windows']['alternative']['daily']
+        self.assertEqual(main['return_dates'], dates[1:])
+        self.assertEqual(alt['dates'], dates[1:])
+        self.assertEqual(alt['return_dates'], dates[1:])
+        self.assertEqual(Decimal(main['heatmap']['TEST3'][0]['return_pct']), Decimal('10'))
+        self.assertIsNone(alt['heatmap']['TEST3'][0]['return_pct'])
+        self.assertIsNone(alt['heatmap']['TEST3'][0]['previous_date'])
+        self.assertEqual(alt['heatmap']['TEST3'][0]['reason'], 'window_start')
+        for point in alt['heatmap']['GAPS4'][1:]:
+            self.assertIsNone(point['return_pct'])
+            self.assertEqual(point['reason'], 'missing_comparison')
+        for context, start in [(main, Decimal('10')), (alt, Decimal('11'))]:
+            compound = Decimal('1')
+            for point in context['heatmap']['TEST3']:
+                if point['return_pct'] is not None:
+                    compound *= 1 + Decimal(point['return_pct']) / 100
+            self.assertAlmostEqual(compound, Decimal('12') / start, places=25)
+        before = deepcopy(payload)
+        enrich_daily_windows(payload)
+        self.assertEqual(payload, before)
+
+    def test_unavailable_daily_series_is_not_fabricated(self):
+        payload = {'daily': {'dates': [], 'series': {}, 'heatmap': {}}, 'windows': {
+            'alternative': {'start_date': '2025-04-22', 'end_date': '2025-04-24',
+                            'top20': [{'ticker': 'TEST3'}]}}}
+        enrich_daily_windows(payload)
+        self.assertEqual(payload['windows']['alternative']['daily']['dates'], [])
+        self.assertEqual(payload['windows']['alternative']['daily']['heatmap']['TEST3'], [])
 
     def test_missing_daily_price_stays_empty(self):
         with tempfile.TemporaryDirectory() as temporary:
@@ -134,18 +195,24 @@ class ApiTests(unittest.TestCase):
         payload = build_presentation(source, featured=True)
         payload.pop("audit")  # Execuções concluídas antes desta ampliação.
         for window in payload['windows'].values():
+            window.pop('daily')  # Séries antigas não eram separadas por janela.
             window.pop('interpretation')
             window.pop('quality')
             for row in window['top20']:
                 row.pop('change_brl')
                 row.pop('issues')
-        (root / "presentation.json").write_text(json.dumps(payload), encoding="utf-8")
+        saved = json.dumps(payload)
+        (root / "presentation.json").write_text(saved, encoding="utf-8")
         store.update_job(job_id, status="completed", stage="Concluída")
         response = self.client.get(f"/api/analyses/{job_id}/result")
         self.assertTrue(response.json()["audit"]["available"])
         self.assertEqual(self.client.get(f'/analise/{job_id}/documentacao/como-usar').status_code, 200)
         self.assertEqual(response.json()['windows']['primary']['top20'][0]['change_brl'], '0.50')
         self.assertIn('interpretation', response.json()['windows']['alternative'])
+        alt_daily = response.json()['windows']['alternative']['daily']
+        self.assertEqual(alt_daily['dates'][0], '2026-09-14')
+        self.assertIsNone(alt_daily['heatmap']['ECOM3'][0]['return_pct'])
+        self.assertEqual((root / 'presentation.json').read_text(encoding='utf-8'), saved)
         for name in response.json()["downloads"]:
             self.assertEqual(self.client.get(f"/api/analyses/{job_id}/files/{name}").status_code, 200)
         self.assertEqual(self.client.get(f"/api/analyses/{job_id}/files/normalized.csv").status_code, 404)
@@ -230,6 +297,16 @@ class ApiTests(unittest.TestCase):
         self.assertIn('47,17%', method)
         self.assertEqual(self.client.get('/documentacao/desconhecida').status_code, 404)
         self.assertEqual(self.client.get('/documentacao').status_code, 200)
+        home = self.client.get('/documentacao').text
+        self.assertIn('id="docs-context" class="docs-context" hidden', home)
+        self.assertNotIn('Regras e guias da ferramenta', home)
+        self.assertNotIn('Antes de interpretar', home)
+        self.assertIn('Como funciona uma nova análise', home)
+        self.assertIn('9,09%', home)
+        archived = self.client.get('/documentacao/referencia/comece-aqui').text
+        self.assertIn('data-archived="true"', archived)
+        self.assertIn('Cópia arquivada desta execução', archived)
+        self.assertIn('associada após revisão', archived)
         index = self.client.get('/api/documentation').json()
         self.assertEqual(len(index), len(PAGES))
         self.assertTrue(any('células vazias' in article['text'] for article in index))

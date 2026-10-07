@@ -101,3 +101,12 @@ python review_exceptions.py --input "runs\extracao-2026-09-22\normalized.csv" --
 
 Se desejar sugestões da Groq, informe um modelo compatível por `--model` e defina `GROQ_API_KEY` no ambiente. Opcionalmente forneça `--official-evidence` com colunas `ticker,official_reference_url,official_excerpt`. Sem evidência oficial, o script só aceita sugestão de próximo passo, não de categoria. O resultado permanece `pendente_validacao_humana`; para passar a valer, é preciso verificar a fonte e registrar uma aprovação em `overrides/approved.csv`. Indisponibilidade ou limite da Groq não impede o ETL principal.
 
+
+
+## Contrato das séries diárias na interface
+
+`webapp/presentation.py` prepara `windows.primary.daily` e `windows.alternative.daily`. Cada objeto contém `dates` (preços), `return_dates` (gráfico de retornos e matriz), `series` (fechamentos por ticker) e `heatmap` (retornos por ticker). As observações de retorno incluem `previous_date`, `date`, `return_pct` e `reason`.
+
+Na alternativa, a primeira observação tem `return_pct=null` e `reason=window_start`: é uma base inicial, não zero nem ausência de preço. Nas outras datas, `missing_comparison` identifica uma comparação sem preços utilizáveis. Valores zero continuam sendo retornos válidos. As datas respeitam a extração, sem presumir segunda-feira ou criar pregões ausentes.
+
+O campo legado `daily` mantém a série original compartilhada para compatibilidade. A API adapta apresentações antigas em memória usando esse campo; não precisa do bruto e não regrava o histórico. Novas execuções guardam também os recortes por janela em `presentation.json`. Esse arquivo de apresentação não é um download público nem substitui os CSVs e manifestos auditados.

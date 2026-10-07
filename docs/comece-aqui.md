@@ -1,36 +1,46 @@
 # Comece aqui
 
-Esta ferramenta transforma uma extração da Economatica em um ranking semanal de ações ON e PN. Você pode explorar o resultado do case ou enviar outro arquivo no mesmo formato para testar o processo.
+Esta ferramenta transforma uma extração de dados financeiros da plataforma Economatica em um ranking semanal de ações ON e PN. Você pode explorar o resultado do case ou enviar outro arquivo no mesmo formato para testar o processo e obter uma nova análise.
 
-## Escolha seu caminho
+## Fontes dos dados
 
-| Quero… | Comece por… |
-| --- | --- |
-| Entender as regras do resultado | [Metodologia do ranking](metodologia.md) |
-| Explorar tabelas e gráficos | [Como usar o dashboard](como-usar.md) |
-| Enviar outra base | [Dados e tratamento](dados.md), depois [Nova análise](/nova-analise) |
-| Saber o que acontece por dentro | [Como o sistema funciona](sistema.md) |
-| Conferir um número ou uma exclusão | [Auditoria e reprodução](auditoria.md) |
-| Entender uma célula vazia ou uma falha | [Problemas e dúvidas](duvidas.md) |
+**Economatica:** fornece os preços utilizados no cálculo dos retornos e as demais informações presentes na extração. A ferramenta utiliza a coluna de fechamento ajustado para proventos já exportada pela Economatica; não aplica novos ajustes aos preços.
 
-## Duas fontes, dois papéis
-
-**Economatica:** fornece os preços utilizados nos retornos e as observações da extração. Os fechamentos são ajustados conforme a fonte recebida.
-
-**B3:** fornece evidências para confirmar a espécie das ações nas datas utilizadas. Seus preços não substituem os da Economatica.
+**B3:** fornece os registros oficiais usados para confirmar se cada instrumento é uma ação ordinária (ON) ou preferencial (PN) nas datas utilizadas. Os preços usados no cálculo continuam sendo os da Economatica.
 
 ## O que a ferramenta entrega
 
-- Ranking das 20 maiores variações entre ações elegíveis e sua média aritmética.
-- Comparação com uma janela alternativa dentro da semana.
-- Gráficos de preços, retornos diários, distribuição e movimento do top 20.
-- Variação em R$ por ação, resumo dos destaques e alertas explicados junto ao ativo.
-- Datas utilizadas, exclusões, arquivos derivados e guias arquivados por execução.
+- **Ranking semanal:** as 20 ações ON e PN com os maiores retornos entre aquelas com preços válidos e classificação confirmada nas duas datas do cálculo. Cada linha mostra o retorno individual daquela ação no período.
+- **Média do top 20:** um card mostra a média aritmética dos 20 retornos do ranking selecionado. Cada ação tem o mesmo peso nessa média.
+- **Duas formas de medir a mesma semana:** a principal inclui a mudança de preço do primeiro dia; a alternativa começa no fechamento desse dia e mede a mudança a partir dali. Ambas terminam no mesmo fechamento final. Veja o exemplo abaixo.
+- **Gráficos e tabela diária:** preços e retornos diários da ação selecionada; distribuição dos retornos semanais de todas as ações elegíveis; e uma tabela que cruza as ações do top 20 com as datas. Cada célula mostra a variação do fechamento anterior para o fechamento da data indicada, respeitando a janela selecionada.
+- **Detalhes das ações:** preços inicial e final, diferença em reais por ação, maior retorno do ranking e faixa de retornos do top 20. Quando há alertas nos dados das duas datas usadas para uma ação, uma marca aparece junto ao ticker. Selecionar a ação abre a explicação no painel.
+- **Arquivos para conferir o resultado:** a auditoria reúne as datas do cálculo, os códigos excluídos e seus motivos, os rankings em CSV, as ocorrências nos dados e as evidências oficiais usadas na classificação. Também permite abrir a cópia da documentação associada àquela execução.
 
-Cada novo envio cria uma execução independente. O resultado de referência permanece fixo. Os números desta documentação usados como exemplos pertencem ao case; os números da sua análise aparecem no resultado e na auditoria dela.
+### Entenda as duas janelas com preços simples
 
-## Antes de interpretar
+Imagine uma ação com estes fechamentos: **R$ 10 na sexta anterior**, **R$ 11 na segunda** e **R$ 12 na sexta final**. Estes preços são ilustrativos, não os do case.
 
-O ranking descreve dados históricos da extração. Não é cotação em tempo real, recomendação de investimento ou simulação de uma carteira formada antes da semana. O universo pode ser menor que o mercado inteiro e não possui filtro de liquidez.
+| Opção | Preços comparados | Retorno | O que inclui |
+| --- | --- | --- | --- |
+| Semana completa | R$ 10 → R$ 12 | 20,00% | A mudança da segunda-feira e o restante da semana |
+| Dentro da semana — alternativa | R$ 11 → R$ 12 | 9,09% | A mudança depois do fechamento da segunda-feira |
 
-Para entender as decisões, siga para [Metodologia do ranking](metodologia.md). Para experimentar, abra [Como usar o dashboard](como-usar.md).
+A alternativa não acompanha uma semana em andamento até o dia atual. Ela usa **a mesma semana anterior e a mesma data final da principal**, mas começa por outro preço.
+
+No case, a semana analisada é **14 a 20/09/2026**. A principal compara **11/09 → 18/09**; a alternativa compara **14/09 → 18/09**. Na alternativa, segunda-feira fornece o preço inicial: seu retorno diário aparece como **—**. O primeiro retorno é o de terça, comparando o fechamento de segunda com o de terça. Em outra extração, as datas podem ser diferentes.
+
+## Como funciona uma nova análise
+
+1. Abra [Nova análise](/nova-analise), envie um CSV no [formato documentado](dados.md) e escolha a data de referência. Essa data identifica a semana-calendário anterior que será analisada.
+2. A ferramenta executa o mesmo processo usado no case: trata os dados, seleciona as datas, confirma as ações, calcula os retornos e prepara os resultados. Se houver uma pendência que impeça o cálculo, a página explica o motivo.
+3. O site abre uma página própria para acompanhar o processamento. Quando ele termina com sucesso, **o resultado aparece nessa mesma página**, com seus cards, ranking, gráficos e downloads.
+4. **Guarde o endereço web dessa página, a URL exibida no navegador.** Você poderá voltar a ela ou compartilhá-la. Não existe uma lista pública para procurar os envios.
+5. Dentro do resultado, **“Auditoria desta execução”** abre as datas, decisões e arquivos daquela análise. Os exemplos desta documentação pertencem ao case; os números do seu envio estão no seu resultado e na sua auditoria.
+6. O resultado e seus arquivos ficam disponíveis por **sete dias**. Baixe os arquivos que quiser conservar antes de expirar: guardar a URL não prolonga esse prazo.
+
+Cada envio cria uma análise independente. Ele **não substitui o resultado do case**, que continua disponível permanentemente na [página inicial](/), acessível pela opção “Ranking” no menu. A documentação arquivada de uma execução preserva a revisão associada a ela; o menu “Documentação” abre os artigos atuais.
+
+## Explore os guias
+
+Abra um dos artigos abaixo para consultar as regras, usar o dashboard ou conferir sua análise.

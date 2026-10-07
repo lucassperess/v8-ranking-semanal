@@ -1,6 +1,6 @@
 # Metodologia do ranking semanal
 
-O ranking apresenta as 20 maiores variações de preço entre as ações ordinárias (ON) e preferenciais (PN) elegíveis na extração recebida. Os preços vêm da Economatica; a B3 fornece evidências para confirmar a espécie dos instrumentos.
+O ranking apresenta as 20 maiores retornos de preço entre as ações ordinárias (ON) e preferenciais (PN) elegíveis na extração recebida. Os preços vêm da Economatica; a B3 fornece evidências para confirmar a espécie dos instrumentos.
 
 Este artigo explica o comportamento atual do pipeline. O exemplo usa a execução de referência de **22/09/2026**. Outra extração terá suas próprias datas, ações, contagens e resultados.
 
@@ -145,7 +145,7 @@ Após calcular o retorno de cada ação elegível:
 Média do top 20 = (retorno 1 + retorno 2 + … + retorno 20) ÷ 20
 ```
 
-Cada ação tem o mesmo peso nessa média. Na referência, o valor calculado é aproximadamente **17,777107%**, apresentado como **17,78%**.
+Cada linha do ranking mostra o retorno individual de uma ação no período; a média dos 20 retornos aparece no card “Média do top 20”. Cada ação tem o mesmo peso nessa média. Na referência, o valor calculado é aproximadamente **17,777107%**, apresentado como **17,78%**.
 
 Essa é a média dos 20 maiores retornos selecionados após observar o período. Não é a média das 308 elegíveis, o retorno de um índice ou o resultado de uma estratégia executada antes da semana.
 
@@ -155,7 +155,11 @@ Se houver menos de 20 ações elegíveis, o programa interrompe a execução. El
 
 A alternativa compara o primeiro e o último fechamento **dentro da semana**: no exemplo, **14/09 a 18/09**.
 
-Ela mostra a sensibilidade do resultado à interpretação do início da janela. Sua elegibilidade é avaliada novamente nas próprias pontas: uma ação pode ter preço em 11/09 e não ter em 14/09.
+As duas opções analisam a mesma semana-calendário anterior e terminam na mesma data. A alternativa não se estende até o dia atual: apenas começa no fechamento do primeiro dia disponível dentro da semana, deixando de fora a mudança até esse fechamento.
+
+**Exemplo ilustrativo:** uma ação fecha a sexta anterior a R$ 10, a segunda a R$ 11 e a sexta final a R$ 12. A principal compara R$ 10 com R$ 12: **20,00%**. A alternativa compara R$ 11 com R$ 12: **9,09%**. A alta de R$ 10 para R$ 11 durante a segunda entra somente na principal.
+
+Ela mostra quanto o resultado muda ao começar por outro fechamento. Sua elegibilidade é avaliada novamente nas próprias pontas: uma ação pode ter preço em 11/09 e não ter em 14/09.
 
 | Resultado da referência | Principal | Alternativa |
 | --- | ---: | ---: |
@@ -167,11 +171,23 @@ Há 16 ações em comum nos dois top 20. A alternativa acompanha a análise; nã
 
 ## Como interpretar os gráficos diários
 
-O preço diário mostra os fechamentos válidos observados. A variação diária compara duas datas consecutivas da extração:
+Os gráficos e a tabela diária acompanham a janela selecionada. No case:
+
+| Visualização | Semana completa | Dentro da semana — alternativa |
+| --- | --- | --- |
+| Gráfico de preços | Fechamentos de 11/09 a 18/09 | Fechamentos de 14/09 a 18/09 |
+| Retorno diário de 14/09 | Compara 11/09 → 14/09 | —: 14/09 é o preço inicial |
+| Primeiro retorno da alternativa | Não se aplica | 15/09: compara 14/09 → 15/09 |
+
+Na alternativa, o primeiro dia não tem retorno dentro da janela: é o fechamento do qual partimos. O **—** desse dia não significa zero nem falta de preço. Os outros dias com **—** indicam que não há dois preços utilizáveis para comparar. As datas são as da execução; um feriado ou ausência de dados pode fazer o primeiro fechamento cair em outro dia da semana.
+
+O gráfico de preços mostra os fechamentos válidos observados. A variação diária compara duas datas consecutivas da extração:
 
 ```text
 Variação diária = (fechamento atual ÷ fechamento anterior − 1) × 100
 ```
+
+Ao passar o mouse, tocar ou focar uma observação do gráfico, a explicação do retorno mostra a data anterior e a data atual comparadas. Na tabela diária, a descrição da célula também identifica essa comparação.
 
 Se faltar um dos preços, a variação não é calculada. O sistema não pula a lacuna para apresentar uma variação de vários dias como diária. Datas consecutivas da extração podem estar separadas por vários dias de calendário; não há calendário oficial de pregões nessa construção visual.
 
@@ -209,7 +225,7 @@ No resultado publicado, os downloads permitidos incluem:
 | `ranking_report.json` | Conferir datas, contagens, premissas, média e procedência |
 | `README.md` | Ler o resumo da execução e as instruções de reprodução |
 
-Na pasta completa gerada pelo comando Python, `classification/principal/ranking_universe.csv` registra as decisões de inclusão/exclusão de instrumentos com duas pontas. Esse arquivo não está atualmente na lista de downloads públicos. Os arquivos completos do tratamento também ficam nessa pasta, separados das saídas de ranking.
+Na pasta completa gerada pelo comando Python, `classification/principal/ranking_universe.csv` registra as decisões de inclusão/exclusão de instrumentos com duas pontas. Na auditoria pública, ele está disponível como `ranking_universe.csv`; a alternativa usa `ranking_universe_alternativo.csv`. Os arquivos completos do tratamento também ficam nessa pasta, separados das saídas de ranking.
 
 O relatório registra uma **assinatura do conteúdo do arquivo**, chamada hash SHA-256: ela permite verificar se dois arquivos têm o mesmo conteúdo. Essa assinatura identifica a entrada, mas não comprova que os dados estejam corretos. A procedência registra também a versão e a assinatura do código utilizado.
 
@@ -241,6 +257,6 @@ Para conferir a implementação:
 
 ## Revisão deste artigo
 
-Revisado em **06/10/2026** para refletir os controles de revisão de semana, os arquivos de auditoria e o contexto da interface. Os exemplos numéricos pertencem à referência de 22/09/2026. A identificação da revisão dos guias aparece nesta página; a auditoria informa qual cópia foi associada a cada execução, sem alterar o registro histórico do cálculo.
+Revisado em **07/10/2026** para explicar as duas janelas, separar retorno individual e média e alinhar os gráficos e a tabela diária ao período selecionado. Os exemplos numéricos pertencem à referência de 22/09/2026. A identificação da revisão dos guias aparece nesta página; a auditoria informa qual cópia foi associada a cada execução, sem alterar o registro histórico do cálculo.
 
 Os artigos de [guia de uso](como-usar.md), [dados](dados.md), [classificação](classificacao.md) e [arquitetura](sistema.md) complementam esta explicação. Sempre que uma regra mudar, este artigo deve ser revisado junto com o código.

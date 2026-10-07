@@ -137,6 +137,9 @@ class ReplicationTests(unittest.TestCase):
         self.assertEqual(payload['windows']['alternative']['mean_pct'], '11.67')
         self.assertTrue(payload['documentation']['available'])
         self.assertEqual(payload['documentation']['mode'], 'at_completion')
+        alt_daily = payload['windows']['alternative']['daily']
+        self.assertEqual(alt_daily['dates'][0], payload['windows']['alternative']['start_date'])
+        self.assertTrue(all(points[0]['reason'] == 'window_start' for points in alt_daily['heatmap'].values()))
         self.assertEqual(self.client.get(f'/analise/{job_id}/documentacao/metodologia').status_code, 200)
         self.assertTrue(payload['week']['nonfriday_end_accepted'])
         self.assertTrue(payload['submission']['options']['accepted_at'])

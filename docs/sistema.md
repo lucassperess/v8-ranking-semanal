@@ -9,7 +9,7 @@ O site utiliza o mesmo pipeline Python executável pelo comando local. A interfa
 3. **Fila:** a execução aguarda sua vez em armazenamento persistente.
 4. **Worker:** um processo separado retira um trabalho da fila e executa o Python. Ele evita bloquear a aplicação que atende os visitantes.
 5. **Pipeline:** trata dados, seleciona datas, resolve classificações B3, calcula retornos e produz arquivos.
-6. **Apresentação:** um adaptador reúne os resultados e prepara as séries diárias, preservando lacunas.
+6. **Apresentação:** um adaptador reúne os resultados e prepara uma série diária para cada janela, preservando lacunas. Na alternativa, o primeiro fechamento é o preço inicial e não tem retorno diário.
 7. **Resultado:** o navegador consulta a API e apresenta ranking, gráficos, alertas e downloads permitidos.
 
 Os estados públicos são aguardando, processando, concluída e falhou. Uma falha tem motivo legível; não vira uma tabela incompleta com aparência de sucesso.
@@ -43,3 +43,10 @@ Para operar ou manter a implantação, consulte [as instruções de deploy](../d
 ## Guias associados ao resultado
 
 Ao concluir uma análise, o worker arquiva a documentação disponível nessa versão da aplicação. A API verifica a assinatura dos textos e a correspondência com a entrada e o código antes de oferecer a leitura. O ranking continua vindo dos mesmos derivados do pipeline; os guias são um registro separado. Artigos arquivados não usam a busca dos artigos atuais: o menu de assuntos navega dentro da cópia associada. A cópia tem o mesmo prazo de sete dias do resultado de teste.
+
+
+## Séries diárias e resultados anteriores
+
+O Python entrega preços, retornos diários e datas de comparação separados por janela. O navegador usa a série correspondente à opção selecionada tanto nos gráficos quanto na matriz. O retorno semanal e sua média continuam vindo dos arquivos auditados, sem novo cálculo no navegador.
+
+Apresentações antigas que guardaram uma única série diária são adaptadas em memória ao serem consultadas: o servidor recorta as observações pelas datas de cada janela e retira a comparação anterior ao início da alternativa. Isso usa os dados diários já salvos, mesmo após a remoção do bruto. Não regrava o resultado histórico, os manifestos nem a documentação arquivada. A documentação atual explica a interface atual; a cópia arquivada registra os guias associados à execução.
