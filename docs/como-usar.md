@@ -1,32 +1,58 @@
 # Como usar o dashboard
 
-O dashboard apresenta os resultados calculados pelo Python. Os controles mudam a visualização; não alteram os preços recebidos ou recalculam o ranking no navegador.
+O dashboard apresenta os resultados calculados pelo script Python utilizado para a análise. Os controles mudam a visualização e não alteram os preços recebidos ou recalculam o ranking no navegador.
 
-## Leia os indicadores
+## Leitura dos cards
 
-| Indicador | Interpretação |
-| --- | --- |
-| Média do top 20 | Média aritmética dos 20 retornos da janela selecionada |
-| Ações elegíveis | ON/PN com duas pontas utilizáveis e confirmação oficial |
-| Ações em alta | Proporção com retorno positivo entre as elegíveis |
-| Janela alternativa | Média do top 20 usando primeiro e último fechamento dentro da semana |
+### Média do top 20
 
-Os ícones de informação exibem explicações curtas ao passar o mouse ou receber foco pelo teclado. No celular, toque para abrir ou fechar; tocar fora também fecha a explicação. Para aprofundar os critérios, consulte a [metodologia](metodologia.md).
+Mostra a média dos retornos das 20 ações apresentadas no ranking: somamos os 20 retornos e dividimos por 20. Cada ação tem o mesmo peso. O valor acompanha a opção selecionada, “Semana completa” ou “Dentro da semana”. Cada linha da tabela mostra o retorno individual de uma ação; este card mostra a média do grupo.
 
-Os percentuais dos cards usam duas casas decimais; a quantidade de ações permanece inteira. Na referência, 119 de 308 ações tiveram retorno positivo: **38,64%**. Essa proporção conta as ações que subiram, independentemente da intensidade de cada alta.
+### Ações elegíveis
+
+Mostra quantas ações ON e PN puderam participar do ranking na janela selecionada. Para entrar, cada ação precisa ter fechamento válido nas datas inicial e final e classificação confirmada pelos registros oficiais da B3 nessas datas. Essa quantidade inclui todas as ações que atenderam às regras, mesmo aquelas que não ficaram entre as 20 primeiras.
+
+### Ações em alta
+
+Mostra qual porcentagem das ações elegíveis terminou o período com preço maior do que no início. Dividimos a quantidade de ações com retorno positivo pelo total de ações elegíveis. Cada ação é contada uma vez, independentemente do tamanho da alta. Esse percentual acompanha a janela selecionada.
+
+### Janela alternativa
+
+Mostra a média dos 20 maiores retornos medidos a partir do fechamento do primeiro dia disponível dentro da semana. No case, compara os preços de 14/09 com os de 18/09. A mudança ocorrida até o fechamento de 14/09 fica de fora porque esse preço é o ponto inicial. A alternativa analisa a mesma semana anterior e termina na mesma data da opção “Semana completa”.
+
+Os três primeiros cards acompanham a janela selecionada. O card “Janela alternativa” sempre mostra a média da alternativa.
+
+Os ícones de informação exibem explicações ao passar o mouse ou receber foco pelo teclado. No celular, toque para abrir ou fechar; tocar fora também fecha a explicação. Para entender como são escolhidas as datas, quais ações podem participar e como são calculados os retornos e a média, consulte a [Metodologia do ranking](metodologia.md).
+
+Os percentuais dos cards usam duas casas decimais e a quantidade de ações permanece inteira. Na janela “Semana completa” do case, por exemplo, 119 de 308 ações tiveram retorno positivo, o que representa **38,64% do total de ações elegíveis**.
 
 **Semana completa:** usa o fechamento antes de a semana começar e o último disponível nela. Na referência, compara o preço no fim de 11/09 com o preço no fim de 18/09; assim, inclui também a mudança do primeiro dia com dados, 14/09. **Dentro da semana:** começa no preço ao fim de 14/09 e termina ao fim de 18/09. A mudança até o fechamento de 14/09 fica de fora, pois esse fechamento já é o ponto de partida. As duas opções terminam na mesma data da semana anterior; a alternativa não acompanha os dados até o dia atual. Os textos de informação mostram as datas da execução consultada.
 
 ## Explore uma ação
 
-Selecione uma linha do ranking ou escolha o ticker no controle junto ao gráfico. O painel mostra o ativo selecionado e o retorno da janela exibida. No celular, o ranking prioriza posição, ticker e retorno; selecionar a linha abre o gráfico, onde é possível conferir os preços e a espécie. Use “Voltar ao ranking” para continuar a exploração.
+No desktop, a tabela apresenta estas colunas:
+
+| Coluna | Significado |
+| --- | --- |
+| # | Posição no ranking, ordenado do maior retorno para o menor |
+| ATIVO | Código da ação, chamado ticker |
+| ESPÉCIE | ON: ação ordinária; PN: ação preferencial |
+| INICIAL (R$) | Fechamento na data inicial da janela selecionada |
+| FINAL (R$) | Fechamento na data final |
+| RETORNO (%) | Variação percentual entre esses dois fechamentos |
+
+Selecione uma linha do ranking ou escolha o ticker no seletor junto ao gráfico. Essa seleção atualiza o painel e o gráfico para a ação escolhida. O painel apresenta o ticker, a espécie, o retorno do período, os fechamentos inicial e final, a diferença em reais por ação e eventuais alertas.
+
+No desktop, o painel permanece visível ao lado da tabela. No celular, a tabela prioriza posição, ticker e retorno; selecionar uma linha atualiza a ação e leva a página até o painel. Use “Voltar ao ranking” para retornar à tabela.
 
 - **Preços (R$):** fechamentos observados em reais por ação, somente entre o início e o fim da janela selecionada.
 - **Retornos diários (%):** variações entre datas consecutivas da extração dentro da janela selecionada. Na alternativa, o primeiro dia aparece como “—”: seu fechamento é o preço inicial, e o primeiro retorno aparece na próxima data da extração com comparação válida.
-- **Hover ou foco nos pontos:** detalhes do valor e da data; para um retorno, aparecem as duas datas comparadas. No dispositivo móvel, toque na região da observação; o valor aparece abaixo do gráfico.
+- **Passar o mouse ou focar os pontos pelo teclado:** detalhes do valor e da data; para um retorno, aparecem as duas datas comparadas. No dispositivo móvel, toque na região da observação; o valor aparece abaixo do gráfico.
 - **Valores nas extremidades:** preços inicial e final da série exibida no modo de preços.
 
-Uma lacuna não é uma variação de zero. Veja [por que podem faltar dados](duvidas.md).
+Uma lacuna na linha do gráfico de preços indica que não há fechamento utilizável naquela data. No gráfico de retornos diários, “—” indica que não foi possível comparar dois fechamentos consecutivos. Essas ausências não representam retorno zero, e a ferramenta não preenche os preços faltantes.
+
+Na alternativa, o primeiro dia também mostra “—”, mas por outro motivo: seu fechamento é o preço inicial da janela. Ainda não existe uma comparação dentro dela. A explicação da observação identifica esse motivo. Veja [por que podem faltar dados](duvidas.md).
 
 ## Compare o contexto
 
@@ -34,7 +60,7 @@ A distribuição agrupa os retornos das ações elegíveis. A proporção de alt
 
 No dashboard, a matriz diária vem depois do ranking e do gráfico da ação. “Além do top 20” aparece por último, para ampliar a leitura para todas as ações elegíveis.
 
-A matriz do top 20 apresenta movimentos diários com cores e valores. No celular, deslize dentro da matriz para consultar as datas e ações; ticker e cabeçalhos permanecem fixos. Tocar no ticker abre seu gráfico. Na alternativa, a célula do primeiro dia mostra “—” porque aquele fechamento é o preço inicial: não é zero nem dado ausente. Nas outras datas, “—” significa que faltam preços utilizáveis para aquela comparação. A explicação acima da matriz acompanha a opção selecionada; a descrição de cada célula informa a comparação ou o motivo da ausência. A fórmula semanal usa suas próprias duas pontas; não soma os percentuais da matriz.
+A matriz do top 20 apresenta movimentos diários com cores e valores. No celular, deslize dentro da matriz para consultar as datas e ações; ticker e cabeçalhos permanecem fixos. Tocar no ticker seleciona a ação e leva você ao seu painel. Na alternativa, a célula do primeiro dia mostra “—” porque aquele fechamento é o preço inicial: não é zero nem dado ausente. Nas outras datas, “—” significa que faltam preços utilizáveis para aquela comparação. A explicação acima da matriz acompanha a opção selecionada; a descrição de cada célula informa a comparação ou o motivo da ausência. A fórmula semanal usa suas próprias duas pontas; não soma os percentuais da matriz.
 
 ## Baixe e confira
 
