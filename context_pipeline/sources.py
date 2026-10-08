@@ -156,7 +156,7 @@ class Collector:
                 'date_basis': 'cvm_delivery_catalog', 'date_evidence': row['Data_Entrega'],
                 'cvm_code': str(int(row['Codigo_CVM']))}
 
-    def market(self, week, windows):
+    def market(self, week, windows, trace=None):
         from scripts.build_market_context import pair
 
         start, end = week['preceding_close'], week['last_week_close']
@@ -200,6 +200,8 @@ class Collector:
                     except ValueError:
                         item[key] = None
                 indicators.append(item)
-            except (OSError, ValueError, KeyError, TypeError):
+            except (OSError, ValueError, KeyError, TypeError) as exc:
                 missing.append(symbol)
+                if trace is not None:
+                    trace.failure('market_indicator', exc, item=symbol)
         return indicators, missing

@@ -94,6 +94,7 @@ def process(job: dict) -> None:
         prepare_context(output_dir, log_path, started)
     except Exception:
         write(output_dir / 'context/state.json', {'status': 'unavailable',
+              'reason': 'context_start_or_processing_failed',
               'message': 'Não foi possível iniciar ou concluir o contexto. O ranking permanece disponível.'})
 
 
@@ -112,6 +113,7 @@ def prepare_context(output_dir, log_path, started):
                     context_child.kill()
                     context_child.wait()
                 write(output_dir / 'context/state.json', {'status': 'unavailable',
+                      'reason': 'server_shutdown' if STOP else 'processing_deadline_exceeded',
                       'message': 'A coleta de contexto não terminou no prazo. O ranking está concluído e disponível.'})
                 break
             time.sleep(1)
@@ -119,6 +121,7 @@ def prepare_context(output_dir, log_path, started):
             state = json.loads((output_dir / 'context/state.json').read_text(encoding='utf-8'))
             if state.get('status') == 'processing':
                 write(output_dir / 'context/state.json', {'status': 'unavailable',
+                      'reason': 'context_process_failed',
                       'message': 'A geração de contexto foi interrompida. O ranking permanece disponível.'})
 
 

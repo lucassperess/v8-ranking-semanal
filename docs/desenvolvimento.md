@@ -183,6 +183,43 @@ A fila migra bancos existentes acrescentando opções com padrão vazio. O worke
 
 `tests/test_replication.py` executa o worker em subprocesso real com extrações e fontes B3 **artificiais e locais**, sem rede. Os fixtures não devem ser publicados como evidência oficial. A API também é conferida com duas entradas distintas, migração de banco antigo, confirmação invalidada e bloqueios. Uma extração real diferente deve ser conferida em desenvolvimento para verificar aquisição das fontes e apresentação por HTTPS.
 
+### Motivos de perdas na coleta de contexto
+
+Novas gerações registram etapas e resultados em `context/diagnostics/{codigo}.json`,
+inclusive para os temas macroeconômicos. O arquivo é atualizado durante a coleta:
+se o processo for encerrado, a última etapa iniciada continua registrada.
+Na conclusão, `context_audit.json` inclui esses registros em `processing_diagnostics`.
+O registro geral `run.json` identifica falhas de identidade, catálogo CVM,
+leitura financeira e indicadores de mercado.
+
+Os registros distinguem busca vazia, falha HTTP (com o status, sem o corpo ou
+endereço da resposta), ausência de texto legível, limites de seleção/leitura,
+ausência de propostas da IA, rejeição pela verificação e rejeição na segunda
+leitura. `event_index` identifica a posição na proposta original da IA.
+
+| Motivo | O que aconteceu |
+| --- | --- |
+| `local_budget_exhausted` | O limite interno impediu a chamada; não significa saldo da API esgotado. A reserva necessária e a restante são estimativas, não gastos faturados. |
+| `quote_not_found` | A citação proposta não corresponde literalmente ao texto lido. |
+| `financial_source_used_as_event` | A IA citou o antecedente financeiro no campo destinado a acontecimentos. |
+| `unknown_source_id` | A proposta citou uma fonte que não foi fornecida para verificar acontecimentos. |
+| `publication_date_not_verified` | O trecho não confirma a data de publicação exigida para aquela fonte. |
+| `model_review_rejected` | A segunda leitura recusou o acontecimento já verificado pela rotina Python. |
+| `model_proposed_no_events` | A IA respondeu, mas não propôs acontecimentos; não é prova de que eles não existem. |
+| `no_selected_sources` | Não havia textos selecionados para iniciar a geração. Consulte as etapas anteriores para distinguir busca vazia de falha de consulta. |
+
+O estado de execução também distingue serviço desativado, credenciais ausentes,
+prazo excedido, encerramento do servidor e falha do processo de contexto.
+Mensagens brutas de exceções, credenciais e corpos de documentos não são copiados
+para os diagnósticos públicos. Propostas e respostas já arquivadas continuam na
+coleta privada para conferência mais detalhada.
+
+O replay grava diagnósticos no seu próprio diretório, preservando os da geração
+original. Ele registra o que ocorreu durante a reprodução; não reconstrói
+automaticamente o orçamento ou uma falha de rede de uma execução antiga.
+Os registros são acrescentados à auditoria, sem mudar preços, regras de aceitação,
+textos empresariais ou indicadores. Esta etapa, isoladamente, não aumenta a cobertura.
+
 ### Conferência visual mobile
 
 Confira 320, 390 e 430 px e o desktop antes de publicar alterações de layout. Verifique navegação completa, ausência de sobreposição na introdução, retorno visível no ranking, seleção e volta do gráfico, abertura/fechamento de informações, matriz com datas e ticker fixos, menus e tabelas da documentação, seletor da auditoria e referência brasileira no formulário. Conferência de viewport no navegador não substitui teste em Android e iOS físicos, especialmente para seleção de arquivos e teclado.

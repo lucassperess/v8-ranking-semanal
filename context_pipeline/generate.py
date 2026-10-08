@@ -18,6 +18,7 @@ from scripts.build_case_context import money, percent, short_date
 from scripts.build_context_evidence import account_record, price_observation, select_filing
 from scripts.collect_case_context import ROOT, read_keys
 from webapp.presentation import output_path
+from context_pipeline.diagnostics import BudgetExceeded, Trace, error_reason
 
 PROMPT_VERSION = 'run-context-1.0'
 MONTHS = ('janeiro fevereiro marco abril maio junho julho agosto setembro outubro novembro dezembro').split()
@@ -148,7 +149,8 @@ class Models:
         with self.lock:
             if not saved:
                 if self.reserved + reserve > self.budget:
-                    raise ValueError('Local model budget reserve exhausted')
+                    raise BudgetExceeded('Local model budget reserve exhausted', reserve=reserve,
+                                         remaining=self.budget - self.reserved)
                 self.reserved += reserve
         write(request_path, request)
         response = self.collector.json(label, 'https://api.openai.com/v1/responses', request,
@@ -162,7 +164,7 @@ class Models:
             return self.call(label + '-retry', instructions + '\nResponda somente com o JSON final, sem comentário intermediário.', input_data, schema)
 
 
-def financial_records(collector, identities, cutoff):
+def financial_records(collector, identities, cutoff, trace=None):
     """Select a disclosed quarter, never a filing delivered after the price end."""
     records = {}
     year = int(cutoff[:4])
@@ -212,7 +214,9 @@ def financial_records(collector, identities, cutoff):
                     records[identity['cvm_code']] = {'text': text, 'source_ids': ['itr-' + identity['cvm_code']],
                         'scope': scope, 'period_start': begin, 'period_end': filing['DT_REFER'],
                         'accounts': accounts, 'filing': filing, 'source_url': url}
-        except (OSError, ValueError, KeyError):
+        except (OSError, ValueError, KeyError) as exc:
+            if trace is not None:
+                trace.failure('financial_archive', exc, event_index=archive_year)
             continue
     return records
 
@@ -320,20 +324,34 @@ def coverage_status(events, financial):
     return 'institutional_context_only' if events else 'insufficient_evidence'
 
 
-def prepare_issuer(identity, collector, models, documents, financial, week, macro=False):
+def prepare_issuer(identity, collector, models, documents, financial, week, macro=False,
+                   diagnostics=None, diagnostic_dir=None):
     code = identity['cvm_code']
+    trace = Trace(code, diagnostic_dir / (code + '.json') if diagnostic_dir else None)
     start = (date.fromisoformat(week['week_start']) - timedelta(days=90)).isoformat()
     end, cutoff = week['week_end'], week['last_week_close']
     sources, issues = [], []
+    stage = 'weekly_search'
     try:
         query = (identity['query_topic'] if macro else f"\"{identity['search_name']}\" {' '.join(identity['tickers'])} notícias comunicado")
         candidates = collector.search(code + '-week', f"{query} {week['week_start']} {end}", week['week_start'], end)
+        trace.record(stage, 'completed' if candidates else 'empty',
+                     'results_found' if candidates else 'no_search_results')
         if not macro:
-            candidates += collector.search(code + '-prior', f"\"{identity['search_name']}\" resultado trimestral fato relevante", start, cutoff)
+            stage = 'antecedent_search'
+            prior = collector.search(code + '-prior', f"\"{identity['search_name']}\" resultado trimestral fato relevante", start, cutoff)
+            trace.record(stage, 'completed' if prior else 'empty',
+                         'results_found' if prior else 'no_search_results')
+            candidates += prior
         else:
             start = week['week_start']
-        sources += collector.extract(code, candidates)
-    except (OSError, ValueError, KeyError):
+        stage = 'web_extraction'
+        extracted = collector.extract(code, candidates)
+        sources += extracted
+        trace.record(stage, 'completed' if extracted else 'empty',
+                     'bodies_found' if extracted else 'no_readable_bodies')
+    except (OSError, ValueError, KeyError) as exc:
+        trace.failure(stage, exc)
         issues.append('Algumas notícias não puderam ser consultadas.')
     matching = sorted([r for r in documents if str(int(r['Codigo_CVM'])) == code and
                        week['week_start'] <= r['Data_Entrega'][:10] <= end],
@@ -343,35 +361,63 @@ def prepare_issuer(identity, collector, models, documents, financial, week, macr
             source = collector.document_body(row, code + '-cvm-' + str(number))
             if source:
                 sources.append(source)
-        except Exception:
+            trace.record('official_document', 'completed' if source else 'empty',
+                         'body_found' if source else 'no_readable_body', event_index=number)
+        except Exception as exc:
+            trace.failure('official_document', exc, event_index=number)
             issues.append('Um documento oficial não pôde ser lido nesta coleta.')
     # Bound total input for cost, preserving each selected body in the private snapshot.
-    sources = sorted(sources, key=lambda r: not r['date_basis'].startswith('cvm_'))[:6]
+    selected = sorted(sources, key=lambda r: not r['date_basis'].startswith('cvm_'))[:6]
+    if len(selected) < len(sources):
+        trace.record('source_selection', 'limited', 'source_count_limit')
+    sources = selected
     for source in sources:
+        if len(source['body']) > 3000:
+            trace.record('source_selection', 'limited', 'body_length_limit', item=source['id'])
         source['body'] = source['body'][:3000]
     input_data = {'issuer': identity, 'week': week, 'price_end': cutoff,
                   'financial': financial, 'sources': sources}
     events, accepted_sources, interpretation = [], [], ''
     if sources:
+        stage = 'generation'
         try:
+            trace.record(stage, 'started', 'stage_started')
             instructions = INSTRUCTIONS + ('\nEsta tarefa trata de contexto geral de mercado, não de uma empresa: selecione fatos sobre o tema query_topic. Não associe causas a ações.' if macro else '')
             proposal = models.call('generate-' + code, instructions, input_data, GENERATION_SCHEMA)
+            trace.record(stage, 'completed' if proposal['events'] else 'empty',
+                         'events_proposed' if proposal['events'] else 'model_proposed_no_events')
             source_map = {r['id']: r for r in sources}
-            checked, verified = [], []
-            for event in proposal['events']:
+            checked, verified, checked_indices = [], [], []
+            for event_index, event in enumerate(proposal['events']):
                 try:
                     source = validate_event(event, source_map, identity, start, end)
                     checked.append(event)
                     verified.append(source)
-                except (ValueError, KeyError, TypeError):
+                    checked_indices.append(event_index)
+                    trace.record('event_validation', 'completed', 'event_verified', event_index=event_index)
+                except (ValueError, KeyError, TypeError) as exc:
+                    if isinstance(exc, KeyError) and event.get('source_id') not in source_map:
+                        reason = ('financial_source_used_as_event' if financial and
+                                  event.get('source_id') in financial['source_ids'] else 'unknown_source_id')
+                        trace.record('event_validation', 'rejected', reason, event_index=event_index)
+                    else:
+                        trace.record('event_validation', 'rejected',
+                                     error_reason(exc),
+                                     event_index=event_index)
                     issues.append('Um texto sugerido não foi usado porque faltava confirmar a empresa, a data ou o trecho que sustenta a informação.')
             review_data = {**input_data, 'proposal': {**proposal, 'events': checked}}
+            stage = 'review'
+            trace.record(stage, 'started', 'stage_started')
             review = models.call('review-' + code, REVIEW_INSTRUCTIONS, review_data, REVIEW_SCHEMA)
+            trace.record(stage, 'completed', 'review_completed')
             approved = set(review['accepted_event_indices'])
             for index, (event, source) in enumerate(zip(checked, verified, strict=True)):
                 if index not in approved:
+                    trace.record('event_review', 'rejected', 'model_review_rejected', event_index=checked_indices[index])
                     continue
                 source.update(cvm_code=code, after_price_end=source['publication_date'] > cutoff)
+                if source['after_price_end']:
+                    trace.record('price_cutoff', 'excluded', 'published_after_price_end', event_index=checked_indices[index])
                 source.pop('body')
                 accepted_sources.append(source)
                 events.append({'title': event['title'], 'text': event['text'], 'source_ids': [source['id']],
@@ -381,8 +427,11 @@ def prepare_issuer(identity, collector, models, documents, financial, week, macr
                 interpretation = proposal['interpretation']
             write(collector.directory / ('decision-' + code + '.json'), {'proposal': proposal, 'review': review,
                   'accepted_ids': [r['id'] for r in accepted_sources], 'issues': issues})
-        except (OSError, ValueError, KeyError, TypeError):
+        except (OSError, ValueError, KeyError, TypeError) as exc:
+            trace.failure(stage, exc)
             issues.append('Não foi possível preparar um texto completo a partir das fontes recuperadas.')
+    else:
+        trace.record('generation', 'not_run', 'no_selected_sources')
     eligible = [r for r in events if not r['after_price_end']]
     if not interpretation:
         interpretation = ' '.join(r['text'] for r in eligible[:2])
@@ -395,6 +444,9 @@ def prepare_issuer(identity, collector, models, documents, financial, week, macr
     if financial:
         references.extend(financial['source_ids'])
     status = coverage_status(eligible, financial)
+    trace.record('result', 'completed', status)
+    if diagnostics is not None:
+        diagnostics.append(trace.snapshot())
     issuer = {**identity, 'financial_context': financial,
               'interpretation': {'text': interpretation, 'source_ids': list(dict.fromkeys(references))},
               'events': sorted(events, key=lambda r: r['publication_date']), 'coverage_status': status,
@@ -416,10 +468,14 @@ def run(root, keys=None, replay=False, budget=Decimal('3.00')):
     enabled = os.environ.get('CONTEXT_ENABLED', '1') == '1'
     if not replay and (not enabled or not all(keys.get(k) for k in ('TAVILY_API_KEY', 'OPENAI_API_KEY'))):
         write(output / 'state.json', {'status': 'unavailable', 'message':
-              'Contexto não gerado: serviço desativado ou credenciais ausentes. O ranking está disponível.'})
+              'Contexto não gerado: serviço desativado ou credenciais ausentes. O ranking está disponível.',
+              'reason': 'service_disabled' if not enabled else 'missing_credentials'})
         return {'status': 'unavailable'}
     write(output / 'state.json', {'status': 'processing', 'message': 'Consultando fontes e preparando o contexto desta execução…'})
     collector = Collector(original / 'private', keys, root.parent.parent / 'context-cache', replay)
+    diagnostics = []
+    diagnostic_dir = output / 'diagnostics'
+    run_trace = Trace('run', diagnostic_dir / 'run.json')
     identity_path = collector.directory / 'input.json'
     identity = {'presentation_sha256': sha(root / 'presentation.json'), 'prompt_version': PROMPT_VERSION}
     if identity_path.exists() and json.loads(identity_path.read_text(encoding='utf-8')) != identity:
@@ -447,7 +503,8 @@ def run(root, keys=None, replay=False, budget=Decimal('3.00')):
             else:
                 identified[code] = identity
             asset['cvm_code'] = code
-        except (OSError, ValueError, KeyError, TypeError):
+        except (OSError, ValueError, KeyError, TypeError) as exc:
+            run_trace.failure('company_identity', exc, item=asset['ticker'])
             code = 'unconfirmed-' + asset['ticker']
             asset['cvm_code'] = code
             unknown.append({'cvm_code': code, 'name': asset['ticker'], 'tickers': [asset['ticker']],
@@ -459,9 +516,9 @@ def run(root, keys=None, replay=False, budget=Decimal('3.00')):
     for year in sorted({int(week['week_start'][:4]), int(week['week_end'][:4])}):
         try:
             documents += collector.documents(year)
-        except (OSError, ValueError, KeyError):
-            pass
-    finances = financial_records(collector, list(identified.values()), week['last_week_close'])
+        except (OSError, ValueError, KeyError) as exc:
+            run_trace.failure('official_catalog', exc, event_index=year)
+    finances = financial_records(collector, list(identified.values()), week['last_week_close'], run_trace)
     issuers, sources = list(unknown), []
     for code, record in finances.items():
         sources.append({'id': 'itr-' + code, 'cvm_code': code, 'url': record['source_url'],
@@ -469,7 +526,8 @@ def run(root, keys=None, replay=False, budget=Decimal('3.00')):
             'date_basis': 'cvm_itr_delivery_catalog', 'date_evidence': record['filing']['DT_RECEB'],
             'after_price_end': False, 'verification': 'dated_cvm_accounts_selected_in_python'})
     with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
-        tasks = [pool.submit(prepare_issuer, i, collector, models, documents, finances.get(i['cvm_code']), week)
+        tasks = [pool.submit(prepare_issuer, i, collector, models, documents, finances.get(i['cvm_code']), week,
+                             diagnostics=diagnostics, diagnostic_dir=diagnostic_dir)
                  for i in identified.values()]
         for task in concurrent.futures.as_completed(tasks):
             issuer, accepted = task.result()
@@ -477,7 +535,7 @@ def run(root, keys=None, replay=False, budget=Decimal('3.00')):
             sources.extend(accepted)
             print(json.dumps({'issuer': issuer['cvm_code'], 'coverage': issuer['coverage_status'],
                               'events': len(issuer['events'])}), flush=True)
-    indicators, missing = collector.market(week, payload['windows'])
+    indicators, missing = collector.market(week, payload['windows'], trace=run_trace)
     macro_events, macro_missing, macro_sources = [], [], []
     for code, name, topic in [('macro-br', 'Banco Central', 'Banco Central Copom Selic juros decisão'),
                        ('macro-us', 'Federal Reserve', 'Federal Reserve FOMC US interest rates decision'),
@@ -485,7 +543,8 @@ def run(root, keys=None, replay=False, budget=Decimal('3.00')):
         identity = {'cvm_code': code, 'name': name, 'search_name': name,
                     'tickers': [], 'query_topic': topic,
                     'cnpj': '', 'identity_basis': 'general_market_topic'}
-        result, accepted = prepare_issuer(identity, collector, models, [], None, week, macro=True)
+        result, accepted = prepare_issuer(identity, collector, models, [], None, week, macro=True,
+                                          diagnostics=diagnostics, diagnostic_dir=diagnostic_dir)
         source_map = {s['id']: s for s in accepted}
         macro_sources.extend(accepted)
         for event in result['events']:
@@ -512,6 +571,7 @@ def run(root, keys=None, replay=False, budget=Decimal('3.00')):
     write(output / 'market.json', market)
     write(output / 'audit.json', {'reference_date': week['reference_date'], 'week': week,
           'coverage_companies': coverage, 'ranked_tickers': len(assets), 'companies': len(issuers),
+          'processing_diagnostics': sorted([*diagnostics, run_trace.snapshot()], key=lambda item: item['subject']),
           'model': models.model, 'prompt_version': PROMPT_VERSION, 'editorial_version': '1.1', 'budget_reserve_usd': str(models.reserved),
           'pipeline_sha256': hashlib.sha256(b''.join(p.read_bytes().replace(b'\r\n', b'\n')
                               for p in sorted(Path(__file__).parent.glob('*.py')))).hexdigest(),
@@ -551,7 +611,7 @@ def main():
         target = args.run_dir / ('context/replay-error.json' if args.replay else 'context/state.json')
         write(target, {'status': 'unavailable',
               'message': 'A coleta de contexto não pôde ser concluída. O ranking e os gráficos continuam disponíveis.',
-              'error_type': type(exc).__name__})
+              'reason': error_reason(exc), 'error_type': type(exc).__name__})
         raise SystemExit(1) from None
 
 
