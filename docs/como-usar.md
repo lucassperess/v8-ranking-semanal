@@ -6,9 +6,9 @@ O dashboard apresenta os resultados calculados pelo script Python utilizado para
 
 O seletor **Semana completa | Dentro da semana** fica acima do resumo e define a janela do ranking, dos indicadores e dos gráficos. As datas comparadas aparecem ao lado. As capturas mostram “Semana completa” do case, de **11/09/2026 a 18/09/2026**. Outra análise pode apresentar datas, ações e valores diferentes.
 
-![Resumo integrado do case, com seletor global, datas, média de 17,78%, 308 elegíveis, 38,64% em alta e comparação das médias das duas janelas.](assets/resumo-janelas-20261008.jpg)
+![Resumo integrado do case, com seletor global, datas, média de 17,78%, 308 elegíveis, 38,64% em alta e comparação das médias das duas janelas.](assets/resumo-seletor-proximo-20261008.jpg)
 
-*Os três indicadores acompanham a seleção. A contagem de ações em alta aparece junto à proporção: 119 de 308. A linha inferior compara as médias dos dois rankings e destaca a janela selecionada.* [Ampliar imagem](assets/resumo-janelas-20261008.jpg).
+*Os três indicadores acompanham a seleção. A contagem de ações em alta aparece junto à proporção: 119 de 308. A linha inferior compara as médias dos dois rankings e destaca a janela selecionada.* [Ampliar imagem](assets/resumo-seletor-proximo-20261008.jpg).
 
 ### Média do top 20
 
@@ -56,13 +56,13 @@ No desktop, a tabela apresenta estas colunas:
 | RETORNO (%) | Variação percentual entre esses dois fechamentos |
 | VOL. MÉDIO/DIA (R$) | Soma do volume financeiro informado na semana dividida pelos dias com volume válido; abaixo do valor aparece a cobertura |
 
-![Ranking do case com as 20 ações, preços, retornos individuais, volume médio diário e cobertura; ECOM3 está selecionada.](assets/ranking-volume-20261008.jpg)
+![Ranking do case com as 20 ações, preços, retornos individuais, volume médio diário e cobertura; ECOM3 está selecionada.](assets/ranking-volume-reais-20261008.jpg)
 
-*A linha cinza indica ECOM3 selecionada. A última coluna mostra o volume médio diário e a cobertura: MGEL4 tem quatro dos cinco dias válidos. A marca junto a BIED3 indica um alerta nos dados.* [Ampliar imagem](assets/ranking-volume-20261008.jpg).
+*A linha cinza indica ECOM3 selecionada. A última coluna mostra o volume médio diário e a cobertura: MGEL4 tem quatro dos cinco dias válidos. A marca junto a BIED3 indica um alerta nos dados.* [Ampliar imagem](assets/ranking-volume-reais-20261008.jpg).
 
 Selecione uma linha do ranking ou escolha o ticker no seletor junto ao gráfico. Essa seleção atualiza o painel e o gráfico para a ação escolhida. O painel apresenta o ticker, a espécie, o retorno do período, os fechamentos inicial e final, a diferença em reais por ação e eventuais alertas.
 
-No desktop, o painel permanece visível ao lado da tabela. No celular, a tabela prioriza posição, ticker, retorno e volume médio diário; selecionar uma linha atualiza a ação e leva a página até o painel. Use “Voltar ao ranking” para retornar à tabela.
+No desktop, o painel permanece visível ao lado da tabela, que inclui o volume médio diário em reais e sua cobertura. No celular, a tabela mostra posição, ticker e retorno; selecionar uma linha atualiza a ação e leva a página até o painel. O volume permanece disponível na tabela diária. Use “Voltar ao ranking” para retornar à tabela.
 
 ![Painel atual de ECOM3: seletor de ticker, espécie ON, retorno de 47,17%, preços inicial e final, variação em reais e abas Gráfico e Contexto.](assets/painel-ecom3-20261008.jpg)
 
@@ -96,9 +96,7 @@ duplicados não entram; a cobertura incompleta permanece indicada.
 Os dois modos usam os dias dentro da semana, sem incluir o volume da
 sexta-feira anterior que serve de base para o retorno principal.
 
-O resumo abaixo da tabela informa as maiores e menores médias disponíveis,
-as ações com cobertura incompleta e o volume no dia da maior variação diária
-em valor absoluto. Uma média parcial exige atenção ao comparar ações.
+A cobertura aparece abaixo de cada média no ranking. Uma média parcial exige atenção ao comparar ações.
 O volume descreve a negociação registrada; não prova a causa da alta ou queda.
 Os valores recebidos podem diferir dos registros da B3 e não são substituídos
 por eles. Use **Conferir dados de volume · JSON** para guardar o derivado
@@ -106,7 +104,7 @@ da mesma execução. Resultados antigos sem esse derivado mostram indisponibilid
 
 ![Tabela diária do case no modo Volume, com valores em reais e intensidade azul na mesma escala logarítmica para todas as ações.](assets/volume-diario-20261008-log.jpg)
 
-*Cada célula mostra o volume financeiro recebido para a ação e a data. MGEL4 em 14/09 aparece como “—”. A média diária de ESTR4 é R$ 1.191,20, usando os cinco dias; a de TASA4 é R$ 8.789.228,00. A legenda identifica a escala logarítmica; as diferenças descrevem os valores da extração, sem explicar por si só as altas.* [Ampliar imagem](assets/volume-diario-20261008-log.jpg).
+*Cada célula mostra o volume financeiro recebido para a ação e a data. MGEL4 em 14/09 aparece como “—”. A média diária de ESTR4 é R$ 1.191,20, usando os cinco dias; a de TASA4 é R$ 8.789.228,00. O “i” junto ao título explica a escala logarítmica; as diferenças descrevem os valores da extração, sem explicar por si só as altas.* [Ampliar imagem](assets/volume-diario-20261008-log.jpg).
 
 ### Contexto da ação selecionada
 
@@ -120,11 +118,15 @@ Um acontecimento pode ter ocorrido na semana ou antes dela. Resultados trimestra
 
 ### Referências de mercado e acontecimentos
 
-A seção **Referências de mercado**, entre o resumo e “Maiores retornos da semana”, compara Ibovespa, S&P 500, Nasdaq Composite e dólar PTAX nas datas da janela selecionada. Uma faixa compacta mostra as variações e o período; datas diferentes aparecem junto ao indicador correspondente. **Dados e fontes de mercado** abre valores inicial e final, datas e fontes. O “i” explica o método e as diferenças entre as referências. PTAX é a taxa de referência do Banco Central; não é fechamento de mercado. Essas referências não substituem os preços da Economatica.
+A seção **Referências de mercado**, entre o resumo e “20 Maiores retornos da semana”, compara Ibovespa, S&P 500, Nasdaq Composite e dólar PTAX nas datas da janela selecionada. Uma faixa compacta mostra as variações e o período; datas diferentes aparecem junto ao indicador correspondente. **Dados e fontes de mercado** abre uma tabela com indicador, datas inicial e final, valores inicial e final, unidade e fonte. No celular, deslize dentro da tabela para consultar as colunas. O “i” explica o método e as diferenças entre as referências. PTAX é a taxa de referência do Banco Central; não é fechamento de mercado. Essas referências não substituem os preços da Economatica.
 
-![Faixa compacta das referências de mercado do case, com datas, quatro variações e três acontecimentos datados com acesso às fontes.](assets/referencias-acontecimentos-20261008.jpg)
+![Referências de mercado do case, com quatro variações e quatro acontecimentos datados com acesso às fontes.](assets/referencias-quatro-acontecimentos-20261008.jpg)
 
-*A seção mostra até três títulos de acontecimentos confirmados, na ordem da coleta, com data e link para a fonte. Abra “Detalhes e fontes” para ler os textos completos e os demais acontecimentos. Sem fatos confirmados, a lista não ocupa o topo; limites da busca ficam em “Cobertura dos acontecimentos”, quando disponíveis. Os fatos dão contexto, sem comprovar a causa de cada retorno.* [Ampliar imagem](assets/referencias-acontecimentos-20261008.jpg).
+*A seção mostra todos os títulos de acontecimentos confirmados, na ordem da coleta, com data e link para a fonte. Abra “Detalhes e fontes” para ler os textos completos dos mesmos acontecimentos. Sem fatos confirmados, a lista não ocupa o topo; limites da busca ficam em “Cobertura dos acontecimentos”, quando disponíveis. Os fatos dão contexto, sem comprovar a causa de cada retorno.* [Ampliar imagem](assets/referencias-quatro-acontecimentos-20261008.jpg).
+
+![Tabela de dados e fontes de mercado: indicadores, datas, valores, unidades e links para as fontes.](assets/fontes-mercado-tabela-20261008.jpg)
+
+*Os valores inicial e final usam a unidade indicada em cada linha.* [Ampliar imagem](assets/fontes-mercado-tabela-20261008.jpg).
 
 Trocar a janela atualiza as comparações de preços. Isso não muda a data de publicação de uma notícia nem faz um antecedente passar a ser um acontecimento da semana.
 
@@ -197,7 +199,7 @@ Abra o menu principal pelo botão de três linhas. Na documentação, “Assunto
 
 ## Interprete os destaques e a variação em reais
 
-O resumo acompanha a janela escolhida: informa o líder, a faixa de retornos do top, quantas ações começaram abaixo de R$ 1,00 e quais têm alertas nas duas pontas. São descrições dos dados, sem inferir causas das altas.
+O ranking acompanha a janela escolhida. Os retornos aparecem na tabela; preços, variação em reais e alertas ficam no painel da ação selecionada.
 
 O painel da ação mostra os fechamentos inicial e final e a diferença **final − inicial**, em reais por ação ajustada, calculada em Python com precisão decimal. A diferença não é lucro de uma operação: não considera custos nem uma quantidade negociada. Valores pequenos podem aparecer com até seis casas na interface; os preços exatos permanecem nos CSVs auditados. A variação absoluta não muda a ordenação por retorno percentual.
 

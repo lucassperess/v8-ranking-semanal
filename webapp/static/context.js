@@ -210,7 +210,7 @@
     marketButton.setAttribute('aria-expanded', 'false');
     const marketHelp = el(
       'span',
-      `${context.market.method}\n\nAs referências de mercado e os acontecimentos não comprovam a causa do retorno de cada ação.`,
+      context.market.method,
       'info-tooltip asset-tooltip market-tooltip',
     );
     marketHelp.id = 'market-method-help';
@@ -235,6 +235,34 @@
     const grid = el('div', '', 'market-quotes');
     const referenceDetails = el('details', '', 'market-reference-details');
     referenceDetails.append(el('summary', 'Dados e fontes de mercado'));
+    const tableWrap = el('div', '', 'market-table-wrap');
+    tableWrap.tabIndex = 0;
+    tableWrap.setAttribute('role', 'region');
+    tableWrap.setAttribute(
+      'aria-label',
+      'Dados e fontes de mercado; role para consultar todas as colunas',
+    );
+    const table = el('table', '', 'market-reference-table');
+    const tableHead = el('thead');
+    const headerRow = el('tr');
+    for (const label of [
+      'Indicador',
+      'Data inicial',
+      'Data final',
+      'Valor inicial',
+      'Valor final',
+      'Unidade',
+      'Fonte',
+    ]) {
+      const cell = el('th', label);
+      cell.scope = 'col';
+      headerRow.append(cell);
+    }
+    tableHead.append(headerRow);
+    const tableBody = el('tbody');
+    table.append(tableHead, tableBody);
+    tableWrap.append(table);
+    referenceDetails.append(tableWrap);
     for (const indicator of context.market.indicators) {
       const values = indicator[selectedWindow];
       const quote = el('article', '', 'market-quote');
@@ -260,19 +288,21 @@
           el('p', `${date(values.start_date)} → ${date(values.end_date)}`, 'market-quote-date'),
         );
       grid.append(quote);
-      const row = el('div', '', 'market-reference-row');
+      const row = el('tr');
+      const name = el('th', indicator.label);
+      name.scope = 'row';
       row.append(
-        el('strong', indicator.label),
-        el('span', `${date(values.start_date)} → ${date(values.end_date)}`),
-        el(
-          'span',
-          `${number.format(Number(values.start_value))} → ${number.format(Number(values.end_value))} ${indicator.unit}`,
-        ),
+        name,
+        el('td', date(values.start_date)),
+        el('td', date(values.end_date)),
+        el('td', number.format(Number(values.start_value)), 'market-number'),
+        el('td', number.format(Number(values.end_value)), 'market-number'),
+        el('td', indicator.unit),
       );
-      if (/PTAX/i.test(indicator.label))
-        row.append(el('span', 'Taxa de referência do Banco Central · venda.', 'context-muted'));
-      row.append(link(indicator.source_label, indicator.source_url));
-      referenceDetails.append(row);
+      const sourceCell = el('td');
+      sourceCell.append(link(indicator.source_label, indicator.source_url));
+      row.append(sourceCell);
+      tableBody.append(row);
     }
     if (context.market.missing_indicators?.length)
       referenceDetails.append(
@@ -294,7 +324,7 @@
           'market-period',
         ),
       );
-      for (const event of events.slice(0, 3)) {
+      for (const event of events) {
         const row = el('article', '', 'market-event-headline');
         const headline = el('p', event.title);
         if (event.after_price_end)

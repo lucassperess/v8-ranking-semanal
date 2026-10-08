@@ -133,18 +133,6 @@ function renderWindow() {
   });
   select.value = state.ticker;
   renderTable(current.top20);
-  const interpretation = current.interpretation;
-  if (interpretation?.leader) {
-    const leader = interpretation.leader;
-    text(
-      'ranking-highlights',
-      `${leader.ticker} lidera com ${signedPct(leader.return_pct)} (${signedMoney(leader.change_brl)} por ação). Os retornos deste top ${current.top20.length} vão de ${pct(interpretation.last_return_pct)} a ${pct(leader.return_pct)}.`,
-    );
-    text(
-      'ranking-limits',
-      `${interpretation.low_initial_price_count} de ${current.top20.length} ações começaram abaixo de R$ 1,00. Uma base de preço pequena pode ampliar a variação percentual; o ganho em R$ aparece no painel da ação.${interpretation.alerted_tickers.length ? ` Há alertas nas pontas para ${interpretation.alerted_tickers.join(', ')}; selecione a ação para conferir.` : ' Nenhum alerta registrado nas pontas do top desta janela.'}`,
-    );
-  }
   renderDetail();
   renderDistribution(b);
   renderHeatmap(current.top20);
@@ -175,7 +163,7 @@ function renderTable(rows) {
     const volumeCell = node(
       'td',
       'ranking-volume',
-      volume?.mean_daily == null ? '—' : money(volume.mean_daily),
+      volume?.mean_daily == null ? '—' : `R$ ${money(volume.mean_daily)}`,
     );
     if (volume?.expected_days) {
       const coverage = `${volume.valid_days} de ${volume.expected_days} dias`;
@@ -610,9 +598,7 @@ function renderHeatmap(rows) {
   if (isVolume)
     legend.append(
       node('span', 'volume-legend-swatch'),
-      document.createTextNode(
-        ' Menor → maior volume · escala logarítmica comum às ações · 0 = volume zero · — Sem volume válido',
-      ),
+      document.createTextNode(' Menor → maior volume'),
     );
   else
     legend.append(
@@ -624,8 +610,6 @@ function renderHeatmap(rows) {
   const download = $('volume-download');
   download.hidden = !state.data.downloads.includes('volume_context.json');
   download.href = `${state.runId ? `/api/analyses/${state.runId}/files` : '/api/featured/files'}/volume_context.json`;
-  const summary = volumeSummary(volume);
-  text('volume-summary', summary);
   if (!dates.length) {
     wrap.append(node('p', 'muted', 'Sem série diária disponível para esta extração.'));
     return;
@@ -695,19 +679,6 @@ function renderHeatmap(rows) {
     });
   });
   wrap.append(grid);
-}
-function volumeSummary(volume) {
-  if (!volume.available) return 'Volume indisponível nesta execução.';
-  const describe = (item) =>
-    `${item.ticker}: R$ ${money(item.mean_daily)} por dia (${item.valid_days} de ${item.expected_days} dias com dados)`;
-  let result = `No top 20, a maior média diária informada é de ${describe(volume.highest)}; a menor é de ${describe(volume.lowest)}. `;
-  result += volume.incomplete_tickers.length
-    ? `Cobertura incompleta: ${volume.incomplete_tickers.join(', ')}. As médias usam somente os dias válidos disponíveis. `
-    : 'Todas as ações têm volume válido em todas as datas da semana observadas na extração. ';
-  const move = volume.largest_move;
-  if (move)
-    result += `A maior variação diária em valor absoluto foi de ${move.ticker}, ${signedPct(move.return_pct)} em ${day(move.date)}, com ${move.volume == null ? 'volume indisponível' : `R$ ${money(move.volume)} de volume informado naquele dia`}.`;
-  return result;
 }
 async function loadRun(id) {
   state.runId = id;

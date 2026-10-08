@@ -11,13 +11,13 @@
       name="description"
       content="Ranking semanal de ações brasileiras com metodologia, alertas e teste de novas extrações da Economatica."
     />
-    <link rel="stylesheet" href="/static/styles.css?v=top-20261008" />
-    <link rel="stylesheet" href="/static/mobile.css?v=top-20261008" />
-    <link rel="stylesheet" href="/static/context.css?v=top-20261008" />
-    <link rel="stylesheet" href="/static/summary.css?v=top-20261008" />
-    <script src="/static/context.js?v=top-20261008" defer></script>
-    <script src="/static/app.js?v=top-20261008" defer></script>
-    <script src="/static/header.js?v=top-20261008" defer></script>
+    <link rel="stylesheet" href="/static/styles.css?v=refinement-20261008" />
+    <link rel="stylesheet" href="/static/mobile.css?v=refinement-20261008" />
+    <link rel="stylesheet" href="/static/context.css?v=refinement-20261008" />
+    <link rel="stylesheet" href="/static/summary.css?v=refinement-20261008" />
+    <script src="/static/context.js?v=refinement-20261008" defer></script>
+    <script src="/static/app.js?v=refinement-20261008" defer></script>
+    <script src="/static/header.js?v=refinement-20261008" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#ranking">Ir para o ranking</a>
@@ -34,10 +34,6 @@
                   >Auditoria desta execução ↗</a
                 >
               </div>
-              <p>
-                20 maiores retornos entre ações ON e PN · preços de fechamento ajustados da
-                Economatica
-              </p>
             </div>
           </div>
         </section>
@@ -175,7 +171,7 @@
             <div class="section-head">
               <div>
                 <div class="ranking-title-row">
-                  <h2>Maiores retornos da semana</h2>
+                  <h2>20 Maiores retornos da semana</h2>
                   <a id="ranking-download" class="download-button" download
                     >Baixar este ranking · CSV ↓</a
                   >
@@ -184,10 +180,6 @@
                   <p id="ranking-subtitle"></p>
                 </div>
               </div>
-            </div>
-            <div class="ranking-summary" aria-label="Destaques da janela selecionada">
-              <p id="ranking-highlights"></p>
-              <p id="ranking-limits" class="muted"></p>
             </div>
             <a class="mobile-chart-link" href="#asset-detail"
               >Toque em uma ação para ver o gráfico · explorar ↓</a
@@ -333,7 +325,25 @@
             <div class="section-head">
               <div>
                 <span class="section-kicker">02 / TRAJETÓRIA</span>
-                <h2>Movimento diário do top 20</h2>
+                <h2>
+                  Movimento diário do top 20
+                  <span class="period-info"
+                    ><button
+                      class="info-button"
+                      type="button"
+                      aria-label="Sobre as cores da tabela diária"
+                      aria-describedby="heatmap-color-help"
+                      aria-expanded="false"
+                    >
+                      i</button
+                    ><span id="heatmap-color-help" class="info-tooltip" role="tooltip"
+                      >Em retornos, verde indica alta e vermelho indica queda. Em volume, a
+                      intensidade azul usa uma escala logarítmica comum às ações e datas exibidas:
+                      diferenças iguais de cor não representam diferenças iguais em reais. Zero
+                      explícito tem fundo neutro; dados ausentes permanecem marcados com —.</span
+                    ></span
+                  >
+                </h2>
                 <p id="heatmap-note">
                   Variação entre datas consecutivas da extração. Células vazias não são preenchidas.
                 </p>
@@ -363,10 +373,8 @@
               role="region"
               aria-label="Movimento diário; role para consultar todas as datas e ações"
             ></div>
-            <p id="volume-summary" class="volume-summary"></p>
             <p class="volume-source">
-              Volume financeiro informado pela Economatica. Pode diferir dos registros da B3; volume
-              não explica sozinho a causa do retorno.
+              Volume financeiro informado pela Economatica. Pode diferir dos registros da B3.
               <a id="volume-download" href="/api/featured/files/volume_context.json" hidden
                 >Conferir dados de volume · JSON ↓</a
               >
