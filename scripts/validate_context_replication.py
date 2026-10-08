@@ -21,7 +21,9 @@ from webapp.doc_revision import archive
 from webapp.presentation import build_presentation
 
 
-def fixture(directory):
+def fixture(directory, scenario='standard'):
+    if scenario not in {'standard', 'volume'}:
+        raise ValueError('Unknown validation scenario')
     directory.mkdir(parents=True, exist_ok=False)
     wanted = ['PETR4', 'VALE3', 'ITUB4', 'BBDC4', 'ABEV3', 'WEGE3', 'BBAS3', 'RENT3',
               'SUZB3', 'PRIO3', 'GGBR4', 'CSNA3', 'BRAP4', 'LREN3', 'RADL3', 'VIVT3',
@@ -37,7 +39,21 @@ def fixture(directory):
         for step, day in enumerate(days):
             for number, ticker in enumerate(wanted):
                 value = Decimal(10) + Decimal(number + 1) / 20 * step
-                writer.writerow([ticker + '<XBSP>', day, value, 1, value, value, value, value, value])
+                quantity, volume, close = Decimal(1), value, value
+                if scenario == 'volume':
+                    value = Decimal(10) + Decimal(number) / 2 + Decimal(number % 7 - 2) / 20 * step
+                    close = value
+                    quantity = Decimal(100 * (number + 1) * (step + 1))
+                    volume = quantity * value
+                    if number == 0 and step == 1:
+                        quantity, volume = Decimal(0), Decimal(0)
+                    if number == 1 and step == 3:
+                        volume = '-'
+                    if number == 2 and step == 4:
+                        volume = '-10'
+                    if number == 5 and step == 2:
+                        close = '-'
+                writer.writerow([ticker + '<XBSP>', day, close, quantity, value, value, value, value, volume])
     refs = directory / 'artificial-reference'
     refs.mkdir()
     for day in (days[0], days[1], days[-1]):
@@ -58,9 +74,10 @@ def fixture(directory):
                     '--reference-dir', str(refs), '--offline'], cwd=ROOT, check=True)
     archive(output)
     payload = build_presentation(output, normalized_path=output / 'etl/normalized.csv')
+    write(output / 'volume_context.json', payload['volume'])
     payload['validation_notice'] = 'VALIDAÇÃO LOCAL: preços fictícios e fontes de classificação artificiais. Não representa uma análise de mercado real.'
     write(output / 'presentation.json', payload)
-    write(directory / 'fixture-notice.json', {'purpose': 'context replication only',
+    write(directory / 'fixture-notice.json', {'purpose': 'local replication validation', 'scenario': scenario,
           'prices': 'fictitious', 'classification_files': 'artificial', 'news_collection': 'live',
           'reference_date': '2026-10-07', 'tickers': wanted})
     return output
@@ -69,5 +86,6 @@ def fixture(directory):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--scenario', choices=['standard', 'volume'], default='standard')
     args = parser.parse_args()
-    print(json.dumps({'run_directory': str(fixture(args.output))}))
+    print(json.dumps({'run_directory': str(fixture(args.output, args.scenario))}))

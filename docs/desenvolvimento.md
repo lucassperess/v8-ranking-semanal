@@ -94,7 +94,7 @@ O primeiro comando consulta fontes externas e pode consumir créditos; recusa so
 
 A identificação exige correspondência entre ticker, ISIN da classificação datada e empresa no cadastro B3. A busca considera a semana e até 90 dias anteriores. Para leitura pela IA, seleciona até seis textos de 3.000 caracteres por empresa, priorizando documentos oficiais. Isso não constitui um catálogo completo das notícias de todos os dias.
 
-Trechos, datas e identidade recebem conferência automática e segunda leitura por IA. Resultados financeiros anteriores ao fechamento podem servir como antecedentes, sem comprovar a causa da oscilação. A reserva conservadora para chamadas ao modelo é limitada a US$ 3 por geração; não corresponde ao valor faturado e não inclui Tavily.
+Trechos, datas e identidade recebem conferência automática e segunda leitura por IA. Resultados financeiros anteriores ao fechamento podem servir como antecedentes, sem comprovar a causa da oscilação. A reserva conservadora padrão para chamadas ao modelo é US$ 6 por geração, configurável por execução; não corresponde ao valor faturado e não inclui Tavily. A divisão entre empresas e temas de mercado está descrita na seção de orçamento protegido abaixo.
 
 Os arquivos `context/{company,market,audit,manifest}.json` são derivados públicos. As respostas completas e documentos ficam privados. O manifesto vincula o contexto ao `presentation.json`; datas e ativos são conferidos na API. O teste `python -m scripts.validate_context_replication --output runs/teste-contexto` usa preços e classificações artificiais, que não devem ser publicados como dados reais.
 
