@@ -184,12 +184,25 @@
                   <tbody id="ranking-body"></tbody>
                 </table>
               </div>
-              <aside id="asset-detail" class="detail-panel">
+              <aside id="asset-detail" class="detail-panel asset-detail-compact">
                 <div class="detail-top">
-                  <div>
-                    <span class="detail-overline">ATIVO SELECIONADO</span>
-                    <h3 id="detail-ticker"></h3>
+                  <div class="asset-identity">
+                    <select id="asset-select" aria-label="Selecionar ação"></select>
                     <span id="detail-kind" class="ticker-kind"></span>
+                    <span class="asset-info">
+                      <button
+                        class="info-button"
+                        type="button"
+                        aria-label="Sobre ON e PN"
+                        aria-describedby="detail-kind-help"
+                      >
+                        i
+                      </button>
+                      <span id="detail-kind-help" class="info-tooltip asset-tooltip" role="tooltip"
+                        >ON significa ação ordinária; PN significa ação preferencial. A espécie do
+                        ativo é confirmada com evidências da B3.</span
+                      >
+                    </span>
                   </div>
                   <span id="detail-return" class="detail-return"></span>
                 </div>
@@ -203,7 +216,23 @@
                     <dd id="detail-end"></dd>
                   </div>
                   <div>
-                    <dt>Variação (R$)</dt>
+                    <dt class="asset-change-label">
+                      Variação
+                      <span class="asset-info"
+                        ><button
+                          class="info-button"
+                          type="button"
+                          aria-label="Sobre a variação em reais"
+                          aria-describedby="detail-change-help"
+                        >
+                          i</button
+                        ><span
+                          id="detail-change-help"
+                          class="info-tooltip asset-tooltip"
+                          role="tooltip"
+                        ></span
+                      ></span>
+                    </dt>
                     <dd id="detail-change"></dd>
                   </div>
                 </dl>
@@ -235,7 +264,6 @@
                       Contexto
                     </button>
                   </div>
-                  <select id="asset-select" aria-label="Selecionar ação"></select>
                 </div>
                 <div id="asset-chart-view" role="tabpanel" aria-labelledby="asset-graph-tab">
                   <div class="chart-controls">
@@ -247,14 +275,33 @@
                       <button id="chart-price" class="active" type="button" aria-pressed="true">
                         Preços (R$)
                       </button>
-                      <button id="chart-returns" type="button" aria-pressed="false">
-                        Retornos diários (%)
+                      <button
+                        id="chart-returns"
+                        type="button"
+                        aria-pressed="false"
+                        aria-label="Retornos diários (%)"
+                      >
+                        <span class="chart-returns-label">Retornos diários (%)</span
+                        ><span class="chart-returns-short" aria-hidden="true">Retornos (%)</span>
                       </button>
                     </div>
+                    <span class="asset-info chart-info">
+                      <button
+                        class="info-button"
+                        type="button"
+                        aria-label="Como ler o gráfico"
+                        aria-describedby="detail-note"
+                      >
+                        i
+                      </button>
+                      <span
+                        id="detail-note"
+                        class="info-tooltip asset-tooltip"
+                        role="tooltip"
+                      ></span>
+                    </span>
                   </div>
-                  <p class="chart-help">Toque no gráfico para consultar a data e o valor.</p>
                   <div id="detail-chart" class="detail-chart"></div>
-                  <div id="detail-note" class="detail-note"></div>
                 </div>
                 <section
                   id="company-context"

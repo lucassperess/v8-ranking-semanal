@@ -105,7 +105,7 @@ function renderWindow() {
   const select = $('asset-select');
   clear(select);
   current.top20.forEach((row) => {
-    const option = node('option', '', `${row.ticker} · ${signedPct(row.return_pct)}`);
+    const option = node('option', '', row.ticker);
     option.value = row.ticker;
     select.append(option);
   });
@@ -189,8 +189,7 @@ function renderDetail() {
   window.rankingContext?.render(state.ticker, state.window);
   if (!state.ticker) return;
   const row = state.data.windows[state.window].top20.find((item) => item.ticker === state.ticker);
-  text('detail-ticker', row.ticker);
-  text('detail-kind', row.instrument_type === 'acao_on' ? 'AÇÃO ORDINÁRIA' : 'AÇÃO PREFERENCIAL');
+  text('detail-kind', row.instrument_type === 'acao_on' ? 'ON' : 'PN');
   text('detail-return', signedPct(row.return_pct));
   $('detail-return').classList.toggle('negative', Number(row.return_pct) < 0);
   text('detail-start', `R$ ${preciseMoney(row.start_close)}`);
@@ -223,8 +222,18 @@ function renderDetail() {
   $('chart-price').setAttribute('aria-pressed', String(!returns));
   $('chart-returns').setAttribute('aria-pressed', String(returns));
   text(
+    'detail-change-help',
+    `Diferença entre o fechamento final (${day(row.end_date)}) e o inicial (${day(row.start_date)}), em reais por ação ajustada. Não representa o resultado de uma operação com custos.`,
+  );
+  const alternativeNote =
+    state.window === 'alternative'
+      ? ` O fechamento de ${day(row.start_date)} é o ponto de partida: nesse primeiro dia não há retorno diário calculado. A primeira comparação usa o fechamento da próxima data da extração.`
+      : '';
+  text(
     'detail-note',
-    `${returns ? daily.note : 'Preço de fechamento ajustado em reais (R$) por ação, no período selecionado.'} O ranking compara os fechamentos de ${day(row.start_date)} e ${day(row.end_date)}. Variação em R$ = final − inicial, por ação ajustada; não representa o resultado de uma operação com custos.`,
+    returns
+      ? `Cada barra compara o fechamento de uma data com o da data anterior da extração — o arquivo de dados enviado. Se faltar um dos preços ou houver conflito nos dados, essa comparação fica vazia.${alternativeNote} O retorno semanal compara ${day(row.start_date)} com ${day(row.end_date)}; ele não é a soma dos retornos diários. Toque, passe o cursor ou foque uma barra para consultar a data e o valor.`
+      : `Cada ponto mostra o preço de fechamento ajustado em reais por ação naquela data. Uma lacuna no gráfico indica que não há preço válido para a observação. A janela compara ${day(row.start_date)} com ${day(row.end_date)}. Toque, passe o cursor ou foque um ponto para consultar a data e o valor.`,
   );
   const box = $('detail-chart');
   clear(box);

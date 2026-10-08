@@ -55,3 +55,11 @@ O painel começa em “Gráfico”. A aba “Contexto” substitui a área do gr
 No desktop, o contexto tem uma área de leitura de 430 px com rolagem própria. No mobile, a altura acompanha o texto e a rolagem é da página. Fontes e detalhes permanecem recolhíveis. Os acontecimentos gerais da semana também começam recolhidos, em seção própria; os quatro indicadores continuam visíveis.
 
 Conferidos no navegador: alternância das abas, atualização de ação e janela sem perda da aba escolhida, navegação por teclado, retorno ao gráfico sem perda de largura e telas de 1366, 390 e 320 px. Nenhum erro de console foi observado.
+
+## Topo e espaço útil do gráfico
+
+O ticker é o seletor no topo, com ON/PN ao lado e o retorno semanal à direita. O rótulo redundante “Ativo selecionado” foi removido. Inicial, final e variação formam uma faixa alinhada; os dois grupos de controles permanecem separados por função.
+
+As explicações de preços, retornos diários, lacunas e datas da janela ficam no “i” do gráfico. A variação em reais e as espécies ON/PN têm explicações próprias. Os botões usam o comportamento comum da plataforma: hover e foco no desktop; toque, clique fora e Escape no mobile. Em telas estreitas, a explicação aberta aparece dentro da largura da tela, acima da borda inferior. Alertas específicos continuam visíveis.
+
+Conferidos o encaixe a 320 e 390 px, a atualização ON/PN, o texto sobre o primeiro dia da alternativa, a permanência da aba ao trocar o ticker e os alertas de BIED3. Os preços, cálculos e fontes não foram alterados.
