@@ -266,6 +266,61 @@ e respostas ficaram em `runs/context-step2-2026-10-08/`, fora do Git. A conferê
 automatizada resultou em 109 testes: 108 aprovados e um ignorado. Esta etapa foi
 validada localmente; sua conclusão não declara publicação na produção.
 
+### Seleção das fontes de contexto
+
+O contrato `run-context-1.2` separa coleta, seleção e geração em
+`collect_issuer_sources` e `prepare_issuer`. `context_pipeline/selection.py`
+filtra páginas sociais, cotações, calendários genéricos, URLs inválidas,
+duplicatas e resultados sem identificação explícita da empresa. O texto
+extraído também precisa identificar a empresa antes de ocupar uma vaga. Isso
+é um filtro de relevância, não uma confirmação da veracidade do conteúdo;
+as verificações de identidade, data e citação e a segunda leitura continuam
+obrigatórias.
+
+As duas buscas existentes procuram acontecimentos da semana e antecedentes
+anteriores, respectivamente. A segunda termina na véspera da semana, sem
+exigir um ticker na notícia nem restringir a consulta a resultados trimestrais.
+A abreviação final `PART` do nome de negociação B3 é retirada da consulta e
+reconhecida no filtro; a identidade oficial original é preservada para verificar
+as evidências. Uma falha na busca de antecedentes não apaga os resultados da
+busca semanal.
+
+Os catálogos IPE da CVM abrangem os 90 dias anteriores e a semana, inclusive
+quando esse intervalo cruza o ano. Entre até cinco documentos por empresa,
+a seleção reserva até três vagas para a semana e duas para antecedentes;
+vagas restantes podem ser preenchidas pelo outro grupo. Comunicados sobre
+negócios e decisões precedem documentos institucionais. A quantidade de
+fontes enviadas à IA continua limitada a seis.
+
+O limite de leitura continua em 3.000 caracteres por fonte. Em vez de assumir
+que os primeiros caracteres sempre contêm a notícia, o seletor escolhe um
+trecho contínuo do texto original, considerando identificação, assuntos
+empresariais e presença de menus. Ele não une partes distantes nem altera as
+palavras. `body_excerpt_offset` registra onde o trecho começa. Um trecho pode
+deixar de fora informação necessária; a verificação continua recusando
+afirmações sem apoio no texto efetivamente lido.
+
+O arquivo privado `source-selection-{codigo}.json` guarda os trechos, o período
+e os problemas da coleta. As respostas originais e os PDFs continuam salvos
+separadamente. O replay consulta as evidências arquivadas e não sobrescreve
+esse registro. Documentos anteriores recebem `before_week=true` e título
+identificado como antecedente. Documentos posteriores ao fechamento ficam
+fora da interpretação e da contagem de cobertura aproveitável.
+
+A auditoria separa empresas com acontecimentos divulgados durante a semana
+até o fechamento (`companies_with_preclose_weekly_events`) e empresas com
+acontecimentos anteriores (`companies_with_prior_events`). Uma empresa pode
+estar nos dois grupos. Resultados trimestrais continuam como antecedentes
+financeiros próprios, não como prova da causa do retorno. Encontrar documentos
+ou cobrir todas as empresas não equivale a explicar causalmente todas as altas.
+
+Relatórios trimestrais identificados pelo título recebem o papel
+`financial_antecedent`; formulários rotineiros de posições/negociação e convites
+institucionais não são contados como mudanças empresariais. Essa classificação
+é conservadora e baseada no título; não constitui avaliação humana de
+materialidade. Ela evita contar um relatório de posições sem operações como
+um acontecimento que explique uma variação de preço.
+
 ### Conferência visual mobile
 
 Confira 320, 390 e 430 px e o desktop antes de publicar alterações de layout. Verifique navegação completa, ausência de sobreposição na introdução, retorno visível no ranking, seleção e volta do gráfico, abertura/fechamento de informações, matriz com datas e ticker fixos, menus e tabelas da documentação, seletor da auditoria e referência brasileira no formulário. Conferência de viewport no navegador não substitui teste em Android e iOS físicos, especialmente para seleção de arquivos e teclado.

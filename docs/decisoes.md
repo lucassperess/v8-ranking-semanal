@@ -97,3 +97,28 @@ Os números de 22/09/2026 pertencem ao exemplo. Nenhuma dessas decisões exige q
 **Limites:** a revisão inicial usa o tratamento existente em lotes e a mesma regra de seleção de semana. Ela confere datas e cobertura; duplicatas, qualidade e classificação completas continuam no pipeline. Falhas ganham orientação para corrigir a extração, rever datas ou aguardar disponibilidade B3, sem liberar pendências.
 
 **Verificação:** `tests/test_replication.py` cobre revisão, confirmação vinculada, cobertura, migração, duas entradas independentes e execução integral com fontes artificiais locais. Testes artificiais não representam consultas reais à B3.
+
+## D13 — Relevância e período do contexto empresarial
+
+**Decisão:** selecionar fontes por identidade e relevância antes da geração de
+contexto, priorizando documentos oficiais da CVM e contemplando até 90 dias de
+antecedentes. Notícias precisam de identidade, data e trechos verificáveis;
+dados financeiros trimestrais mantêm papel próprio. Um documento posterior ao
+fechamento não aumenta a cobertura aproveitável daquele retorno.
+
+**Motivo:** evitar que resultados de busca irrelevantes ocupem as vagas de
+leitura e que ausência de notícia na semana seja confundida com ausência de
+qualquer antecedente empresarial. A seleção não estabelece causalidade.
+
+**Consequências:** limite de cinco documentos oficiais, seis textos selecionados
+e 3.000 caracteres por texto preservado. O trecho escolhido permanece contínuo
+e rastreável. Fontes rotineiras e relatórios financeiros não contam como mudança
+empresarial. A auditoria separa acontecimentos da semana e anteriores. A mesma
+empresa pode estar nos dois grupos; as contagens não devem ser somadas.
+
+**Verificação:** filtros e falhas parciais têm testes locais independentes de
+rede. Uma conferência real do case usa uma nova pasta, preserva preços e
+evidências anteriores e distingue coleta, aprovação e bloqueio por reserva.
+Testes isolados não provam que o orçamento padrão permite revisar todas as
+empresas em uma única geração. Publicação e ajuste do orçamento são etapas
+posteriores.

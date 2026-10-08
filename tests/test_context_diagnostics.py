@@ -79,6 +79,31 @@ class DiagnosticsTests(unittest.TestCase):
         self.models.call.assert_not_called()
         self.assertTrue(any(r['reason'] == 'no_selected_sources' for r in self.entries()))
 
+    def test_prior_search_failure_preserves_weekly_results(self):
+        weekly = {'url': 'https://example.org/alfa', 'title': 'Empresa Alfa aprova aquisição'}
+        self.collector.search.side_effect = [[weekly], OSError('Prior source unavailable')]
+        self.models.call.side_effect = [
+            {'events': [self.event], 'interpretation': '', 'unresolved_question': ''},
+            {'accepted_event_indices': [0], 'interpretation_supported': False, 'reason': ''}]
+        issuer, _ = self.prepare()
+        self.assertEqual(len(issuer['events']), 1)
+        self.assertEqual(self.collector.extract.call_args.args[1], [weekly])
+        self.assertTrue(any(r['stage'] == 'antecedent_search' and r['outcome'] == 'failed' for r in self.entries()))
+
+    def test_prior_document_is_labeled_and_not_moved_into_week(self):
+        self.source['publication_date'] = '2026-09-10'
+        self.source['date_evidence'] = '2026-09-10'
+        self.collector.extract.return_value = [self.source.copy()]
+        self.models.call.side_effect = [
+            {'events': [{**self.event, 'publication_date': '2026-09-10'}], 'interpretation': '', 'unresolved_question': ''},
+            {'accepted_event_indices': [0], 'interpretation_supported': False, 'reason': ''}]
+        issuer, sources = self.prepare()
+        self.assertTrue(issuer['events'][0]['before_week'])
+        self.assertTrue(sources[0]['before_week'])
+        self.assertTrue(issuer['events'][0]['title'].startswith('Antecedente'))
+        self.assertTrue(issuer['interpretation']['text'].startswith('Antes da semana analisada'))
+        self.assertEqual(issuer['events'][0]['publication_date'], '2026-09-10')
+
     def test_financial_source_in_event_is_not_an_unknown_news_source(self):
         financial = {'source_ids': ['itr-123'], 'period_start': '2026-04-01',
                      'period_end': '2026-06-30', 'accounts': {'net_result': {'value_brl': '1000'}}}
@@ -105,6 +130,14 @@ class DiagnosticsTests(unittest.TestCase):
         with self.assertRaises(BudgetExceeded):
             models.call('generate-123', 'instructions', {}, {})
         collector.json.assert_not_called()
+
+    def test_replay_missing_response_does_not_create_a_request_or_call_provider(self):
+        collector = Mock(directory=self.root, replay=True)
+        models = Models(collector, budget=Decimal('0'))
+        with self.assertRaisesRegex(ValueError, 'absent from the saved collection'):
+            models.call('generate-123', 'instructions', {}, {})
+        collector.json.assert_not_called()
+        self.assertFalse((self.root / 'generate-123-request.json').exists())
 
     def test_incremental_trace_survives_without_final_result(self):
         trace = Trace('123', self.root / 'trace.json')

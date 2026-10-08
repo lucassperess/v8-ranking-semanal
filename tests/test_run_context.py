@@ -55,6 +55,20 @@ class RunContextTests(unittest.TestCase):
         self.assertEqual(quoted_date('2 October 2025'), {'2025-10-02'})
         self.assertEqual(quoted_date('02/10 e 31/02/2025'), set())
 
+    def test_post_price_document_does_not_inflate_usable_company_coverage(self):
+        event = {'context_role': 'dated_event', 'after_price_end': True}
+        self.assertEqual(coverage_status([event], None), 'insufficient_evidence')
+        self.assertEqual(coverage_status([event], {'text': 'result'}), 'financial_antecedent_only')
+
+    def test_routine_ownership_form_and_quarterly_report_do_not_inflate_business_coverage(self):
+        routine = {'date_basis': 'cvm_delivery_catalog',
+                   'title': 'Valores Mobiliários negociados e detidos (art. 11 da Instr. CVM nº 358)'}
+        quarterly = {'date_basis': 'cvm_delivery_catalog', 'title': 'Release de resultados do segundo trimestre de 2026'}
+        self.assertEqual(context_role(routine), 'institutional_document')
+        self.assertEqual(context_role({'date_basis': 'cvm_delivery_catalog', 'title': 'Live Canal MSX Invest'}), 'institutional_document')
+        self.assertEqual(context_role(quarterly), 'financial_antecedent')
+        self.assertEqual(coverage_status([{'context_role': context_role(quarterly)}], None), 'financial_antecedent_only')
+
     def test_only_final_response_is_read(self):
         response = {'status': 'completed', 'output': [
             {'type': 'message', 'phase': 'commentary', 'content': [{'type': 'output_text', 'text': 'Not JSON'}]},

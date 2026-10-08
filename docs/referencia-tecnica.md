@@ -110,3 +110,18 @@ Se desejar sugestões da Groq, informe um modelo compatível por `--model` e def
 Na alternativa, a primeira observação tem `return_pct=null` e `reason=window_start`: é uma base inicial, não zero nem ausência de preço. Nas outras datas, `missing_comparison` identifica uma comparação sem preços utilizáveis. Valores zero continuam sendo retornos válidos. As datas respeitam a extração, sem presumir segunda-feira ou criar pregões ausentes.
 
 O campo legado `daily` mantém a série original compartilhada para compatibilidade. A API adapta apresentações antigas em memória usando esse campo; não precisa do bruto e não regrava o histórico. Novas execuções guardam também os recortes por janela em `presentation.json`. Esse arquivo de apresentação não é um download público nem substitui os CSVs e manifestos auditados.
+
+## Período das evidências de contexto
+
+Nas novas gerações do contrato `run-context-1.2`, `before_week` em um acontecimento
+ou fonte indica publicação/entrega anterior ao início da semana. `after_price_end`
+indica publicação/entrega posterior ao último fechamento; esses documentos
+permanecem identificados, mas não fundamentam a interpretação do retorno.
+`publication_date` usa a entrega oficial no caso CVM e a data confirmada no texto
+no caso web. `event_date`, quando verificável, pode ser diferente dessas datas.
+
+`dated_company_context` representa acontecimentos empresariais verificados
+conhecidos até o fechamento, incluindo antecedentes anteriores à semana. Não
+significa que houve notícia naquela semana nem comprova a causa da variação.
+A auditoria fornece contagens separadas para os dois períodos. O antecedente
+financeiro trimestral fica em `financial_context`, com período e fonte próprios.

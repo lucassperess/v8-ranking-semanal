@@ -19,8 +19,9 @@ from scripts.build_context_evidence import account_record, price_observation, se
 from scripts.collect_case_context import ROOT, read_keys
 from webapp.presentation import output_path
 from context_pipeline.diagnostics import BudgetExceeded, Trace, error_reason
+from context_pipeline.selection import identity_present, readable_excerpt, search_alias, select_candidates, select_documents
 
-PROMPT_VERSION = 'run-context-1.1'
+PROMPT_VERSION = 'run-context-1.2'
 MONTHS = ('janeiro fevereiro marco abril maio junho julho agosto setembro outubro novembro dezembro').split()
 ENGLISH_MONTHS = ('january february march april may june july august september october november december').split()
 
@@ -146,6 +147,8 @@ class Models:
             label += '-' + hashlib.sha256(json.dumps(request, sort_keys=True).encode()).hexdigest()[:12]
             request_path = self.collector.directory / (label + '-request.json')
         saved = (self.collector.directory / (label + '.bin')).exists()
+        if self.collector.replay is True and not saved:
+            raise ValueError('Model response is absent from the saved collection: ' + label)
         with self.lock:
             if not saved:
                 if self.reserved + reserve > self.budget:
@@ -320,56 +323,73 @@ def context_role(source):
     """A dated institutional document alone does not establish a business change."""
     title = normalized(source.get('title', ''))
     if source.get('date_basis', '').startswith('cvm_') and (
-            'estatuto' in title or 'politica de' in title or 'codigo de conduta' in title):
+            'estatuto' in title or 'politica de' in title or 'codigo de conduta' in title or
+            'valores mobiliarios negociados e detidos' in title or 'live canal' in title):
         return 'institutional_document'
+    if ('resultados' in title or 'demonstracoes contabeis' in title) and (
+            'trimestre' in title or re.search(r'\b[1-4]t\d{2}\b', title)):
+        return 'financial_antecedent'
     return 'dated_event'
 
 
 def coverage_status(events, financial):
+    events = [event for event in events if not event.get('after_price_end', False)]
     if any(r.get('context_role', 'dated_event') == 'dated_event' for r in events):
         return 'dated_company_context'
-    if financial:
+    if financial or any(event.get('context_role') == 'financial_antecedent' for event in events):
         return 'financial_antecedent_only'
     return 'institutional_context_only' if events else 'insufficient_evidence'
 
 
-def prepare_issuer(identity, collector, models, documents, financial, week, macro=False,
-                   diagnostics=None, diagnostic_dir=None):
+def collect_issuer_sources(identity, collector, documents, week, trace, macro=False):
+    """Collect relevant saved passages independently of generation/coverage."""
     code = identity['cvm_code']
-    trace = Trace(code, diagnostic_dir / (code + '.json') if diagnostic_dir else None)
     start = (date.fromisoformat(week['week_start']) - timedelta(days=90)).isoformat()
     end, cutoff = week['week_end'], week['last_week_close']
     sources, issues = [], []
-    stage = 'weekly_search'
+    query = (identity['query_topic'] if macro else f"\"{search_alias(identity)}\" notícias fato relevante comunicado ao mercado")
+    searches = [('weekly_search', code + '-week', f"{query} {week['week_start']} {end}", week['week_start'], end)]
+    if not macro:
+        prior_end = (date.fromisoformat(week['week_start']) - timedelta(days=1)).isoformat()
+        searches.append(('antecedent_search', code + '-prior',
+                         f"\"{search_alias(identity)}\" comunicado aquisição capital recuperação judicial", start, prior_end))
+    else:
+        start = week['week_start']
+    candidates = []
+    for stage, label, query, lower, upper in searches:
+        try:
+            found = collector.search(label, query, lower, upper)
+            candidates.extend(found)
+            trace.record(stage, 'completed' if found else 'empty',
+                         'results_found' if found else 'no_search_results')
+        except (OSError, ValueError, KeyError) as exc:
+            trace.failure(stage, exc)
+            issues.append('Algumas notícias não puderam ser consultadas.')
+    stage = 'web_extraction'
     try:
-        query = (identity['query_topic'] if macro else f"\"{identity['search_name']}\" {' '.join(identity['tickers'])} notícias comunicado")
-        candidates = collector.search(code + '-week', f"{query} {week['week_start']} {end}", week['week_start'], end)
-        trace.record(stage, 'completed' if candidates else 'empty',
-                     'results_found' if candidates else 'no_search_results')
-        if not macro:
-            stage = 'antecedent_search'
-            prior = collector.search(code + '-prior', f"\"{identity['search_name']}\" resultado trimestral fato relevante", start, cutoff)
-            trace.record(stage, 'completed' if prior else 'empty',
-                         'results_found' if prior else 'no_search_results')
-            candidates += prior
-        else:
-            start = week['week_start']
+        candidates, rejected = select_candidates(candidates, identity, macro)
+        for rejected_row in rejected:
+            trace.record('search_selection', 'rejected', rejected_row['reason'], event_index=rejected_row['index'])
         stage = 'web_extraction'
         extracted = collector.extract(code, candidates)
-        sources += extracted
-        trace.record(stage, 'completed' if extracted else 'empty',
-                     'bodies_found' if extracted else 'no_readable_bodies')
+        for source in extracted:
+            if macro or identity_present(source['body'], identity):
+                sources.append(source)
+            else:
+                trace.record('body_selection', 'rejected', 'company_not_explicit_in_body', item=source['id'])
+        trace.record(stage, 'completed' if sources else 'empty',
+                     'bodies_found' if sources else 'no_readable_relevant_bodies')
     except (OSError, ValueError, KeyError) as exc:
         trace.failure(stage, exc)
         issues.append('Algumas notícias não puderam ser consultadas.')
-    matching = sorted([r for r in documents if str(int(r['Codigo_CVM'])) == code and
-                       week['week_start'] <= r['Data_Entrega'][:10] <= end],
-                      key=lambda r: r['Data_Entrega'], reverse=True)[:5]
+    matching = select_documents(documents, code, start, week['week_start'], end)
     for number, row in enumerate(matching):
         try:
             source = collector.document_body(row, code + '-cvm-' + str(number))
             if source:
                 sources.append(source)
+                if source['publication_date'] < week['week_start']:
+                    trace.record('official_document', 'completed', 'official_antecedent_collected', item=source['id'])
             trace.record('official_document', 'completed' if source else 'empty',
                          'body_found' if source else 'no_readable_body', event_index=number)
         except Exception as exc:
@@ -383,7 +403,23 @@ def prepare_issuer(identity, collector, models, documents, financial, week, macr
     for source in sources:
         if len(source['body']) > 3000:
             trace.record('source_selection', 'limited', 'body_length_limit', item=source['id'])
-        source['body'] = source['body'][:3000]
+        body, offset = readable_excerpt(source['body'], identity)
+        source['body'] = body
+        source['body_excerpt_offset'] = offset
+        if offset:
+            trace.record('source_selection', 'completed', 'continuous_body_excerpt', item=source['id'])
+    if not collector.replay:
+        write(collector.directory / ('source-selection-' + code + '.json'), {
+            'selection_version': '1.0', 'collection_start': start, 'collection_end': end,
+            'selected_sources': sources, 'issues': issues})
+    return sources, issues, start, end, cutoff
+
+
+def prepare_issuer(identity, collector, models, documents, financial, week, macro=False,
+                   diagnostics=None, diagnostic_dir=None):
+    code = identity['cvm_code']
+    trace = Trace(code, diagnostic_dir / (code + '.json') if diagnostic_dir else None)
+    sources, issues, start, end, cutoff = collect_issuer_sources(identity, collector, documents, week, trace, macro)
     input_data = {'issuer': identity, 'week': week, 'price_end': cutoff,
                   'financial': financial, 'sources': sources,
                   'event_source_ids': [source['id'] for source in sources],
@@ -431,6 +467,9 @@ def prepare_issuer(identity, collector, models, documents, financial, week, macr
                         instructions + '\nCorrija a proposta conforme validation_feedback. Preserve acontecimentos válidos. '
                         'Use citações contínuas literais e as regras de data de cada fonte. '
                         'Releia os documentos CVM: a data de entrega dos metadados é suficiente. '
+                        f'O período consultado vai de {start} a {end}. Não exija que o acontecimento seja da semana: '
+                        'comunicados anteriores sobre dividendos, contratos ou aquisições podem entrar como antecedentes, '
+                        'com sua data correta e sem atribuir-lhes a causa do retorno. '
                         'Não substitua acontecimentos por resultados trimestrais. Se ainda não houver evidência, retorne events vazio.',
                         {**input_data, 'previous_proposal': proposal, 'validation_feedback': repair_feedback}, GENERATION_SCHEMA)
                     merged, seen = [], set()
@@ -473,12 +512,15 @@ def prepare_issuer(identity, collector, models, documents, financial, week, macr
                 if index not in approved:
                     trace.record('event_review', 'rejected', 'model_review_rejected', event_index=checked_indices[index])
                     continue
-                source.update(cvm_code=code, after_price_end=source['publication_date'] > cutoff)
+                before_week = source['publication_date'] < week['week_start']
+                source.update(cvm_code=code, after_price_end=source['publication_date'] > cutoff,
+                              before_week=before_week)
                 if source['after_price_end']:
                     trace.record('price_cutoff', 'excluded', 'published_after_price_end', event_index=checked_indices[index])
                 source.pop('body')
                 accepted_sources.append(source)
-                events.append({'title': event['title'], 'text': event['text'], 'source_ids': [source['id']],
+                events.append({'title': ('Antecedente · ' if before_week else '') + event['title'],
+                               'text': event['text'], 'source_ids': [source['id']], 'before_week': before_week,
                                'publication_date': source['publication_date'], 'event_date': event['event_date'],
                                'after_price_end': source['after_price_end'], 'context_role': context_role(source)})
             if review['interpretation_supported'] and len(events) == len(proposal['events']) and events:
@@ -491,9 +533,10 @@ def prepare_issuer(identity, collector, models, documents, financial, week, macr
             issues.append('Não foi possível preparar um texto completo a partir das fontes recuperadas.')
     else:
         trace.record('generation', 'not_run', 'no_selected_sources')
-    eligible = [r for r in events if not r['after_price_end']]
+    eligible = sorted((r for r in events if not r['after_price_end']),
+                      key=lambda r: (r['before_week'], -date.fromisoformat(r['publication_date']).toordinal()))
     if not interpretation:
-        interpretation = ' '.join(r['text'] for r in eligible[:2])
+        interpretation = ' '.join(('Antes da semana analisada: ' if r['before_week'] else '') + r['text'] for r in eligible[:2])
         if not interpretation and financial:
             interpretation = financial_explanation(financial)
         if not interpretation:
@@ -572,7 +615,8 @@ def run(root, keys=None, replay=False, budget=Decimal('3.00')):
                 'unresolved_question': 'A identidade exige conferência. Nenhuma notícia de outro ticker foi reutilizada.',
                 'causal_effect_on_return': 'not_established'})
     documents = []
-    for year in sorted({int(week['week_start'][:4]), int(week['week_end'][:4])}):
+    antecedent_start = date.fromisoformat(week['week_start']) - timedelta(days=90)
+    for year in range(antecedent_start.year, int(week['week_end'][:4]) + 1):
         try:
             documents += collector.documents(year)
         except (OSError, ValueError, KeyError) as exc:
@@ -630,12 +674,18 @@ def run(root, keys=None, replay=False, budget=Decimal('3.00')):
     write(output / 'market.json', market)
     write(output / 'audit.json', {'reference_date': week['reference_date'], 'week': week,
           'coverage_companies': coverage, 'ranked_tickers': len(assets), 'companies': len(issuers),
+          'companies_with_preclose_weekly_events': sum(any(
+              not e['after_price_end'] and not e['before_week'] and e['context_role'] == 'dated_event'
+              for e in issuer['events']) for issuer in issuers),
+          'companies_with_prior_events': sum(any(e['before_week'] and e['context_role'] == 'dated_event'
+              for e in issuer['events']) for issuer in issuers),
           'processing_diagnostics': sorted([*diagnostics, run_trace.snapshot()], key=lambda item: item['subject']),
           'model': models.model, 'prompt_version': PROMPT_VERSION, 'editorial_version': '1.1', 'budget_reserve_usd': str(models.reserved),
           'pipeline_sha256': hashlib.sha256(b''.join(p.read_bytes().replace(b'\r\n', b'\n')
                               for p in sorted(Path(__file__).parent.glob('*.py')))).hexdigest(),
           'collection_limits': {'antecedent_days': 90, 'selected_source_bodies_per_company': 6,
                                 'characters_per_body': 3000, 'official_documents_per_company': 5},
+          'source_selection_version': '1.0',
           'collection_files': {p.name: sha(p) for p in sorted(collector.directory.glob('*')) if p.is_file()},
           'verification': 'automatic_not_human_editorial_review', 'missing_market_indicators': missing})
     write(output / 'manifest.json', {'schema_version': 1, 'reference_date': week['reference_date'],
