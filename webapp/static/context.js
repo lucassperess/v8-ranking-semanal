@@ -201,8 +201,31 @@
     );
     companyPanel.append(el('p', context.company.disclosure, 'context-muted'));
     marketPanel.hidden = false;
+    const marketTitle = el('div', '', 'market-title-row');
+    const marketInfo = el('span', '', 'asset-info');
+    const marketButton = el('button', 'i', 'info-button');
+    marketButton.type = 'button';
+    marketButton.setAttribute('aria-label', 'Como os indicadores de mercado são calculados');
+    marketButton.setAttribute('aria-describedby', 'market-method-help');
+    marketButton.setAttribute('aria-expanded', 'false');
+    const marketHelp = el(
+      'span',
+      context.market.method,
+      'info-tooltip asset-tooltip market-tooltip',
+    );
+    marketHelp.id = 'market-method-help';
+    marketHelp.setAttribute('role', 'tooltip');
+    marketButton.addEventListener('click', () => {
+      const open = marketButton.getAttribute('aria-expanded') === 'true';
+      document
+        .querySelectorAll('.info-button[aria-expanded="true"]')
+        .forEach((button) => button.setAttribute('aria-expanded', 'false'));
+      marketButton.setAttribute('aria-expanded', String(!open));
+    });
+    marketInfo.append(marketButton, marketHelp);
+    marketTitle.append(el('h2', 'Contexto geral da semana'), marketInfo);
     marketPanel.append(
-      el('h2', 'Contexto geral da semana'),
+      marketTitle,
       el(
         'p',
         `${date(context.market.calendar_week.start)} a ${date(context.market.calendar_week.end)} · referências de mercado e acontecimentos do período. Não comprovam a causa do retorno de cada ação.`,
@@ -243,7 +266,13 @@
         ),
       );
       card.append(
-        el('p', indicator.definition, 'context-muted'),
+        el(
+          'p',
+          /PTAX/i.test(indicator.label)
+            ? 'Taxa diária de referência do Banco Central.'
+            : indicator.definition,
+          'context-muted',
+        ),
         link(indicator.source_label, indicator.source_url),
       );
       grid.append(card);
@@ -271,7 +300,7 @@
       events.append(card);
     }
     newsGroup.append(events);
-    marketPanel.append(newsGroup, el('p', context.market.method, 'context-muted'));
+    marketPanel.append(newsGroup);
     if (context.market.missing_indicators?.length)
       marketPanel.append(
         el(

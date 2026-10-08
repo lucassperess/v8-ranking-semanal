@@ -84,7 +84,7 @@ Na alternativa, o primeiro dia também mostra “—”, mas por outro motivo: s
 Na tabela “Movimento diário do top 20”, alterne entre **Retornos (%)** e
 **Volume (R$)**. O modo de volume mostra o valor informado pela Economatica
 em cada dia da semana. A intensidade do azul aumenta com o volume, usando
-a mesma escala para todas as ações. Verde e vermelho continuam exclusivos
+a mesma escala logarítmica para todas as ações e datas exibidas. Isso permite distinguir volumes de magnitudes diferentes: diferenças iguais de cor não representam diferenças iguais em reais. Zero explícito tem fundo neutro; ausência permanece marcada com “—”. Verde e vermelho continuam exclusivos
 dos retornos. Na alternativa, o primeiro dia pode ter volume mesmo sem retorno:
 pode haver um volume informado naquele dia, inclusive zero, mas seu fechamento é o início do cálculo.
 
@@ -104,9 +104,9 @@ Os valores recebidos podem diferir dos registros da B3 e não são substituídos
 por eles. Use **Conferir dados de volume · JSON** para guardar o derivado
 da mesma execução. Resultados antigos sem esse derivado mostram indisponibilidade.
 
-![Tabela diária do case no modo Volume, com valores em reais e intensidade azul na mesma escala para todas as ações.](assets/volume-diario-20261008.jpg)
+![Tabela diária do case no modo Volume, com valores em reais e intensidade azul na mesma escala logarítmica para todas as ações.](assets/volume-diario-20261008-log.jpg)
 
-*Cada célula mostra o volume financeiro recebido para a ação e a data. MGEL4 em 14/09 aparece como “—”. A média diária de ESTR4 é R$ 1.191,20, usando os cinco dias; a de TASA4 é R$ 8.789.228,00. As diferenças descrevem os valores da extração, sem explicar por si só as altas.* [Ampliar imagem](assets/volume-diario-20261008.jpg).
+*Cada célula mostra o volume financeiro recebido para a ação e a data. MGEL4 em 14/09 aparece como “—”. A média diária de ESTR4 é R$ 1.191,20, usando os cinco dias; a de TASA4 é R$ 8.789.228,00. A legenda identifica a escala logarítmica; as diferenças descrevem os valores da extração, sem explicar por si só as altas.* [Ampliar imagem](assets/volume-diario-20261008-log.jpg).
 
 ### Contexto da ação selecionada
 
@@ -120,11 +120,11 @@ Um acontecimento pode ter ocorrido na semana ou antes dela. Resultados trimestra
 
 ### Contexto geral da semana
 
-A seção **Contexto geral da semana**, depois da tabela diária, compara Ibovespa, S&P 500, Nasdaq Composite e dólar PTAX nas datas da janela selecionada. PTAX é a taxa de referência do Banco Central; não é fechamento de mercado. Os valores vêm das fontes identificadas em cada card e não substituem os preços da Economatica.
+A seção **Contexto geral da semana**, entre os cards principais e “Maiores retornos da semana”, compara Ibovespa, S&P 500, Nasdaq Composite e dólar PTAX nas datas da janela selecionada. Seus acontecimentos ficam no mesmo bloco, em “Acontecimentos da semana · juros, economia e política”. O “i” junto ao título explica o cálculo e as diferenças entre as referências. PTAX é a taxa de referência do Banco Central; não é fechamento de mercado. Os valores vêm das fontes identificadas em cada card e não substituem os preços da Economatica.
 
-![Contexto geral do case com as variações do Ibovespa, S&P 500, Nasdaq Composite e dólar PTAX na janela principal, datas e fontes.](assets/contexto-mercado-20261008.jpg)
+![Contexto geral do case com as variações do Ibovespa, S&P 500, Nasdaq Composite e dólar PTAX na janela principal, datas, fontes e botão de informação sobre os cálculos.](assets/contexto-mercado-20261008-revisado.jpg)
 
-*Os cards são referências de mercado para a mesma janela. Abra “Acontecimentos da semana · juros, economia e política” para ler os textos confirmados e suas fontes. Quando um tema não tem acontecimentos confirmados, a seção informa a ausência.* [Ampliar imagem](assets/contexto-mercado-20261008.jpg).
+*Os cards são referências de mercado para a mesma janela. Use o “i” junto ao título para conferir como são calculados. Abra “Acontecimentos da semana · juros, economia e política” para ler os textos confirmados e suas fontes. Quando um tema não tem acontecimentos confirmados, a seção informa a ausência.* [Ampliar imagem](assets/contexto-mercado-20261008-revisado.jpg).
 
 Trocar a janela atualiza as comparações de preços. Isso não muda a data de publicação de uma notícia nem faz um antecedente passar a ser um acontecimento da semana.
 
@@ -205,4 +205,4 @@ A marca de informação no ticker indica um alerta da janela selecionada. Ao sel
 
 **Exemplo de alerta:** em BIED3, o preço médio recebido em 18/09 ficou fora do mínimo e do máximo informados para o dia. Isso merece conferência no CSV, mas não prova que o fechamento esteja errado. O ranking usa os fechamentos de R$ 5,55 e R$ 6,37: a diferença é R$ 0,82 por ação ajustada, e o retorno é 14,77%. O preço médio não entra nessa fórmula.
 
-“Contexto de negociação” explica uma limitação da extração: o volume financeiro e a quantidade ajustada podem usar bases diferentes. A interface apresenta o volume recebido e sua cobertura, mas não calcula um indicador que prometa facilidade de compra ou venda. Nenhum filtro de liquidez foi aplicado.
+O volume financeiro e a quantidade ajustada podem usar bases diferentes. A interface apresenta o volume recebido e sua cobertura, mas não calcula um indicador que prometa facilidade de compra ou venda. Nenhum filtro de liquidez foi aplicado.

@@ -92,6 +92,27 @@
   border-radius: var(--radius-panel);
   padding: 0 18px;
 }
+.market-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.market-title-row h2 {
+  margin: 0;
+}
+.market-tooltip {
+  left: 0;
+  right: auto;
+}
+@media (max-width: 800px) {
+  .market-title-row {
+    justify-content: space-between;
+  }
+  .market-tooltip {
+    left: auto;
+    right: 0;
+  }
+}
 .market-news > summary {
   cursor: pointer;
   padding: 16px 0;

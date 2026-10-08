@@ -137,7 +137,6 @@ function renderWindow() {
       'ranking-limits',
       `${interpretation.low_initial_price_count} de ${current.top20.length} ações começaram abaixo de R$ 1,00. Uma base de preço pequena pode ampliar a variação percentual; o ganho em R$ aparece no painel da ação.${interpretation.alerted_tickers.length ? ` Há alertas nas pontas para ${interpretation.alerted_tickers.join(', ')}; selecione a ação para conferir.` : ' Nenhum alerta registrado nas pontas do top desta janela.'}`,
     );
-    text('negotiation-note', interpretation.negotiation_note);
   }
   renderDetail();
   renderDistribution(b);
@@ -605,7 +604,7 @@ function renderHeatmap(rows) {
     legend.append(
       node('span', 'volume-legend-swatch'),
       document.createTextNode(
-        ' Menor → maior volume · mesma escala para todas as ações · — Sem volume válido',
+        ' Menor → maior volume · escala logarítmica comum às ações · 0 = volume zero · — Sem volume válido',
       ),
     );
   else
@@ -626,12 +625,26 @@ function renderHeatmap(rows) {
   }
   const grid = node('div', 'heatmap-grid');
   grid.style.gridTemplateColumns = `95px repeat(${dates.length},minmax(${isVolume ? 115 : 75}px,1fr))`;
-  const maxVolume = Math.max(
-    0,
-    ...Object.values(volume.series)
-      .flat()
-      .map((p) => Number(p.volume || 0)),
-  );
+  const positiveVolumes = rows
+    .flatMap((row) => volume.series[row.ticker] || [])
+    .filter((p) => dates.includes(p.date) && p.volume !== null)
+    .map((p) => Number(p.volume))
+    .filter((v) => Number.isFinite(v) && v > 0);
+  const minLogVolume = Math.log1p(Math.min(...positiveVolumes));
+  const maxLogVolume = Math.log1p(Math.max(...positiveVolumes));
+  const volumeColor = (raw) => {
+    if (Number(raw) === 0) return '#26343f';
+    const intensity =
+      maxLogVolume > minLogVolume
+        ? Math.max(
+            0,
+            Math.min(1, (Math.log1p(Number(raw)) - minLogVolume) / (maxLogVolume - minLogVolume)),
+          )
+        : 0.5;
+    const low = [13, 32, 57],
+      high = [33, 113, 181];
+    return `rgb(${low.map((v, i) => Math.round(v + (high[i] - v) * intensity)).join(',')})`;
+  };
   grid.append(node('span', 'head', 'ATIVO'));
   dates.forEach((d) => grid.append(node('span', 'head', day(d).slice(0, 5))));
   rows.forEach((row) => {
@@ -664,11 +677,7 @@ function renderHeatmap(rows) {
         `heat-cell${raw === null ? ' missing' : ''}`,
         raw === null ? '—' : isVolume ? money(raw) : `${Number(raw) > 0 ? '+' : ''}${pct(raw)}`,
       );
-      const color = isVolume
-        ? raw === null
-          ? null
-          : `rgba(57,148,255,${0.12 + (maxVolume ? Number(raw) / maxVolume : 0) * 0.78})`
-        : heatColor(raw);
+      const color = isVolume ? (raw === null ? null : volumeColor(raw)) : heatColor(raw);
       if (color) cell.style.background = color;
       cell.title = isVolume
         ? `${row.ticker} · ${day(d)}: ${raw === null ? 'volume ausente, inválido ou duplicado' : `volume informado R$ ${money(raw)}`}`

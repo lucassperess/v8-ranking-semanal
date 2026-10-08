@@ -526,8 +526,15 @@ td.positive,
   display: inline-block;
   width: 70px;
   height: 8px;
-  background: linear-gradient(to right, #142238, #3994ff);
+  background: linear-gradient(to right, #0d2039, #2171b5);
   border-radius: 4px;
+}
+.volume-source a {
+  color: var(--blue);
+}
+.volume-source a:hover,
+.volume-source a:focus-visible {
+  text-decoration: underline;
 }
 .heatmap-section {
   border-top: 1px solid var(--line);

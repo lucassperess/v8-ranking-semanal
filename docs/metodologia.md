@@ -282,7 +282,7 @@ Um volume é utilizável quando é numérico, finito, não negativo e pertence a
 
 Os dias considerados são as datas da extração com algum fechamento positivo, entre o início da semana e o fechamento final escolhido. Não entram dias sem observações nem o volume do fechamento anterior à semana. As janelas principal e alternativa usam esses mesmos dias para o volume; as ações do top podem ser diferentes em cada janela.
 
-A coluna do ranking informa a média e a cobertura, como “4 de 5 dias”. Médias com coberturas diferentes exigem atenção na comparação. A tabela diária usa uma escala azul comum para comparar valores informados. O volume não entra na fórmula do retorno, no desempate, na média dos retornos ou na elegibilidade; não há filtro de liquidez.
+A coluna do ranking informa a média e a cobertura, como “4 de 5 dias”. Médias com coberturas diferentes exigem atenção na comparação. A tabela diária usa uma escala azul logarítmica comum às ações e datas exibidas, para distinguir volumes de magnitudes diferentes. Diferenças iguais de cor não representam diferenças iguais em reais. Zero explícito tem fundo neutro; ausência fica marcada com “—”. O volume não entra na fórmula do retorno, no desempate, na média dos retornos ou na elegibilidade; não há filtro de liquidez.
 
 ## Como o contexto é preparado
 
