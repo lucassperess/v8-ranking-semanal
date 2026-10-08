@@ -342,6 +342,26 @@ async function showMethod() {
     }
   });
   Object.assign(files, {
+    'context_manifest.json': [
+      'Manifesto do contexto',
+      'Datas, versão e assinaturas do conteúdo desta execução.',
+      'JSON',
+    ],
+    'context_company.json': [
+      'Contexto das empresas',
+      'Textos, fontes e limites para os tickers desta execução.',
+      'JSON',
+    ],
+    'context_market.json': [
+      'Contexto de mercado',
+      'Indicadores e acontecimentos do período analisado.',
+      'JSON',
+    ],
+    'context_audit.json': [
+      'Conferência do contexto',
+      'Cobertura, modelo, versão do prompt e assinaturas das evidências.',
+      'JSON',
+    ],
     'etl_manifest.json': [
       'Manifesto do tratamento',
       'Entrada, codificação, parâmetros, versões e assinaturas.',
@@ -365,6 +385,7 @@ async function showMethod() {
   });
   const fileGroups = new Map();
   const groupFor = (name) => {
+    if (name.startsWith('context_')) return 'Contexto e fontes';
     if (/^(top20|all_returns)/.test(name)) return 'Rankings e retornos';
     if (/^(quality|candidate_exclusions)/.test(name)) return 'Qualidade e exclusões';
     if (

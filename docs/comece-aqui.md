@@ -43,4 +43,6 @@ Cada envio cria uma análise independente. Ele **não substitui o resultado do c
 
 ## Explore os guias
 
+Na versão com contexto, o ranking aparece primeiro. Depois, a aba **Contexto** recebe as informações coletadas para as empresas e as datas do seu envio, sem precisar recarregar a página. Notícias e antecedentes financeiros ajudam a entender a empresa, mas não comprovam por que seu preço variou. Se a coleta falhar, seus cards, ranking e gráficos continuam disponíveis. As fontes e os arquivos dessa leitura ficam na auditoria da própria análise.
+
 Abra um dos artigos abaixo para consultar as regras, usar o dashboard ou conferir sua análise.

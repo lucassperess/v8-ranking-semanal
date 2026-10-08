@@ -1,5 +1,7 @@
 # Contexto integrado à prévia local
 
+**Atualização de 08/10/2026:** as limitações sobre novos envios descritas nesta revisão histórica foram superadas pela implementação de contexto por execução. Consulte [a validação de replicabilidade](contexto-replicavel.md). O conteúdo abaixo registra a etapa de 07/10, sem alteração da produção.
+
 Revisão em 07/10/2026. Ramo `codex/contexto`. Esta etapa não publica a aplicação.
 
 ## Conteúdo disponível

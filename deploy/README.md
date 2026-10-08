@@ -1,5 +1,15 @@
 # Operação da interface na VPS
 
+## Configuração da versão com contexto
+
+Esta versão foi validada localmente; este registro não declara uma publicação na VPS. O Compose transmite `OPENAI_API_KEY`, `TAVILY_API_KEY` e `CONTEXT_ENABLED` somente ao worker. Configure as chaves no ambiente que inicia o Compose ou em um arquivo privado fornecido com `--env-file /caminho/arquivo.env`. Não inclua esse arquivo no checkout, na imagem ou em logs. Confira a configuração sem exibir os valores das chaves.
+
+Com `CONTEXT_ENABLED=0`, ou sem as duas credenciais, o ranking continua funcionando. O worker libera o resultado financeiro antes de coletar o contexto, dentro do mesmo prazo total de dez minutos. A API oferece `GET /api/analyses/{id}/context`; quatro derivados públicos aparecem na auditoria. `context/private/` não é servido pelas rotas de download e acompanha a remoção da execução após sete dias.
+
+Veja [o registro de validação](contexto-replicavel.md) e [os comandos de reprodução](../docs/desenvolvimento.md).
+
+## Operação do ranking
+
 O `compose.yaml` publica apenas o contêiner `app` na rede externa `proxy` do Traefik existente. Nenhuma porta nova é exposta no host. O contêiner `worker` compartilha o volume `ranking_data` com a aplicação e acessa a internet para obter referências datadas da B3. O resultado fixo está na imagem; envios e cache B3 ficam no volume, fora do Git.
 
 Na VPS, mantenha o checkout em `/home/lucas/projects/v8-ranking-semanal` e a stack em `/opt/stacks/v8-ranking/compose.yaml`. Antes de subir, confira `docker compose -f /opt/stacks/v8-ranking/compose.yaml config`. Depois:

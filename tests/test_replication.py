@@ -3,6 +3,7 @@
 import csv
 import io
 import json
+import os
 import sqlite3
 import tempfile
 import unittest
@@ -128,7 +129,8 @@ class ReplicationTests(unittest.TestCase):
         self.assertEqual(accepted.status_code, 202, accepted.text)
         job_id = accepted.json()['id']
         local_sources(self.root / 'reference')
-        worker.process(store.next_job())  # Processo Python real, duas janelas, sem rede.
+        with patch.dict(os.environ, {'CONTEXT_ENABLED': '0'}):
+            worker.process(store.next_job())  # Processo Python real, duas janelas, sem rede.
         result = self.client.get(f'/api/analyses/{job_id}/result')
         self.assertEqual(result.status_code, 200, result.text)
         payload = result.json()
@@ -170,6 +172,17 @@ class ReplicationTests(unittest.TestCase):
         self.assertEqual(state['problem']['code'], 'classification')
         self.assertIn('fontes B3', state['problem']['guidance'])
         self.assertEqual(self.client.get(f'/api/analyses/{job_id}/result').status_code, 409)
+
+    def test_context_start_failure_preserves_completed_ranking(self):
+        response = self.send(extraction('2026-09-18'))
+        job_id = response.json()['id']
+        local_sources(self.root / 'reference', '2026-09-18')
+        with patch.object(worker, 'prepare_context', side_effect=OSError('Context process could not start')):
+            worker.process(store.next_job())
+        self.assertEqual(self.client.get(f'/api/analyses/{job_id}/result').status_code, 200)
+        context = self.client.get(f'/api/analyses/{job_id}/context').json()
+        self.assertEqual(context['status'], 'unavailable')
+        self.assertIn('ranking', context['message'])
 
     def test_existing_database_migration_preserves_old_jobs(self):
         with sqlite3.connect(store.DB_PATH) as con:

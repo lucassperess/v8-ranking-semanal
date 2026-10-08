@@ -36,6 +36,12 @@ Os percentuais dos cards usam duas casas decimais e a quantidade de ações perm
 
 ## Explore uma ação
 
+O painel tem as abas **Gráfico** e **Contexto**. Elas ocupam a mesma área: trocar de aba mantém o ticker, os preços e o retorno selecionados. O contexto oferece fatos sobre a empresa, resultados financeiros disponíveis até o fechamento, acontecimentos datados e links para as fontes. Trocar de ação ou janela atualiza a leitura dos preços e das datas.
+
+Em um novo envio, o ranking aparece primeiro. A aba Contexto informa enquanto a coleta está em andamento e atualiza automaticamente quando ela termina. Se uma fonte ou serviço falhar, o ranking permanece disponível. Uma mensagem informa o limite encontrado; falta de notícia confirmada não significa que nenhuma notícia existiu.
+
+Os textos dos novos envios são gerados por IA, com conferência automática de identidade, datas e trechos das fontes, seguida de uma segunda leitura por IA. Eles não recebem revisão humana individual. O case possui textos preparados e revisados separadamente. Em ambos, os fatos dão contexto, mas não comprovam que uma notícia causou cada alta ou queda. Informações posteriores ao último fechamento recebem aviso próprio.
+
 No desktop, a tabela apresenta estas colunas:
 
 | Coluna | Significado |

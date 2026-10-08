@@ -7,6 +7,32 @@ from pathlib import Path
 CONTEXT = Path(__file__).resolve().parents[1] / 'context/case-2026-09-22'
 
 
+def load_run_context(root):
+    """Expose only a signed result bound to this run, never the private collection."""
+    directory = root / 'context'
+    try:
+        state = json.loads((directory / 'state.json').read_text(encoding='utf-8'))
+        if state['status'] != 'available':
+            return state
+        manifest = json.loads((directory / 'manifest.json').read_text(encoding='utf-8'))
+        if hashlib.sha256((root / 'presentation.json').read_bytes()).hexdigest() != manifest['input_sha256']:
+            raise ValueError('Context belongs to another run')
+        for name in ('company.json', 'market.json', 'audit.json'):
+            if hashlib.sha256((directory / name).read_bytes()).hexdigest() != manifest['files'][name]:
+                raise ValueError('Context content changed')
+        company = json.loads((directory / 'company.json').read_text(encoding='utf-8'))
+        market = json.loads((directory / 'market.json').read_text(encoding='utf-8'))
+        payload = json.loads((root / 'presentation.json').read_text(encoding='utf-8'))
+        expected = {r['ticker'] for w in payload['windows'].values() for r in w['top20']}
+        if (company['reference_date'] != payload['week']['reference_date'] or
+                market['reference_date'] != company['reference_date'] or
+                {r['ticker'] for r in company['assets']} != expected):
+            raise ValueError('Context is incompatible with the ranking')
+        return {'status': 'available', 'company': company, 'market': market}
+    except (OSError, ValueError, KeyError, TypeError):
+        return {'status': 'unavailable', 'message': 'Contexto indisponível para esta execução. O ranking e os gráficos continuam disponíveis.'}
+
+
 def digest(path):
     return hashlib.sha256(path.read_bytes().replace(b'\r\n', b'\n')).hexdigest()
 

@@ -13,6 +13,7 @@ from pathlib import Path
 from webapp import store
 from webapp.doc_revision import archive
 from webapp.presentation import build_presentation
+from context_pipeline.sources import write
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -85,13 +86,53 @@ def process(job: dict) -> None:
     archive(output_dir)
     payload = build_presentation(output_dir, normalized_path=output_dir / "etl" / "normalized.csv")
     (output_dir / "presentation.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    write(output_dir / 'context/state.json', {'status': 'processing',
+          'message': 'Ranking concluído. Consultando fontes para o contexto desta execução…'})
     store.update_job(job_id, status="completed", stage="Concluída")
+    # Context remains optional and isolated; the completed ranking is already readable.
+    try:
+        prepare_context(output_dir, log_path, started)
+    except Exception:
+        write(output_dir / 'context/state.json', {'status': 'unavailable',
+              'message': 'Não foi possível iniciar ou concluir o contexto. O ranking permanece disponível.'})
+
+
+def prepare_context(output_dir, log_path, started):
+    with log_path.open('a', encoding='utf-8') as log:
+        context_child = subprocess.Popen([sys.executable, '-m', 'context_pipeline.generate',
+                                         '--run-dir', str(output_dir)], cwd=ROOT,
+                                        stdout=log, stderr=subprocess.STDOUT, shell=False,
+                                        env={**os.environ, 'PYTHONUTF8': '1', 'PYTHONIOENCODING': 'utf-8'})
+        while context_child.poll() is None:
+            if STOP or time.monotonic() - started > 600:
+                context_child.terminate()
+                try:
+                    context_child.wait(timeout=8)
+                except subprocess.TimeoutExpired:
+                    context_child.kill()
+                    context_child.wait()
+                write(output_dir / 'context/state.json', {'status': 'unavailable',
+                      'message': 'A coleta de contexto não terminou no prazo. O ranking está concluído e disponível.'})
+                break
+            time.sleep(1)
+        if context_child.returncode and (output_dir / 'context/state.json').is_file():
+            state = json.loads((output_dir / 'context/state.json').read_text(encoding='utf-8'))
+            if state.get('status') == 'processing':
+                write(output_dir / 'context/state.json', {'status': 'unavailable',
+                      'message': 'A geração de contexto foi interrompida. O ranking permanece disponível.'})
 
 
 def main() -> None:
     signal.signal(signal.SIGTERM, request_stop)
     signal.signal(signal.SIGINT, request_stop)
     store.recover_interrupted()
+    for state_path in (store.DATA_DIR / 'runs').glob('*/context/state.json'):
+        try:
+            if json.loads(state_path.read_text(encoding='utf-8')).get('status') == 'processing':
+                write(state_path, {'status': 'unavailable',
+                      'message': 'O servidor reiniciou durante a coleta de contexto. O ranking permanece disponível.'})
+        except (OSError, ValueError):
+            continue
     last_cleanup = 0.0
     while not STOP:
         if time.monotonic() - last_cleanup > 60:

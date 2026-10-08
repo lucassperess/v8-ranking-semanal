@@ -1,5 +1,7 @@
 # Revisão do conteúdo da prévia
 
+Esta revisão registra a etapa de 07/10/2026. A implementação posterior para novos envios e sua validação estão em [Contexto por execução](contexto-replicavel.md).
+
 Concluída em 07/10/2026, no ramo `codex/contexto`, sem publicação.
 
 ## Escopo e resultado

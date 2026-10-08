@@ -18,6 +18,10 @@ from webapp.doc_revision import details as documentation_details
 
 
 DOWNLOADS = {
+    'context_manifest.json': ('context', 'manifest.json'),
+    'context_company.json': ('context', 'company.json'),
+    'context_market.json': ('context', 'market.json'),
+    'context_audit.json': ('context', 'audit.json'),
     "documentation_snapshot.json": ("root", "documentation_snapshot.json"),
     "top20.csv": ("principal", "top20.csv"),
     "all_returns.csv": ("principal", "all_returns.csv"),
@@ -55,6 +59,8 @@ def output_path(root: Path, name: str, *, featured: bool = False) -> Path:
         return root / "classification" / "alternativa" / filename
     if group == "etl":
         return root / "etl" / filename
+    if group == 'context':
+        return root / 'context' / filename
     return root / "rankings" / group / filename
 
 

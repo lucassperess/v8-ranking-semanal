@@ -10,6 +10,10 @@ Esta documentação apresenta regras gerais. Use os arquivos da execução para 
 
 ## Qual arquivo consultar
 
+Quando o contexto termina, o grupo **Contexto e fontes** oferece quatro JSONs: contexto das empresas, contexto de mercado, manifesto e conferência do contexto. A conferência identifica a cobertura obtida, o modelo, a versão do prompt e as assinaturas dos arquivos usados. Consulte os links das fontes na aba Contexto para ler os documentos de origem. O CSV enviado e a coleta interna não são publicados.
+
+Reproduzir os cálculos financeiros é diferente de gerar um novo texto de IA. Uma coleta nova pode encontrar outras fontes, e o modelo pode escrever de outra maneira. A cópia salva preserva o resultado daquela execução; no ambiente do responsável, as respostas e fontes guardadas permitem reapresentar a mesma geração sem novas consultas. Isso não promete que uma consulta futura produzirá o mesmo texto palavra por palavra.
+
 | Pergunta | Arquivo |
 | --- | --- |
 | Como chegou às posições? | `top20.csv` e `all_returns.csv` |

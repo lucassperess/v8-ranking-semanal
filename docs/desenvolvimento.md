@@ -76,6 +76,28 @@ O diretório padrão de estado local é `runtime-data/`. A variável `RANKING_DA
 
 ## Reproduzir o pipeline
 
+### Contexto opcional de cada envio
+
+O worker libera o ranking antes de chamar `context_pipeline.generate`. A coleta utiliza as empresas do top das duas janelas e compartilha o prazo total de dez minutos. Uma falha do contexto não invalida o resultado financeiro.
+
+Configure `OPENAI_API_KEY` e `TAVILY_API_KEY` no ambiente do worker ou no `.env` local, fora do Git. `CONTEXT_ENABLED=0` desativa a coleta. O modelo desta versão é `gpt-6-luna`. Chaves e respostas privadas não chegam ao navegador.
+
+Para uma execução que já contém `presentation.json`, classificações e rankings:
+
+```powershell
+.venv/Scripts/python -m context_pipeline.generate --run-dir "runs/minha-analise"
+.venv/Scripts/python -m scripts.audit_run_context --run-dir "runs/minha-analise"
+.venv/Scripts/python -m context_pipeline.generate --run-dir "runs/minha-analise" --replay
+```
+
+O primeiro comando consulta fontes externas e pode consumir créditos; recusa sobrescrever um contexto concluído. O segundo reconcilia os números com suas entradas salvas. O terceiro usa exclusivamente respostas e evidências guardadas em `context/private/`, grava uma pasta `context/replay-*` e compara os textos e indicadores com a geração original. Uma busca futura não garante as mesmas notícias ou palavras.
+
+A identificação exige correspondência entre ticker, ISIN da classificação datada e empresa no cadastro B3. A busca considera a semana e até 90 dias anteriores. Para leitura pela IA, seleciona até seis textos de 3.000 caracteres por empresa, priorizando documentos oficiais. Isso não constitui um catálogo completo das notícias de todos os dias.
+
+Trechos, datas e identidade recebem conferência automática e segunda leitura por IA. Resultados financeiros anteriores ao fechamento podem servir como antecedentes, sem comprovar a causa da oscilação. A reserva conservadora para chamadas ao modelo é limitada a US$ 3 por geração; não corresponde ao valor faturado e não inclui Tavily.
+
+Os arquivos `context/{company,market,audit,manifest}.json` são derivados públicos. As respostas completas e documentos ficam privados. O manifesto vincula o contexto ao `presentation.json`; datas e ativos são conferidos na API. O teste `python -m scripts.validate_context_replication --output runs/teste-contexto` usa preços e classificações artificiais, que não devem ser publicados como dados reais.
+
 Exemplo da referência, com o CSV original disponível fora do Git:
 
 ```powershell

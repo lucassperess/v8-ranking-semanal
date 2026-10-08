@@ -3,6 +3,7 @@
   let message = '';
   let renderedSelection = '';
   let activeView = 'graph';
+  let loadGeneration = 0;
   function showView(view, focus = false) {
     activeView = view;
     for (const name of ['graph', 'context']) {
@@ -112,7 +113,7 @@
     if (issuer.financial_context)
       companyPanel.append(
         details(
-          'Resultados anteriores à semana',
+          'Resultados disponíveis até o fechamento',
           issuer.financial_context.text,
           issuer.financial_context.source_ids,
         ),
@@ -162,7 +163,7 @@
         item.append(
           el(
             'strong',
-            'Depois do fechamento de 18/09: não explica o retorno encerrado nessa data.',
+            `Depois do fechamento de ${date(context.company.price_end)}: não explica o retorno encerrado nessa data.`,
           ),
         );
       item.append(el('p', event.text));
@@ -180,7 +181,7 @@
       el('h2', 'Contexto geral da semana'),
       el(
         'p',
-        '14 a 20/09/2026 · referências de mercado e acontecimentos do período. Não comprovam a causa do retorno de cada ação.',
+        `${date(context.market.calendar_week.start)} a ${date(context.market.calendar_week.end)} · referências de mercado e acontecimentos do período. Não comprovam a causa do retorno de cada ação.`,
         'context-muted',
       ),
     );
@@ -188,6 +189,14 @@
     for (const indicator of context.market.indicators) {
       const values = indicator[selectedWindow];
       const card = el('article', '', 'market-card');
+      if (!values) {
+        card.append(
+          el('h3', indicator.label),
+          el('p', 'Sem observações válidas nas datas exatas desta janela.'),
+        );
+        grid.append(card);
+        continue;
+      }
       const value = Number(values.change_pct);
       card.append(
         el('h3', indicator.label),
@@ -229,30 +238,62 @@
         link(event.source_label, event.source_url),
       );
       events.append(card);
+      if (event.after_price_end)
+        card.append(
+          el('strong', `Informação posterior ao fechamento de ${date(context.company.price_end)}.`),
+        );
     }
     newsGroup.append(events);
     marketPanel.append(newsGroup, el('p', context.market.method, 'context-muted'));
+    if (context.market.missing_indicators?.length)
+      marketPanel.append(
+        el(
+          'p',
+          `Indicadores indisponíveis: ${context.market.missing_indicators.join(', ')}.`,
+          'context-muted',
+        ),
+      );
+    if (context.market.missing_event_topics?.length)
+      marketPanel.append(
+        el(
+          'p',
+          `Não foram confirmados acontecimentos nas fontes consultadas para: ${context.market.missing_event_topics.join(', ')}. Isso não significa ausência de acontecimentos.`,
+          'context-muted',
+        ),
+      );
   }
-  async function load(kind, selection) {
+  async function load(kind, selection, runId) {
+    const generation = ++loadGeneration;
     context = null;
     renderedSelection = '';
     message =
       kind === 'featured'
         ? 'Carregando o contexto revisado…'
-        : 'O contexto de notícias foi preparado para o case de referência. Este novo envio não recebe automaticamente os textos do case.';
+        : 'Consultando o contexto desta execução… O ranking já está disponível.';
     render(selection().ticker, selection().window);
-    if (kind !== 'featured') return;
-    try {
-      const response = await fetch('/api/featured/context');
-      if (!response.ok) throw new Error('Context request failed');
-      const payload = await response.json();
-      if (payload.status === 'available') context = payload;
-      else message = payload.message;
-    } catch {
-      message =
-        'Não foi possível carregar o contexto. O ranking e os gráficos continuam disponíveis.';
+    const endpoint =
+      kind === 'featured' ? '/api/featured/context' : `/api/analyses/${runId}/context`;
+    const started = Date.now();
+    async function refresh() {
+      try {
+        const response = await fetch(endpoint);
+        if (!response.ok) throw new Error('Context request failed');
+        const payload = await response.json();
+        if (generation !== loadGeneration) return;
+        if (payload.status === 'available') context = payload;
+        else message = payload.message;
+        if (payload.status === 'processing' && Date.now() - started < 600000)
+          setTimeout(refresh, 3000);
+        else if (payload.status === 'processing')
+          message =
+            'O contexto ainda não foi concluído. Atualize esta página mais tarde; o ranking está disponível.';
+      } catch {
+        message =
+          'Não foi possível carregar o contexto. O ranking e os gráficos continuam disponíveis.';
+      }
+      render(selection().ticker, selection().window);
     }
-    render(selection().ticker, selection().window);
+    await refresh();
   }
   window.rankingContext = { load, render };
 })();

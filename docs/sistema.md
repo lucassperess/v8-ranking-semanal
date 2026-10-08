@@ -23,6 +23,10 @@ Uma confirmação das datas no formulário permite aceitar que os dados terminem
 
 ## Por que o resultado é independente do case?
 
+O contexto de cada novo envio também é preparado para a execução: utiliza as empresas presentes nos seus rankings e as datas da semana escolhida. O worker libera o ranking e continua a coleta opcional de contexto. A tela acompanha esse andamento. Essa etapa compartilha o limite total de dez minutos; se não terminar ou não houver credenciais, informa a indisponibilidade sem invalidar o ranking concluído.
+
+A identidade é conferida por ticker e ISIN com a B3 antes de associar notícias a uma empresa. Uma identidade incompatível interrompe apenas a associação de notícias daquele ticker. Fontes, textos, versão do prompt e assinaturas ficam ligados à execução. Os textos do case nunca são copiados para outro envio.
+
 Cada envio recebe uma identificação própria, uma entrada, uma referência e uma pasta de resultados. O case permanece disponível na página inicial, pela opção “Ranking”. Os números de outra análise aparecem no endereço e na auditoria dela.
 
 Os arquivos de resultado são calculados em Python. O navegador escolhe quais dados apresentar conforme a ação e a janela selecionadas; não calcula novamente o ranking semanal. As séries diárias também correspondem à janela escolhida. Na alternativa, o primeiro fechamento é o preço inicial e não possui retorno diário dentro dela.

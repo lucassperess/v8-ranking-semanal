@@ -48,6 +48,10 @@ async function json(url, options) {
 }
 
 function render(data) {
+  if (data.validation_notice) {
+    const notice = node('p', 'muted', data.validation_notice);
+    $('dashboard').prepend(notice);
+  }
   $('short-week-notice').hidden = !data.week.nonfriday_end_accepted;
   if (data.week.nonfriday_end_accepted)
     $('short-week-notice').textContent =
@@ -61,7 +65,11 @@ function render(data) {
   $('dashboard').hidden = false;
   text('metric-alternative', pct(data.windows.alternative.mean_pct));
   renderWindow();
-  window.rankingContext?.load(data.kind, () => ({ ticker: state.ticker, window: state.window }));
+  window.rankingContext?.load(
+    data.kind,
+    () => ({ ticker: state.ticker, window: state.window }),
+    state.runId,
+  );
 }
 
 function renderWindow() {

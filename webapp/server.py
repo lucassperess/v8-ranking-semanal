@@ -18,7 +18,7 @@ from starlette.concurrency import run_in_threadpool
 import etl
 from webapp import store
 from webapp import documentation
-from webapp.context import load_context
+from webapp.context import load_context, load_run_context
 from webapp.doc_revision import details as documentation_details, read_snapshot
 from webapp.pages import render_page
 from webapp.review import review_input, problem
@@ -268,3 +268,13 @@ def analysis_file(job_id: str, name: str):
     if not path.is_file():
         raise HTTPException(410, "O arquivo expirou ou está indisponível")
     return FileResponse(path, filename=name)
+
+
+@app.get('/api/analyses/{job_id}/context')
+def analysis_context(job_id: str):
+    job = job_or_404(job_id)
+    if job['status'] != 'completed':
+        return JSONResponse({'status': 'processing', 'message': 'O contexto será preparado depois do cálculo do ranking.'},
+                            headers={'Cache-Control': 'no-store'})
+    return JSONResponse(load_run_context(store.DATA_DIR / 'runs' / job_id),
+                        headers={'Cache-Control': 'no-store'})
