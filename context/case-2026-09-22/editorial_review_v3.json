@@ -1,0 +1,32 @@
+{
+  "status": "company_content_reviewed_for_integration_not_published",
+  "review_date": "2026-10-07",
+  "content_file": "company_context_v3.json",
+  "content_sha256_lf": "70c8a19dcd6cb6f63b38299ab9b27983b14754640e1bfa8159b3a2848326deef",
+  "previous_review_file": "editorial_review.json",
+  "previous_review_sha256_lf": "f4b5ee7e026d11149e8e6a9b7b12c910208b00c4236cf0373b88c6b42e32150a",
+  "checks": {
+    "companies": 23,
+    "assets": 24,
+    "sources": 48,
+    "financial_accounts_reconciled": 140,
+    "weekly_returns_recalculated": 47,
+    "daily_comparisons_checked": 212,
+    "market_comparisons_recalculated": 8,
+    "limitations": [
+      "Source bodies reuse the prior editorial review; no live causal effect is established.",
+      "Date of CVM delivery is not necessarily the first public disclosure."
+    ]
+  },
+  "changes": [
+    "Brazilian thousands separators in five financial readings.",
+    "Missing adjacent comparison means at least one missing/conflicting price; revised MGEL4 and PLAS3.",
+    "CVM delivery dates distinguished from publication in the interface, including multiple document dates."
+  ],
+  "content_scope": "All 23 company interpretations and events retained from v2; no numerical financial or price value changed.",
+  "limitations": [
+    "Original source body verification reused from prior review.",
+    "No company causal effect on return established.",
+    "Case only; new uploads do not generate context automatically."
+  ]
+}

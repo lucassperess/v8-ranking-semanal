@@ -119,13 +119,42 @@
       );
     const news = el('details');
     news.append(el('summary', `Acontecimentos e antecedentes (${issuer.events.length})`));
+    if (
+      issuer.events.some((event) =>
+        event.source_ids.some((id) =>
+          context.company.sources.find((source) => source.id === id)?.date_basis.startsWith('cvm_'),
+        ),
+      )
+    ) {
+      news.append(
+        el(
+          'p',
+          'Nos documentos oficiais, a data de entrega à CVM indica quando o documento foi registrado. O acontecimento e a primeira divulgação pública podem ter ocorrido antes.',
+          'context-muted',
+        ),
+      );
+    }
     for (const event of issuer.events) {
       const item = el('article', '', 'context-event');
+      const evidence = (event.source_ids || []).map((id) =>
+        context.company.sources.find((source) => source.id === id),
+      );
+      const deliveryDates = [
+        ...new Set(
+          evidence
+            .filter((source) => source?.date_basis.startsWith('cvm_'))
+            .map((source) => source.publication_date),
+        ),
+      ].sort();
+      const dateText =
+        evidence.length && evidence.every((source) => source?.date_basis.startsWith('cvm_'))
+          ? `Entrega à CVM em ${deliveryDates.map(date).join(' e ')}`
+          : `Publicado em ${date(event.publication_date)}`;
       item.append(
         el('h4', event.title),
         el(
           'p',
-          `Publicado em ${date(event.publication_date)}${event.event_date && event.event_date !== event.publication_date ? ` · acontecimento em ${date(event.event_date)}` : ''}`,
+          `${dateText}${event.event_date && event.event_date !== event.publication_date ? ` · acontecimento em ${date(event.event_date)}` : ''}`,
           'context-muted',
         ),
       );

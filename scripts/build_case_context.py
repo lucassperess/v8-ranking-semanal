@@ -15,11 +15,13 @@ def percent(value):
 
 def money(value):
     number = abs(Decimal(value))
+    def display(amount):
+        return f'{amount:,.2f}'.replace(',', '_').replace('.', ',').replace('_', '.')
     if number >= 1000000:
-        return 'R$ ' + f'{number / 1000000:.2f}'.replace('.', ',') + ' milhões'
+        return 'R$ ' + display(number / 1000000) + ' milhões'
     if number >= 1000:
-        return 'R$ ' + f'{number / 1000:.2f}'.replace('.', ',') + ' mil'
-    return 'R$ ' + f'{number:.2f}'.replace('.', ',')
+        return 'R$ ' + display(number / 1000) + ' mil'
+    return 'R$ ' + display(number)
 
 
 def short_date(value):
@@ -57,8 +59,8 @@ def price_reading(record, window):
         if not missing and all(Decimal(r['return_pct']) > 0 for r in valid):
             text += ' Todas as comparações diárias dessa janela foram positivas.'
     if missing:
-        text += (f' Faltam dois preços válidos em {missing} das comparações diárias; '
-                 'as lacunas permanecem no gráfico e não viram retorno zero.')
+        text += (f' Em {missing} das comparações diárias, pelo menos um preço está ausente '
+                 'ou conflitante. Essas comparações ficam vazias no gráfico e não viram retorno zero.')
     return {'status': 'available', 'text': text, 'start_date': start, 'end_date': end,
             'daily_comparisons': daily, 'missing_comparisons': missing,
             'return_pct': values['return_pct']}
