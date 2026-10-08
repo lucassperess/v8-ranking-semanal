@@ -15,7 +15,8 @@ Case em Python 3.11+ que recebe um CSV da Economatica, confirma ações ON/PN co
 | Testar outra extração | [Nova análise](https://ranking.lucaspsm.com/nova-analise) |
 | Entender as regras e o processo | [Documentação](https://ranking.lucaspsm.com/documentacao) |
 | Ler o resultado sem usar o site | [Entrega de referência](resultados/2026-09-22/README.md) |
-| Conferir a versão e as verificações da entrega | [Entrega v1.0.0](docs/entrega-v1.0.0.md) |
+| Ler o resumo da entrega atual e suas verificações | [Entrega com contexto e volume](docs/entrega-contexto-volume.md) |
+| Consultar a entrega histórica anterior | [Entrega v1.0.0](docs/entrega-v1.0.0.md) |
 
 **Referência: 22/09/2026.** Pontas principais: 11/09 → 18/09; 308 ações elegíveis, 20 selecionadas, média **17,78%**. A janela alternativa usa 14/09 → 18/09 e tem média **15,93%**. São dados históricos da extração, sem atualização em tempo real.
 
