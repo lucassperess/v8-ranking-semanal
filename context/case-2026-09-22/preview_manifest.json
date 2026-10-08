@@ -1,0 +1,14 @@
+{
+  "status": "reviewed_for_local_preview_not_published",
+  "hash_convention": "SHA256 of UTF-8 bytes with LF line endings",
+  "context_sha256_lf": {
+    "company_context_v2.json": "d3976d10c01d4c0febd6a1d74cf9f2fb80e172b33cbf40c74e9f2728df5f8c32",
+    "editorial_review.json": "f4b5ee7e026d11149e8e6a9b7b12c910208b00c4236cf0373b88c6b42e32150a",
+    "market_context.json": "7f8013ce511bdf73c00fefbcafe81366893f4a9766ec1fcc0cc7c221d4336c37"
+  },
+  "historical_input_sha256": {
+    "daily_context.json": "ff3cda43ac21cf9aeacd4a9c9371cc2dd926128c1bc9a67ab9137c0dbb201d57",
+    "all_returns.csv": "b23d255849157f56cb3208e6f926f067446c22410b99fb90dfc7561ab06bfe41",
+    "all_returns_alternativo.csv": "e4fb17b1abdcba27cc5678e75fd3dfaa82ba3228b532ed56e70b32d2ba85af78"
+  }
+}

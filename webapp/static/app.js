@@ -61,6 +61,7 @@ function render(data) {
   $('dashboard').hidden = false;
   text('metric-alternative', pct(data.windows.alternative.mean_pct));
   renderWindow();
+  window.rankingContext?.load(data.kind, () => ({ ticker: state.ticker, window: state.window }));
 }
 
 function renderWindow() {
@@ -185,6 +186,7 @@ function svg(tag, attributes = {}) {
   return el;
 }
 function renderDetail() {
+  window.rankingContext?.render(state.ticker, state.window);
   if (!state.ticker) return;
   const row = state.data.windows[state.window].top20.find((item) => item.ticker === state.ticker);
   text('detail-ticker', row.ticker);

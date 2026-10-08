@@ -13,6 +13,8 @@
     />
     <link rel="stylesheet" href="/static/styles.css?v=dashboard-20261007" />
     <link rel="stylesheet" href="/static/mobile.css?v=dashboard-20261007" />
+    <link rel="stylesheet" href="/static/context.css?v=context-20261007" />
+    <script src="/static/context.js?v=context-20261007" defer></script>
     <script src="/static/app.js?v=dashboard-20261007" defer></script>
     <script src="/static/header.js?v=menu-20261006" defer></script>
   </head>
@@ -219,6 +221,12 @@
                 <p class="chart-help">Toque no gráfico para consultar a data e o valor.</p>
                 <div id="detail-chart" class="detail-chart"></div>
                 <div id="detail-note" class="detail-note"></div>
+                <section
+                  id="company-context"
+                  class="company-context"
+                  aria-label="Contexto da empresa"
+                  hidden
+                ></section>
                 <a class="chart-back" href="#ranking">← Voltar ao ranking</a>
               </aside>
             </div>
@@ -250,6 +258,12 @@
             ></div>
           </section>
 
+          <section
+            id="market-context"
+            class="section market-context"
+            aria-label="Contexto geral da semana"
+            hidden
+          ></section>
           <section class="section context-section">
             <div class="section-head">
               <div>

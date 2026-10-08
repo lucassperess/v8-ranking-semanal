@@ -18,6 +18,7 @@ from starlette.concurrency import run_in_threadpool
 import etl
 from webapp import store
 from webapp import documentation
+from webapp.context import load_context
 from webapp.doc_revision import details as documentation_details, read_snapshot
 from webapp.pages import render_page
 from webapp.review import review_input, problem
@@ -144,6 +145,11 @@ def featured():
         return build_presentation(FEATURED, featured=True)
     except ValueError as exc:
         raise HTTPException(503, f"Não foi possível conferir os arquivos desta execução: {exc}") from None
+
+
+@app.get('/api/featured/context')
+def featured_context():
+    return JSONResponse(load_context(FEATURED), headers={'Cache-Control': 'no-store'})
 
 
 @app.get("/api/featured/files/{name}")

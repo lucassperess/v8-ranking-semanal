@@ -1,0 +1,154 @@
+{
+  "reference_date": "2026-09-22",
+  "status": "reviewed_case_market_context",
+  "calendar_week": {
+    "start": "2026-09-14",
+    "end": "2026-09-20"
+  },
+  "indicators": [
+    {
+      "id": "BVSP",
+      "label": "Ibovespa",
+      "unit": "pontos",
+      "definition": "Fechamento diário do índice, segundo o histórico da fonte.",
+      "source_label": "Yahoo Finance · histórico diário",
+      "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EBVSP?period1=1789084800&period2=1789776000&interval=1d",
+      "timezone": "America/Sao_Paulo",
+      "primary": {
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "start_value": "187207.0",
+        "end_value": "185229.0",
+        "change_pct": "-1.056584422591035591617834800"
+      },
+      "alternative": {
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "start_value": "185501.0",
+        "end_value": "185229.0",
+        "change_pct": "-0.1466299373049201891094926700"
+      }
+    },
+    {
+      "id": "GSPC",
+      "label": "S&P 500",
+      "unit": "pontos",
+      "definition": "Fechamento diário do índice, segundo o histórico da fonte.",
+      "source_label": "Yahoo Finance · histórico diário",
+      "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?period1=1789084800&period2=1789776000&interval=1d",
+      "timezone": "America/New_York",
+      "primary": {
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "start_value": "7656.97998046875",
+        "end_value": "7650.5",
+        "change_pct": "-0.0846284107478272958031106100"
+      },
+      "alternative": {
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "start_value": "7619.97998046875",
+        "end_value": "7650.5",
+        "change_pct": "0.400526242975411770518231200"
+      }
+    },
+    {
+      "id": "IXIC",
+      "label": "Nasdaq Composite",
+      "unit": "pontos",
+      "definition": "Fechamento diário do índice, segundo o histórico da fonte.",
+      "source_label": "Yahoo Finance · histórico diário",
+      "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EIXIC?period1=1789084800&period2=1789776000&interval=1d",
+      "timezone": "America/New_York",
+      "primary": {
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "start_value": "26333.0390625",
+        "end_value": "26522.5390625",
+        "change_pct": "0.719628294896887198205438800"
+      },
+      "alternative": {
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "start_value": "26186.41015625",
+        "end_value": "26522.5390625",
+        "change_pct": "1.283600555572047225712406600"
+      }
+    },
+    {
+      "id": "PTAX",
+      "label": "Dólar · PTAX venda",
+      "unit": "R$ por US$",
+      "definition": "Taxa diária de referência do Banco Central. Não é cotação de fechamento nem preço de compra de moeda pelo consumidor.",
+      "source_label": "Banco Central · PTAX",
+      "source_url": "https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarPeriodo(dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)?@dataInicial='09-11-2026'&@dataFinalCotacao='09-18-2026'&$format=json",
+      "timezone": "America/Sao_Paulo",
+      "primary": {
+        "start_date": "2026-09-11",
+        "end_date": "2026-09-18",
+        "start_value": "5.0918",
+        "end_value": "5.1575",
+        "change_pct": "1.290309910051455281040103700"
+      },
+      "alternative": {
+        "start_date": "2026-09-14",
+        "end_date": "2026-09-18",
+        "start_value": "5.1696",
+        "end_value": "5.1575",
+        "change_pct": "-0.2340606623336428350355927000"
+      }
+    }
+  ],
+  "events": [
+    {
+      "id": "fed",
+      "title": "Estados Unidos: o Fed elevou sua faixa de juros",
+      "date": "2026-09-16",
+      "date_label": "16/09 · 14h00 em Nova York",
+      "text": "O Federal Reserve anunciou aumento de 0,25 ponto percentual, para a faixa de 3,75% a 4,00% ao ano, citando inflação ainda elevada. A decisão é contexto para juros e condições financeiras globais; não prova o motivo do retorno de um papel brasileiro.",
+      "source_label": "Federal Reserve · comunicado de 16/09",
+      "source_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm"
+    },
+    {
+      "id": "fiscal",
+      "title": "Brasil: a IFI apontou dificuldades para o Orçamento de 2027",
+      "date": "2026-09-17",
+      "date_label": "17/09 · 17h27 em Brasília",
+      "text": "A Agência Senado publicou a avaliação da Instituição Fiscal Independente: projeção de déficit primário de R$ 86,10 bilhões, diante de uma meta de superávit de R$ 18,60 bilhões para 2027. São projeções sobre o orçamento futuro, não resultados já realizados. O tema ajuda a acompanhar as discussões sobre dívida e juros.",
+      "source_label": "Agência Senado · avaliação da IFI",
+      "source_url": "https://www12.senado.leg.br/noticias/materias/2026/09/17/governo-tera-que-cortar-despesas-para-fechar-as-contas-em-2027-diz-ifi"
+    },
+    {
+      "id": "politics",
+      "title": "Política: pesquisa Datafolha mostrou disputa presidencial apertada",
+      "date": "2026-09-17",
+      "date_label": "17/09 · publicação às 19h05",
+      "text": "A Folha publicou pesquisa realizada de 15 a 17/09: na simulação de segundo turno, Lula tinha 46% e Flávio Bolsonaro, 44%, com margem de erro de dois pontos percentuais. A pesquisa descreve intenções de voto daquele período, não prevê o resultado da eleição nem demonstra efeito sobre as ações do ranking.",
+      "source_label": "Folha · levantamento Datafolha",
+      "source_url": "https://www1.folha.uol.com.br/poder/2026/09/datafolha-lula-e-flavio-bolsonaro-empatam-em-1o-e-2o-turnos.shtml"
+    },
+    {
+      "id": "selic",
+      "title": "Brasil: a meta da Selic passou de 14,00% para 13,75% ao ano",
+      "date": "2026-09-17",
+      "date_label": "17/09 · início da vigência",
+      "text": "A série oficial do Banco Central registra a nova meta a partir de 17/09. Juros menores podem reduzir custos de crédito ao longo do tempo, mas o efeito depende da dívida e dos contratos de cada empresa; não é automático no preço da ação.",
+      "source_label": "Banco Central · série da meta Selic",
+      "source_url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=11/09/2026&dataFinal=18/09/2026"
+    }
+  ],
+  "method": "Variação = valor final / inicial − 1, calculada em Python com a precisão da fonte. Os índices usam fechamento; o dólar usa PTAX de venda. Arredondamento apenas na exibição. São referências distintas, não um índice comum nem preços substitutos para a Economatica.",
+  "input_sha256": {
+    "BVSP.json": "e51b90754b820176b051ca056a6be4f9368408cb02d635c62176b38019bc1c34",
+    "GSPC.json": "21d3247dae254f607a94c1ea0c4d95eb9ec5f09667fd0d88d408b30ea3da891c",
+    "IXIC.json": "7b5b1b604cf3f2707510a017bc05ddd8fb49f6b3cf9d254d46b6dc88d3e0391b",
+    "case_collection.json": "825a36e87ed3a00cc7bec6f152a5759c7b48d7adb212e7134cc770ba199b9600",
+    "selic-target.json": "f74ec657f5dc22976df55353fbe907a98f54e246f1845afa379355682b323517"
+  },
+  "review_notes": [
+    "Valores conflitantes de reportagem não foram usados nos indicadores.",
+    "Séries dos índices identificam o provedor, não são apresentadas como dados oficiais da B3.",
+    "Ata do Copom publicada depois da semana não foi usada como novidade conhecida na semana.",
+    "Contexto geral não é prova de causa dos retornos individuais."
+  ]
+}
