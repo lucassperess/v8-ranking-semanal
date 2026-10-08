@@ -1,6 +1,6 @@
 # Operação da interface na VPS
 
-A revisão visual mais recente está registrada em [Referências de mercado e visualização móvel de 08/10/2026](mercado-mobile-20261008.md), incluindo a imagem publicada, as verificações e a restauração da versão anterior. Os registros do [topo integrado](topo-integrado-20261008.md) e da [revisão anterior](revisao-ui-20261008.md) permanecem disponíveis.
+A revisão visual mais recente está registrada em [Resumo móvel e aviso de uso de 08/10/2026](resumo-mobile-20261008.md), incluindo a imagem publicada, as verificações e a restauração da versão anterior. Os registros das [referências de mercado](mercado-mobile-20261008.md), do [topo integrado](topo-integrado-20261008.md) e da [revisão anterior](revisao-ui-20261008.md) permanecem disponíveis.
 
 ## Configuração da versão com contexto
 
