@@ -1,17 +1,44 @@
 """Independent dates, source identity, optional failures and run binding."""
 
 import json
+import csv
+import io
+import zipfile
 import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from context_pipeline.generate import context_role, coverage_status, financial_explanation, prices, quoted_date, response_json, run, validate_event
+from context_pipeline.generate import context_role, coverage_status, financial_explanation, financial_records, prices, quoted_date, response_json, run, validate_event
 from context_pipeline.sources import Collector, sha, write
 from webapp.context import load_run_context
 
 
 class RunContextTests(unittest.TestCase):
+    def test_financial_collection_uses_dre_without_unused_balance_tables(self):
+        filing = {'CD_CVM': '123', 'DT_REFER': '2026-06-30', 'VERSAO': '1', 'DT_RECEB': '2026-08-01'}
+        base = {**filing, 'ORDEM_EXERC': 'ÚLTIMO', 'DT_INI_EXERC': '2026-04-01',
+                'DT_FIM_EXERC': '2026-06-30', 'MOEDA': 'REAL', 'ESCALA_MOEDA': 'MIL', 'DS_CONTA': 'Conta'}
+        rows = [{**base, 'CD_CONTA': '3.01', 'VL_CONTA': '100'},
+                {**base, 'CD_CONTA': '3.11', 'VL_CONTA': '5'},
+                {**base, 'CD_CVM': '999', 'CD_CONTA': '3.11', 'VL_CONTA': '999'}]
+        def table(items):
+            stream = io.StringIO()
+            writer = csv.DictWriter(stream, fieldnames=list(items[0]), delimiter=';')
+            writer.writeheader()
+            writer.writerows(items)
+            return stream.getvalue().encode('cp1252')
+        raw = io.BytesIO()
+        with zipfile.ZipFile(raw, 'w') as archive:
+            archive.writestr('itr_cia_aberta_2026.csv', table([filing]))
+            for scope in ('con', 'ind'):
+                archive.writestr(f'itr_cia_aberta_DRE_{scope}_2026.csv', table(rows))
+        collector = type('SavedCollector', (), {'archive': lambda _self, *_args: zipfile.ZipFile(io.BytesIO(raw.getvalue()))})()
+        records = financial_records(collector, [{'cvm_code': '123'}], '2026-09-18')
+        self.assertEqual(set(records), {'123'})
+        self.assertEqual(records['123']['accounts']['revenue']['value_brl'], '100000')
+        self.assertEqual(records['123']['accounts']['net_result']['value_brl'], '5000')
+
     def test_institutional_document_does_not_count_as_business_event(self):
         source = {'title': 'Estatuto Social', 'date_basis': 'cvm_delivery_catalog'}
         role = context_role(source)

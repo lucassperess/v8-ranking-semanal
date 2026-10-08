@@ -173,11 +173,14 @@ def financial_records(collector, identities, cutoff):
         url = CVM + f'DOC/ITR/DADOS/itr_cia_aberta_{archive_year}.zip'
         try:
             with collector.archive('itr-' + str(archive_year), url) as archive:
+                requested = {int(i['cvm_code']) for i in pending}
                 def read(member):
-                    return list(csv.DictReader(io.StringIO(archive.read(member).decode('cp1252')), delimiter=';'))
+                    with archive.open(member) as stream:
+                        rows = csv.DictReader(io.TextIOWrapper(stream, encoding='cp1252'), delimiter=';')
+                        return [row for row in rows if int(row['CD_CVM']) in requested]
                 filings = read(f'itr_cia_aberta_{archive_year}.csv')
                 tables = {scope: {kind: read(f'itr_cia_aberta_{kind}_{scope}_{archive_year}.csv')
-                                  for kind in ('DRE', 'BPP')} for scope in ('con', 'ind')}
+                                  for kind in ('DRE',)} for scope in ('con', 'ind')}
                 for identity in pending:
                     filing = select_filing(filings, identity['cvm_code'], cutoff)
                     if not filing:
