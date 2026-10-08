@@ -60,6 +60,8 @@ Conferidos no navegador: alternância das abas, atualização de ação e janela
 
 O ticker é o seletor no topo, com ON/PN ao lado e o retorno semanal à direita. O rótulo redundante “Ativo selecionado” foi removido. Inicial, final e variação formam uma faixa alinhada; os dois grupos de controles permanecem separados por função.
 
-As explicações de preços, retornos diários, lacunas e datas da janela ficam no “i” do gráfico. A variação em reais e as espécies ON/PN têm explicações próprias. Os botões usam o comportamento comum da plataforma: hover e foco no desktop; toque, clique fora e Escape no mobile. Em telas estreitas, a explicação aberta aparece dentro da largura da tela, acima da borda inferior. Alertas específicos continuam visíveis.
+As explicações de preços, retornos diários, lacunas e datas da janela ficam no “i” do gráfico. A variação em reais tem explicação própria. Os botões usam o comportamento comum da plataforma: hover e foco no desktop; toque, clique fora e Escape no mobile. Em telas estreitas, a explicação aberta aparece dentro da largura da tela, acima da borda inferior. Alertas específicos continuam visíveis.
 
 Conferidos o encaixe a 320 e 390 px, a atualização ON/PN, o texto sobre o primeiro dia da alternativa, a permanência da aba ao trocar o ticker e os alertas de BIED3. Os preços, cálculos e fontes não foram alterados.
+
+Refinamento visual: o seletor usa fonte regular de 14 px no desktop e 16 px no mobile. ON/PN aparece como texto simples, sem pílula nem botão de informação. O gráfico de barras não repete o título “Retorno diário”. O “i” do gráfico fica no canto inferior direito, depois dos eixos, e a explicação abre acima dele no desktop. Conferidos os dois modos do gráfico e a abertura da explicação em tela de 320 px, sem transbordamento horizontal.

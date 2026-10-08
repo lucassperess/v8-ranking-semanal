@@ -188,21 +188,7 @@
                 <div class="detail-top">
                   <div class="asset-identity">
                     <select id="asset-select" aria-label="Selecionar ação"></select>
-                    <span id="detail-kind" class="ticker-kind"></span>
-                    <span class="asset-info">
-                      <button
-                        class="info-button"
-                        type="button"
-                        aria-label="Sobre ON e PN"
-                        aria-describedby="detail-kind-help"
-                      >
-                        i
-                      </button>
-                      <span id="detail-kind-help" class="info-tooltip asset-tooltip" role="tooltip"
-                        >ON significa ação ordinária; PN significa ação preferencial. A espécie do
-                        ativo é confirmada com evidências da B3.</span
-                      >
-                    </span>
+                    <span id="detail-kind" class="asset-species"></span>
                   </div>
                   <span id="detail-return" class="detail-return"></span>
                 </div>
@@ -285,23 +271,19 @@
                         ><span class="chart-returns-short" aria-hidden="true">Retornos (%)</span>
                       </button>
                     </div>
-                    <span class="asset-info chart-info">
-                      <button
-                        class="info-button"
-                        type="button"
-                        aria-label="Como ler o gráfico"
-                        aria-describedby="detail-note"
-                      >
-                        i
-                      </button>
-                      <span
-                        id="detail-note"
-                        class="info-tooltip asset-tooltip"
-                        role="tooltip"
-                      ></span>
-                    </span>
                   </div>
                   <div id="detail-chart" class="detail-chart"></div>
+                  <span class="asset-info chart-info">
+                    <button
+                      class="info-button"
+                      type="button"
+                      aria-label="Como ler o gráfico"
+                      aria-describedby="detail-note"
+                    >
+                      i
+                    </button>
+                    <span id="detail-note" class="info-tooltip asset-tooltip" role="tooltip"></span>
+                  </span>
                 </div>
                 <section
                   id="company-context"

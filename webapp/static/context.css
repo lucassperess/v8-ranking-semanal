@@ -18,22 +18,22 @@
   min-width: 0;
 }
 .asset-identity select {
-  width: 118px;
-  min-height: 40px;
+  width: 110px;
+  min-height: 36px;
   border: 1px solid var(--line);
   border-radius: 10px;
   background: #111214;
   color: var(--text);
   padding: 6px 8px;
   font:
-    600 20px/1.3 Arial,
+    400 14px/1.3 Arial,
     sans-serif;
   cursor: pointer;
 }
-.asset-identity .ticker-kind {
+.asset-species {
   margin: 0;
   font-size: 12px;
-  padding: 4px 6px;
+  color: var(--muted);
 }
 .asset-info {
   position: relative;
@@ -44,10 +44,6 @@
   top: calc(100% + 10px);
   right: 0;
   white-space: normal;
-}
-.asset-identity .asset-tooltip {
-  left: 0;
-  right: auto;
 }
 .asset-info .info-button[aria-expanded='true'] + .asset-tooltip {
   visibility: visible;
@@ -81,7 +77,13 @@
   flex-wrap: nowrap;
 }
 .chart-info {
+  display: flex;
+  width: max-content;
   margin-left: auto;
+}
+.chart-info .asset-tooltip {
+  top: auto;
+  bottom: calc(100% + 10px);
 }
 .chart-returns-short {
   display: none;
@@ -190,7 +192,7 @@
   .asset-identity select {
     width: 104px;
     min-height: 44px;
-    font-size: 18px;
+    font-size: 16px;
   }
   .asset-detail-compact .detail-return {
     font-size: 26px;
@@ -210,10 +212,6 @@
     position: absolute;
     right: -10px;
     top: -13px;
-  }
-  .asset-identity .asset-tooltip {
-    left: auto;
-    right: 0;
   }
   .asset-info .info-button[aria-expanded='true'] + .asset-tooltip {
     position: fixed;

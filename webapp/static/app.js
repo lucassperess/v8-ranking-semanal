@@ -293,14 +293,6 @@ function renderDetail() {
     label.textContent = content;
     chart.append(label);
   };
-  if (returns)
-    axisLabel('RETORNO DIÁRIO (%)', {
-      x: returns ? 0 : left - 9,
-      y: 12,
-      fill: '#a4a8af',
-      'font-size': 12,
-      'text-anchor': returns ? 'start' : 'end',
-    });
   chart.append(svg('line', { x1: left, y1: top, x2: left, y2: h - bottom, stroke: '#55595f' }));
   chart.append(
     svg('line', { x1: left, y1: h - bottom, x2: w - right, y2: h - bottom, stroke: '#55595f' }),
