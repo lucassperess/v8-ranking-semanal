@@ -220,6 +220,52 @@ automaticamente o orçamento ou uma falha de rede de uma execução antiga.
 Os registros são acrescentados à auditoria, sem mudar preços, regras de aceitação,
 textos empresariais ou indicadores. Esta etapa, isoladamente, não aumenta a cobertura.
 
+### Leitura de acontecimentos e correção limitada da proposta
+
+O contrato `run-context-1.1` exige citações contínuas e literais. A IA não deve
+inserir `[...]` para unir trechos separados. Os identificadores permitidos para
+acontecimentos são enviados em `event_source_ids`; resultados trimestrais
+continuam no campo de antecedentes financeiros, sem serem tratados como fatos
+ocorridos na semana.
+
+Para documentos oficiais da CVM, a data de entrega confirmada pelos metadados
+é a referência de publicação. Não é necessário encontrar essa data no corpo do
+PDF. Isso não muda a data do acontecimento: uma decisão anterior pode ser
+divulgada durante a semana. Para notícias web, permanece necessária a data
+literal no texto, com dia, mês e ano.
+
+Uma proposta inválida pode receber uma única tentativa de correção sem novas
+buscas, usando os mesmos textos e os motivos da rejeição. Uma proposta vazia
+também pode ser revista quando há documentos oficiais selecionados como
+acontecimentos datados. Eventos inicialmente válidos são preservados. A saída
+corrigida passa novamente pela verificação Python e pela segunda leitura da IA;
+não há flexibilização das regras de aceitação. A tentativa usa o limite interno
+existente e pode ser impedida por orçamento ou prazo.
+
+`decision-{codigo}.json` guarda a proposta inicial e `repair_feedback`, além da
+proposta final. Os diagnósticos distinguem rejeições iniciais, tentativa de
+correção e resultado final. O contrato de prompt faz parte da identidade da
+reprodução: respostas de versões diferentes não são misturadas. Para reproduzir
+uma geração antiga, use a versão de código e prompt registrada naquela geração.
+
+Em 08/10/2026, uma conferência local com chamadas novas à OpenAI e os mesmos
+textos arquivados recuperou acontecimentos nos quatro casos escolhidos:
+
+| Ação | Informação recuperada |
+| --- | --- |
+| RCSL3 | Convocação de assembleia para votar um grupamento; não equivale a grupamento aprovado. |
+| CASH3 | Divulgação de aumento de capital relacionado ao exercício de opções; a reunião ocorreu em 08/09, antes da semana analisada. |
+| WDCN3 | Proposta vinculante para aquisição da Teki, ainda sujeita às condições descritas no documento. |
+| MEAL3 | Assembleia de debenturistas e esclarecimento de 18/09 sobre ausência de acordo firmado. O documento divulgado em 20/09 permanece marcado como posterior ao último fechamento e fora da interpretação do retorno semanal. |
+
+Não houve novas consultas de notícias, Tavily ou CVM nesse teste. Os quatro casos
+passaram pela verificação e revisão, mas não medem a cobertura de todo o ranking
+nem comprovam a causa das variações. A soma das reservas locais estimadas foi
+US$ 0,614656; não é uma medição da cobrança efetiva da OpenAI. Os insumos privados
+e respostas ficaram em `runs/context-step2-2026-10-08/`, fora do Git. A conferência
+automatizada resultou em 109 testes: 108 aprovados e um ignorado. Esta etapa foi
+validada localmente; sua conclusão não declara publicação na produção.
+
 ### Conferência visual mobile
 
 Confira 320, 390 e 430 px e o desktop antes de publicar alterações de layout. Verifique navegação completa, ausência de sobreposição na introdução, retorno visível no ranking, seleção e volta do gráfico, abertura/fechamento de informações, matriz com datas e ticker fixos, menus e tabelas da documentação, seletor da auditoria e referência brasileira no formulário. Conferência de viewport no navegador não substitui teste em Android e iOS físicos, especialmente para seleção de arquivos e teclado.

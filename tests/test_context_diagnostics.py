@@ -57,6 +57,7 @@ class DiagnosticsTests(unittest.TestCase):
         bad = {**self.event, 'evidence_quote': 'Trecho que não existe no documento original.'}
         self.models.call.side_effect = [
             {'events': [bad, self.event], 'interpretation': '', 'unresolved_question': ''},
+            {'events': [self.event], 'interpretation': '', 'unresolved_question': ''},
             {'accepted_event_indices': [], 'interpretation_supported': False, 'reason': 'unsupported'}]
         self.prepare()
         reasons = {r['reason'] for r in self.entries()}
@@ -67,6 +68,7 @@ class DiagnosticsTests(unittest.TestCase):
         bad = {**self.event, 'source_id': 'unknown'}
         self.models.call.side_effect = [
             {'events': [bad], 'interpretation': '', 'unresolved_question': ''},
+            {'events': [], 'interpretation': '', 'unresolved_question': ''},
             {'accepted_event_indices': [], 'interpretation_supported': False, 'reason': ''}]
         self.prepare()
         self.assertTrue(any(r['reason'] == 'unknown_source_id' for r in self.entries()))
@@ -82,6 +84,7 @@ class DiagnosticsTests(unittest.TestCase):
                      'period_end': '2026-06-30', 'accounts': {'net_result': {'value_brl': '1000'}}}
         self.models.call.side_effect = [
             {'events': [{**self.event, 'source_id': 'itr-123'}], 'interpretation': '', 'unresolved_question': ''},
+            {'events': [], 'interpretation': '', 'unresolved_question': ''},
             {'accepted_event_indices': [], 'interpretation_supported': False, 'reason': ''}]
         prepare_issuer(self.identity, self.collector, self.models, [], financial, self.week,
                        diagnostics=self.records, diagnostic_dir=self.root / 'diagnostics')
@@ -108,3 +111,46 @@ class DiagnosticsTests(unittest.TestCase):
         trace.record('generation', 'started', 'stage_started')
         saved = json.loads((self.root / 'trace.json').read_text())
         self.assertEqual(saved['entries'][0]['outcome'], 'started')
+
+    def test_literal_quote_repair_is_verified_before_review(self):
+        bad = {**self.event, 'evidence_quote': 'A Empresa Alfa [...] uma proposta de aquisição.'}
+        self.models.call.side_effect = [
+            {'events': [bad], 'interpretation': '', 'unresolved_question': ''},
+            {'events': [self.event], 'interpretation': '', 'unresolved_question': ''},
+            {'accepted_event_indices': [0], 'interpretation_supported': False, 'reason': ''}]
+        issuer, _ = self.prepare()
+        self.assertEqual(len(issuer['events']), 1)
+        review_input = self.models.call.call_args_list[-1].args[2]
+        self.assertEqual(review_input['proposal']['events'][0]['evidence_quote'], self.source['body'])
+        self.assertTrue(any(r['reason'] == 'quote_not_found' for r in self.entries()))
+
+    def test_repair_cannot_make_an_unsupported_quote_valid(self):
+        bad = {**self.event, 'evidence_quote': 'A empresa concluiu a aquisição e recebeu dinheiro.'}
+        self.models.call.side_effect = [
+            {'events': [bad], 'interpretation': '', 'unresolved_question': ''},
+            {'events': [bad], 'interpretation': '', 'unresolved_question': ''},
+            {'accepted_event_indices': [], 'interpretation_supported': False, 'reason': ''}]
+        issuer, _ = self.prepare()
+        self.assertEqual(issuer['events'], [])
+        self.assertEqual(self.models.call.call_args_list[-1].args[2]['proposal']['events'], [])
+
+    def test_cvm_metadata_date_is_explicit_and_does_not_require_pdf_date(self):
+        self.models.call.side_effect = [
+            {'events': [], 'interpretation': '', 'unresolved_question': 'No date in body'},
+            {'events': [self.event], 'interpretation': '', 'unresolved_question': ''},
+            {'accepted_event_indices': [0], 'interpretation_supported': False, 'reason': ''}]
+        issuer, _ = self.prepare()
+        request = self.models.call.call_args_list[0].args[2]
+        self.assertEqual(request['source_publication_rules']['doc-1'],
+                         {'kind': 'official_cvm', 'publication_date': '2026-09-15',
+                          'requires_date_quote_in_body': False})
+        self.assertEqual(issuer['events'][0]['publication_date'], '2026-09-15')
+
+    def test_repair_preserves_original_valid_event(self):
+        bad = {**self.event, 'source_id': 'unknown'}
+        self.models.call.side_effect = [
+            {'events': [self.event, bad], 'interpretation': '', 'unresolved_question': ''},
+            {'events': [], 'interpretation': '', 'unresolved_question': ''},
+            {'accepted_event_indices': [0], 'interpretation_supported': False, 'reason': ''}]
+        issuer, _ = self.prepare()
+        self.assertEqual(len(issuer['events']), 1)
