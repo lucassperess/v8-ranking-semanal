@@ -78,9 +78,9 @@ Selecione uma linha do ranking ou escolha o ticker no seletor junto ao gráfico.
 
 No computador, o painel permanece visível ao lado da tabela, que inclui o volume médio diário em reais e sua cobertura. No celular, a tabela mostra posição, ticker e retorno; selecionar uma linha atualiza a ação e leva a página até o painel. O volume permanece disponível na tabela diária. Use “Voltar ao ranking” para retornar à tabela.
 
-![Painel atual de ECOM3: seletor de ticker, espécie ON, retorno de 47,17%, preços inicial e final, variação em reais e abas Gráfico e Contexto.](assets/painel-ecom3-20261008.jpg)
+![Painel atual de ECOM3: seletor de ticker, espécie ON, retorno de 47,17%, preços inicial e final, variação em reais e abas Gráfico e Contexto.](assets/painel-ecom3-original-20261008.png)
 
-*ECOM3 passou de R$ 1,06 para R$ 1,56: aumento de R$ 0,50 por ação, equivalente a 47,17% sobre o preço inicial. Use as abas para alternar entre o gráfico e o contexto da mesma ação.* [Ampliar imagem](assets/painel-ecom3-20261008.jpg).
+*ECOM3 passou de R$ 1,06 para R$ 1,56: aumento de R$ 0,50 por ação, equivalente a 47,17% sobre o preço inicial. Use as abas para alternar entre o gráfico e o contexto da mesma ação.* [Ampliar imagem](assets/painel-ecom3-original-20261008.png).
 
 - **Preços (R$):** fechamentos observados em reais por ação, somente entre o início e o fim da janela selecionada.
 - **Retornos diários (%):** variações entre datas consecutivas da extração dentro da janela selecionada. Na alternativa, o primeiro dia aparece como “—”: seu fechamento é o preço inicial, e o primeiro retorno aparece na próxima data da extração com comparação válida.
@@ -103,9 +103,9 @@ A marca de informação no ticker indica um alerta da janela selecionada. Ao sel
 
 As abas **Gráfico** e **Contexto** ocupam a mesma área e mantêm a ação selecionada. Abra **Contexto** no painel da ação. A leitura começa pelos preços e pelo retorno da janela escolhida; depois apresenta os fatos encontrados sobre a empresa. Expanda **Documentos e notícias** para consultar datas, descrições e links. **Fontes desta leitura** identifica os documentos usados no resumo. Quando há lacunas identificadas, **O que ainda não conseguimos confirmar** informa essa limitação.
 
-![Painel de ESTR4 na aba Contexto, com leitura dos preços, informação sobre a recuperação judicial e acesso aos grupos de fontes.](assets/contexto-estr4-20261008.jpg)
+![Painel de ECOM3 na aba Contexto, com retorno de 47,17%, leitura dos preços, resumo empresarial e acesso a fontes, resultados disponíveis até o fechamento e documentos e notícias.](assets/contexto-ecom3-original-20261008.png)
 
-*A aba mantém ESTR4 selecionada e seu retorno de 20,13%. O texto descreve o esclarecimento da empresa sobre a recuperação judicial; não transforma esse documento em prova de que causou a alta.* [Ampliar imagem](assets/contexto-estr4-20261008.jpg).
+*A aba mantém ECOM3 selecionada e seu retorno de 47,17%. O texto reúne a leitura dos preços, informações financeiras e um antecedente de agosto. Abra os grupos para conferir as fontes e as datas; o antecedente não é apresentado como acontecimento da semana nem como causa comprovada da alta.* [Ampliar imagem](assets/contexto-ecom3-original-20261008.png).
 
 A coleta não promete uma notícia para cada ação em cada dia. Se nenhuma evidência suficiente for confirmada, a leitura informa essa limitação.
 

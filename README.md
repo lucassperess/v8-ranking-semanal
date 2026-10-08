@@ -15,7 +15,9 @@ Case em Python 3.11+ que recebe um CSV da Economatica, confirma ações ON/PN co
 | Testar outra extração | [Nova análise](https://ranking.lucaspsm.com/nova-analise) |
 | Entender as regras e o processo | [Documentação](https://ranking.lucaspsm.com/documentacao) |
 | Ler o resultado sem usar o site | [Entrega de referência](resultados/2026-09-22/README.md) |
-| Ler o resumo da entrega atual e suas verificações | [Entrega com contexto e volume](docs/entrega-contexto-volume.md) |
+| Ler o registro da entrega com contexto e volume | [Entrega com contexto e volume](docs/entrega-contexto-volume.md) |
+| Conferir a revisão recente da documentação | [Documentação do dashboard](deploy/documentacao-dashboard-20261008.md) |
+| Conferir a última publicação e a restauração | [Resumo móvel e aviso inicial](deploy/resumo-mobile-20261008.md) |
 | Consultar a entrega histórica anterior | [Entrega v1.0.0](docs/entrega-v1.0.0.md) |
 
 **Referência: 22/09/2026.** Pontas principais: 11/09 → 18/09; 308 ações elegíveis, 20 selecionadas, média **17,78%**. A janela alternativa usa 14/09 → 18/09 e tem média **15,93%**. São dados históricos da extração, sem atualização em tempo real.
@@ -42,15 +44,17 @@ O comando gera relatório, rankings das duas janelas, evidências de classifica�
 
 ## Usar e conferir
 
-A interface mostra preços e retornos diários, variação em R$ por ação, distribuição e tabela diária com alternância entre retornos e volume financeiro. O ranking inclui volume médio por dia e cobertura dos dados. O resumo e os alertas acompanham a janela escolhida. [Guia com exemplos visuais](docs/como-usar.md).
+A interface mostra preços e retornos diários, variação em R$ por ação, distribuição e tabela diária com alternância entre retornos e volume financeiro. No computador, o ranking inclui volume médio por dia e cobertura dos dados. No celular, a tabela mostra posição, ativo e retorno; o volume continua disponível na tabela diária e no JSON. O seletor **Semana completa | Dentro da semana** define as datas e os resultados exibidos. O resumo e os alertas acompanham essa escolha; **Comparar janelas** abre as duas médias no celular. [Guia com exemplos visuais](docs/como-usar.md).
 
-A aba **Contexto** reúne informações empresariais datadas e fontes; a seção de mercado compara Ibovespa, índices americanos e dólar PTAX. Nos novos envios, a coleta opcional acontece depois da liberação do ranking e compartilha o limite total de processamento. A cobertura pode ser parcial, e uma falha do contexto preserva os cálculos. Acontecimento da semana, antecedente financeiro e causa da variação são conceitos distintos; a ferramenta não comprova causalidade.
+A aba **Contexto** reúne informações empresariais datadas e fontes; **Referências de mercado** compara Ibovespa, índices americanos e dólar PTAX, com valores, datas e fontes em uma tabela expansível. **Acontecimentos da semana** reúne chamadas datadas e seus detalhes. Trocar a janela muda a comparação dos preços, sem alterar as datas de publicação das notícias. Nos novos envios, a coleta opcional acontece depois da liberação do ranking e compartilha o limite total de processamento. A cobertura pode ser parcial, e uma falha do contexto preserva os cálculos. Acontecimento da semana, antecedente financeiro e causa da variação são conceitos distintos; a ferramenta não comprova causalidade.
 
-Os JSONs públicos conservam o contexto apresentado e os registros para conferência. A reprodução dessa geração sem novas APIs exige também as fontes e respostas internas guardadas pelo responsável, além da versão do pipeline e dos prompts. Uma coleta nova pode produzir outro texto. Veja [Auditoria e reprodução](docs/auditoria.md).
+A auditoria organiza os derivados em até cinco grupos, conforme os arquivos disponíveis, incluindo **Contexto e fontes** nos novos envios com esses derivados. Os JSONs públicos conservam o contexto apresentado e os registros para conferência. A reprodução dessa geração sem novas APIs exige também as fontes e respostas internas guardadas pelo responsável, além da versão do pipeline e dos prompts. Uma coleta nova pode produzir outro texto. Veja [Auditoria e reprodução](docs/auditoria.md).
 
 O site aceita o [formato documentado de nove colunas](docs/dados.md), até **10 MB**: uma análise ativa, duas aguardando, dez minutos por processamento e três envios por hora por origem. Sem login; quem possui o link pode consultar os derivados. Brutos são removidos após 24 horas e testes após sete dias. Não há lista pública nem download do CSV bruto.
 
 A auditoria associa cada nova análise a uma cópia dos guias registrada na conclusão. A referência recebeu uma associação após revisão; isso é identificado no site. Execuções antigas sem registro mostram essa limitação. Veja [Auditoria e reprodução](docs/auditoria.md).
+
+Os registros de entrega e publicação identificam a versão conferida em cada ocasião. Os artigos do GitHub acompanham a revisão do repositório; podem conter alterações ainda não publicadas no site. As cópias arquivadas de cada execução permanecem vinculadas à revisão original.
 
 ## Desenvolver ou avaliar o código
 
