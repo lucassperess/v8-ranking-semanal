@@ -92,17 +92,33 @@
     marketPanel.replaceChildren();
     showView(activeView);
     if (!context) {
-      companyPanel.append(el('p', message || 'Carregando o contexto revisado…'));
+      companyPanel.append(el('p', message || 'Carregando o contexto desta análise…'));
       marketPanel.hidden = true;
       return;
     }
     const asset = context.company.assets.find((item) => item.ticker === ticker);
     const issuer = context.company.issuers.find((item) => item.cvm_code === asset?.cvm_code);
     if (!issuer) {
-      companyPanel.append(el('p', 'Não há contexto revisado para este ativo.'));
+      companyPanel.append(el('p', 'Não há contexto disponível para este ativo.'));
       return;
     }
     companyPanel.append(el('h3', `Contexto de ${ticker}`), el('p', issuer.name, 'context-muted'));
+    if (issuer.coverage_status === 'financial_antecedent_only')
+      companyPanel.append(
+        el(
+          'p',
+          'Base desta leitura: resultados financeiros de um trimestre anterior à semana analisada.',
+          'context-muted',
+        ),
+      );
+    if (issuer.coverage_status === 'institutional_context_only')
+      companyPanel.append(
+        el(
+          'p',
+          'Documentos institucionais: descrevem regras e atividades da empresa. Seu registro nesta semana não comprova uma mudança no negócio ou a causa da variação do preço.',
+          'context-muted',
+        ),
+      );
     const price = selectedWindow === 'alternative' ? asset.alternative : asset.main;
     companyPanel.append(el('p', price.text));
     companyPanel.append(el('p', issuer.interpretation.text));
@@ -119,7 +135,7 @@
         ),
       );
     const news = el('details');
-    news.append(el('summary', `Acontecimentos e antecedentes (${issuer.events.length})`));
+    news.append(el('summary', `Documentos e notícias (${issuer.events.length})`));
     if (
       issuer.events.some((event) =>
         event.source_ids.some((id) =>
@@ -167,6 +183,14 @@
           ),
         );
       item.append(el('p', event.text));
+      if (event.context_role === 'institutional_document')
+        item.append(
+          el(
+            'p',
+            'Documento institucional; não confirma um novo acontecimento empresarial.',
+            'context-muted',
+          ),
+        );
       sources(item, event.source_ids);
       news.append(item);
     }
@@ -237,11 +261,14 @@
         el('p', event.text),
         link(event.source_label, event.source_url),
       );
-      events.append(card);
       if (event.after_price_end)
         card.append(
-          el('strong', `Informação posterior ao fechamento de ${date(context.company.price_end)}.`),
+          el(
+            'strong',
+            `Depois do fechamento de ${date(context.company.price_end)}: não explica os retornos encerrados nessa data.`,
+          ),
         );
+      events.append(card);
     }
     newsGroup.append(events);
     marketPanel.append(newsGroup, el('p', context.market.method, 'context-muted'));

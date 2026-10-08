@@ -1,5 +1,19 @@
 # Revisão do conteúdo da prévia
 
+## Fechamento de 08/10/2026 — contexto por execução
+
+Relidas as 23 sínteses empresariais do case e as 20 da base de validação. Foram conferidos por amostragem os documentos completos da Sabesp, TIM e Itaú, incluindo os valores da emissão da Sabesp e a distinção entre documentos institucionais e anúncios de mudanças. A reconciliação independente dos números permanece em 40 retornos semanais, 180 comparações diárias, 57 contas CVM e oito comparações de mercado, sem divergências.
+
+Correções: comparações de lucro/prejuízo usam “maior que o”, “menor que o” e “igual ao”; estatutos, políticas e códigos de conduta da CVM são identificados como documentos institucionais, sem entrar na contagem de acontecimentos empresariais; notícias gerais posteriores ao fechamento também recebem aviso. O formulário passou a explicar a coleta de contexto e seus limites. A documentação distingue essas informações.
+
+A classificação revisada da base de validação é **11 empresas com acontecimentos datados, oito com antecedentes financeiros e uma apenas com documentos institucionais**. Não representa causas comprovadas das variações. A cobertura macroeconômica continua limitada às fontes confirmadas, como informado na interface.
+
+O teste pelo navegador percorreu seleção de CSV fictício, escolha da referência, envio, fila, processamento real do ranking, aparecimento automático do resultado, contexto, fontes e janelas. Foi usado um servidor local isolado em porta 8890, com classificações artificiais e respostas de provedores já salvas. Não houve novas chamadas externas nessa revisão. Isso testa a integração; a coleta externa real foi conferida na etapa anterior.
+
+Suíte: 96 testes, um ignorado, sem falhas. A versão revisada também reproduziu textos e indicadores pelas evidências salvas. Ruff, verificações da interface e assinaturas da demonstração foram conferidos. Evidências temporárias estão em `runs/context-final-review-2026-10-08` e `runs/final-browser-flow`, fora do Git.
+
+O escopo revisado está pronto para apresentação com esses limites explícitos. A operação da VPS com as chaves e o comportamento em Android/iOS físicos ainda não foram validados nesta versão. Produção e standby permanecem preservados; publicação é uma etapa posterior.
+
 Esta revisão registra a etapa de 07/10/2026. A implementação posterior para novos envios e sua validação estão em [Contexto por execução](contexto-replicavel.md).
 
 Concluída em 07/10/2026, no ramo `codex/contexto`, sem publicação.

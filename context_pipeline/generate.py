@@ -229,9 +229,11 @@ def financial_explanation(record):
         elif result < 0 and prior > 0:
             text += 'Passou de lucro para prejuízo em relação ao mesmo trimestre do ano anterior. '
         elif result < 0 and prior < 0:
-            text += f"O prejuízo foi {'menor' if result > prior else 'maior' if result < prior else 'igual'} ao do mesmo trimestre do ano anterior. "
+            comparison = 'menor que o' if result > prior else 'maior que o' if result < prior else 'igual ao'
+            text += f"O prejuízo foi {comparison} do mesmo trimestre do ano anterior. "
         elif result > 0 and prior > 0:
-            text += f"O lucro foi {'maior' if result > prior else 'menor' if result < prior else 'igual'} ao do mesmo trimestre do ano anterior. "
+            comparison = 'maior que o' if result > prior else 'menor que o' if result < prior else 'igual ao'
+            text += f"O lucro foi {comparison} do mesmo trimestre do ano anterior. "
     return text + ('Esse resultado ajuda a entender a situação financeira naquele trimestre. '
                    'Não foi confirmado, nesta coleta, um acontecimento específico que explique a oscilação da semana.')
 
@@ -298,6 +300,23 @@ Informações posteriores não podem fundamentar interpretation. Não escreva no
 Se qualquer afirmação dessa síntese não estiver sustentada, interpretation_supported deve ser false.'''
 
 
+def context_role(source):
+    """A dated institutional document alone does not establish a business change."""
+    title = normalized(source.get('title', ''))
+    if source.get('date_basis', '').startswith('cvm_') and (
+            'estatuto' in title or 'politica de' in title or 'codigo de conduta' in title):
+        return 'institutional_document'
+    return 'dated_event'
+
+
+def coverage_status(events, financial):
+    if any(r.get('context_role', 'dated_event') == 'dated_event' for r in events):
+        return 'dated_company_context'
+    if financial:
+        return 'financial_antecedent_only'
+    return 'institutional_context_only' if events else 'insufficient_evidence'
+
+
 def prepare_issuer(identity, collector, models, documents, financial, week, macro=False):
     code = identity['cvm_code']
     start = (date.fromisoformat(week['week_start']) - timedelta(days=90)).isoformat()
@@ -354,7 +373,7 @@ def prepare_issuer(identity, collector, models, documents, financial, week, macr
                 accepted_sources.append(source)
                 events.append({'title': event['title'], 'text': event['text'], 'source_ids': [source['id']],
                                'publication_date': source['publication_date'], 'event_date': event['event_date'],
-                               'after_price_end': source['after_price_end']})
+                               'after_price_end': source['after_price_end'], 'context_role': context_role(source)})
             if review['interpretation_supported'] and len(events) == len(proposal['events']) and events:
                 interpretation = proposal['interpretation']
             write(collector.directory / ('decision-' + code + '.json'), {'proposal': proposal, 'review': review,
@@ -372,7 +391,7 @@ def prepare_issuer(identity, collector, models, documents, financial, week, macr
     references = [source_id for event in eligible for source_id in event['source_ids']]
     if financial:
         references.extend(financial['source_ids'])
-    status = 'dated_company_context' if eligible else 'financial_antecedent_only' if financial else 'insufficient_evidence'
+    status = coverage_status(eligible, financial)
     issuer = {**identity, 'financial_context': financial,
               'interpretation': {'text': interpretation, 'source_ids': list(dict.fromkeys(references))},
               'events': sorted(events, key=lambda r: r['publication_date']), 'coverage_status': status,
@@ -485,12 +504,12 @@ def run(root, keys=None, replay=False, budget=Decimal('3.00')):
               'sources': macro_sources,
               'method': 'Variações calculadas em Python nas datas exatas de cada janela, sem preencher ausências. Índices: Yahoo Finance; dólar: PTAX de venda do Banco Central. Referências de mercado não comprovam causa dos retornos individuais.'}
     coverage = {status: sum(r['coverage_status'] == status for r in issuers) for status in
-                ('dated_company_context', 'financial_antecedent_only', 'insufficient_evidence', 'identity_unconfirmed')}
+                ('dated_company_context', 'financial_antecedent_only', 'institutional_context_only', 'insufficient_evidence', 'identity_unconfirmed')}
     write(output / 'company.json', company)
     write(output / 'market.json', market)
     write(output / 'audit.json', {'reference_date': week['reference_date'], 'week': week,
           'coverage_companies': coverage, 'ranked_tickers': len(assets), 'companies': len(issuers),
-          'model': models.model, 'prompt_version': PROMPT_VERSION, 'budget_reserve_usd': str(models.reserved),
+          'model': models.model, 'prompt_version': PROMPT_VERSION, 'editorial_version': '1.1', 'budget_reserve_usd': str(models.reserved),
           'pipeline_sha256': hashlib.sha256(b''.join(p.read_bytes().replace(b'\r\n', b'\n')
                               for p in sorted(Path(__file__).parent.glob('*.py')))).hexdigest(),
           'collection_limits': {'antecedent_days': 90, 'selected_source_bodies_per_company': 6,

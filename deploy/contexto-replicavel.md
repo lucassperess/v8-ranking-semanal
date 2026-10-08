@@ -1,5 +1,7 @@
 # Contexto por execução — validação local de 08/10/2026
 
+**Revisão posterior:** a leitura de qualidade distinguiu um contexto apenas institucional da contagem de acontecimentos. A classificação atual é 11 com acontecimentos, oito com antecedentes financeiros e um institucional. Os números abaixo registram a validação inicial; veja [o fechamento da revisão](contexto-revisao-final.md).
+
 Novos envios recebem contexto construído com suas próprias datas e instrumentos. O ranking fica disponível antes da coleta; a interface atualiza o contexto sem recarregar a página. Uma falha dessa etapa não invalida o resultado financeiro. Produção e standby não foram alterados.
 
 ## Outra base e outra semana

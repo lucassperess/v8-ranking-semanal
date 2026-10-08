@@ -40,6 +40,8 @@ O painel tem as abas **Gráfico** e **Contexto**. Elas ocupam a mesma área: tro
 
 Em um novo envio, o ranking aparece primeiro. A aba Contexto informa enquanto a coleta está em andamento e atualiza automaticamente quando ela termina. Se uma fonte ou serviço falhar, o ranking permanece disponível. Uma mensagem informa o limite encontrado; falta de notícia confirmada não significa que nenhuma notícia existiu.
 
+Leia também o tipo de informação disponível. **Antecedentes financeiros** descrevem um trimestre anterior, com suas datas. **Documentos institucionais**, como estatuto e política de riscos, descrevem regras e atividades: seu registro na semana não comprova uma mudança no negócio. Nenhum desses casos deve ser confundido com uma notícia que explique a oscilação do preço.
+
 Os textos dos novos envios são gerados por IA, com conferência automática de identidade, datas e trechos das fontes, seguida de uma segunda leitura por IA. Eles não recebem revisão humana individual. O case possui textos preparados e revisados separadamente. Em ambos, os fatos dão contexto, mas não comprovam que uma notícia causou cada alta ou queda. Informações posteriores ao último fechamento recebem aviso próprio.
 
 No desktop, a tabela apresenta estas colunas:

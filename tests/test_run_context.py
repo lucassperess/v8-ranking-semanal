@@ -6,12 +6,20 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from context_pipeline.generate import financial_explanation, prices, quoted_date, response_json, run, validate_event
+from context_pipeline.generate import context_role, coverage_status, financial_explanation, prices, quoted_date, response_json, run, validate_event
 from context_pipeline.sources import Collector, sha, write
 from webapp.context import load_run_context
 
 
 class RunContextTests(unittest.TestCase):
+    def test_institutional_document_does_not_count_as_business_event(self):
+        source = {'title': 'Estatuto Social', 'date_basis': 'cvm_delivery_catalog'}
+        role = context_role(source)
+        self.assertEqual(role, 'institutional_document')
+        self.assertEqual(coverage_status([{'context_role': role}], None), 'institutional_context_only')
+        self.assertEqual(coverage_status([{'context_role': role}], {'text': 'result'}), 'financial_antecedent_only')
+        self.assertEqual(coverage_status([{'context_role': 'dated_event'}], None), 'dated_company_context')
+
     def test_date_evidence_handles_year_and_portuguese(self):
         self.assertEqual(quoted_date('Publicado em 2 de outubro de 2025'), {'2025-10-02'})
         self.assertEqual(quoted_date('02/10/2025 às 18h'), {'2025-10-02'})
@@ -120,3 +128,5 @@ class RunContextTests(unittest.TestCase):
         text = financial_explanation(record)
         self.assertIn('Passou de prejuízo para lucro', text)
         self.assertIn('2025', text)
+        record['accounts']['prior_net_result']['value_brl'] = '500'
+        self.assertIn('O lucro foi maior que o do mesmo trimestre', financial_explanation(record))
