@@ -1,6 +1,6 @@
 # Operação da interface na VPS
 
-A revisão visual mais recente está registrada em [Revisão de UI de 08/10/2026](revisao-ui-20261008.md), incluindo a imagem publicada, as verificações e a restauração da versão anterior.
+A revisão visual mais recente está registrada em [Topo integrado de 08/10/2026](topo-integrado-20261008.md), incluindo a imagem publicada, as verificações e a restauração da versão anterior. O registro da [revisão anterior](revisao-ui-20261008.md) permanece disponível.
 
 ## Configuração da versão com contexto
 
