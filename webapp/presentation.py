@@ -15,9 +15,11 @@ from pathlib import Path
 
 from b3_registry import digest
 from webapp.doc_revision import details as documentation_details
+from webapp.volume import attach as attach_volume, enrich as enrich_volume
 
 
 DOWNLOADS = {
+    'volume_context.json': ('root', 'volume_context.json'),
     'context_manifest.json': ('context', 'manifest.json'),
     'context_company.json': ('context', 'company.json'),
     'context_market.json': ('context', 'market.json'),
@@ -328,7 +330,7 @@ def build_presentation(root: Path, *, featured: bool = False,
                            "code_sha256": report["code_sha256"], "pipeline_version": report["version"]},
             "audit": audit_details(root, featured=featured),
             "downloads": [name for name in DOWNLOADS if output_path(root, name, featured=featured).exists()]}
-    return enrich_interpretation(payload)
+    return enrich_interpretation(attach_volume(payload, root, normalized_path))
 
 
 def enrich_daily_windows(payload: dict) -> dict:
@@ -389,13 +391,13 @@ def enrich_interpretation(payload: dict) -> dict:
             'last_return_pct': rows[-1]['return_pct'] if rows else None,
             'low_initial_price_count': sum(Decimal(row['start_close']) < 1 for row in rows),
             'alerted_tickers': sorted({issue['ticker'] for issue in issues}),
-            'negotiation_note': 'O CSV contém volume bruto e quantidade ajustada. As bases podem divergir; '
-                                'sem confirmação de escala e comparabilidade, não há medida de liquidez nesta tela. '
-                                'O ranking não usa filtro de liquidez.',
+            'negotiation_note': 'A coluna de volume mostra a média diária do volume financeiro recebido da Economatica '
+                                'durante a semana, com a cobertura dos registros. A tabela diária permite comparar '
+                                'retornos e volumes. Não há filtro de liquidez nem conclusão automática sobre a causa da alta.',
         }
     if 'daily' in payload:
         enrich_daily_windows(payload)
-    return payload
+    return enrich_volume(payload)
 
 
 def write_featured_daily(root: Path, normalized_path: Path) -> Path:

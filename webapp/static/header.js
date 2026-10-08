@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   document.addEventListener('click', (event) => {
-    if (!event.target.closest('.metric-info,.period-info,.asset-info')) closeTips();
+    if (!event.target.closest('.metric-info,.period-info,.asset-info,.volume-info')) closeTips();
   });
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') closeTips();

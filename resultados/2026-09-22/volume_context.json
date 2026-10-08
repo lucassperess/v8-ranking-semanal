@@ -1,0 +1,667 @@
+{
+  "version": "1.0",
+  "source": "Economatica: Volume$|Em moeda orig",
+  "input_sha256": "dbce30af2c26e14d8e3f3c675741c95aedd101dfc1a90bad62ae81e72a0def4a",
+  "normalized_sha256": "a94d867b8d4b3d4b994064bbd35f778657da20be3115ed1971fa68b9b7115f40",
+  "week_start": "2026-09-14",
+  "end_date": "2026-09-18",
+  "dates": [
+    "2026-09-14",
+    "2026-09-15",
+    "2026-09-16",
+    "2026-09-17",
+    "2026-09-18"
+  ],
+  "series": {
+    "AMBP3": [
+      {
+        "date": "2026-09-14",
+        "volume": "83636",
+        "reason": null
+      },
+      {
+        "date": "2026-09-15",
+        "volume": "544470",
+        "reason": null
+      },
+      {
+        "date": "2026-09-16",
+        "volume": "150210",
+        "reason": null
+      },
+      {
+        "date": "2026-09-17",
+        "volume": "115792",
+        "reason": null
+      },
+      {
+        "date": "2026-09-18",
+        "volume": "1372392",
+        "reason": null
+      }
+    ],
+    "ARML3": [
+      {
+        "date": "2026-09-14",
+        "volume": "2703544",
+        "reason": null
+      },
+      {
+        "date": "2026-09-15",
+        "volume": "3787946",
+        "reason": null
+      },
+      {
+        "date": "2026-09-16",
+        "volume": "6059810",
+        "reason": null
+      },
+      {
+        "date": "2026-09-17",
+        "volume": "5186031",
+        "reason": null
+      },
+      {
+        "date": "2026-09-18",
+        "volume": "4192361",
+        "reason": null
+      }
+    ],
+    "AURE3": [
+      {
+        "date": "2026-09-14",
+        "volume": "27181124",
+        "reason": null
+      },
+      {
+        "date": "2026-09-15",
+        "volume": "23348535",
+        "reason": null
+      },
+      {
+        "date": "2026-09-16",
+        "volume": "26951419",
+        "reason": null
+      },
+      {
+        "date": "2026-09-17",
+        "volume": "26557432",
+        "reason": null
+      },
+      {
+        "date": "2026-09-18",
+        "volume": "48232635",
+        "reason": null
+      }
+    ],
+    "BIED3": [
+      {
+        "date": "2026-09-14",
+        "volume": "80639",
+        "reason": null
+      },
+      {
+        "date": "2026-09-15",
+        "volume": "11280",
+        "reason": null
+      },
+      {
+        "date": "2026-09-16",
+        "volume": "35899",
+        "reason": null
+      },
+      {
+        "date": "2026-09-17",
+        "volume": "67946",
+        "reason": null
+      },
+      {
+        "date": "2026-09-18",
+        "volume": "637",
+        "reason": null
+      }
+    ],
+    "CASH3": [
+      {
+        "date": "2026-09-14",
+        "volume": "4740261",
+        "reason": null
+      },
+      {
+        "date": "2026-09-15",
+        "volume": "7107878",
+        "reason": null
+      },
+      {
+        "date": "2026-09-16",
+        "volume": "4727296",
+        "reason": null
+      },
+      {
+        "date": "2026-09-17",
+        "volume": "14576328",
+        "reason": null
+      },
+      {
+        "date": "2026-09-18",
+        "volume": "9439273",
+        "reason": null
+      }
+    ],
+    "DASA3": [
+      {
+        "date": "2026-09-14",
+        "volume": "5422119",
+        "reason": null
+      },
+      {
+        "date": "2026-09-15",
+        "volume": "1334102",
+        "reason": null
+      },
+      {
+        "date": "2026-09-16",
+        "volume": "1307065",
+        "reason": null
+      },
+      {
+        "date": "2026-09-17",
+        "volume": "3729245",
+        "reason": null
+      },
+      {
+        "date": "2026-09-18",
+        "volume": "1082092",
+        "reason": null
+      }
+    ],
+    "DOTZ3": [
+      {
+        "date": "2026-09-14",
+        "volume": "2428949",
+        "reason": null
+      },
+      {
+        "date": "2026-09-15",
+        "volume": "531902",
+        "reason": null
+      },
+      {
+        "date": "2026-09-16",
+        "volume": "281075",
+        "reason": null
+      },
+      {
+        "date": "2026-09-17",
+        "volume": "322217",
+        "reason": null
+      },
+      {
+        "date": "2026-09-18",
+        "volume": "176234",
+        "reason": null
+      }
+    ],
+    "ECOM3": [
+      {
+        "date": "2026-09-14",
+        "volume": "71592",
+        "reason": null
+      },
+      {
+        "date": "2026-09-15",
+        "volume": "144824",
+        "reason": null
+      },
+      {
+        "date": "2026-09-16",
+        "volume": "19341",
+        "reason": null
+      },
+      {
+        "date": "2026-09-17",
+        "volume": "66418",
+        "reason": null
+      },
+      {
+        "date": "2026-09-18",
+        "volume": "12900",
+        "reason": null
+      }
+    ],
+    "ESTR4": [
+      {
+        "date": "2026-09-14",
+        "volume": "408",
+        "reason": null
+      },
+      {
+        "date": "2026-09-15",
+        "volume": "151",
+        "reason": null
+      },
+      {
+        "date": "2026-09-16",
+        "volume": "2159",
+        "reason": null
+      },
+      {
+        "date": "2026-09-17",
+        "volume": "1396",
+        "reason": null
+      },
+      {
+        "date": "2026-09-18",
+        "volume": "1842",
+        "reason": null
+      }
+    ],
+    "FASA3": [
+      {
+        "date": "2026-09-14",
+        "volume": "121777",
+        "reason": null
+      },
+      {
+        "date": "2026-09-15",
+        "volume": "303998",
+        "reason": null
+      },
+      {
+        "date": "2026-09-16",
+        "volume": "236480",
+        "reason": null
+      },
+      {
+        "date": "2026-09-17",
+        "volume": "74694",
+        "reason": null
+      },
+      {
+        "date": "2026-09-18",
+        "volume": "43611",
+        "reason": null
+      }
+    ],
+    "ISAE3": [
+      {
+        "date": "2026-09-14",
+        "volume": "62044",
+        "reason": null
+      },
+      {
+        "date": "2026-09-15",
+        "volume": "53323",
+        "reason": null
+      },
+      {
+        "date": "2026-09-16",
+        "volume": "848478",
+        "reason": null
+      },
+      {
+        "date": "2026-09-17",
+        "volume": "60432",
+        "reason": null
+      },
+      {
+        "date": "2026-09-18",
+        "volume": "10611",
+        "reason": null
+      }
+    ],
+    "LUXM4": [
+      {
+        "date": "2026-09-14",
+        "volume": "12108",
+        "reason": null
+      },
+      {
+        "date": "2026-09-15",
+        "volume": "53343",
+        "reason": null
+      },
+      {
+        "date": "2026-09-16",
+        "volume": "63274",
+        "reason": null
+      },
+      {
+        "date": "2026-09-17",
+        "volume": "26430",
+        "reason": null
+      },
+      {
+        "date": "2026-09-18",
+        "volume": "40486",
+        "reason": null
+      }
+    ],
+    "MEAL3": [
+      {
+        "date": "2026-09-14",
+        "volume": "542761",
+        "reason": null
+      },
+      {
+        "date": "2026-09-15",
+        "volume": "200037",
+        "reason": null
+      },
+      {
+        "date": "2026-09-16",
+        "volume": "143786",
+        "reason": null
+      },
+      {
+        "date": "2026-09-17",
+        "volume": "259790",
+        "reason": null
+      },
+      {
+        "date": "2026-09-18",
+        "volume": "661382",
+        "reason": null
+      }
+    ],
+    "MGEL4": [
+      {
+        "date": "2026-09-14",
+        "volume": null,
+        "reason": "missing_volume"
+      },
+      {
+        "date": "2026-09-15",
+        "volume": "41949",
+        "reason": null
+      },
+      {
+        "date": "2026-09-16",
+        "volume": "78306",
+        "reason": null
+      },
+      {
+        "date": "2026-09-17",
+        "volume": "39273",
+        "reason": null
+      },
+      {
+        "date": "2026-09-18",
+        "volume": "24051",
+        "reason": null
+      }
+    ],
+    "ONCO3": [
+      {
+        "date": "2026-09-14",
+        "volume": "5597938",
+        "reason": null
+      },
+      {
+        "date": "2026-09-15",
+        "volume": "5191437",
+        "reason": null
+      },
+      {
+        "date": "2026-09-16",
+        "volume": "5980329",
+        "reason": null
+      },
+      {
+        "date": "2026-09-17",
+        "volume": "4769603",
+        "reason": null
+      },
+      {
+        "date": "2026-09-18",
+        "volume": "7118316",
+        "reason": null
+      }
+    ],
+    "PLAS3": [
+      {
+        "date": "2026-09-14",
+        "volume": "29198",
+        "reason": null
+      },
+      {
+        "date": "2026-09-15",
+        "volume": "3998",
+        "reason": null
+      },
+      {
+        "date": "2026-09-16",
+        "volume": "14156",
+        "reason": null
+      },
+      {
+        "date": "2026-09-17",
+        "volume": null,
+        "reason": "missing_volume"
+      },
+      {
+        "date": "2026-09-18",
+        "volume": "1692",
+        "reason": null
+      }
+    ],
+    "QUAL3": [
+      {
+        "date": "2026-09-14",
+        "volume": "3655005",
+        "reason": null
+      },
+      {
+        "date": "2026-09-15",
+        "volume": "6785250",
+        "reason": null
+      },
+      {
+        "date": "2026-09-16",
+        "volume": "7361626",
+        "reason": null
+      },
+      {
+        "date": "2026-09-17",
+        "volume": "4177194",
+        "reason": null
+      },
+      {
+        "date": "2026-09-18",
+        "volume": "4515084",
+        "reason": null
+      }
+    ],
+    "RCSL3": [
+      {
+        "date": "2026-09-14",
+        "volume": "130431",
+        "reason": null
+      },
+      {
+        "date": "2026-09-15",
+        "volume": "30255",
+        "reason": null
+      },
+      {
+        "date": "2026-09-16",
+        "volume": "2242620",
+        "reason": null
+      },
+      {
+        "date": "2026-09-17",
+        "volume": "1754457",
+        "reason": null
+      },
+      {
+        "date": "2026-09-18",
+        "volume": "215197",
+        "reason": null
+      }
+    ],
+    "TASA3": [
+      {
+        "date": "2026-09-14",
+        "volume": "366707",
+        "reason": null
+      },
+      {
+        "date": "2026-09-15",
+        "volume": "405247",
+        "reason": null
+      },
+      {
+        "date": "2026-09-16",
+        "volume": "499666",
+        "reason": null
+      },
+      {
+        "date": "2026-09-17",
+        "volume": "665417",
+        "reason": null
+      },
+      {
+        "date": "2026-09-18",
+        "volume": "694612",
+        "reason": null
+      }
+    ],
+    "TASA4": [
+      {
+        "date": "2026-09-14",
+        "volume": "6902127",
+        "reason": null
+      },
+      {
+        "date": "2026-09-15",
+        "volume": "6262250",
+        "reason": null
+      },
+      {
+        "date": "2026-09-16",
+        "volume": "8107798",
+        "reason": null
+      },
+      {
+        "date": "2026-09-17",
+        "volume": "10477296",
+        "reason": null
+      },
+      {
+        "date": "2026-09-18",
+        "volume": "12196669",
+        "reason": null
+      }
+    ],
+    "TXRX4": [
+      {
+        "date": "2026-09-14",
+        "volume": "170",
+        "reason": null
+      },
+      {
+        "date": "2026-09-15",
+        "volume": "350",
+        "reason": null
+      },
+      {
+        "date": "2026-09-16",
+        "volume": "15801",
+        "reason": null
+      },
+      {
+        "date": "2026-09-17",
+        "volume": "29454",
+        "reason": null
+      },
+      {
+        "date": "2026-09-18",
+        "volume": "11069",
+        "reason": null
+      }
+    ],
+    "WDCN3": [
+      {
+        "date": "2026-09-14",
+        "volume": "97853",
+        "reason": null
+      },
+      {
+        "date": "2026-09-15",
+        "volume": "89740",
+        "reason": null
+      },
+      {
+        "date": "2026-09-16",
+        "volume": "71006",
+        "reason": null
+      },
+      {
+        "date": "2026-09-17",
+        "volume": "17289",
+        "reason": null
+      },
+      {
+        "date": "2026-09-18",
+        "volume": "90410",
+        "reason": null
+      }
+    ],
+    "WEST3": [
+      {
+        "date": "2026-09-14",
+        "volume": "139071",
+        "reason": null
+      },
+      {
+        "date": "2026-09-15",
+        "volume": "191072",
+        "reason": null
+      },
+      {
+        "date": "2026-09-16",
+        "volume": "5277",
+        "reason": null
+      },
+      {
+        "date": "2026-09-17",
+        "volume": "95739",
+        "reason": null
+      },
+      {
+        "date": "2026-09-18",
+        "volume": "17161",
+        "reason": null
+      }
+    ],
+    "YDUQ3": [
+      {
+        "date": "2026-09-14",
+        "volume": "31408451",
+        "reason": null
+      },
+      {
+        "date": "2026-09-15",
+        "volume": "60506547",
+        "reason": null
+      },
+      {
+        "date": "2026-09-16",
+        "volume": "50176423",
+        "reason": null
+      },
+      {
+        "date": "2026-09-17",
+        "volume": "96257644",
+        "reason": null
+      },
+      {
+        "date": "2026-09-18",
+        "volume": "55595333",
+        "reason": null
+      }
+    ]
+  },
+  "definition": "Soma dos volumes válidos dividida pelo número de dias com volume válido. Zero explícito entra; ausências e duplicatas não entram. Datas com fechamento positivo na extração definem a cobertura.",
+  "content_sha256": "b56990eb8f292d7efda87ea3727f36de829fbb542124e1559513fe461c6bace1"
+}

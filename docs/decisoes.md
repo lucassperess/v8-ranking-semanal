@@ -142,3 +142,28 @@ Não há promessa de descobrir uma causa para cada retorno.
 cache e preservação do conteúdo anterior. A conferência isolada das quatro
 lacunas do case não encontrou novos acontecimentos empresariais confirmáveis.
 A validação integral do contrato novo permanece uma etapa posterior.
+
+## D15 — Volume recebido como contexto de negociação
+
+**Decisão:** exibir volume médio diário dentro da semana e volume por data
+para o top 20 de cada janela. Usar o campo financeiro da Economatica;
+quantidade ajustada não representa quantidade de negócios. O volume não
+muda os retornos, o universo ou a ordenação, nem cria filtro de liquidez.
+
+**Cálculo:** soma dos volumes válidos dividida pelo número de dias válidos.
+Zero explícito participa; ausência, valor negativo, inválido ou chave
+duplicada permanece lacuna. A cobertura usa datas da semana com fechamento
+positivo observado na extração. As janelas principal e alternativa usam
+a mesma semana para volume, com suas próprias ações do top 20.
+
+**Rastreabilidade:** cálculo em Decimal e arredondamento somente na tela.
+`volume_context.json` preserva séries, lacunas, definição, assinatura do
+conteúdo e vínculo com a entrada e a base normalizada. O worker guarda
+esse derivado e a apresentação. Resultados sem evidência mostram ausência,
+sem preencher valores. O case recebeu um arquivo adicional conferido,
+sem sobrescrever os derivados históricos assinados.
+
+**Limites:** média parcial não equivale a média de todos os dias da semana.
+Volume recebido pode diferir dos registros oficiais B3; não se atribui
+causalidade ou se classifica liquidez automaticamente. A matriz usa azul
+em escala linear comum; os retornos mantêm sua escala e suas cores próprias.

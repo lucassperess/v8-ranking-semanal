@@ -482,6 +482,53 @@ td.positive,
   color: var(--muted);
   line-height: 1.5;
 }
+.volume-switch {
+  display: inline-flex;
+  margin: 0 0 8px;
+}
+.volume-heading {
+  white-space: normal;
+  min-width: 125px;
+}
+.volume-info {
+  position: relative;
+  display: inline-block;
+  margin-left: 5px;
+}
+.volume-info .info-tooltip {
+  top: 24px;
+  bottom: auto;
+  right: 0;
+  white-space: normal;
+  text-align: left;
+  font-weight: normal;
+}
+.ranking-volume {
+  font-variant-numeric: tabular-nums;
+}
+.volume-coverage {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.volume-coverage.incomplete {
+  color: #e8bf75;
+}
+.volume-summary,
+.volume-source {
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin-top: 16px;
+}
+.volume-legend-swatch {
+  display: inline-block;
+  width: 70px;
+  height: 8px;
+  background: linear-gradient(to right, #142238, #3994ff);
+  border-radius: 4px;
+}
 .heatmap-section {
   border-top: 1px solid var(--line);
   padding-top: 26px;

@@ -41,7 +41,7 @@ def verify(root: Path) -> None:
             raise ValueError("Ordenação divergente")
         displayed = result["windows"][key]["top20"]
         original_fields = [{field: value for field, value in row.items()
-                            if field not in {'change_brl', 'issues'}} for row in displayed]
+                            if field not in {'change_brl', 'issues', 'volume'}} for row in displayed]
         if original_fields != ordered[:summary["top_n"]]:
             raise ValueError("Top 20 divergente")
         if any(Decimal(row['change_brl']) != Decimal(row['end_close']) - Decimal(row['start_close'])

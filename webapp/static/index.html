@@ -179,6 +179,24 @@
                       <th>INICIAL (R$)</th>
                       <th>FINAL (R$)</th>
                       <th>RETORNO (%)</th>
+                      <th class="volume-heading">
+                        VOL. MÉDIO/DIA (R$)<span class="volume-info"
+                          ><button
+                            class="info-button"
+                            type="button"
+                            aria-label="Como o volume médio é calculado"
+                            aria-describedby="volume-help"
+                          >
+                            i</button
+                          ><span id="volume-help" class="info-tooltip" role="tooltip"
+                            >Soma do volume financeiro informado pela Economatica nos dias da semana
+                            dividida pelo número de dias com volume válido. Zero explícito entra;
+                            dados ausentes ou duplicados não entram. A cobertura indica quantos dias
+                            têm dados. Não é uma média entre semanas nem um filtro de
+                            liquidez.</span
+                          ></span
+                        >
+                      </th>
                     </tr>
                   </thead>
                   <tbody id="ranking-body"></tbody>
@@ -292,7 +310,17 @@
                 </p>
               </div>
             </div>
-            <p class="heatmap-legend">
+            <div
+              class="window-switch volume-switch"
+              role="group"
+              aria-label="Medida da tabela diária"
+            >
+              <button id="heatmap-returns" type="button" class="active" aria-pressed="true">
+                Retornos (%)
+              </button>
+              <button id="heatmap-volume" type="button" aria-pressed="false">Volume (R$)</button>
+            </div>
+            <p id="heatmap-legend" class="heatmap-legend">
               <span class="positive">Alta</span> · <span class="negative">Queda</span> · — Sem
               comparação válida
             </p>
@@ -306,6 +334,14 @@
               role="region"
               aria-label="Movimento diário; role para consultar todas as datas e ações"
             ></div>
+            <p id="volume-summary" class="volume-summary"></p>
+            <p class="volume-source">
+              Volume financeiro informado pela Economatica. Pode diferir dos registros da B3; volume
+              não explica sozinho a causa do retorno.
+              <a id="volume-download" href="/api/featured/files/volume_context.json" hidden
+                >Conferir dados de volume · JSON ↓</a
+              >
+            </p>
           </section>
 
           <section

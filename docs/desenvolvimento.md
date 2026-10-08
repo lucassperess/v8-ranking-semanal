@@ -353,6 +353,13 @@ de uma geração anterior. A reprodução usa evidências e respostas arquivadas
 
 ### Conferência visual mobile
 
+O worker arquiva `volume_context.json` a partir da base normalizada conferida.
+Para associar esse novo derivado a um resultado anterior, sem sobrescrever
+arquivos históricos, use `python -m scripts.build_volume_context --run-dir
+CAMINHO --normalized CAMINHO_NORMALIZED` (adicione `--featured` para o case).
+O comando recusa arquivo já existente e valida as assinaturas da base e da entrada.
+Na reprodução, a apresentação usa o JSON salvo sem consultar APIs nem exigir o bruto.
+
 Confira 320, 390 e 430 px e o desktop antes de publicar alterações de layout. Verifique navegação completa, ausência de sobreposição na introdução, retorno visível no ranking, seleção e volta do gráfico, abertura/fechamento de informações, matriz com datas e ticker fixos, menus e tabelas da documentação, seletor da auditoria e referência brasileira no formulário. Conferência de viewport no navegador não substitui teste em Android e iOS físicos, especialmente para seleção de arquivos e teclado.
 
 

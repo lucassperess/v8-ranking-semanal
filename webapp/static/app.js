@@ -1,5 +1,12 @@
 const $ = (id) => document.getElementById(id);
-const state = { data: null, window: 'primary', ticker: null, runId: null, chartMode: 'price' };
+const state = {
+  data: null,
+  window: 'primary',
+  ticker: null,
+  runId: null,
+  chartMode: 'price',
+  heatmapMode: 'returns',
+};
 const nf = new Intl.NumberFormat('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
 const money = (value) => nf.format(Number(value));
 const preciseMoney = (value) =>
@@ -158,6 +165,20 @@ function renderTable(rows) {
         node('td', i === 5 ? (Number(row.return_pct) < 0 ? 'negative' : 'positive') : '', value),
       ),
     );
+    const volume = row.volume;
+    const volumeCell = node(
+      'td',
+      'ranking-volume',
+      volume?.mean_daily == null ? '—' : money(volume.mean_daily),
+    );
+    if (volume?.expected_days) {
+      const coverage = `${volume.valid_days} de ${volume.expected_days} dias`;
+      volumeCell.append(
+        node('small', volume.complete ? 'volume-coverage' : 'volume-coverage incomplete', coverage),
+      );
+      volumeCell.title = `${volume.mean_daily == null ? 'Média indisponível' : `Volume médio diário: R$ ${money(volume.mean_daily)}`} · ${coverage} com volume válido na semana. Ausência não é zero.`;
+    } else volumeCell.title = 'Volume indisponível nesta execução.';
+    tr.append(volumeCell);
     if (row.issues?.length) {
       const marker = node('span', 'asset-issue-marker', 'ⓘ');
       marker.title = 'Alerta nesta janela. Selecione a ação para conferir.';
@@ -564,14 +585,53 @@ function renderHeatmap(rows) {
   const wrap = $('heatmap');
   clear(wrap);
   const daily = state.data.windows[state.window].daily;
-  const dates = daily.return_dates;
-  text('heatmap-note', daily.note);
+  const volume = state.data.windows[state.window].volume;
+  const isVolume = state.heatmapMode === 'volume';
+  const dates = isVolume ? volume.dates : daily.return_dates;
+  for (const mode of ['returns', 'volume']) {
+    const button = $(`heatmap-${mode}`);
+    button.classList.toggle('active', mode === state.heatmapMode);
+    button.setAttribute('aria-pressed', String(mode === state.heatmapMode));
+  }
+  text(
+    'heatmap-note',
+    isVolume
+      ? 'Volume financeiro diário informado pela Economatica nos dias da semana. — indica dado ausente, inválido ou duplicado; zero explícito permanece zero.'
+      : daily.note,
+  );
+  const legend = $('heatmap-legend');
+  clear(legend);
+  if (isVolume)
+    legend.append(
+      node('span', 'volume-legend-swatch'),
+      document.createTextNode(
+        ' Menor → maior volume · mesma escala para todas as ações · — Sem volume válido',
+      ),
+    );
+  else
+    legend.append(
+      node('span', 'positive', 'Alta'),
+      document.createTextNode(' · '),
+      node('span', 'negative', 'Queda'),
+      document.createTextNode(' · — Sem comparação válida'),
+    );
+  const download = $('volume-download');
+  download.hidden = !state.data.downloads.includes('volume_context.json');
+  download.href = `${state.runId ? `/api/analyses/${state.runId}/files` : '/api/featured/files'}/volume_context.json`;
+  const summary = volumeSummary(volume);
+  text('volume-summary', summary);
   if (!dates.length) {
     wrap.append(node('p', 'muted', 'Sem série diária disponível para esta extração.'));
     return;
   }
   const grid = node('div', 'heatmap-grid');
-  grid.style.gridTemplateColumns = `95px repeat(${dates.length},minmax(75px,1fr))`;
+  grid.style.gridTemplateColumns = `95px repeat(${dates.length},minmax(${isVolume ? 115 : 75}px,1fr))`;
+  const maxVolume = Math.max(
+    0,
+    ...Object.values(volume.series)
+      .flat()
+      .map((p) => Number(p.volume || 0)),
+  );
   grid.append(node('span', 'head', 'ATIVO'));
   dates.forEach((d) => grid.append(node('span', 'head', day(d).slice(0, 5))));
   rows.forEach((row) => {
@@ -590,24 +650,48 @@ function renderHeatmap(rows) {
       });
     });
     grid.append(ticker);
-    const changes = new Map((daily.heatmap[row.ticker] || []).map((c) => [c.date, c]));
+    const changes = new Map(
+      ((isVolume ? volume.series[row.ticker] : daily.heatmap[row.ticker]) || []).map((c) => [
+        c.date,
+        c,
+      ]),
+    );
     dates.forEach((d) => {
       const change = changes.get(d);
-      const raw = change?.return_pct ?? null;
+      const raw = (isVolume ? change?.volume : change?.return_pct) ?? null;
       const cell = node(
         'span',
         `heat-cell${raw === null ? ' missing' : ''}`,
-        raw === null ? '—' : `${Number(raw) > 0 ? '+' : ''}${pct(raw)}`,
+        raw === null ? '—' : isVolume ? money(raw) : `${Number(raw) > 0 ? '+' : ''}${pct(raw)}`,
       );
-      const color = heatColor(raw);
+      const color = isVolume
+        ? raw === null
+          ? null
+          : `rgba(57,148,255,${0.12 + (maxVolume ? Number(raw) / maxVolume : 0) * 0.78})`
+        : heatColor(raw);
       if (color) cell.style.background = color;
-      cell.title = `${row.ticker} · ${change?.reason === 'window_start' ? `${day(d)}: preço inicial da janela; sem retorno nesse dia, não é zero nem preço ausente` : `${day(change?.previous_date)} → ${day(d)}: ${raw === null ? 'sem comparação válida; preço ausente ou conflitante' : signedPct(raw)}`}`;
+      cell.title = isVolume
+        ? `${row.ticker} · ${day(d)}: ${raw === null ? 'volume ausente, inválido ou duplicado' : `volume informado R$ ${money(raw)}`}`
+        : `${row.ticker} · ${change?.reason === 'window_start' ? `${day(d)}: preço inicial da janela; sem retorno nesse dia, não é zero nem preço ausente` : `${day(change?.previous_date)} → ${day(d)}: ${raw === null ? 'sem comparação válida; preço ausente ou conflitante' : signedPct(raw)}`}`;
       cell.setAttribute('aria-label', cell.title);
       cell.tabIndex = 0;
       grid.append(cell);
     });
   });
   wrap.append(grid);
+}
+function volumeSummary(volume) {
+  if (!volume.available) return 'Volume indisponível nesta execução.';
+  const describe = (item) =>
+    `${item.ticker}: R$ ${money(item.mean_daily)} por dia (${item.valid_days} de ${item.expected_days} dias com dados)`;
+  let result = `No top 20, a maior média diária informada é de ${describe(volume.highest)}; a menor é de ${describe(volume.lowest)}. `;
+  result += volume.incomplete_tickers.length
+    ? `Cobertura incompleta: ${volume.incomplete_tickers.join(', ')}. As médias usam somente os dias válidos disponíveis. `
+    : 'Todas as ações têm volume válido em todas as datas da semana observadas na extração. ';
+  const move = volume.largest_move;
+  if (move)
+    result += `A maior variação diária em valor absoluto foi de ${move.ticker}, ${signedPct(move.return_pct)} em ${day(move.date)}, com ${move.volume == null ? 'volume indisponível' : `R$ ${money(move.volume)} de volume informado naquele dia`}.`;
+  return result;
 }
 async function loadRun(id) {
   state.runId = id;
@@ -715,6 +799,11 @@ async function loadRun(id) {
   }
 }
 document.addEventListener('DOMContentLoaded', () => {
+  for (const mode of ['returns', 'volume'])
+    $('heatmap-' + mode).addEventListener('click', () => {
+      state.heatmapMode = mode;
+      renderHeatmap(state.data.windows[state.window].top20);
+    });
   window.addEventListener('asset-view-change', () => {
     if (state.data) renderDetail();
   });

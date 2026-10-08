@@ -24,6 +24,7 @@ from webapp.pages import render_page
 from webapp.review import review_input, problem
 from weekly_ranking import RankingError
 from webapp.presentation import DOWNLOADS, audit_details, build_presentation, enrich_interpretation, output_path, submission_details
+from webapp.volume import attach as attach_volume
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -246,6 +247,7 @@ def analysis_result(job_id: str):
         payload["audit"] = audit_details(root)
         payload['submission'] = submission_details(root)
         payload['documentation'] = documentation_details(root)
+        attach_volume(payload, root, root / 'etl' / 'normalized.csv')
     except ValueError as exc:
         raise HTTPException(503, f"Não foi possível conferir os arquivos desta execução: {exc}") from None
     payload["downloads"] = [name for name in DOWNLOADS if output_path(root, name).is_file()]

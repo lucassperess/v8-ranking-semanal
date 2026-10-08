@@ -362,6 +362,11 @@ async function showMethod() {
       'Cobertura, modelo, versão do prompt e assinaturas das evidências.',
       'JSON',
     ],
+    'volume_context.json': [
+      'Volume diário da semana',
+      'Valores recebidos, lacunas, regra da média e assinaturas da entrada e do derivado.',
+      'JSON',
+    ],
     'etl_manifest.json': [
       'Manifesto do tratamento',
       'Entrada, codificação, parâmetros, versões e assinaturas.',
@@ -386,7 +391,7 @@ async function showMethod() {
   const fileGroups = new Map();
   const groupFor = (name) => {
     if (name.startsWith('context_')) return 'Contexto e fontes';
-    if (/^(top20|all_returns)/.test(name)) return 'Rankings e retornos';
+    if (/^(top20|all_returns|volume_context)/.test(name)) return 'Rankings e retornos';
     if (/^(quality|candidate_exclusions)/.test(name)) return 'Qualidade e exclusões';
     if (
       /^(ranking_universe|period_classification|b3_evidence|classification|source_acquisition)/.test(

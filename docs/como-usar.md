@@ -54,6 +54,7 @@ No desktop, a tabela apresenta estas colunas:
 | INICIAL (R$) | Fechamento na data inicial da janela selecionada |
 | FINAL (R$) | Fechamento na data final |
 | RETORNO (%) | Variação percentual entre esses dois fechamentos |
+| VOL. MÉDIO/DIA (R$) | Soma do volume financeiro informado na semana dividida pelos dias com volume válido; abaixo do valor aparece a cobertura |
 
 ![Ranking das 20 ações do case, com posição, ticker, espécie, preços inicial e final e retorno individual; ECOM3 está selecionada.](assets/ranking-20261007.png)
 
@@ -61,7 +62,7 @@ No desktop, a tabela apresenta estas colunas:
 
 Selecione uma linha do ranking ou escolha o ticker no seletor junto ao gráfico. Essa seleção atualiza o painel e o gráfico para a ação escolhida. O painel apresenta o ticker, a espécie, o retorno do período, os fechamentos inicial e final, a diferença em reais por ação e eventuais alertas.
 
-No desktop, o painel permanece visível ao lado da tabela. No celular, a tabela prioriza posição, ticker e retorno; selecionar uma linha atualiza a ação e leva a página até o painel. Use “Voltar ao ranking” para retornar à tabela.
+No desktop, o painel permanece visível ao lado da tabela. No celular, a tabela prioriza posição, ticker, retorno e volume médio diário; selecionar uma linha atualiza a ação e leva a página até o painel. Use “Voltar ao ranking” para retornar à tabela.
 
 ![Painel de ECOM3 com fechamento inicial de R$ 1,06, final de R$ 1,56, diferença de R$ 0,50 e retorno de 47,17%, acompanhado do gráfico de preços.](assets/painel-ecom3-20261007.png)
 
@@ -77,6 +78,31 @@ Uma lacuna na linha do gráfico de preços indica que não há fechamento utiliz
 Na alternativa, o primeiro dia também mostra “—”, mas por outro motivo: seu fechamento é o preço inicial da janela. Ainda não existe uma comparação dentro dela. A explicação da observação identifica esse motivo. Veja [por que podem faltar dados](duvidas.md).
 
 ## Compare o contexto
+
+### Volume do top 20
+
+Na tabela “Movimento diário do top 20”, alterne entre **Retornos (%)** e
+**Volume (R$)**. O modo de volume mostra o valor informado pela Economatica
+em cada dia da semana. A intensidade do azul aumenta com o volume, usando
+a mesma escala para todas as ações. Verde e vermelho continuam exclusivos
+dos retornos. Na alternativa, o primeiro dia tem volume mesmo sem retorno:
+houve movimentação naquele dia, mas seu fechamento é o início do cálculo.
+
+A coluna **VOL. MÉDIO/DIA (R$)** calcula uma média dentro daquela semana,
+não entre várias semanas. “4 de 5 dias” significa quatro valores válidos
+entre cinco datas com fechamentos positivos observadas na extração.
+Zero explícito entra na média. Ausências, valores inválidos e registros
+duplicados não entram; a cobertura incompleta permanece indicada.
+Os dois modos usam os dias dentro da semana, sem incluir o volume da
+sexta-feira anterior que serve de base para o retorno principal.
+
+O resumo abaixo da tabela informa as maiores e menores médias disponíveis,
+as ações com cobertura incompleta e o volume no dia da maior variação diária
+em valor absoluto. Uma média parcial exige atenção ao comparar ações.
+O volume descreve a negociação registrada; não prova a causa da alta ou queda.
+Os valores recebidos podem diferir dos registros da B3 e não são substituídos
+por eles. Use **Conferir dados de volume · JSON** para guardar o derivado
+da mesma execução. Resultados antigos sem esse derivado mostram indisponibilidade.
 
 No dashboard, a tabela de movimentos diários vem depois do ranking e do gráfico da ação. “Além do top 20” aparece por último e reúne a distribuição dos retornos e a contagem de ações em alta, em baixa e estáveis.
 
