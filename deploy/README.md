@@ -1,5 +1,7 @@
 # Operação da interface na VPS
 
+A revisão visual mais recente está registrada em [Revisão de UI de 08/10/2026](revisao-ui-20261008.md), incluindo a imagem publicada, as verificações e a restauração da versão anterior.
+
 ## Configuração da versão com contexto
 
 O Compose transmite `OPENAI_API_KEY`, `TAVILY_API_KEY` e `CONTEXT_ENABLED` somente ao worker. Na VPS, o arquivo privado fica em `/opt/stacks/v8-ranking/context.env`, com permissão 600. Forneça `--env-file` em toda chamada que recrie os serviços. Não inclua esse arquivo no checkout, na imagem ou em logs. Confira a configuração com `config --quiet`, sem exibir os valores das chaves. Consulte o [registro da publicação](contexto-publicado.md) para a versão e a validação observadas.
