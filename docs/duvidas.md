@@ -4,12 +4,40 @@ Localize a situação que aparece na sua análise. Cada resposta explica o efeit
 
 ## Por que a matriz tem células vazias?
 
-Uma célula com **—** não representa retorno zero. O significado depende da posição:
+No modo **Retornos (%)**, uma célula com **—** não representa retorno zero. O significado depende da posição:
 
 - **Primeiro dia da alternativa:** o fechamento é o preço inicial; ainda não existe comparação dentro da janela.
 - **Demais datas:** faltam dois fechamentos consecutivos utilizáveis, por ausência, valor inválido ou conflito.
 
 Exemplo: há preço na sexta, falta na segunda e há preço na terça. Não calculamos a segunda; também não apresentamos sexta → terça como um retorno diário de terça. Consulte a descrição da célula ou da observação no gráfico para identificar o motivo e [as datas comparadas](metodologia.md#como-interpretar-os-gráficos-diários).
+
+No modo **Volume (R$)**, “—” indica volume ausente, inválido ou duplicado. Um zero informado aparece como **0,00** e participa da média. Falta de volume e falta de fechamento são problemas de campos diferentes.
+
+## O que significa “4 de 5 dias” no volume?
+
+A média usou quatro valores válidos, entre cinco datas observadas da semana. A data sem volume não foi preenchida com zero. Compare a cobertura antes de comparar médias: uma ação com um dia disponível pode ter uma média pouco representativa daquela semana. O ranking continua sendo ordenado pelo retorno, sem filtro de volume.
+
+## Por que há volume no primeiro dia da alternativa, mas não retorno?
+
+O volume é um valor informado para aquele dia. O retorno precisa comparar dois fechamentos: na alternativa, o primeiro fechamento é o início, e ainda não há comparação dentro da janela. Por isso, o dia pode ter volume e mostrar “—” no retorno. Volume igual a zero também é possível.
+
+## O contexto está em processamento ou indisponível
+
+Os cálculos são liberados antes da coleta opcional de contexto. Acompanhe a aba **Contexto** na mesma URL; ela atualiza quando a leitura fica pronta. Não é necessário reenviar o CSV para consultar o andamento.
+
+Uma fonte inacessível, credencial ausente, limite de orçamento ou fim do prazo de processamento pode impedir a geração. A mensagem informa a indisponibilidade; o ranking, o volume e os gráficos calculados continuam disponíveis. Um novo envio cria outra análise e pode consumir novamente os serviços externos.
+
+## Há contexto disponível, mas faltam notícias de algumas empresas ou temas
+
+“Disponível” indica que existe uma leitura concluída, não uma notícia confirmada para cada empresa em cada dia. A empresa pode ter apenas antecedentes, como um resultado trimestral anterior. Um tema de mercado também pode ficar sem acontecimento confirmado mesmo com o índice disponível.
+
+Confira as datas, os grupos de fontes e a limitação indicada. Ausência de notícia confirmada não significa ausência de negociação ou de acontecimentos. Volume pequeno descreve os dados de negociação recebidos; sozinho, não explica a causa da alta ou queda.
+
+## Posso guardar e reproduzir o contexto?
+
+Baixe os JSONs de **Contexto e fontes** durante os sete dias para conservar os textos e registros apresentados. Uma nova consulta às APIs pode produzir outra seleção de fontes e outra redação.
+
+A reprodução sem novas APIs exige as evidências e respostas internas salvas pelo responsável pela ferramenta, que não fazem parte dos downloads públicos. Veja [a diferença entre conferir, recalcular e reproduzir](auditoria.md#conferir-recalcular-e-reproduzir-o-contexto).
 
 ## Por que a alternativa não mostra retorno na segunda-feira?
 
@@ -75,7 +103,7 @@ Leia a mensagem para distinguir fila cheia de limite por hora. Aguarde a libera�
 
 Novas análises expiram após sete dias. Guardar o endereço web não preserva o resultado depois desse prazo. Baixe os arquivos durante a disponibilidade; a ausência de uma lista pública de envios também exige guardar a URL.
 
-O case continua permanentemente na página inicial, pela opção “Ranking”. Para conservar uma nova análise, veja [o que guardar](auditoria.md#o-que-guardar-para-reproduzir).
+O case continua permanentemente na página inicial, acessível pelo logotipo V8 Capital no cabeçalho. Para conservar uma nova análise, veja [o que guardar](auditoria.md#o-que-guardar-para-reproduzir).
 
 ## A média que refiz com os percentuais da tela é diferente
 

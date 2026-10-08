@@ -42,7 +42,7 @@ Em um novo envio, o ranking aparece primeiro. A aba Contexto informa enquanto a 
 
 Leia também o tipo de informação disponível. **Antecedentes financeiros** descrevem um trimestre anterior, com suas datas. **Documentos institucionais**, como estatuto e política de riscos, descrevem regras e atividades: seu registro na semana não comprova uma mudança no negócio. Nenhum desses casos deve ser confundido com uma notícia que explique a oscilação do preço.
 
-Os textos dos novos envios são gerados por IA, com conferência automática de identidade, datas e trechos das fontes, seguida de uma segunda leitura por IA. Eles não recebem revisão humana individual. O case possui textos preparados e revisados separadamente. Em ambos, os fatos dão contexto, mas não comprovam que uma notícia causou cada alta ou queda. Informações posteriores ao último fechamento recebem aviso próprio.
+Os novos envios combinam resumos financeiros produzidos em Python e leituras por IA. Identidade, datas e trechos das fontes recebem conferência automática; propostas de acontecimentos válidas passam por uma segunda leitura por IA. Os novos textos não recebem revisão humana individual. O case possui textos preparados e revisados separadamente. Em ambos, os fatos dão contexto, mas não comprovam que uma notícia causou cada alta ou queda. Informações posteriores ao último fechamento recebem aviso próprio.
 
 No desktop, a tabela apresenta estas colunas:
 
@@ -56,17 +56,17 @@ No desktop, a tabela apresenta estas colunas:
 | RETORNO (%) | Variação percentual entre esses dois fechamentos |
 | VOL. MÉDIO/DIA (R$) | Soma do volume financeiro informado na semana dividida pelos dias com volume válido; abaixo do valor aparece a cobertura |
 
-![Ranking das 20 ações do case, com posição, ticker, espécie, preços inicial e final e retorno individual; ECOM3 está selecionada.](assets/ranking-20261007.png)
+![Ranking do case com as 20 ações, preços, retornos individuais, volume médio diário e cobertura; ECOM3 está selecionada.](assets/ranking-volume-20261008.jpg)
 
-*A linha cinza indica a ação selecionada, ECOM3 neste exemplo. A marca de informação junto a BIED3 indica um alerta nos dados.* [Ampliar imagem](assets/ranking-20261007.png).
+*A linha cinza indica ECOM3 selecionada. A última coluna mostra o volume médio diário e a cobertura: MGEL4 tem quatro dos cinco dias válidos. A marca junto a BIED3 indica um alerta nos dados.* [Ampliar imagem](assets/ranking-volume-20261008.jpg).
 
 Selecione uma linha do ranking ou escolha o ticker no seletor junto ao gráfico. Essa seleção atualiza o painel e o gráfico para a ação escolhida. O painel apresenta o ticker, a espécie, o retorno do período, os fechamentos inicial e final, a diferença em reais por ação e eventuais alertas.
 
 No desktop, o painel permanece visível ao lado da tabela. No celular, a tabela prioriza posição, ticker, retorno e volume médio diário; selecionar uma linha atualiza a ação e leva a página até o painel. Use “Voltar ao ranking” para retornar à tabela.
 
-![Painel de ECOM3 com fechamento inicial de R$ 1,06, final de R$ 1,56, diferença de R$ 0,50 e retorno de 47,17%, acompanhado do gráfico de preços.](assets/painel-ecom3-20261007.png)
+![Painel atual de ECOM3: seletor de ticker, espécie ON, retorno de 47,17%, preços inicial e final, variação em reais e abas Gráfico e Contexto.](assets/painel-ecom3-20261008.jpg)
 
-*ECOM3 passou de R$ 1,06 para R$ 1,56: aumento de R$ 0,50 por ação, equivalente a 47,17% sobre o preço inicial.* [Ampliar imagem](assets/painel-ecom3-20261007.png).
+*ECOM3 passou de R$ 1,06 para R$ 1,56: aumento de R$ 0,50 por ação, equivalente a 47,17% sobre o preço inicial. Use as abas para alternar entre o gráfico e o contexto da mesma ação.* [Ampliar imagem](assets/painel-ecom3-20261008.jpg).
 
 - **Preços (R$):** fechamentos observados em reais por ação, somente entre o início e o fim da janela selecionada.
 - **Retornos diários (%):** variações entre datas consecutivas da extração dentro da janela selecionada. Na alternativa, o primeiro dia aparece como “—”: seu fechamento é o preço inicial, e o primeiro retorno aparece na próxima data da extração com comparação válida.
@@ -85,8 +85,8 @@ Na tabela “Movimento diário do top 20”, alterne entre **Retornos (%)** e
 **Volume (R$)**. O modo de volume mostra o valor informado pela Economatica
 em cada dia da semana. A intensidade do azul aumenta com o volume, usando
 a mesma escala para todas as ações. Verde e vermelho continuam exclusivos
-dos retornos. Na alternativa, o primeiro dia tem volume mesmo sem retorno:
-houve movimentação naquele dia, mas seu fechamento é o início do cálculo.
+dos retornos. Na alternativa, o primeiro dia pode ter volume mesmo sem retorno:
+pode haver um volume informado naquele dia, inclusive zero, mas seu fechamento é o início do cálculo.
 
 A coluna **VOL. MÉDIO/DIA (R$)** calcula uma média dentro daquela semana,
 não entre várias semanas. “4 de 5 dias” significa quatro valores válidos
@@ -103,6 +103,30 @@ O volume descreve a negociação registrada; não prova a causa da alta ou queda
 Os valores recebidos podem diferir dos registros da B3 e não são substituídos
 por eles. Use **Conferir dados de volume · JSON** para guardar o derivado
 da mesma execução. Resultados antigos sem esse derivado mostram indisponibilidade.
+
+![Tabela diária do case no modo Volume, com valores em reais e intensidade azul na mesma escala para todas as ações.](assets/volume-diario-20261008.jpg)
+
+*Cada célula mostra o volume financeiro recebido para a ação e a data. MGEL4 em 14/09 aparece como “—”. A média diária de ESTR4 é R$ 1.191,20, usando os cinco dias; a de TASA4 é R$ 8.789.228,00. As diferenças descrevem os valores da extração, sem explicar por si só as altas.* [Ampliar imagem](assets/volume-diario-20261008.jpg).
+
+### Contexto da ação selecionada
+
+Abra **Contexto** no painel da ação. A leitura começa pelos preços e pelo retorno da janela escolhida; depois apresenta os fatos encontrados sobre a empresa. Expanda **Documentos e notícias** para consultar datas, descrições e links. **Fontes desta leitura** identifica os documentos usados no resumo. Quando há lacunas identificadas, **O que ainda não conseguimos confirmar** informa essa limitação.
+
+![Painel de ESTR4 na aba Contexto, com leitura dos preços, informação sobre a recuperação judicial e acesso aos grupos de fontes.](assets/contexto-estr4-20261008.jpg)
+
+*A aba mantém ESTR4 selecionada e seu retorno de 20,13%. O texto descreve o esclarecimento da empresa sobre a recuperação judicial; não transforma esse documento em prova de que causou a alta.* [Ampliar imagem](assets/contexto-estr4-20261008.jpg).
+
+Um acontecimento pode ter ocorrido na semana ou antes dela. Resultados trimestrais são antecedentes financeiros: ajudam a entender a situação da empresa, mas se referem ao período indicado no documento. A coleta não promete uma notícia para cada ação em cada dia. Se nenhuma evidência suficiente for confirmada, a leitura informa essa limitação.
+
+### Contexto geral da semana
+
+A seção **Contexto geral da semana**, depois da tabela diária, compara Ibovespa, S&P 500, Nasdaq Composite e dólar PTAX nas datas da janela selecionada. PTAX é a taxa de referência do Banco Central; não é fechamento de mercado. Os valores vêm das fontes identificadas em cada card e não substituem os preços da Economatica.
+
+![Contexto geral do case com as variações do Ibovespa, S&P 500, Nasdaq Composite e dólar PTAX na janela principal, datas e fontes.](assets/contexto-mercado-20261008.jpg)
+
+*Os cards são referências de mercado para a mesma janela. Abra “Acontecimentos da semana · juros, economia e política” para ler os textos confirmados e suas fontes. Quando um tema não tem acontecimentos confirmados, a seção informa a ausência.* [Ampliar imagem](assets/contexto-mercado-20261008.jpg).
+
+Trocar a janela atualiza as comparações de preços. Isso não muda a data de publicação de uma notícia nem faz um antecedente passar a ser um acontecimento da semana.
 
 No dashboard, a tabela de movimentos diários vem depois do ranking e do gráfico da ação. “Além do top 20” aparece por último e reúne a distribuição dos retornos e a contagem de ações em alta, em baixa e estáveis.
 
@@ -181,4 +205,4 @@ A marca de informação no ticker indica um alerta da janela selecionada. Ao sel
 
 **Exemplo de alerta:** em BIED3, o preço médio recebido em 18/09 ficou fora do mínimo e do máximo informados para o dia. Isso merece conferência no CSV, mas não prova que o fechamento esteja errado. O ranking usa os fechamentos de R$ 5,55 e R$ 6,37: a diferença é R$ 0,82 por ação ajustada, e o retorno é 14,77%. O preço médio não entra nessa fórmula.
 
-“Contexto de negociação” explica a limitação da extração: volume bruto e quantidade ajustada podem usar bases diferentes. Sem confirmação de escala e comparabilidade, a interface não apresenta um indicador de liquidez ou inferências sobre facilidade de negociação. Nenhum filtro de liquidez foi aplicado.
+“Contexto de negociação” explica uma limitação da extração: o volume financeiro e a quantidade ajustada podem usar bases diferentes. A interface apresenta o volume recebido e sua cobertura, mas não calcula um indicador que prometa facilidade de compra ou venda. Nenhum filtro de liquidez foi aplicado.

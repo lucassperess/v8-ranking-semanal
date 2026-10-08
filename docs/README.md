@@ -11,6 +11,7 @@ Para manutenção do código, consulte o [roteiro técnico e comandos](desenvolv
 | Entender a entrega em poucos minutos | Comece aqui → Metodologia do ranking |
 | Testar outra extração | Como usar o dashboard → Dados e tratamento → Nova análise |
 | Conferir um número ou uma exclusão | Metodologia → Auditoria da execução consultada |
+| Entender volume, cobertura e fontes de contexto | Como usar o dashboard → Metodologia → Auditoria e reprodução |
 | Entender ou manter o código | Como o sistema funciona → Auditoria e reprodução |
 | Resolver um erro ou interpretar uma lacuna | Problemas e dúvidas → Artigo relacionado |
 
@@ -21,12 +22,12 @@ Navegação principal: **Ranking · Documentação · Nova análise**.
 | Página | Conteúdo e exemplos | Estado |
 | --- | --- | --- |
 | Comece aqui | Objetivo, escopo, fontes, visão do fluxo e caminhos de leitura | Publicado |
-| Como usar o dashboard | KPIs, tabela, seleção de ação, preços e retornos, hover, matriz, downloads, envio e acompanhamento | Publicado |
+| Como usar o dashboard | Cards, seleção de ação, abas Gráfico/Contexto, volume, cobertura, referências de mercado, downloads e envio | Publicado |
 | [Metodologia do ranking](metodologia.md) | Semana, pontas, elegibilidade, fórmula, ordenação, média, alternativa e limitações | Publicado |
 | Dados e tratamento | Contrato das nove colunas, codificação, dicionário, precisão, ausências, duplicatas e controles | Publicado |
 | Classificação dos instrumentos | Hipótese pelo código, confirmação B3 por data, fontes, cache, conflitos e decisões | Publicado |
 | Como o sistema funciona | Upload → API → fila → worker → Python → arquivos → apresentação; limites e retenção | Publicado |
-| Auditoria e reprodução | Arquivos, procedência, versões, comando Python, execução sem internet com fontes disponíveis | Publicado |
+| Auditoria e reprodução | Arquivos públicos, procedência, versões, conferência de volume, cálculo pelo Python e requisitos privados de reprodução do contexto | Publicado |
 | Problemas e dúvidas | Erros de formato, fontes indisponíveis, lacunas, semana incompleta, poucas ações e expiração | Publicado |
 
 ## Organização da interface

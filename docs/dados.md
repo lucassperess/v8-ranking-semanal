@@ -49,6 +49,14 @@ O tratamento registra a linha de origem, interpreta o código e a data e convert
 
 Uma nova extração é uma análise independente. Se o fornecedor revisar preços ajustados, a nova entrada pode produzir outro resultado; as linhas não são acrescentadas automaticamente à análise anterior.
 
+## Volume financeiro e cobertura diária
+
+`Volume$|Em moeda orig` é o volume financeiro informado pela Economatica para o instrumento e a data. A ferramenta mostra o campo recebido e sua média por dia dentro da semana. Não o reconstrói a partir da quantidade ajustada e do preço, nem o substitui por volume obtido na B3; essas bases podem diferir.
+
+Zero explícito é um dado válido. Valor ausente, negativo, não numérico ou duplicado fica sem volume e não entra na média. A indicação “4 de 5 dias” significa que quatro das cinco datas observadas da semana têm volume utilizável para aquela ação; não significa quatro semanas nem quatro negociações.
+
+Um fechamento ausente pode deixar o gráfico de retornos vazio mesmo quando o volume do dia está disponível. Um volume ausente também não impede um retorno com dois fechamentos válidos. Consulte [as regras de volume](metodologia.md#como-o-volume-é-apresentado) e guarde `volume_context.json` para conferir os valores da execução.
+
 ## Controles de qualidade
 
 Um registro corresponde a **instrumento × data**, considerando também a bolsa indicada no código. Duas linhas com a mesma identificação são duplicatas, mesmo que tenham números iguais. Elas são registradas; não há escolha silenciosa de uma delas.

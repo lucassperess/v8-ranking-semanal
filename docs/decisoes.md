@@ -143,6 +143,13 @@ cache e preservação do conteúdo anterior. A conferência isolada das quatro
 lacunas do case não encontrou novos acontecimentos empresariais confirmáveis.
 A validação integral do contrato novo permanece uma etapa posterior.
 
+**Conferência posterior, 08/10/2026:** uma nova semana com 20 empresas,
+preços e classificação artificiais e contexto coletado externamente confirmou
+a divisão protegida da reserva e a reprodução sem novas APIs. Onze empresas
+tiveram acontecimentos da semana; nove tiveram apenas antecedentes datados.
+A cobertura macroeconômica permaneceu parcial. O teste e seus limites estão
+em [Validação integrada de contexto e volume](../deploy/contexto-volume-validacao.md).
+
 ## D15 — Volume recebido como contexto de negociação
 
 **Decisão:** exibir volume médio diário dentro da semana e volume por data

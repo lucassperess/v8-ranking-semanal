@@ -13,6 +13,8 @@ Este artigo explica como os scripts Python selecionam as datas, verificam os dad
 - [Como se formam o top 20 e a média](#como-se-formam-o-top-20-e-a-média)
 - [Para que serve a janela alternativa](#para-que-serve-a-janela-alternativa)
 - [Como interpretar os gráficos diários](#como-interpretar-os-gráficos-diários)
+- [Como o volume é apresentado](#como-o-volume-é-apresentado)
+- [Como o contexto é preparado](#como-o-contexto-é-preparado)
 - [Quando o resultado é interrompido](#quando-o-resultado-é-interrompido)
 - [Como conferir e reproduzir](#como-conferir-e-reproduzir)
 - [Limites de interpretação](#limites-de-interpretação)
@@ -270,6 +272,30 @@ Uma ação pode ter retorno semanal válido e células diárias vazias: basta po
 
 Somar percentuais diários não reproduz, em geral, o retorno semanal. Quando todas as comparações necessárias estão disponíveis, a conexão é multiplicativa: `(1 + r1) × (1 + r2) × … − 1`, com retornos em fração.
 
+## Como o volume é apresentado
+
+O volume financeiro vem da coluna `Volume$|Em moeda orig` do CSV da Economatica. A ferramenta conserva esses valores; não substitui o volume por dados da B3 nem calcula volume multiplicando fechamento por quantidade ajustada.
+
+Para cada ação, a média diária é a soma dos volumes válidos nos dias observados da semana dividida pela quantidade desses dias. Exemplo ilustrativo: R$ 100,00, R$ 0,00 e um volume ausente produzem média de R$ 50,00, com dois de três dias válidos. O zero foi informado; a ausência não foi transformada em zero.
+
+Um volume é utilizável quando é numérico, finito, não negativo e pertence a um único registro válido de ação e data. Valores ausentes, inválidos e duplicados ficam sem volume. Um volume pode estar disponível mesmo quando falta o fechamento necessário para o retorno diário; são campos diferentes.
+
+Os dias considerados são as datas da extração com algum fechamento positivo, entre o início da semana e o fechamento final escolhido. Não entram dias sem observações nem o volume do fechamento anterior à semana. As janelas principal e alternativa usam esses mesmos dias para o volume; as ações do top podem ser diferentes em cada janela.
+
+A coluna do ranking informa a média e a cobertura, como “4 de 5 dias”. Médias com coberturas diferentes exigem atenção na comparação. A tabela diária usa uma escala azul comum para comparar valores informados. O volume não entra na fórmula do retorno, no desempate, na média dos retornos ou na elegibilidade; não há filtro de liquidez.
+
+## Como o contexto é preparado
+
+Depois dos cálculos, uma etapa opcional reúne fontes sobre as empresas presentes nos tops das duas janelas. A identidade empresarial é conferida antes de associar documentos a um ticker; duas espécies da mesma empresa podem compartilhar as informações empresariais.
+
+A coleta procura acontecimentos da semana e antecedentes de até 90 dias antes dela. Datas e trechos das fontes são conferidos automaticamente; propostas de acontecimentos válidas passam por uma segunda leitura por IA. Quando não há acontecimentos válidos, o sistema pode apresentar um resumo financeiro produzido em Python, sem essa segunda chamada ao modelo. Os novos textos não recebem revisão humana individual.
+
+**Acontecimento da semana** descreve algo publicado naquele período. **Antecedente** descreve informação anterior, como o resultado de um trimestre. **Documento institucional** descreve regras ou atividades; sua publicação não comprova mudança empresarial. Informações posteriores ao fechamento, quando apresentadas, recebem indicação própria. Nenhuma dessas categorias comprova a causa do retorno.
+
+As referências de mercado usam históricos de índices e dólar PTAX de fontes identificadas, com variações calculadas em Python nas datas de cada janela. PTAX é uma taxa de referência, não fechamento de mercado. Notícias de juros, economia e política dependem das evidências confirmadas; um tema pode ficar sem texto mesmo quando os indicadores estão disponíveis.
+
+A geração conserva fontes, respostas e identificação da execução. Uma coleta futura pode encontrar documentos diferentes e produzir outra redação. A reprodução com os arquivos internos salvos é explicada em [Auditoria e reprodução](auditoria.md#conferir-recalcular-e-reproduzir-o-contexto). Uma falha dessa etapa preserva o ranking e o volume calculados.
+
 ## Quando o resultado é interrompido
 
 | Situação | Comportamento |
@@ -300,6 +326,7 @@ No resultado publicado, os downloads permitidos incluem:
 | `all_returns_alternativo.csv` | Conferir o universo de retornos da alternativa |
 | `candidate_exclusions.csv` | Conferir códigos sem duas pontas válidas e motivos |
 | `quality_context.json` | Ler as ocorrências relacionadas às datas usadas |
+| `volume_context.json` | Conferir volumes diários, ausências, datas e assinaturas da execução |
 | `ranking_report.json` | Conferir datas, contagens, premissas, média e procedência |
 | `README.md` | Ler o resumo da execução e as instruções de reprodução |
 
@@ -330,13 +357,13 @@ Para conferir a implementação:
 
 - Os gráficos apresentam dados históricos da extração, não cotações em tempo real.
 - “Ações em alta” descreve o universo elegível da análise, não todo o mercado.
-- A variação é calculada sobre preços ajustados fornecidos pela Economatica. O projeto não valida integralmente todos os eventos que originaram esses ajustes nem acrescenta causas de movimentos.
+- A variação é calculada sobre preços ajustados fornecidos pela Economatica. O projeto não valida integralmente todos os eventos que originaram esses ajustes. A camada de contexto reúne fatos e antecedentes; não estabelece a causa dos movimentos.
 - Não há filtro de liquidez, ponderação por tamanho, custos de transação ou simulação de execução de ordens.
 - Uma nova extração é uma nova versão: preços ajustados podem ser revistos. Não anexamos cegamente os novos dados à execução anterior.
 - A identificação completa de todo instrumento recebido é diferente da decisão de elegibilidade ON/PN. O ranking não promete catalogar todas as espécies financeiras.
 
 ## Revisão deste artigo
 
-Revisado em **07/10/2026** para explicar datas, elegibilidade, retorno individual e média, distinguir exclusões de bloqueios e explicitar os avisos e limites atuais de validação. Os exemplos numéricos pertencem à referência de 22/09/2026. A identificação da revisão dos guias aparece nesta página; a auditoria informa qual cópia foi associada a cada execução, sem alterar o registro histórico do cálculo.
+Revisado em **08/10/2026** para incluir volume, cobertura e contexto, preservando as explicações de datas, elegibilidade, retorno individual, média e bloqueios. Os exemplos numéricos pertencem à referência de 22/09/2026, exceto os identificados como ilustrativos. A identificação da revisão dos guias aparece nesta página; a auditoria informa qual cópia foi associada a cada execução, sem alterar o registro histórico do cálculo.
 
 Os artigos de [guia de uso](como-usar.md), [dados](dados.md), [classificação](classificacao.md) e [arquitetura](sistema.md) complementam esta explicação. Sempre que uma regra mudar, este artigo deve ser revisado junto com o código.

@@ -41,7 +41,11 @@ O comando gera relatório, rankings das duas janelas, evidências de classifica�
 
 ## Usar e conferir
 
-A interface mostra preços e retornos diários, variação em R$ por ação, distribuição e matriz diária. O resumo e os alertas acompanham a janela escolhida. [Guia com exemplos visuais](docs/como-usar.md).
+A interface mostra preços e retornos diários, variação em R$ por ação, distribuição e tabela diária com alternância entre retornos e volume financeiro. O ranking inclui volume médio por dia e cobertura dos dados. O resumo e os alertas acompanham a janela escolhida. [Guia com exemplos visuais](docs/como-usar.md).
+
+A aba **Contexto** reúne informações empresariais datadas e fontes; a seção de mercado compara Ibovespa, índices americanos e dólar PTAX. Nos novos envios, a coleta opcional acontece depois da liberação do ranking e compartilha o limite total de processamento. A cobertura pode ser parcial, e uma falha do contexto preserva os cálculos. Acontecimento da semana, antecedente financeiro e causa da variação são conceitos distintos; a ferramenta não comprova causalidade.
+
+Os JSONs públicos conservam o contexto apresentado e os registros para conferência. A reprodução dessa geração sem novas APIs exige também as fontes e respostas internas guardadas pelo responsável, além da versão do pipeline e dos prompts. Uma coleta nova pode produzir outro texto. Veja [Auditoria e reprodução](docs/auditoria.md).
 
 O site aceita o [formato documentado de nove colunas](docs/dados.md), até **10 MB**: uma análise ativa, duas aguardando, dez minutos por processamento e três envios por hora por origem. Sem login; quem possui o link pode consultar os derivados. Brutos são removidos após 24 horas e testes após sete dias. Não há lista pública nem download do CSV bruto.
 

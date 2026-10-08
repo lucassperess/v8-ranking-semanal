@@ -94,7 +94,7 @@ O primeiro comando consulta fontes externas e pode consumir créditos; recusa so
 
 A identificação exige correspondência entre ticker, ISIN da classificação datada e empresa no cadastro B3. A busca considera a semana e até 90 dias anteriores. Para leitura pela IA, seleciona até seis textos de 3.000 caracteres por empresa, priorizando documentos oficiais. Isso não constitui um catálogo completo das notícias de todos os dias.
 
-Trechos, datas e identidade recebem conferência automática e segunda leitura por IA. Resultados financeiros anteriores ao fechamento podem servir como antecedentes, sem comprovar a causa da oscilação. A reserva conservadora padrão para chamadas ao modelo é US$ 6 por geração, configurável por execução; não corresponde ao valor faturado e não inclui Tavily. A divisão entre empresas e temas de mercado está descrita na seção de orçamento protegido abaixo.
+Trechos, datas e identidade recebem conferência automática; acontecimentos válidos passam por segunda leitura por IA. Sem acontecimentos válidos, o resumo financeiro pode ser produzido pelas regras Python, sem a segunda chamada ao modelo. Resultados financeiros anteriores ao fechamento servem como antecedentes, sem comprovar a causa da oscilação. A reserva conservadora padrão para chamadas ao modelo é US$ 6 por geração, configurável por execução; não corresponde ao valor faturado e não inclui Tavily. A divisão entre empresas e temas de mercado está descrita na seção de orçamento protegido abaixo.
 
 Os arquivos `context/{company,market,audit,manifest}.json` são derivados públicos. As respostas completas e documentos ficam privados. O manifesto vincula o contexto ao `presentation.json`; datas e ativos são conferidos na API. O teste `python -m scripts.validate_context_replication --output runs/teste-contexto` usa preços e classificações artificiais, que não devem ser publicados como dados reais.
 
@@ -351,7 +351,7 @@ retornos da Tavily usados nesta etapa não informam consumo de créditos.
 O contrato novo exige uma execução própria: não misture seus arquivos com os
 de uma geração anterior. A reprodução usa evidências e respostas arquivadas.
 
-### Conferência visual mobile
+### Volume e reprodução do derivado
 
 O worker arquiva `volume_context.json` a partir da base normalizada conferida.
 Para associar esse novo derivado a um resultado anterior, sem sobrescrever
@@ -359,6 +359,26 @@ arquivos históricos, use `python -m scripts.build_volume_context --run-dir
 CAMINHO --normalized CAMINHO_NORMALIZED` (adicione `--featured` para o case).
 O comando recusa arquivo já existente e valida as assinaturas da base e da entrada.
 Na reprodução, a apresentação usa o JSON salvo sem consultar APIs nem exigir o bruto.
+
+O volume usa as datas observadas dentro da semana nas duas janelas. A média
+divide a soma dos volumes válidos pela quantidade desses valores, incluindo
+zeros explícitos e excluindo ausências, negativos e duplicatas. A apresentação
+informa cobertura; esse campo não altera a elegibilidade nem os rankings.
+Os JSONs públicos de contexto não contêm a coleta privada necessária ao replay.
+Preserve a pasta completa da execução e sua versão de código antes da expiração.
+
+### Validação integrada de contexto e volume
+
+Em 08/10/2026, o cenário `volume` de `scripts.validate_context_replication`
+verificou uma nova semana com 20 empresas diferentes das do case, preços e
+classificações artificiais e fontes externas de contexto. Conferiu cálculos,
+zeros e lacunas de volume, cobertura e reprodução sem rede. A coleta levou
+323,11 segundos: onze empresas tiveram acontecimentos da semana e nove
+apenas acontecimentos anteriores. As notícias macroeconômicas tiveram
+cobertura parcial. O teste não comprova classificação B3 online nem garante
+prazo e cobertura para qualquer arquivo. Veja o [registro completo](../deploy/contexto-volume-validacao.md).
+
+### Conferência visual mobile
 
 Confira 320, 390 e 430 px e o desktop antes de publicar alterações de layout. Verifique navegação completa, ausência de sobreposição na introdução, retorno visível no ranking, seleção e volta do gráfico, abertura/fechamento de informações, matriz com datas e ticker fixos, menus e tabelas da documentação, seletor da auditoria e referência brasileira no formulário. Conferência de viewport no navegador não substitui teste em Android e iOS físicos, especialmente para seleção de arquivos e teclado.
 

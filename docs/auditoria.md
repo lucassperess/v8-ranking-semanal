@@ -12,12 +12,18 @@ Esta documentação apresenta regras gerais. Use os arquivos da execução para 
 
 Quando o contexto termina, o grupo **Contexto e fontes** oferece quatro JSONs: contexto das empresas, contexto de mercado, manifesto e conferência do contexto. A conferência identifica a cobertura obtida, o modelo, a versão do prompt e as assinaturas dos arquivos usados. Consulte os links das fontes na aba Contexto para ler os documentos de origem. O CSV enviado e a coleta interna não são publicados.
 
+Em novas análises com contexto concluído, esses downloads têm os nomes `context_company.json`, `context_market.json`, `context_manifest.json` e `context_audit.json`. A conferência registra separadamente empresas com acontecimentos da semana até o fechamento e empresas com acontecimentos anteriores; uma empresa pode estar nos dois grupos. Encontrar informação para todas as empresas não significa explicar a causa de todas as altas.
+
 Reproduzir os cálculos financeiros é diferente de gerar um novo texto de IA. Uma coleta nova pode encontrar outras fontes, e o modelo pode escrever de outra maneira. A cópia salva preserva o resultado daquela execução; no ambiente do responsável, as respostas e fontes guardadas permitem reapresentar a mesma geração sem novas consultas. Isso não promete que uma consulta futura produzirá o mesmo texto palavra por palavra.
 
 | Pergunta | Arquivo |
 | --- | --- |
 | Como chegou às posições? | `top20.csv` e `all_returns.csv` |
 | O que muda na outra janela? | `top20_alternativo.csv` e `all_returns_alternativo.csv` |
+| Quais volumes entraram na média e quais faltaram? | `volume_context.json` |
+| Quais fatos e fontes formaram o contexto de um novo envio? | `context_company.json` e `context_market.json` |
+| Qual cobertura, modelo e versão de prompt foram utilizados? | `context_audit.json` |
+| O contexto salvo pertence a esta execução e permanece íntegro? | `context_manifest.json` |
 | Quais códigos ficaram sem duas pontas? | `candidate_exclusions.csv` |
 | Quais instrumentos ficaram fora pelo tipo? | `ranking_universe.csv`: decisão e motivo por código |
 | Qual evidência confirmou cada espécie? | `period_classification.csv` e `b3_evidence.csv` |
@@ -104,6 +110,15 @@ Abra os detalhes para conferir a linha original do CSV e o efeito de cada ocorr�
 
 No case, o preço médio de BIED3 em 18/09 está fora do intervalo diário. O fechamento utilizado no retorno permanece preservado; o preço médio não é usado no cálculo. Isso descreve o alcance do alerta, sem afirmar que o fornecedor está correto ou inventar uma causa.
 
+### Conferir o volume
+
+1. Abra **Conferir dados de volume · JSON** abaixo da tabela diária, ou **Volume diário da semana** no grupo **Rankings e retornos** da auditoria.
+2. Em `volume_context.json`, confira `dates`, o ticker em `series` e cada valor de `volume`. Valor `null` indica indisponibilidade; `reason` registra o motivo. `0` é um zero informado.
+3. Some os valores válidos e divida pela quantidade deles. Compare com a coluna **VOL. MÉDIO/DIA (R$)**, considerando o arredondamento da tela.
+4. Confira também a cobertura. No case, ESTR4 tem média de R$ 1.191,20 em cinco dias; MGEL4 tem quatro de cinco dias válidos. As duas janelas usam os dias da semana para o volume, sem incluir a sexta anterior.
+
+O derivado identifica a entrada, a base normalizada e seu próprio conteúdo por assinaturas. Isso permite conferir a ligação com a execução; não comprova que o volume recebido descreve toda a negociação da B3.
+
 ## O que significa hash
 
 Hash SHA-256 é uma assinatura calculada a partir do conteúdo de um arquivo. Se o conteúdo mudar, sua assinatura também muda. Isso permite conferir integridade e identificar qual entrada foi usada. Não demonstra que os dados estejam corretos.
@@ -124,8 +139,25 @@ Uma execução antiga sem os derivados necessários informa que a auditoria deta
 | Versão do código e parâmetros | Identificam as regras executadas | Relatório, manifestos e repositório |
 | Fontes originais B3 utilizadas | Permitem repetir a confirmação oficial | Registros de aquisição e seu cache local; o site não oferece os originais |
 | Guias associados | Preservam a explicação vinculada à execução | “Guias arquivados” e “Ler os guias associados” |
+| Volume diário e cobertura | Conservam os dados de volume apresentados | `volume_context.json` no dashboard e na auditoria |
+| Contexto apresentado e sua conferência | Conservam os textos, referências e identificação da geração | Grupo “Contexto e fontes”, quando a geração estiver concluída |
 
 A URL e um print conservam referências ao resultado, mas não todos os insumos do cálculo. Guarde os derivados antes da expiração e preserve a entrada desde o envio. A obtenção posterior de uma fonte pode trazer outra versão; para comparar execuções, confira também suas assinaturas.
+
+## Conferir, recalcular e reproduzir o contexto
+
+| Objetivo | Material necessário | O que você consegue verificar |
+| --- | --- | --- |
+| Conferir o resultado apresentado | Rankings, volume, contexto e registros públicos da execução | Números, datas, textos, fontes citadas e integridade dos derivados |
+| Repetir os cálculos financeiros | CSV original, fontes B3, referência, opções e código da execução | Datas, elegibilidade, retornos, médias e volume usando as mesmas entradas |
+| Reproduzir a geração de contexto sem novas APIs | Pasta completa da execução, incluindo `context/private/`, e a versão correspondente do pipeline e dos prompts | Conteúdo empresarial e de mercado a partir das fontes e respostas guardadas |
+| Fazer uma nova coleta de contexto | Nova pasta de execução, configuração e credenciais dos serviços | Uma nova geração, que pode encontrar outras fontes e produzir outra redação |
+
+Os JSONs públicos preservam a leitura apresentada, mas não incluem as respostas completas das APIs nem todos os documentos internos. **Baixar esses JSONs permite conservar e conferir o contexto; sozinho, isso não permite reproduzir a coleta interna.** A pasta `context/private/` fica no ambiente do responsável pela ferramenta e não é oferecida para download.
+
+No ambiente do responsável, `--replay` utiliza as evidências e respostas salvas, grava a comparação em uma pasta própria e não chama as APIs. A versão do código, o prompt e a identificação da apresentação precisam corresponder à geração original. Consulte [os comandos e requisitos técnicos](desenvolvimento.md#contexto-opcional-de-cada-envio). Para conservar essa possibilidade além do prazo do resultado, o responsável precisa guardar a pasta completa antes da remoção.
+
+Uma reprodução igual mostra que o material salvo produz o mesmo conteúdo; não comprova a veracidade de todas as fontes nem a causa da variação de preços. Uma nova geração por API não é esse mesmo teste de reprodução.
 
 ## Reproduza pelo Python
 
