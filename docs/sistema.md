@@ -8,7 +8,7 @@ Você envia um CSV, o servidor executa os scripts Python e o site apresenta os a
 2. **O site verifica a entrada:** confere formato, tamanho, referência, datas disponíveis e limites de envio. Se os dados terminarem antes da sexta-feira, pede revisão. Um envio recusado nesta etapa ainda não entrou na fila.
 3. **A análise aguarda sua vez:** após o envio aceito, o site abre uma página própria de acompanhamento. Guarde seu endereço web, a URL.
 4. **O servidor executa o Python:** interpreta os dados, escolhe as datas, confirma os instrumentos nas fontes B3, calcula os retornos e produz os arquivos.
-5. **O resultado aparece na mesma página:** quando os cálculos concluem, ficam disponíveis cards, ranking, gráficos, volume e auditoria. Uma falha do cálculo apresenta o motivo.
+5. **O resultado aparece na mesma página:** quando os cálculos concluem, ficam disponíveis resumo, ranking, gráficos, volume e auditoria. Uma falha do cálculo apresenta o motivo.
 6. **O contexto é preparado:** a etapa opcional consulta fontes e prepara as leituras das empresas e dos mercados. O ranking já pode ser explorado enquanto isso; a aba Contexto informa o andamento e atualiza sem recarregar a página. Se a coleta falhar ou terminar com cobertura parcial, isso é informado na leitura.
 
 ## O que significa cada estado?
@@ -26,13 +26,13 @@ O estado “Concluída” indica que os cálculos estão disponíveis. O context
 
 ## Por que o resultado é independente do case?
 
-O contexto de cada novo envio também é preparado para a execução: utiliza as empresas presentes nos seus rankings e as datas da semana escolhida. O worker libera o ranking e continua a coleta opcional de contexto. A tela acompanha esse andamento. Essa etapa compartilha o limite total de dez minutos; se não terminar ou não houver credenciais, informa a indisponibilidade sem invalidar o ranking concluído.
-
-A identidade é conferida por ticker e ISIN com a B3 antes de associar notícias a uma empresa. Uma identidade incompatível interrompe apenas a associação de notícias daquele ticker. Fontes, textos, versão do prompt e assinaturas ficam ligados à execução. Os textos do case nunca são copiados para outro envio.
-
 Cada envio recebe uma identificação própria, uma entrada, uma referência e uma pasta de resultados. O case permanece disponível na página inicial; o logotipo V8 Capital leva ao resultado de referência. Os números de outra análise aparecem no endereço e na auditoria dela.
 
 Os arquivos de resultado são calculados em Python. O navegador escolhe quais dados apresentar conforme a ação e a janela selecionadas; não calcula novamente o ranking semanal. As séries diárias também correspondem à janela escolhida. Na alternativa, o primeiro fechamento é o preço inicial e não possui retorno diário dentro dela.
+
+O contexto de cada novo envio também é preparado para a execução: utiliza as empresas presentes nos seus rankings e as datas da semana escolhida. O worker libera o ranking e continua a coleta opcional de contexto. A tela acompanha esse andamento. Essa etapa compartilha o limite total de dez minutos; se não terminar ou não houver credenciais, informa a indisponibilidade sem invalidar o ranking concluído.
+
+A identidade é conferida por ticker e ISIN com a B3 antes de associar notícias a uma empresa. Uma identidade incompatível interrompe apenas a associação de notícias daquele ticker. Fontes, textos, versão do prompt e assinaturas ficam ligados à execução. Os textos do case nunca são copiados para outro envio.
 
 ## Prazos e limites
 

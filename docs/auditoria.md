@@ -40,15 +40,15 @@ O arquivo de exclusões por ausência de preços não substitui o registro de in
 
 ### Como localizar os downloads na interface
 
-Na auditoria, os arquivos aparecem em quatro grupos recolhíveis. Abra o grupo correspondente ao que deseja conferir. As capturas abaixo mostram a auditoria do case; use os arquivos da execução que você está consultando. Os botões CSV, JSON e MD nas imagens são exemplos visuais; os downloads funcionam na página da auditoria.
+Na auditoria, os arquivos são organizados em até cinco grupos, conforme os derivados disponíveis. No computador, os grupos começam abertos; no celular, inicialmente apenas **Rankings e retornos** fica aberto. Abra o grupo correspondente ao que deseja conferir. As capturas abaixo mostram a auditoria do case; use os arquivos da execução que você está consultando. Os botões CSV, JSON e MD nas imagens são exemplos visuais; os downloads funcionam na página da auditoria.
 
 #### Rankings e retornos
 
-Use este grupo para baixar o top 20 e todos os retornos das ações elegíveis. Os arquivos principal e alternativo correspondem a datas de comparação próprias.
+Use este grupo para baixar o top 20, todos os retornos das ações elegíveis e **Volume diário da semana**, quando disponível. Os arquivos principal e alternativo correspondem a datas de comparação próprias.
 
-![Grupo Rankings e retornos da auditoria, com downloads dos rankings e universos da janela principal e da alternativa.](assets/arquivos-rankings-20261007.png)
+![Grupo Rankings e retornos da auditoria, com volume diário da semana e downloads dos rankings e universos da janela principal e da alternativa.](assets/arquivos-rankings-atual-20261008.png)
 
-*“Ranking principal” e “Ranking alternativo” contêm o top 20; “Universo completo” e “Universo alternativo” contêm todos os retornos elegíveis de cada opção.* [Ampliar imagem](assets/arquivos-rankings-20261007.png).
+*“Ranking principal” e “Ranking alternativo” contêm o top 20; “Universo completo” e “Universo alternativo” contêm todos os retornos elegíveis de cada opção.* [Ampliar imagem](assets/arquivos-rankings-atual-20261008.png).
 
 #### Qualidade e exclusões
 
@@ -65,6 +65,10 @@ Use este grupo para conferir a decisão de inclusão, exclusão ou revisão de c
 ![Grupo Classificação e fontes B3 da auditoria, com decisões do universo, classificações nas datas, evidências, aquisição, manifestos e resumos para as duas janelas.](assets/arquivos-classificacao-20261007.png)
 
 *As decisões do universo informam o resultado por código. Os arquivos de evidências e classificação permitem conferir a espécie nas datas utilizadas; aquisição e manifestos registram as fontes, versões e assinaturas.* [Ampliar imagem](assets/arquivos-classificacao-20261007.png).
+
+#### Contexto e fontes
+
+Este grupo aparece nas novas análises quando há derivados públicos de contexto disponíveis. **Contexto das empresas** reúne as leituras e fontes por ticker; **Contexto de mercado** reúne indicadores e acontecimentos; **Manifesto do contexto** identifica a execução e as assinaturas; **Conferência do contexto** registra cobertura, modelo e versão do prompt. Não presuma que uma execução antiga ou o case ofereça os mesmos quatro arquivos de um novo envio.
 
 #### Execução e reprodução
 
@@ -83,7 +87,7 @@ Use este grupo para conferir as datas e regras aplicadas, a identificação dos 
 3. Localize o ticker e confira `start_date`, `end_date`, `start_close` e `end_close`.
 4. Calcule `(fechamento final ÷ fechamento inicial − 1) × 100` e compare com `return_pct`, considerando o arredondamento da tela.
 
-No case, ECOM3 compara R$ 1,06 em 11/09 com R$ 1,56 em 18/09: aproximadamente 47,17%. Esse é o retorno individual. Para conferir a média do card, some os 20 valores `return_pct` da mesma janela e divida por 20.
+No case, ECOM3 compara R$ 1,06 em 11/09 com R$ 1,56 em 18/09: aproximadamente 47,17%. Esse é o retorno individual. Para conferir a média do resumo, some os 20 valores `return_pct` da mesma janela e divida por 20.
 
 ### Entender uma exclusão
 
@@ -114,7 +118,7 @@ No case, o preço médio de BIED3 em 18/09 está fora do intervalo diário. O fe
 
 1. Abra **Conferir dados de volume · JSON** abaixo da tabela diária, ou **Volume diário da semana** no grupo **Rankings e retornos** da auditoria.
 2. Em `volume_context.json`, confira `dates`, o ticker em `series` e cada valor de `volume`. Valor `null` indica indisponibilidade; `reason` registra o motivo. `0` é um zero informado.
-3. Some os valores válidos e divida pela quantidade deles. Compare com a coluna **VOL. MÉDIO/DIA (R$)**, considerando o arredondamento da tela.
+3. Some os valores válidos e divida pela quantidade deles. No computador, compare com a coluna **VOL. MÉDIO/DIA (R$)**; no celular, consulte os valores no modo **Volume (R$)** e a média no derivado. Considere o arredondamento da tela.
 4. Confira também a cobertura. No case, ESTR4 tem média de R$ 1.191,20 em cinco dias; MGEL4 tem quatro de cinco dias válidos. As duas janelas usam os dias da semana para o volume, sem incluir a sexta anterior.
 
 O derivado identifica a entrada, a base normalizada e seu próprio conteúdo por assinaturas. Isso permite conferir a ligação com a execução; não comprova que o volume recebido descreve toda a negociação da B3.

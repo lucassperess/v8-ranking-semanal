@@ -154,7 +154,10 @@ Ao mudar uma regra, atualize a decisão, o artigo aplicável e o teste correspon
 O cabeçalho tem uma única fonte em `webapp/templates/header.html`. `webapp/pages.py` compõe as páginas no servidor e marca a navegação ativa. Preserve os identificadores usados pelo JavaScript ao editar esse template.
 
 - `styles.css`: estilos compartilhados, ranking e formulário de nova análise.
-- `mobile.css`: composição móvel carregada depois dos estilos de cada página; navegação, ranking compacto, controles por toque, índices persistentes e tabelas com rótulos por campo.
+- `mobile.css`: navegação móvel, ranking compacto, controles por toque, índices persistentes e tabelas com rótulos por campo. Confira a ordem dos estilos na página ao editar regras.
+- `summary.css`: seletor global, resumo integrado e comparação das médias, incluindo a composição móvel.
+- `context.css` e `context.js`: apresentação do contexto empresarial, referências de mercado e acontecimentos.
+- `mobile-dashboard.js`: aviso inicial, dispensa no navegador e interação móvel com o dashboard.
 - `documentation.css`: navegação e artigos da documentação.
 - `audit.css`: apresentação da auditoria de uma execução.
 
@@ -398,3 +401,9 @@ O parâmetro declara que a compatibilidade foi revisada; não faz essa revisão 
 A auditoria abre `/documentacao/referencia/{assunto}` para os guias associados à referência e `/analise/{id}/documentacao/{assunto}` para uma análise. A busca permanece nos artigos atuais; cópias arquivadas usam o menu de assuntos. `documentation_snapshot.json` é um derivado público permitido, sem dados brutos, endereços IP ou credenciais. O prazo da cópia acompanha o resultado de teste.
 
 Imagens dos guias ficam em `docs/assets/`, com nomes que identificam a versão. Preserve arquivos já referenciados por cópias arquivadas; adicione uma imagem com outro nome quando atualizar exemplos. O site serve as capturas em `/documentation-assets/`. A referência técnica concentra comandos avançados e o dicionário antes presentes no README principal.
+
+### Conferência das mudanças de apresentação
+
+Ao revisar o dashboard, confira as duas janelas, as datas e os valores do resumo. No celular, verifique a comparação inicialmente recolhida, a abertura e o fechamento, o aviso de primeira visita e a dispensa em uma visita posterior no mesmo navegador. O ranking móvel deve ocultar a média de volume sem impedir a consulta diária. Confira também a rolagem da tabela de fontes e os grupos de auditoria disponíveis. Uma simulação de viewport não equivale a um teste em aparelho físico.
+
+As imagens atuais dos guias preservam os PNGs originais fornecidos pelo usuário. Substitua os links nos artigos atuais, sem sobrescrever imagens utilizadas por cópias arquivadas.

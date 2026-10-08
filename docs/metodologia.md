@@ -222,7 +222,7 @@ Após calcular o retorno de cada ação elegível:
 Média do top 20 = (retorno 1 + retorno 2 + … + retorno 20) ÷ 20
 ```
 
-Cada linha do ranking mostra o retorno individual de uma ação no período; a média dos 20 retornos aparece no card “Média do top 20”. Cada ação tem o mesmo peso nessa média. Na referência, o valor calculado é aproximadamente **17,777107%**, apresentado como **17,78%**.
+Cada linha do ranking mostra o retorno individual de uma ação no período; a média dos 20 retornos aparece no resumo “Média do top 20”. Cada ação tem o mesmo peso nessa média. Na referência, o valor calculado é aproximadamente **17,777107%**, apresentado como **17,78%**.
 
 Essa é a média dos 20 maiores retornos selecionados após observar o período. Não é a média das 308 elegíveis, o retorno de um índice ou o resultado de uma estratégia executada antes da semana.
 
@@ -282,9 +282,11 @@ Um volume é utilizável quando é numérico, finito, não negativo e pertence a
 
 Os dias considerados são as datas da extração com algum fechamento positivo, entre o início da semana e o fechamento final escolhido. Não entram dias sem observações nem o volume do fechamento anterior à semana. As janelas principal e alternativa usam esses mesmos dias para o volume; as ações do top podem ser diferentes em cada janela.
 
-A coluna do ranking informa a média e a cobertura, como “4 de 5 dias”. Médias com coberturas diferentes exigem atenção na comparação. A tabela diária usa uma escala azul logarítmica comum às ações e datas exibidas, para distinguir volumes de magnitudes diferentes. Diferenças iguais de cor não representam diferenças iguais em reais. Zero explícito tem fundo neutro; ausência fica marcada com “—”. O volume não entra na fórmula do retorno, no desempate, na média dos retornos ou na elegibilidade; não há filtro de liquidez.
+No computador, a coluna do ranking informa a média e a cobertura, como “4 de 5 dias”. Médias com coberturas diferentes exigem atenção na comparação. No celular, o volume médio fica oculto no ranking, mas os valores diários continuam disponíveis. A tabela diária usa uma escala azul logarítmica comum às ações e datas exibidas, para distinguir volumes de magnitudes diferentes. Diferenças iguais de cor não representam diferenças iguais em reais. Zero explícito tem fundo neutro; ausência fica marcada com “—”. O volume não entra na fórmula do retorno, no desempate, na média dos retornos ou na elegibilidade; não há filtro de liquidez.
 
 ## Como o contexto é preparado
+
+Essa camada é opcional e começa depois da liberação do resultado financeiro. Há três leituras: as referências de mercado comparam valores nas datas da janela selecionada; os acontecimentos seguem a semana-calendário; o contexto da empresa reúne evidências específicas e antecedentes. Trocar a janela muda as comparações de preços, sem alterar as datas de publicação dos documentos.
 
 Depois dos cálculos, uma etapa opcional reúne fontes sobre as empresas presentes nos tops das duas janelas. A identidade empresarial é conferida antes de associar documentos a um ticker; duas espécies da mesma empresa podem compartilhar as informações empresariais.
 

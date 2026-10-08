@@ -173,4 +173,4 @@ sem sobrescrever os derivados históricos assinados.
 **Limites:** média parcial não equivale a média de todos os dias da semana.
 Volume recebido pode diferir dos registros oficiais B3; não se atribui
 causalidade ou se classifica liquidez automaticamente. A matriz usa azul
-em escala linear comum; os retornos mantêm sua escala e suas cores próprias.
+em escala logarítmica comum às ações e datas exibidas; os retornos mantêm sua escala e suas cores próprias.

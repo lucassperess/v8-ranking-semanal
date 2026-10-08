@@ -22,7 +22,7 @@ Navegação principal: **Ranking · Documentação · Nova análise**.
 | Página | Conteúdo e exemplos | Estado |
 | --- | --- | --- |
 | Comece aqui | Objetivo, escopo, fontes, visão do fluxo e caminhos de leitura | Publicado |
-| Como usar o dashboard | Cards, seleção de ação, abas Gráfico/Contexto, volume, cobertura, referências de mercado, downloads e envio | Publicado |
+| Como usar o dashboard | Seletor de janela, resumo, referências de mercado, acontecimentos, ranking, abas Gráfico/Contexto, volume, downloads, envio e navegação móvel | Publicado |
 | [Metodologia do ranking](metodologia.md) | Semana, pontas, elegibilidade, fórmula, ordenação, média, alternativa e limitações | Publicado |
 | Dados e tratamento | Contrato das nove colunas, codificação, dicionário, precisão, ausências, duplicatas e controles | Publicado |
 | Classificação dos instrumentos | Hipótese pelo código, confirmação B3 por data, fontes, cache, conflitos e decisões | Publicado |

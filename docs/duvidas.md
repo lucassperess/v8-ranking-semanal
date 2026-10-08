@@ -17,6 +17,14 @@ No modo **Volume (R$)**, “—” indica volume ausente, inválido ou duplicado
 
 A média usou quatro valores válidos, entre cinco datas observadas da semana. A data sem volume não foi preenchida com zero. Compare a cobertura antes de comparar médias: uma ação com um dia disponível pode ter uma média pouco representativa daquela semana. O ranking continua sendo ordenado pelo retorno, sem filtro de volume.
 
+## Por que não vejo o volume médio no ranking pelo celular?
+
+A tabela móvel mostra posição, ativo e retorno. Para consultar o volume por data, use **Volume (R$)** em **Movimento diário do top 20**. A média e sua cobertura estão no arquivo **Conferir dados de volume · JSON**; a coluna de médias aparece no computador.
+
+## O aviso no celular impede o uso?
+
+Não. Use **Continuar no celular** ou o botão de fechar para explorar o dashboard. O navegador lembra a dispensa quando o armazenamento local está disponível. Uma aba anônima, outro navegador ou a remoção desse armazenamento pode fazer o aviso aparecer novamente. Veja a [navegação no celular](como-usar.md#navegação-no-celular).
+
 ## Por que há volume no primeiro dia da alternativa, mas não retorno?
 
 O volume é um valor informado para aquele dia. O retorno precisa comparar dois fechamentos: na alternativa, o primeiro fechamento é o início, e ainda não há comparação dentro da janela. Por isso, o dia pode ter volume e mostrar “—” no retorno. Volume igual a zero também é possível.
@@ -107,7 +115,7 @@ O case continua permanentemente na página inicial, acessível pelo logotipo V8 
 
 ## A média que refiz com os percentuais da tela é diferente
 
-Os percentuais da tela são arredondados para duas casas. A média do card utiliza os retornos calculados antes desse arredondamento.
+Os percentuais da tela são arredondados para duas casas. A média do resumo utiliza os retornos calculados antes desse arredondamento.
 
 Some os 20 retornos e divida por 20 usando `return_pct` do CSV da janela correspondente. Se utilizar `return_fraction`, multiplique a média por 100 para expressá-la em porcentagem. Somar os retornos sem dividir por 20 não produz a média. Confira também se o card e o CSV pertencem à mesma opção.
 

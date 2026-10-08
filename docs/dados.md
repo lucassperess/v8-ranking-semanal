@@ -75,7 +75,7 @@ O efeito depende do campo, da data e da etapa que utiliza o registro. Um problem
 
 ### O que significa cobertura
 
-Cobertura descreve a quantidade de dados disponíveis em uma data. Os arquivos de qualidade distinguem linhas, códigos e fechamentos positivos. **O controle usado para selecionar as datas compara contagens de linhas com fechamento positivo**, antes de confirmar quais instrumentos são ações ON/PN. Essa contagem não é a quantidade de ações elegíveis do card.
+Cobertura descreve a quantidade de dados disponíveis em uma data. Os arquivos de qualidade distinguem linhas, códigos e fechamentos positivos. **O controle usado para selecionar as datas compara contagens de linhas com fechamento positivo**, antes de confirmar quais instrumentos são ações ON/PN. Essa contagem não é a quantidade de ações elegíveis do resumo.
 
 Uma queda acentuada nessas contagens pode indicar exportação parcial. Veja [os limites e seus efeitos](metodologia.md#verificações-antes-de-calcular-o-ranking).
 
