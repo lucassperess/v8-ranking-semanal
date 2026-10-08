@@ -86,7 +86,7 @@ def process(job: dict) -> None:
     archive(output_dir)
     payload = build_presentation(output_dir, normalized_path=output_dir / "etl" / "normalized.csv")
     if payload.get('volume'):
-        (output_dir / 'volume_context.json').write_text(json.dumps(payload['volume'], ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        (output_dir / 'volume_context.json').write_text(json.dumps(payload['volume'], ensure_ascii=False, indent=2) + '\n', encoding='utf-8', newline='\n')
     (output_dir / "presentation.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     write(output_dir / 'context/state.json', {'status': 'processing',
           'message': 'Ranking concluído. Consultando fontes para o contexto desta execução…'})
