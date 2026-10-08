@@ -122,3 +122,23 @@ evidências anteriores e distingue coleta, aprovação e bloqueio por reserva.
 Testes isolados não provam que o orçamento padrão permite revisar todas as
 empresas em uma única geração. Publicação e ajuste do orçamento são etapas
 posteriores.
+
+## D14 — Reserva protegida para empresas e mercado
+
+**Decisão:** contrato `run-context-1.3`, reserva conservadora padrão de US$ 6
+para modelos, 80% para empresas e 20% para mercado. Primeira rodada com parcelas
+individuais; recuperação do saldo somente depois de todos participarem.
+
+**Motivo:** impedir que as primeiras empresas consumam o recurso necessário
+para gerar e revisar as últimas empresas e os temas de mercado.
+
+**Consequências:** chamadas sem acontecimentos válidos não recebem revisão
+adicional. Até quatro lacunas financeiras recebem busca complementar. Falhas
+nessa busca preservam o resultado anterior. Reserva e tokens informados não
+equivalem a faturamento; créditos de busca não integram o limite em dólares.
+Não há promessa de descobrir uma causa para cada retorno.
+
+**Verificação:** testes de concorrência, proteção entre participantes, recuperação,
+cache e preservação do conteúdo anterior. A conferência isolada das quatro
+lacunas do case não encontrou novos acontecimentos empresariais confirmáveis.
+A validação integral do contrato novo permanece uma etapa posterior.

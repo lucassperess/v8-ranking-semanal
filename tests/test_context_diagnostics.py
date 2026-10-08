@@ -165,7 +165,8 @@ class DiagnosticsTests(unittest.TestCase):
             {'accepted_event_indices': [], 'interpretation_supported': False, 'reason': ''}]
         issuer, _ = self.prepare()
         self.assertEqual(issuer['events'], [])
-        self.assertEqual(self.models.call.call_args_list[-1].args[2]['proposal']['events'], [])
+        self.assertFalse(any(call.args[0].startswith('review-') for call in self.models.call.call_args_list))
+        self.assertTrue(any(r['reason'] == 'no_verified_events_to_review' for r in self.entries()))
 
     def test_cvm_metadata_date_is_explicit_and_does_not_require_pdf_date(self):
         self.models.call.side_effect = [

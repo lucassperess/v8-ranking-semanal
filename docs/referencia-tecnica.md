@@ -1,5 +1,15 @@
 # Referência técnica do pipeline
 
+## Auditoria da reserva de contexto
+
+No contrato `run-context-1.3`, `budget_allocation` registra o limite conservador,
+as parcelas protegidas por participante, a reserva utilizada e os tokens
+informados nas novas respostas OpenAI. `budget_scope` distingue bloqueio pela
+parcela individual (`subject`) e pelo limite global (`total`).
+`new_source_api_attempts` conta tentativas novas por serviço; respostas salvas
+não aumentam essa contagem. Esses campos não informam faturamento nem créditos
+da Tavily. Consulte a distribuição e os limites em [Desenvolvimento](desenvolvimento.md).
+
 Comandos executados a partir da raiz do repositório. Para gerar o ranking completo, comece pelo [README](../README.md); para preparar o ambiente, veja [Desenvolvimento](desenvolvimento.md). Os módulos abaixo atendem à investigação e à reprodução de etapas isoladas.
 
 ## Executar somente o tratamento

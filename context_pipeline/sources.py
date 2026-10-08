@@ -7,6 +7,7 @@ import io
 import json
 import re
 import time
+import threading
 import unicodedata
 import zipfile
 from datetime import datetime, timedelta, timezone
@@ -48,6 +49,12 @@ class Collector:
         self.cache = Path(cache) if cache else self.directory / 'cache'
         self.keys = keys
         self.replay = replay
+        self.api_attempts = {}
+        self.api_lock = threading.Lock()
+
+    def api_snapshot(self):
+        with self.api_lock:
+            return dict(sorted(self.api_attempts.items()))
 
     def get(self, label, url, payload=None, key=None, cached=False):
         request_sha = hashlib.sha256(json.dumps({'url': url, 'payload': payload}, sort_keys=True).encode()).hexdigest()
@@ -68,6 +75,12 @@ class Collector:
         if cached and cache_path.exists() and time.time() - cache_path.stat().st_mtime < 86400:
             raw = cache_path.read_bytes()
         else:
+            provider = {'https://api.tavily.com/search': 'tavily_search',
+                        'https://api.tavily.com/extract': 'tavily_extract',
+                        'https://api.openai.com/v1/responses': 'openai'}.get(url)
+            if provider:
+                with self.api_lock:
+                    self.api_attempts[provider] = self.api_attempts.get(provider, 0) + 1
             raw = request_bytes(url, payload, key)
             if cached:
                 cache_path.parent.mkdir(parents=True, exist_ok=True)

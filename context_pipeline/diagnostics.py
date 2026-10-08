@@ -8,10 +8,11 @@ from context_pipeline.sources import write
 class BudgetExceeded(ValueError):
     """The local reserve prevented a model call, not an API balance error."""
 
-    def __init__(self, message, *, reserve=None, remaining=None):
+    def __init__(self, message, *, reserve=None, remaining=None, scope=None):
         super().__init__(message)
         self.reserve = reserve
         self.remaining = remaining
+        self.scope = scope
 
 
 VALIDATION_REASONS = {
@@ -48,6 +49,8 @@ class Trace:
             if isinstance(error, BudgetExceeded) and error.reserve is not None:
                 entry['estimated_reserve_usd'] = str(error.reserve)
                 entry['remaining_local_reserve_usd'] = str(error.remaining)
+                if error.scope:
+                    entry['budget_scope'] = error.scope
             if isinstance(error, urllib.error.HTTPError):
                 entry['http_status'] = error.code
         if event_index is not None:

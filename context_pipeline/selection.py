@@ -24,6 +24,8 @@ def identity_present(text, identity):
     words = entity_name(text)
     aliases = {entity_name(identity.get(key, '')) for key in ('name', 'search_name')}
     aliases.add(entity_name(search_alias(identity)))
+    if identity.get('historical_name_basis') == 'same_cvm_code_and_cnpj_in_disclosed_filing':
+        aliases.update(entity_name(name) for name in identity.get('historical_names', []))
     aliases -= {'', 'brasil', 'nacional', 'energia', 'companhia', 'banco'}
     return (any(len(alias) >= 4 and re.search(r'\b' + re.escape(alias) + r'\b', words) for alias in aliases)
             or any(re.search(r'\b' + re.escape(ticker.lower()) + r'\b', words)
@@ -41,7 +43,10 @@ def candidate_reason(row, identity, macro=False):
     if any(host == domain or host.endswith('.' + domain) for domain in SOCIAL_HOSTS):
         return 'social_source_not_selected'
     path = normalized(url.path)
-    if any(part in path for part in ('/cotacoes/', '/cotacao/', '/calendario-de-resultados', '/perfil/')):
+    if (any(part in path for part in ('/cotacoes/', '/cotacao/', '/calendario-de-resultados', '/perfil/',
+                                     '/valor-empresas-360/', '/ultimos-resultados', '/acoes/dividendos/')) or
+            re.fullmatch(r'/acoes(?:/[a-z]{4}\d{1,2})?/?', path) or
+            host == 'arquivos.b3.com.br' and path.startswith('/bdi/')):
         return 'navigation_or_quote_page'
     text = (row.get('title') or '') + ' ' + (row.get('content') or '')
     if not macro and not identity_present(text, identity):

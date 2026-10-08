@@ -38,6 +38,20 @@ class SelectionTests(unittest.TestCase):
         self.assertEqual(len(selected), 1)
         self.assertEqual(rejected[0]['reason'], 'invalid_source_url')
 
+    def test_profiles_dividend_agendas_and_result_tables_are_not_news(self):
+        rows = [{'url': url, 'title': 'Empresa Alfa ALFA3'} for url in [
+            'https://valor.globo.com/empresas/valor-empresas-360/alfa',
+            'https://example.org/ultimos-resultados',
+            'https://example.org/acoes/dividendos/2026/junho/data-de-pagamento',
+            'https://example.org/acoes/alfa3/',
+            'https://dadosb3.com/acoes',
+            'https://arquivos.b3.com.br/bdi/download/bdi/2026-08-03/BDI_02_20260803.pdf',
+            'https://example.org/noticia/alfa-aprova-contrato',
+        ]]
+        selected, rejected = select_candidates(rows, self.identity)
+        self.assertEqual(len(selected), 1)
+        self.assertEqual(len(rejected), 6)
+
     def test_official_search_result_still_requires_identity(self):
         selected, _ = select_candidates([
             {'url': 'https://ri.beta.example/fato', 'title': 'Empresa Beta contrato'},

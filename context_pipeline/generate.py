@@ -1,6 +1,7 @@
 """Per-run context with saved evidence, bounded model calls and explicit coverage."""
 
 import argparse
+import copy
 import concurrent.futures
 import csv
 import io
@@ -8,7 +9,6 @@ import hashlib
 import json
 import os
 import re
-import threading
 from datetime import date, datetime, timedelta, timezone
 from decimal import Decimal
 from pathlib import Path
@@ -19,9 +19,10 @@ from scripts.build_context_evidence import account_record, price_observation, se
 from scripts.collect_case_context import ROOT, read_keys
 from webapp.presentation import output_path
 from context_pipeline.diagnostics import BudgetExceeded, Trace, error_reason
+from context_pipeline.budget import DEFAULT_BUDGET, BudgetLedger, SubjectModels
 from context_pipeline.selection import identity_present, readable_excerpt, search_alias, select_candidates, select_documents
 
-PROMPT_VERSION = 'run-context-1.2'
+PROMPT_VERSION = 'run-context-1.3'
 MONTHS = ('janeiro fevereiro marco abril maio junho julho agosto setembro outubro novembro dezembro').split()
 ENGLISH_MONTHS = ('january february march april may june july august september october november december').split()
 
@@ -78,6 +79,8 @@ def validate_event(event, sources, identity, start, end):
             raise ValueError('Publication date is not supported by the body')
         identity_quote = normalized(event['identity_quote'])
         names = [entity_name(identity['name']), entity_name(identity['search_name'])]
+        if identity.get('historical_name_basis') == 'same_cvm_code_and_cnpj_in_disclosed_filing':
+            names.extend(entity_name(name) for name in identity.get('historical_names', []))
         aliases = [name for name in names if len(name) >= 5 and name not in {'brasil', 'nacional', 'energia'}]
         identity_entity = entity_name(event['identity_quote'])
         if identity.get('identity_basis') != 'general_market_topic' and (not identity_quote or not quote_present(event['identity_quote'], source['body']) or
@@ -125,14 +128,17 @@ def response_json(response):
 
 
 class Models:
-    def __init__(self, collector, budget=Decimal('3.00')):
+    def __init__(self, collector, budget=DEFAULT_BUDGET):
         self.collector = collector
         self.model = 'gpt-6-luna'
         self.budget = budget
-        self.reserved = Decimal(0)
-        self.lock = threading.Lock()
+        self.ledger = BudgetLedger(budget)
 
-    def call(self, label, instructions, input_data, schema):
+    @property
+    def reserved(self):
+        return self.ledger.reserved
+
+    def call(self, label, instructions, input_data, schema, *, subject=None, protected=False):
         text = json.dumps(input_data, ensure_ascii=False)
         # Conservative local reserve using the previously verified Sol rates,
         # one token per UTF-8 byte, plus all output tokens. Not provider billing.
@@ -149,22 +155,21 @@ class Models:
         saved = (self.collector.directory / (label + '.bin')).exists()
         if self.collector.replay is True and not saved:
             raise ValueError('Model response is absent from the saved collection: ' + label)
-        with self.lock:
-            if not saved:
-                if self.reserved + reserve > self.budget:
-                    raise BudgetExceeded('Local model budget reserve exhausted', reserve=reserve,
-                                         remaining=self.budget - self.reserved)
-                self.reserved += reserve
+        if not saved:
+            self.ledger.reserve(reserve, subject, protected)
         write(request_path, request)
         response = self.collector.json(label, 'https://api.openai.com/v1/responses', request,
                                        self.collector.keys.get('OPENAI_API_KEY'))
+        if not saved:
+            self.ledger.observe(response)
         try:
             return response_json(response)
         except ValueError:
             # One bounded repair for incomplete/invalid output, with a separate snapshot.
             if label.endswith('-retry'):
                 raise
-            return self.call(label + '-retry', instructions + '\nResponda somente com o JSON final, sem comentário intermediário.', input_data, schema)
+            return self.call(label + '-retry', instructions + '\nResponda somente com o JSON final, sem comentário intermediário.', input_data, schema,
+                             subject=subject, protected=protected)
 
 
 def financial_records(collector, identities, cutoff, trace=None):
@@ -416,10 +421,16 @@ def collect_issuer_sources(identity, collector, documents, week, trace, macro=Fa
 
 
 def prepare_issuer(identity, collector, models, documents, financial, week, macro=False,
-                   diagnostics=None, diagnostic_dir=None):
+                   diagnostics=None, diagnostic_dir=None, saved_sources=None):
     code = identity['cvm_code']
     trace = Trace(code, diagnostic_dir / (code + '.json') if diagnostic_dir else None)
-    sources, issues, start, end, cutoff = collect_issuer_sources(identity, collector, documents, week, trace, macro)
+    if saved_sources is None:
+        sources, issues, start, end, cutoff = collect_issuer_sources(identity, collector, documents, week, trace, macro)
+    else:
+        sources = copy.deepcopy(saved_sources['selected_sources'])
+        issues = list(saved_sources['issues'])
+        start, end, cutoff = saved_sources['collection_start'], saved_sources['collection_end'], week['last_week_close']
+        trace.record('source_selection', 'completed', 'saved_selection_reused')
     input_data = {'issuer': identity, 'week': week, 'price_end': cutoff,
                   'financial': financial, 'sources': sources,
                   'event_source_ids': [source['id'] for source in sources],
@@ -504,9 +515,14 @@ def prepare_issuer(identity, collector, models, documents, financial, week, macr
                     issues.append('Um texto sugerido não foi usado porque faltava confirmar a empresa, a data ou o trecho que sustenta a informação.')
             review_data = {**input_data, 'proposal': {**proposal, 'events': checked}}
             stage = 'review'
-            trace.record(stage, 'started', 'stage_started')
-            review = models.call('review-' + code, REVIEW_INSTRUCTIONS, review_data, REVIEW_SCHEMA)
-            trace.record(stage, 'completed', 'review_completed')
+            if checked:
+                trace.record(stage, 'started', 'stage_started')
+                review = models.call('review-' + code, REVIEW_INSTRUCTIONS, review_data, REVIEW_SCHEMA)
+                trace.record(stage, 'completed', 'review_completed')
+            else:
+                review = {'accepted_event_indices': [], 'interpretation_supported': False,
+                          'reason': 'no_verified_events_to_review'}
+                trace.record(stage, 'not_run', 'no_verified_events_to_review')
             approved = set(review['accepted_event_indices'])
             for index, (event, source) in enumerate(zip(checked, verified, strict=True)):
                 if index not in approved:
@@ -558,7 +574,113 @@ def prepare_issuer(identity, collector, models, documents, financial, week, macr
     return issuer, accepted_sources
 
 
-def run(root, keys=None, replay=False, budget=Decimal('3.00')):
+MARKET_TOPICS = [('macro-br', 'Banco Central', 'Banco Central Copom Selic juros decisão'),
+                 ('macro-us', 'Federal Reserve', 'Federal Reserve FOMC US interest rates decision'),
+                 ('macro-policy', 'Brasil', 'Brasil governo Congresso política orçamento economia')]
+
+
+def disclosed_identity(identity, financial):
+    """Accept a former name only when a disclosed filing matches both identifiers."""
+    result = dict(identity)
+    filing = financial.get('filing', {}) if financial else {}
+    name = filing.get('DENOM_CIA', '')
+    if (name and str(filing.get('CD_CVM', '')).lstrip('0') == identity['cvm_code'] and
+            re.sub(r'\D', '', filing.get('CNPJ_CIA', '')).zfill(14) == identity.get('cnpj') and
+            entity_name(name) != entity_name(identity['name'])):
+        result.update(historical_names=[name], historical_name_basis='same_cvm_code_and_cnpj_in_disclosed_filing')
+    return result
+
+
+def deepen_sources(identity, collector, week, trace):
+    """One additional search, preserving the original source selection."""
+    code = identity['cvm_code']
+    path = collector.directory / ('deepening-selection-' + code + '.json')
+    if collector.replay and path.exists():
+        return json.loads(path.read_text(encoding='utf-8'))
+    initial = json.loads((collector.directory / ('source-selection-' + code + '.json')).read_text(encoding='utf-8'))
+    name = (identity.get('historical_names') or [identity['name']])[0]
+    words = entity_name(name).split()
+    search_name = words[0] if words and len(words[0]) >= 5 and words[0] not in {
+        'companhia', 'banco', 'empresa', 'industria', 'investimentos', 'participacoes', 'international'} else search_alias(identity)
+    query = f"\"{search_name}\" {identity['tickers'][0]} notícias investimentos contratos comunicado"
+    candidates = collector.search(code + '-focused', query, initial['collection_start'], week['last_week_close'])
+    candidates, rejected = select_candidates(candidates, identity)
+    for row in rejected:
+        trace.record('focused_search', 'rejected', row['reason'], event_index=row['index'])
+    candidates = [r for r in candidates if r['url'] not in {s['url'] for s in initial['selected_sources']}]
+    extracted = collector.extract(code + '-focused', candidates[:3])
+    additions = []
+    for source in extracted:
+        if not identity_present(source['body'], identity):
+            trace.record('focused_body', 'rejected', 'company_not_explicit_in_body', item=source['id'])
+            continue
+        source['body'], source['body_excerpt_offset'] = readable_excerpt(source['body'], identity)
+        additions.append(source)
+    trace.record('focused_search', 'completed' if additions else 'empty',
+                 'additional_bodies_found' if additions else 'no_additional_relevant_bodies')
+    if not additions:
+        return None
+    snapshot = {**initial, 'selected_sources': [*additions[:2], *initial['selected_sources']][:6]}
+    if not collector.replay:
+        write(path, snapshot)
+    return snapshot
+
+
+def process_subjects(identified, collector, models, documents, finances, week, diagnostics, diagnostic_dir):
+    """Everyone gets a protected first pass before optional budget reuse."""
+    subjects = {code: disclosed_identity(identity, finances.get(code)) for code, identity in identified.items()}
+    for code, name, topic in MARKET_TOPICS:
+        subjects[code] = {'cvm_code': code, 'name': name, 'search_name': name,
+                         'tickers': [], 'query_topic': topic, 'cnpj': '', 'identity_basis': 'general_market_topic'}
+    models.ledger.allocate(identified, [row[0] for row in MARKET_TOPICS])
+    results, blocked = {}, []
+    def execute(code, phase, snapshot=None):
+        records = []
+        result = prepare_issuer(subjects[code], collector, SubjectModels(models, code, phase == 'protected'),
+                                documents if code in identified else [], finances.get(code), week,
+                                macro=code not in identified, diagnostics=records,
+                                diagnostic_dir=diagnostic_dir / phase, saved_sources=snapshot)
+        return result, [{**record, 'budget_phase': phase} for record in records]
+    # Market topics are scheduled early and also have their own protected pool.
+    order = [row[0] for row in MARKET_TOPICS] + sorted(identified)
+    with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
+        tasks = {pool.submit(execute, code, 'protected'): code for code in order}
+        for task in concurrent.futures.as_completed(tasks):
+            code = tasks[task]
+            results[code], records = task.result()
+            diagnostics.extend(records)
+            if any(e['reason'] == 'local_budget_exhausted' for r in records for e in r['entries']):
+                blocked.append(code)
+    # Saved inputs/responses are reused; no new source queries in this pass.
+    for code in sorted(blocked, key=lambda code: (code in identified, code)):
+        snapshot = json.loads((collector.directory / ('source-selection-' + code + '.json')).read_text(encoding='utf-8'))
+        results[code], records = execute(code, 'recovery', snapshot)
+        diagnostics.extend(records)
+    targets = sorted(code for code in identified if results[code][0]['coverage_status'] == 'financial_antecedent_only')
+    for code in targets[:4]:
+        trace = Trace('deepen-' + code, diagnostic_dir / ('deepen-' + code + '.json'))
+        try:
+            if models.ledger.total - models.reserved < Decimal('.024') and not collector.replay:
+                trace.record('focused_search', 'not_run', 'insufficient_reserve_for_deepening')
+                continue
+            snapshot = deepen_sources(subjects[code], collector, week, trace)
+            if snapshot:
+                improved, records = execute(code, 'deepening', snapshot)
+                diagnostics.extend(records)
+                # An unsuccessful optional attempt must not discard accepted first-pass content.
+                if improved[0]['coverage_status'] == 'dated_company_context':
+                    results[code] = improved
+        except (OSError, ValueError, KeyError, TypeError) as exc:
+            trace.failure('focused_search', exc)
+        finally:
+            diagnostics.append(trace.snapshot())
+    for code in targets[4:]:
+        diagnostics.append({'subject': 'deepen-' + code, 'entries': [
+            {'stage': 'focused_search', 'outcome': 'not_run', 'reason': 'deepening_subject_limit'}]})
+    return results
+
+
+def run(root, keys=None, replay=False, budget=DEFAULT_BUDGET):
     root = Path(root)
     original = root / 'context'
     output = original / ('replay-' + datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%f')) if replay else original
@@ -628,26 +750,16 @@ def run(root, keys=None, replay=False, budget=Decimal('3.00')):
             'title': 'CVM · demonstrativo trimestral', 'publication_date': record['filing']['DT_RECEB'][:10],
             'date_basis': 'cvm_itr_delivery_catalog', 'date_evidence': record['filing']['DT_RECEB'],
             'after_price_end': False, 'verification': 'dated_cvm_accounts_selected_in_python'})
-    with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
-        tasks = [pool.submit(prepare_issuer, i, collector, models, documents, finances.get(i['cvm_code']), week,
-                             diagnostics=diagnostics, diagnostic_dir=diagnostic_dir)
-                 for i in identified.values()]
-        for task in concurrent.futures.as_completed(tasks):
-            issuer, accepted = task.result()
-            issuers.append(issuer)
-            sources.extend(accepted)
-            print(json.dumps({'issuer': issuer['cvm_code'], 'coverage': issuer['coverage_status'],
-                              'events': len(issuer['events'])}), flush=True)
+    results = process_subjects(identified, collector, models, documents, finances, week, diagnostics, diagnostic_dir)
+    for code in sorted(identified):
+        issuer, accepted = results[code]
+        issuers.append(issuer)
+        sources.extend(accepted)
+        print(json.dumps({'issuer': code, 'coverage': issuer['coverage_status'], 'events': len(issuer['events'])}), flush=True)
     indicators, missing = collector.market(week, payload['windows'], trace=run_trace)
     macro_events, macro_missing, macro_sources = [], [], []
-    for code, name, topic in [('macro-br', 'Banco Central', 'Banco Central Copom Selic juros decisão'),
-                       ('macro-us', 'Federal Reserve', 'Federal Reserve FOMC US interest rates decision'),
-                       ('macro-policy', 'Brasil', 'Brasil governo Congresso política orçamento economia')]:
-        identity = {'cvm_code': code, 'name': name, 'search_name': name,
-                    'tickers': [], 'query_topic': topic,
-                    'cnpj': '', 'identity_basis': 'general_market_topic'}
-        result, accepted = prepare_issuer(identity, collector, models, [], None, week, macro=True,
-                                          diagnostics=diagnostics, diagnostic_dir=diagnostic_dir)
+    for code, name, _topic in MARKET_TOPICS:
+        result, accepted = results[code]
         source_map = {s['id']: s for s in accepted}
         macro_sources.extend(accepted)
         for event in result['events']:
@@ -681,6 +793,8 @@ def run(root, keys=None, replay=False, budget=Decimal('3.00')):
               for e in issuer['events']) for issuer in issuers),
           'processing_diagnostics': sorted([*diagnostics, run_trace.snapshot()], key=lambda item: item['subject']),
           'model': models.model, 'prompt_version': PROMPT_VERSION, 'editorial_version': '1.1', 'budget_reserve_usd': str(models.reserved),
+          'budget_allocation': models.ledger.snapshot(),
+          'new_source_api_attempts': collector.api_snapshot(),
           'pipeline_sha256': hashlib.sha256(b''.join(p.read_bytes().replace(b'\r\n', b'\n')
                               for p in sorted(Path(__file__).parent.glob('*.py')))).hexdigest(),
           'collection_limits': {'antecedent_days': 90, 'selected_source_bodies_per_company': 6,
@@ -713,9 +827,11 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--run-dir', type=Path, required=True)
     parser.add_argument('--replay', action='store_true')
+    parser.add_argument('--budget-usd', type=Decimal,
+                        default=os.environ.get('CONTEXT_BUDGET_USD', str(DEFAULT_BUDGET)))
     args = parser.parse_args()
     try:
-        print(json.dumps(run(args.run_dir, replay=args.replay)))
+        print(json.dumps(run(args.run_dir, replay=args.replay, budget=args.budget_usd)))
     except Exception as exc:
         target = args.run_dir / ('context/replay-error.json' if args.replay else 'context/state.json')
         write(target, {'status': 'unavailable',

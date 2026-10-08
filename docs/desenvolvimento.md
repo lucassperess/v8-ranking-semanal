@@ -321,6 +321,36 @@ institucionais não são contados como mudanças empresariais. Essa classificaç
 materialidade. Ela evita contar um relatório de posições sem operações como
 um acontecimento que explique uma variação de preço.
 
+### Reserva distribuída do contexto — contrato `run-context-1.3`
+
+A reserva padrão para chamadas de modelos é US$ 6 por execução, configurável
+por `CONTEXT_BUDGET_USD` ou `--budget-usd`. É um limite baseado em estimativas
+conservadoras, não o valor faturado pelo provedor. Não inclui créditos da Tavily.
+
+Quando há empresas e temas de mercado, 80% da reserva é dividido igualmente
+entre as empresas confirmadas e 20% entre os três temas de mercado. Dois tickers
+da mesma empresa compartilham a parcela. Na primeira rodada, uma empresa não
+pode consumir a parcela de outra. Os temas de mercado são agendados primeiro.
+Depois que todos terminam essa rodada, participantes bloqueados pela reserva
+recebem uma tentativa de recuperação usando o saldo global, as fontes salvas
+e as respostas já recebidas. Isso não garante aprovação nem cobertura completa.
+
+Após a recuperação, até quatro empresas que ainda têm apenas antecedentes
+financeiros recebem uma busca adicional, com leitura de até três novos textos.
+Essas chamadas de modelo também respeitam o saldo global. Um resultado adicional
+sem acontecimento empresarial confirmado não substitui o conteúdo anterior.
+Perfis de ações, agendas, tabelas de resultados e boletins de preços são filtrados.
+Nomes anteriores só ampliam a identidade quando o documento financeiro confirma
+o mesmo código CVM e CNPJ. Sem acontecimentos válidos, a segunda revisão pela IA
+não é chamada; o resumo financeiro continua sendo produzido pelas regras Python.
+
+A auditoria registra parcelas, reservas utilizadas, tentativas novas de API e
+tokens informados pela OpenAI. Respostas reaproveitadas não contam como chamadas
+novas. O custo faturado permanece desconhecido (`billing_cost_usd=null`); os
+retornos da Tavily usados nesta etapa não informam consumo de créditos.
+O contrato novo exige uma execução própria: não misture seus arquivos com os
+de uma geração anterior. A reprodução usa evidências e respostas arquivadas.
+
 ### Conferência visual mobile
 
 Confira 320, 390 e 430 px e o desktop antes de publicar alterações de layout. Verifique navegação completa, ausência de sobreposição na introdução, retorno visível no ranking, seleção e volta do gráfico, abertura/fechamento de informações, matriz com datas e ticker fixos, menus e tabelas da documentação, seletor da auditoria e referência brasileira no formulário. Conferência de viewport no navegador não substitui teste em Android e iOS físicos, especialmente para seleção de arquivos e teclado.
