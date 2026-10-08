@@ -118,7 +118,7 @@ Um acontecimento pode ter ocorrido na semana ou antes dela. Resultados trimestra
 
 ### Referências de mercado e acontecimentos
 
-A seção **Referências de mercado**, entre o resumo e “20 Maiores retornos da semana”, compara Ibovespa, S&P 500, Nasdaq Composite e dólar PTAX nas datas da janela selecionada. Uma faixa compacta mostra as variações e o período; datas diferentes aparecem junto ao indicador correspondente. **Dados e fontes de mercado** abre uma tabela com indicador, datas inicial e final, valores inicial e final, unidade e fonte. No celular, deslize dentro da tabela para consultar as colunas. O “i” explica o método e as diferenças entre as referências. PTAX é a taxa de referência do Banco Central; não é fechamento de mercado. Essas referências não substituem os preços da Economatica.
+A seção **Referências de mercado**, entre o resumo e “20 Maiores retornos da semana”, compara Ibovespa, S&P 500, Nasdaq Composite e dólar PTAX nas datas da janela selecionada. Uma faixa compacta mostra as variações. O período fica junto ao seletor de semana; datas diferentes aparecem junto ao indicador correspondente. **Dados e fontes de mercado** abre uma tabela com indicador, datas inicial e final, valores inicial e final, unidade e fonte. No celular, deslize dentro da tabela para consultar as colunas. O “i” explica o método e as diferenças entre as referências. PTAX é a taxa de referência do Banco Central; não é fechamento de mercado. Essas referências não substituem os preços da Economatica.
 
 ![Referências de mercado do case, com quatro variações e quatro acontecimentos datados com acesso às fontes.](assets/referencias-quatro-acontecimentos-20261008.jpg)
 

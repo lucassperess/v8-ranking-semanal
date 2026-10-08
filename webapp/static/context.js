@@ -227,10 +227,6 @@
     const period = context.market.indicators.find((item) => item[selectedWindow])?.[selectedWindow];
     const heading = el('div', '', 'market-heading');
     heading.append(marketTitle);
-    if (period)
-      heading.append(
-        el('span', `${date(period.start_date)} → ${date(period.end_date)}`, 'market-period'),
-      );
     marketPanel.append(heading);
     const grid = el('div', '', 'market-quotes');
     const referenceDetails = el('details', '', 'market-reference-details');
