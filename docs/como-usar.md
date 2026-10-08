@@ -10,6 +10,10 @@ O seletor **Semana completa | Dentro da semana** fica acima do resumo e define a
 
 *Os três indicadores acompanham a seleção. A contagem de ações em alta aparece junto à proporção: 119 de 308. A linha inferior compara as médias dos dois rankings e destaca a janela selecionada.* [Ampliar imagem](assets/resumo-seletor-proximo-20261008.jpg).
 
+No celular, o resumo usa três linhas: rótulos à esquerda e valores do mesmo tamanho alinhados à direita. A quantidade de ações em alta aparece abaixo do percentual. **Comparar janelas** abre as duas médias e começa recolhido. A janela escolhida fica identificada no seletor acima do resumo.
+
+Na primeira visita pelo celular, um aviso recomenda o computador para consultar todos os detalhes com mais espaço. É possível continuar normalmente no celular: algumas colunas ficam ocultas e as tabelas exigem rolagem. **Continuar no celular**, o botão de fechar ou Escape dispensam o aviso. O fechamento é lembrado no mesmo navegador quando o armazenamento local está disponível.
+
 ### Média do top 20
 
 Mostra a média dos retornos das 20 ações apresentadas no ranking: somamos os 20 retornos e dividimos por 20. Cada ação tem o mesmo peso. O valor acompanha a opção selecionada, “Semana completa” ou “Dentro da semana”. Cada linha da tabela mostra o retorno individual de uma ação; o resumo mostra a média do grupo. Os três indicadores têm o mesmo tamanho de fonte; o sinal da média determina sua cor.
@@ -24,7 +28,7 @@ Mostra qual porcentagem das ações elegíveis terminou o período com preço ma
 
 ### Comparação das médias
 
-Uma linha abaixo dos indicadores mostra as médias de **Semana completa** e **Dentro da semana**, sem um quarto card. A alternativa mede os retornos a partir do fechamento do primeiro dia disponível dentro da semana. No case, compara 14/09 com 18/09. A mudança até o fechamento de 14/09 fica de fora porque esse preço é o ponto inicial. As duas opções analisam a mesma semana anterior e terminam na mesma data.
+No desktop, uma linha abaixo dos indicadores mostra as médias de **Semana completa** e **Dentro da semana**, sem um quarto card. No celular, abra **Comparar janelas** para consultar esses valores. A alternativa mede os retornos a partir do fechamento do primeiro dia disponível dentro da semana. No case, compara 14/09 com 18/09. A mudança até o fechamento de 14/09 fica de fora porque esse preço é o ponto inicial. As duas opções analisam a mesma semana anterior e terminam na mesma data.
 
 Cada janela possui seu próprio ranking e pode selecionar ações diferentes. A diferença entre suas médias não isola o efeito do primeiro pregão.
 

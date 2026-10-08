@@ -11,13 +11,14 @@
       name="description"
       content="Ranking semanal de ações brasileiras com metodologia, alertas e teste de novas extrações da Economatica."
     />
-    <link rel="stylesheet" href="/static/styles.css?v=refinement-20261008" />
-    <link rel="stylesheet" href="/static/mobile.css?v=refinement-20261008" />
-    <link rel="stylesheet" href="/static/context.css?v=refinement-20261008" />
-    <link rel="stylesheet" href="/static/summary.css?v=refinement-20261008" />
-    <script src="/static/context.js?v=refinement-20261008" defer></script>
-    <script src="/static/app.js?v=refinement-20261008" defer></script>
-    <script src="/static/header.js?v=refinement-20261008" defer></script>
+    <link rel="stylesheet" href="/static/styles.css?v=mobile-summary-20261008" />
+    <link rel="stylesheet" href="/static/mobile.css?v=mobile-summary-20261008" />
+    <link rel="stylesheet" href="/static/context.css?v=mobile-summary-20261008" />
+    <link rel="stylesheet" href="/static/summary.css?v=mobile-summary-20261008" />
+    <script src="/static/context.js?v=mobile-summary-20261008" defer></script>
+    <script src="/static/app.js?v=mobile-summary-20261008" defer></script>
+    <script src="/static/header.js?v=mobile-summary-20261008" defer></script>
+    <script src="/static/mobile-dashboard.js?v=mobile-summary-20261008" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#ranking">Ir para o ranking</a>
@@ -135,7 +136,16 @@
                 ><span id="metric-up-count" class="summary-support"></span>
               </div>
             </div>
-            <div class="summary-comparison">
+            <button
+              id="comparison-toggle"
+              class="comparison-toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="summary-comparison"
+            >
+              Comparar janelas <span aria-hidden="true">⌄</span>
+            </button>
+            <div id="summary-comparison" class="summary-comparison">
               <span class="comparison-label"
                 >Médias do top 20
                 <span class="period-info"
@@ -405,5 +415,29 @@
         </div>
       </main>
     </div>
+    <dialog
+      id="mobile-notice"
+      class="mobile-notice"
+      aria-labelledby="mobile-notice-title"
+      aria-describedby="mobile-notice-description"
+    >
+      <button
+        id="mobile-notice-close"
+        class="mobile-notice-close"
+        type="button"
+        aria-label="Fechar aviso"
+      >
+        ×
+      </button>
+      <h2 id="mobile-notice-title">Melhor experiência no computador</h2>
+      <p id="mobile-notice-description">
+        Você pode explorar o dashboard pelo celular. Algumas colunas ficam ocultas e as tabelas
+        exigem rolagem. Para consultar todos os detalhes com mais espaço, recomendamos abrir no
+        computador.
+      </p>
+      <button id="mobile-notice-continue" class="mobile-notice-continue" type="button" autofocus>
+        Continuar no celular
+      </button>
+    </dialog>
   </body>
 </html>
