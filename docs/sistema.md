@@ -30,13 +30,13 @@ Cada envio recebe uma identificação própria, uma entrada, uma referência e u
 
 Os arquivos de resultado são calculados em Python. O navegador escolhe quais dados apresentar conforme a ação e a janela selecionadas; não calcula novamente o ranking semanal. As séries diárias também correspondem à janela escolhida. Na alternativa, o primeiro fechamento é o preço inicial e não possui retorno diário dentro dela.
 
-O contexto de cada novo envio também é preparado para a execução: utiliza as empresas presentes nos seus rankings e as datas da semana escolhida. O worker libera o ranking e continua a coleta opcional de contexto. A tela acompanha esse andamento. Essa etapa compartilha o limite total de dez minutos; se não terminar ou não houver credenciais, informa a indisponibilidade sem invalidar o ranking concluído.
+O contexto de cada novo envio também é preparado para a execução: utiliza as empresas presentes nos seus rankings e as datas da semana escolhida. O worker libera o ranking e continua a coleta opcional de contexto. A tela acompanha esse andamento. Essa etapa tem prazo próprio de até quinze minutos após o cálculo do ranking; se não terminar ou não houver credenciais, informa a indisponibilidade sem invalidar o ranking concluído.
 
 A identidade é conferida por ticker e ISIN com a B3 antes de associar notícias a uma empresa. Uma identidade incompatível interrompe apenas a associação de notícias daquele ticker. Fontes, textos, versão do prompt e assinaturas ficam ligados à execução. Os textos do case nunca são copiados para outro envio.
 
 ## Prazos e limites
 
-A fila comporta **uma análise em processamento e até duas aguardando**. Cada arquivo pode ter até 10 MB; o processamento tem limite de dez minutos após começar. A mesma origem de acesso pode criar até três análises por hora. Outros limites temporários do servidor também podem recusar novos envios, com mensagem na página.
+A fila comporta **uma análise em processamento e até duas aguardando**. Cada arquivo pode ter até 10 MB; o cálculo do ranking tem limite de dez minutos após começar, e a coleta de contexto tem até quinze minutos adicionais. A mesma origem de acesso pode criar até três análises por hora. Outros limites temporários do servidor também podem recusar novos envios, com mensagem na página.
 
 O CSV original é removido após 24 horas. O resultado de um novo envio, seus derivados e os guias associados ficam disponíveis por sete dias. Guardar a URL não prolonga esse prazo; baixe os arquivos que quiser conservar e mantenha sua própria cópia da entrada. O case é permanente.
 

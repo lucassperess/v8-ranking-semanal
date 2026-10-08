@@ -37,6 +37,23 @@ class WeeklyRankingTests(unittest.TestCase):
         with self.assertRaisesRegex(RankingError, "Cobertura insuficiente"):
             choose_week(quality, date(2026, 9, 22), allow_nonfriday_end=True)
 
+    def test_no_common_price_candidates_explains_dates_instead_of_classification(self):
+        classification = self.root / "empty"
+        classification.mkdir()
+        start, end = date(2026, 8, 7), date(2026, 8, 14)
+        summary = {"start_date": str(start), "end_date": str(end), "candidate_tickers": 0,
+                   "ranking_gate_passed": False, "ranking_review_tickers": []}
+        (classification / "classification_summary.json").write_text(json.dumps(summary), encoding="utf-8")
+        for name in ("period_classification.csv", "ranking_universe.csv"):
+            (classification / name).write_text("ticker\n", encoding="utf-8")
+        outputs = {name: digest(classification / name) for name in
+                   ("period_classification.csv", "ranking_universe.csv", "classification_summary.json")}
+        (classification / "classification_manifest.json").write_text(json.dumps({"outputs": outputs}), encoding="utf-8")
+        with self.assertRaisesRegex(RankingError, "Faltam cotações válidas nas duas datas.*2026-08-07.*2026-08-14") as failure:
+            rank_pair(classification, start, end, self.root / "ranked")
+        from webapp.review import problem
+        self.assertEqual(problem(str(failure.exception))["code"], "dates")
+
     def test_return_order_mean_and_quality_context(self):
         classification = self.root / "classification"
         classification.mkdir()

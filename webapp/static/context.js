@@ -388,7 +388,7 @@
         if (generation !== loadGeneration) return;
         if (payload.status === 'available') context = payload;
         else message = payload.message;
-        if (payload.status === 'processing' && Date.now() - started < 600000)
+        if (payload.status === 'processing' && Date.now() - started < 900000)
           setTimeout(refresh, 3000);
         else if (payload.status === 'processing')
           message =

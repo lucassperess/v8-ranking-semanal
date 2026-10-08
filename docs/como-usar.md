@@ -195,7 +195,7 @@ O link ao lado de “20 Maiores retornos da semana” baixa o ranking da janela 
 
 ### Limites e disponibilidade da nova análise
 
-O arquivo deve ter até **10 MB**, e cada análise tem um limite de **dez minutos de processamento**, contado após começar a ser executada. A fila aceita uma análise em processamento e até duas aguardando; a mesma origem de acesso pode criar até três análises por hora. A obtenção e a confirmação das fontes oficiais da B3 também podem interromper a análise, com o motivo apresentado na página de acompanhamento.
+O arquivo deve ter até **10 MB**, e cada análise tem um limite de **dez minutos para o cálculo do ranking**, contado após começar a ser executada. A coleta opcional de contexto tem até quinze minutos adicionais; o ranking fica disponível antes dela terminar. A fila aceita uma análise em processamento e até duas aguardando; a mesma origem de acesso pode criar até três análises por hora. A obtenção e a confirmação das fontes oficiais da B3 também podem interromper a análise, com o motivo apresentado na página de acompanhamento.
 
 ![Limites da nova análise: CSV de até 10 MB, processamento de até dez minutos, uma análise ativa e duas aguardando, três envios por origem por hora e resultado disponível por sete dias; aviso para guardar o link e sobre remoção do CSV após 24 horas.](assets/nova-analise-limites-20261007.png)
 

@@ -125,6 +125,8 @@ def rank_pair(classification_dir: Path, start: date, end: date, output_dir: Path
     summary = json.loads(summary_path.read_text(encoding="utf-8"))
     if (summary["start_date"], summary["end_date"]) != (start.isoformat(), end.isoformat()):
         raise RankingError("As datas da classificação não coincidem com as datas solicitadas")
+    if summary.get("candidate_tickers") == 0:
+        raise RankingError(f"Faltam cotações válidas nas duas datas para o mesmo código: {start} e {end}. Confira a extração e a referência.")
     if not summary["ranking_gate_passed"]:
         raise RankingError(f"Classificação pendente para o ranking: {summary['ranking_review_tickers']}")
     with (classification_dir / "ranking_universe.csv").open(encoding="utf-8", newline="") as stream:

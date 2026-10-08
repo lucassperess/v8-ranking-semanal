@@ -38,7 +38,7 @@ O contexto pode ter cobertura parcial. Um antecedente trimestral não é um acon
 
 Para recalcular o ranking, preserve o CSV original, as fontes B3 e a versão do código. O [README](../README.md#gerar-um-novo-ranking) apresenta o comando Python. Para conferir o contexto ou reproduzir sua geração sem novas APIs, siga [Auditoria e reprodução](auditoria.md) e [os comandos técnicos](desenvolvimento.md#contexto-opcional-de-cada-envio). O replay exige também a pasta privada de fontes e respostas salvas; os downloads públicos, sozinhos, não bastam. Uma coleta nova pode encontrar outras evidências e produzir outro texto.
 
-O case permanece na página inicial. Cada envio recebe seu próprio endereço web e fica disponível por sete dias; guarde a URL e baixe os derivados que quiser conservar. O CSV bruto não é oferecido para download e é removido após 24 horas. Arquivos aceitos têm até 10 MB, e o processamento tem limite de dez minutos.
+O case permanece na página inicial. Cada envio recebe seu próprio endereço web e fica disponível por sete dias; guarde a URL e baixe os derivados que quiser conservar. O CSV bruto não é oferecido para download e é removido após 24 horas. Arquivos aceitos têm até 10 MB, e o cálculo do ranking tem limite de dez minutos, seguido de até quinze minutos adicionais para o contexto.
 
 ## Verificações da entrega
 

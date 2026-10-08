@@ -760,7 +760,7 @@ async function loadRun(id) {
         'muted',
         job.status === 'failed'
           ? 'Confira o motivo acima antes de reenviar. O resultado de referência continua disponível.'
-          : 'Esta página acompanha o processamento automaticamente. Guarde seu endereço para voltar à mesma execução. O limite de processamento é de dez minutos; o resultado ficará disponível por sete dias.',
+          : 'Esta página acompanha o processamento automaticamente. Guarde seu endereço para voltar à mesma execução. O cálculo do ranking tem limite de dez minutos. O contexto é coletado depois, com até quinze minutos adicionais. O resultado ficará disponível por sete dias.',
       ),
     );
     const links = node('div', 'page-context');

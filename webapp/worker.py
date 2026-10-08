@@ -18,6 +18,7 @@ from context_pipeline.sources import write
 
 ROOT = Path(__file__).resolve().parents[1]
 STOP = False
+CONTEXT_TIMEOUT_SECONDS = 900
 
 
 def request_stop(_signum: int, _frame: object) -> None:
@@ -93,21 +94,22 @@ def process(job: dict) -> None:
     store.update_job(job_id, status="completed", stage="Concluída")
     # Context remains optional and isolated; the completed ranking is already readable.
     try:
-        prepare_context(output_dir, log_path, started)
+        prepare_context(output_dir, log_path)
     except Exception:
         write(output_dir / 'context/state.json', {'status': 'unavailable',
               'reason': 'context_start_or_processing_failed',
               'message': 'Não foi possível iniciar ou concluir o contexto. O ranking permanece disponível.'})
 
 
-def prepare_context(output_dir, log_path, started):
+def prepare_context(output_dir, log_path):
+    started = time.monotonic()
     with log_path.open('a', encoding='utf-8') as log:
         context_child = subprocess.Popen([sys.executable, '-m', 'context_pipeline.generate',
                                          '--run-dir', str(output_dir)], cwd=ROOT,
                                         stdout=log, stderr=subprocess.STDOUT, shell=False,
                                         env={**os.environ, 'PYTHONUTF8': '1', 'PYTHONIOENCODING': 'utf-8'})
         while context_child.poll() is None:
-            if STOP or time.monotonic() - started > 600:
+            if STOP or time.monotonic() - started > CONTEXT_TIMEOUT_SECONDS:
                 context_child.terminate()
                 try:
                     context_child.wait(timeout=8)

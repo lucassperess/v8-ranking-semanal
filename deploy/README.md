@@ -6,7 +6,7 @@ A documentação revisada está publicada conforme o [registro de 08/10/2026](do
 
 O Compose transmite `OPENAI_API_KEY`, `TAVILY_API_KEY` e `CONTEXT_ENABLED` somente ao worker. Na VPS, o arquivo privado fica em `/opt/stacks/v8-ranking/context.env`, com permissão 600. Forneça `--env-file` em toda chamada que recrie os serviços. Não inclua esse arquivo no checkout, na imagem ou em logs. Confira a configuração com `config --quiet`, sem exibir os valores das chaves. Consulte o [registro da publicação](contexto-publicado.md) para a versão e a validação observadas.
 
-Com `CONTEXT_ENABLED=0`, ou sem as duas credenciais, o ranking continua funcionando. O worker libera o resultado financeiro antes de coletar o contexto, dentro do mesmo prazo total de dez minutos. A API oferece `GET /api/analyses/{id}/context`; quatro derivados públicos aparecem na auditoria. `context/private/` não é servido pelas rotas de download e acompanha a remoção da execução após sete dias.
+Com `CONTEXT_ENABLED=0`, ou sem as duas credenciais, o ranking continua funcionando. O worker libera o resultado financeiro antes de coletar o contexto, com prazo próprio de até quinze minutos para o contexto. A API oferece `GET /api/analyses/{id}/context`; quatro derivados públicos aparecem na auditoria. `context/private/` não é servido pelas rotas de download e acompanha a remoção da execução após sete dias.
 
 Veja [o registro de validação](contexto-replicavel.md) e [os comandos de reprodução](../docs/desenvolvimento.md).
 
@@ -23,7 +23,7 @@ docker compose -f /opt/stacks/v8-ranking/compose.yaml ps
 curl -fsS https://ranking.lucaspsm.com/healthz
 ```
 
-O Traefik usa o resolvedor Let's Encrypt já configurado na VPS para `ranking.lucaspsm.com`. O DNS deste subdomínio aponta para a VPS. A imagem instala as dependências Python fixadas em `requirements-web.txt`. `app` e `worker` têm limites de memória e logs limitados. O worker aceita um job por vez; a API recusa a quarta análise simultânea. O processo encerra uma análise após dez minutos.
+O Traefik usa o resolvedor Let's Encrypt já configurado na VPS para `ranking.lucaspsm.com`. O DNS deste subdomínio aponta para a VPS. A imagem instala as dependências Python fixadas em `requirements-web.txt`. `app` e `worker` têm limites de memória e logs limitados. O worker aceita um job por vez; a API recusa a quarta análise simultânea. O cálculo do ranking tem limite de dez minutos; a coleta opcional de contexto tem até quinze minutos adicionais. O worker permanece ocupado durante as duas etapas.
 
 O banco SQLite em `/data/jobs.sqlite3` guarda a fila. `/data/uploads` contém CSVs temporários, `/data/runs` as saídas isoladas, `/data/reference` o cache datado da B3 e `/data/logs` os registros de execução. O worker remove arquivos brutos após 24 horas, resultados após sete dias e metadados após 30 dias. Para atualizar, construa e confira uma nova imagem, preserve a imagem anterior e substitua a tag na stack; o volume não é apagado. A restauração usa a imagem e o Compose preservados, conforme o registro da publicação. **Não use `down -v`**, pois isso apagaria o volume.
 
