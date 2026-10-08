@@ -135,3 +135,10 @@ conhecidos até o fechamento, incluindo antecedentes anteriores à semana. Não
 significa que houve notícia naquela semana nem comprova a causa da variação.
 A auditoria fornece contagens separadas para os dois períodos. O antecedente
 financeiro trimestral fica em `financial_context`, com período e fonte próprios.
+
+
+## Contexto empresarial durante a coleta
+
+`GET /api/analyses/{id}/context` pode responder `processing`, `partial`, `available` ou `unavailable`. Em `partial`, `company` contém os ativos do ranking e somente os resultados empresariais já concluídos. `processing=true` indica que outras tarefas continuam; `false` indica interrupção. `completed_companies` e `total_companies` descrevem o andamento, não a presença de notícias na semana nem poder causal.
+
+A interface libera o texto de cada empresa após a verificação e acompanha as pendentes automaticamente. Referências e acontecimentos gerais de mercado aparecem na conclusão do lote. O snapshot é escrito por substituição atômica, com assinaturas do conteúdo e da apresentação; dados de outra execução ou conteúdo alterado são rejeitados. Os derivados finais e seu manifesto mantêm o contrato de auditoria. O replay utiliza as evidências salvas e não altera o snapshot intermediário original.

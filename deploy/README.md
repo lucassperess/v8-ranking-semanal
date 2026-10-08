@@ -6,7 +6,7 @@ A documentação revisada está publicada conforme o [registro de 08/10/2026](do
 
 O Compose transmite `OPENAI_API_KEY`, `TAVILY_API_KEY` e `CONTEXT_ENABLED` somente ao worker. Na VPS, o arquivo privado fica em `/opt/stacks/v8-ranking/context.env`, com permissão 600. Forneça `--env-file` em toda chamada que recrie os serviços. Não inclua esse arquivo no checkout, na imagem ou em logs. Confira a configuração com `config --quiet`, sem exibir os valores das chaves. Consulte o [registro da publicação](contexto-publicado.md) para a versão e a validação observadas.
 
-Com `CONTEXT_ENABLED=0`, ou sem as duas credenciais, o ranking continua funcionando. O worker libera o resultado financeiro antes de coletar o contexto, com prazo próprio de até quinze minutos para o contexto. A API oferece `GET /api/analyses/{id}/context`; quatro derivados públicos aparecem na auditoria. `context/private/` não é servido pelas rotas de download e acompanha a remoção da execução após sete dias.
+Com `CONTEXT_ENABLED=0`, ou sem as duas credenciais, o ranking continua funcionando. O worker libera o resultado financeiro antes de coletar o contexto, com prazo próprio de até quinze minutos para o contexto. A API oferece `GET /api/analyses/{id}/context`, incluindo contextos empresariais verificados durante a coleta (`partial`). Uma interrupção mantém os textos já concluídos. O snapshot intermediário não é oferecido como download; quatro derivados públicos aparecem na auditoria. `context/private/` não é servido pelas rotas de download e acompanha a remoção da execução após sete dias.
 
 Veja [o registro de validação](contexto-replicavel.md) e [os comandos de reprodução](../docs/desenvolvimento.md).
 

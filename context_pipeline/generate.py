@@ -626,7 +626,7 @@ def deepen_sources(identity, collector, week, trace):
     return snapshot
 
 
-def process_subjects(identified, collector, models, documents, finances, week, diagnostics, diagnostic_dir):
+def process_subjects(identified, collector, models, documents, finances, week, diagnostics, diagnostic_dir, on_update=None):
     """Everyone gets a protected first pass before optional budget reuse."""
     subjects = {code: disclosed_identity(identity, finances.get(code)) for code, identity in identified.items()}
     for code, name, topic in MARKET_TOPICS:
@@ -649,6 +649,8 @@ def process_subjects(identified, collector, models, documents, finances, week, d
             code = tasks[task]
             results[code], records = task.result()
             diagnostics.extend(records)
+            if on_update:
+                on_update(results)
             if any(e['reason'] == 'local_budget_exhausted' for r in records for e in r['entries']):
                 blocked.append(code)
     # Saved inputs/responses are reused; no new source queries in this pass.
@@ -656,6 +658,8 @@ def process_subjects(identified, collector, models, documents, finances, week, d
         snapshot = json.loads((collector.directory / ('source-selection-' + code + '.json')).read_text(encoding='utf-8'))
         results[code], records = execute(code, 'recovery', snapshot)
         diagnostics.extend(records)
+        if on_update:
+            on_update(results)
     targets = sorted(code for code in identified if results[code][0]['coverage_status'] == 'financial_antecedent_only')
     for code in targets[:4]:
         trace = Trace('deepen-' + code, diagnostic_dir / ('deepen-' + code + '.json'))
@@ -670,6 +674,8 @@ def process_subjects(identified, collector, models, documents, finances, week, d
                 # An unsuccessful optional attempt must not discard accepted first-pass content.
                 if improved[0]['coverage_status'] == 'dated_company_context':
                     results[code] = improved
+                    if on_update:
+                        on_update(results)
         except (OSError, ValueError, KeyError, TypeError) as exc:
             trace.failure('focused_search', exc)
         finally:
@@ -750,7 +756,11 @@ def run(root, keys=None, replay=False, budget=DEFAULT_BUDGET):
             'title': 'CVM · demonstrativo trimestral', 'publication_date': record['filing']['DT_RECEB'][:10],
             'date_basis': 'cvm_itr_delivery_catalog', 'date_evidence': record['filing']['DT_RECEB'],
             'after_price_end': False, 'verification': 'dated_cvm_accounts_selected_in_python'})
-    results = process_subjects(identified, collector, models, documents, finances, week, diagnostics, diagnostic_dir)
+    from context_pipeline.progress import publish
+    def update_progress(results):
+        publish(root, assets, unknown, identified, results, sources, week)
+    results = process_subjects(identified, collector, models, documents, finances, week, diagnostics,
+                               diagnostic_dir, on_update=None if replay else update_progress)
     for code in sorted(identified):
         issuer, accepted = results[code]
         issuers.append(issuer)

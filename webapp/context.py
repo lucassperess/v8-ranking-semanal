@@ -13,7 +13,26 @@ def load_run_context(root):
     try:
         state = json.loads((directory / 'state.json').read_text(encoding='utf-8'))
         if state['status'] != 'available':
-            return state
+            progress_path = directory / 'progress.json'
+            if not progress_path.is_file():
+                return state
+            from context_pipeline.progress import signature
+            progress = json.loads(progress_path.read_text(encoding='utf-8'))
+            payload = json.loads((root / 'presentation.json').read_text(encoding='utf-8'))
+            content = progress['content']
+            company = content['company']
+            expected = {row['ticker'] for window in payload['windows'].values() for row in window['top20']}
+            if (hashlib.sha256((root / 'presentation.json').read_bytes()).hexdigest() != progress['input_sha256'] or
+                    signature(content) != progress['content_sha256'] or
+                    company['reference_date'] != payload['week']['reference_date'] or
+                    {row['ticker'] for row in company['assets']} != expected):
+                raise ValueError('Progress is incompatible with this ranking')
+            processing = state['status'] == 'processing'
+            return {'status': 'partial', 'processing': processing, 'company': company,
+                    'completed_companies': content['completed_companies'],
+                    'total_companies': content['total_companies'],
+                    'message': 'O contexto desta empresa está sendo preparado. O ranking já está disponível.'
+                    if processing else 'A coleta foi encerrada antes de concluir o contexto desta empresa. O ranking está disponível.'}
         manifest = json.loads((directory / 'manifest.json').read_text(encoding='utf-8'))
         if hashlib.sha256((root / 'presentation.json').read_bytes()).hexdigest() != manifest['input_sha256']:
             raise ValueError('Context belongs to another run')

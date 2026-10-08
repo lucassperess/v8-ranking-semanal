@@ -81,7 +81,11 @@
     return item;
   }
   function render(ticker, selectedWindow) {
-    const selectionKey = `${ticker}:${selectedWindow}:${context ? 'available' : message}`;
+    const selectedAsset = context?.company.assets.find((item) => item.ticker === ticker);
+    const selectedIssuer = context?.company.issuers.find(
+      (item) => item.cvm_code === selectedAsset?.cvm_code,
+    );
+    const selectionKey = `${ticker}:${selectedWindow}:${context?.status || 'loading'}:${JSON.stringify(selectedIssuer || context?.message || message)}`;
     if (selectionKey === renderedSelection) return;
     renderedSelection = selectionKey;
     const companyPanel = document.getElementById('company-context');
@@ -99,7 +103,15 @@
     const asset = context.company.assets.find((item) => item.ticker === ticker);
     const issuer = context.company.issuers.find((item) => item.cvm_code === asset?.cvm_code);
     if (!issuer) {
-      companyPanel.append(el('p', 'Não há contexto disponível para este ativo.'));
+      companyPanel.append(
+        el(
+          'p',
+          context.status === 'partial'
+            ? context.message
+            : 'Não há contexto disponível para este ativo.',
+        ),
+      );
+      marketPanel.hidden = true;
       return;
     }
     companyPanel.append(el('h3', `Contexto de ${ticker}`), el('p', issuer.name, 'context-muted'));
@@ -200,6 +212,10 @@
       details('O que ainda não conseguimos confirmar', issuer.unresolved_question),
     );
     companyPanel.append(el('p', context.company.disclosure, 'context-muted'));
+    if (context.status === 'partial') {
+      marketPanel.hidden = true;
+      return;
+    }
     marketPanel.hidden = false;
     const marketTitle = el('div', '', 'market-title-row');
     const marketInfo = el('span', '', 'asset-info');
@@ -386,11 +402,14 @@
         if (!response.ok) throw new Error('Context request failed');
         const payload = await response.json();
         if (generation !== loadGeneration) return;
-        if (payload.status === 'available') context = payload;
+        if (['available', 'partial'].includes(payload.status)) context = payload;
         else message = payload.message;
-        if (payload.status === 'processing' && Date.now() - started < 900000)
+        if (
+          (payload.status === 'processing' || payload.processing) &&
+          Date.now() - started < 900000
+        )
           setTimeout(refresh, 3000);
-        else if (payload.status === 'processing')
+        else if (payload.status === 'processing' || payload.processing)
           message =
             'O contexto ainda não foi concluído. Atualize esta página mais tarde; o ranking está disponível.';
       } catch {

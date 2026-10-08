@@ -78,7 +78,7 @@ O diretório padrão de estado local é `runtime-data/`. A variável `RANKING_DA
 
 ### Contexto opcional de cada envio
 
-O worker libera o ranking antes de chamar `context_pipeline.generate`. A coleta utiliza as empresas do top das duas janelas e tem prazo próprio de até quinze minutos após o cálculo do ranking. Uma falha do contexto não invalida o resultado financeiro.
+O worker libera o ranking antes de chamar `context_pipeline.generate`. A coleta utiliza as empresas do top das duas janelas e tem prazo próprio de até quinze minutos após o cálculo do ranking. Uma falha do contexto não invalida o resultado financeiro. Após verificar cada empresa, o coletor publica um snapshot atômico em `context/progress.json`, vinculado à assinatura da apresentação. A API pode retornar `partial`, com `processing`, `completed_companies` e `total_companies`; o navegador consulta o andamento e atualiza o ticker selecionado quando ele fica pronto. O snapshot contém apenas os resultados concluídos e fontes públicas, sem corpos integrais ou credenciais. Se a coleta for interrompida, os textos concluídos permanecem consultáveis. Referências de mercado e os quatro derivados auditáveis completos são publicados ao final do lote; o snapshot não substitui o manifesto final. O replay não regrava o progresso da execução original.
 
 Configure `OPENAI_API_KEY` e `TAVILY_API_KEY` no ambiente do worker ou no `.env` local, fora do Git. `CONTEXT_ENABLED=0` desativa a coleta. O modelo desta versão é `gpt-6-luna`. Chaves e respostas privadas não chegam ao navegador.
 
