@@ -221,10 +221,6 @@ function renderDetail() {
   $('chart-returns').classList.toggle('active', returns);
   $('chart-price').setAttribute('aria-pressed', String(!returns));
   $('chart-returns').setAttribute('aria-pressed', String(returns));
-  text(
-    'detail-change-help',
-    `Diferença entre o fechamento final (${day(row.end_date)}) e o inicial (${day(row.start_date)}), em reais por ação ajustada. Não representa o resultado de uma operação com custos.`,
-  );
   const alternativeNote =
     state.window === 'alternative'
       ? ` O fechamento de ${day(row.start_date)} é o ponto de partida: nesse primeiro dia não há retorno diário calculado. A primeira comparação usa o fechamento da próxima data da extração.`

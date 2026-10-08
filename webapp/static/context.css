@@ -65,11 +65,7 @@
   align-items: center;
   min-height: 18px;
 }
-.asset-change-label {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
+
 .asset-detail-compact .chart-controls {
   margin-top: 0;
   padding-top: 0;
@@ -203,16 +199,7 @@
   .asset-detail-compact .price-comparison dd {
     font-size: 14px;
   }
-  .asset-change-label {
-    position: relative;
-    padding-right: 18px;
-    min-height: 18px;
-  }
-  .asset-change-label .asset-info {
-    position: absolute;
-    right: -10px;
-    top: -13px;
-  }
+
   .asset-info .info-button[aria-expanded='true'] + .asset-tooltip {
     position: fixed;
     left: 16px;
@@ -256,9 +243,7 @@
   .asset-detail-compact .price-comparison dd {
     font-size: 12px;
   }
-  .asset-change-label {
-    gap: 2px;
-  }
+
   .asset-detail-compact .chart-mode {
     flex-wrap: nowrap;
   }

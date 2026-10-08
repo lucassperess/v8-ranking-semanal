@@ -58,9 +58,9 @@ Conferidos no navegador: alternância das abas, atualização de ação e janela
 
 ## Topo e espaço útil do gráfico
 
-O ticker é o seletor no topo, com ON/PN ao lado e o retorno semanal à direita. O rótulo redundante “Ativo selecionado” foi removido. Inicial, final e variação formam uma faixa alinhada; os dois grupos de controles permanecem separados por função.
+O ticker é o seletor no topo, com ON/PN ao lado e o retorno semanal à direita. O rótulo redundante “Ativo selecionado” foi removido. Inicial, final e variação (sem botão de informação) formam uma faixa alinhada; os dois grupos de controles permanecem separados por função.
 
-As explicações de preços, retornos diários, lacunas e datas da janela ficam no “i” do gráfico. A variação em reais tem explicação própria. Os botões usam o comportamento comum da plataforma: hover e foco no desktop; toque, clique fora e Escape no mobile. Em telas estreitas, a explicação aberta aparece dentro da largura da tela, acima da borda inferior. Alertas específicos continuam visíveis.
+As explicações de preços, retornos diários, lacunas e datas da janela ficam no “i” do gráfico. Os botões usam o comportamento comum da plataforma: hover e foco no desktop; toque, clique fora e Escape no mobile. Em telas estreitas, a explicação aberta aparece dentro da largura da tela, acima da borda inferior. Alertas específicos continuam visíveis.
 
 Conferidos o encaixe a 320 e 390 px, a atualização ON/PN, o texto sobre o primeiro dia da alternativa, a permanência da aba ao trocar o ticker e os alertas de BIED3. Os preços, cálculos e fontes não foram alterados.
 
