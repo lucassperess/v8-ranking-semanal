@@ -2,17 +2,17 @@
 
 O dashboard apresenta os resultados calculados pelo script Python utilizado para a análise. Os controles mudam a visualização e não alteram os preços recebidos ou recalculam o ranking no navegador.
 
-## Leitura dos cards
+## Leitura do resumo
 
-As capturas dos cards, do ranking e dos gráficos mostram a janela “Semana completa” do case, com comparação de **11/09/2026 a 18/09/2026**. Outra análise pode apresentar datas, ações e valores diferentes.
+O seletor **Semana completa | Dentro da semana** fica acima do resumo e define a janela do ranking, dos indicadores e dos gráficos. As datas comparadas aparecem ao lado. As capturas mostram “Semana completa” do case, de **11/09/2026 a 18/09/2026**. Outra análise pode apresentar datas, ações e valores diferentes.
 
-![Cards do case: média do top 20 de 17,78%, 308 ações elegíveis, 38,64% em alta e média alternativa de 15,93%.](assets/cards-20261007.png)
+![Resumo integrado do case, com seletor global, datas, média de 17,78%, 308 elegíveis, 38,64% em alta e comparação das médias das duas janelas.](assets/resumo-janelas-20261008.jpg)
 
-*Os três primeiros cards mostram a opção selecionada; o último mostra a média da alternativa.* [Ampliar imagem](assets/cards-20261007.png).
+*Os três indicadores acompanham a seleção. A contagem de ações em alta aparece junto à proporção: 119 de 308. A linha inferior compara as médias dos dois rankings e destaca a janela selecionada.* [Ampliar imagem](assets/resumo-janelas-20261008.jpg).
 
 ### Média do top 20
 
-Mostra a média dos retornos das 20 ações apresentadas no ranking: somamos os 20 retornos e dividimos por 20. Cada ação tem o mesmo peso. O valor acompanha a opção selecionada, “Semana completa” ou “Dentro da semana”. Cada linha da tabela mostra o retorno individual de uma ação; este card mostra a média do grupo.
+Mostra a média dos retornos das 20 ações apresentadas no ranking: somamos os 20 retornos e dividimos por 20. Cada ação tem o mesmo peso. O valor acompanha a opção selecionada, “Semana completa” ou “Dentro da semana”. Cada linha da tabela mostra o retorno individual de uma ação; o resumo mostra a média do grupo. Os três indicadores têm o mesmo tamanho de fonte; o sinal da média determina sua cor.
 
 ### Ações elegíveis
 
@@ -22,15 +22,15 @@ Mostra quantas ações ON e PN puderam participar do ranking na janela seleciona
 
 Mostra qual porcentagem das ações elegíveis terminou o período com preço maior do que no início. Dividimos a quantidade de ações com retorno positivo pelo total de ações elegíveis. Cada ação é contada uma vez, independentemente do tamanho da alta. Esse percentual acompanha a janela selecionada.
 
-### Janela alternativa
+### Comparação das médias
 
-Mostra a média dos 20 maiores retornos medidos a partir do fechamento do primeiro dia disponível dentro da semana. No case, compara os preços de 14/09 com os de 18/09. A mudança ocorrida até o fechamento de 14/09 fica de fora porque esse preço é o ponto inicial. A alternativa analisa a mesma semana anterior e termina na mesma data da opção “Semana completa”.
+Uma linha abaixo dos indicadores mostra as médias de **Semana completa** e **Dentro da semana**, sem um quarto card. A alternativa mede os retornos a partir do fechamento do primeiro dia disponível dentro da semana. No case, compara 14/09 com 18/09. A mudança até o fechamento de 14/09 fica de fora porque esse preço é o ponto inicial. As duas opções analisam a mesma semana anterior e terminam na mesma data.
 
-Os três primeiros cards acompanham a janela selecionada. O card “Janela alternativa” sempre mostra a média da alternativa.
+Cada janela possui seu próprio ranking e pode selecionar ações diferentes. A diferença entre suas médias não isola o efeito do primeiro pregão.
 
 Os ícones de informação exibem explicações ao passar o mouse ou receber foco pelo teclado. No celular, toque para abrir ou fechar; tocar fora também fecha a explicação. Para entender como são escolhidas as datas, quais ações podem participar e como são calculados os retornos e a média, consulte a [Metodologia do ranking](metodologia.md).
 
-Os percentuais dos cards usam duas casas decimais e a quantidade de ações permanece inteira. Na janela “Semana completa” do case, por exemplo, 119 de 308 ações tiveram retorno positivo, o que representa **38,64% do total de ações elegíveis**.
+Os percentuais do resumo usam duas casas decimais e a quantidade de ações permanece inteira. Na janela “Semana completa” do case, por exemplo, 119 de 308 ações tiveram retorno positivo, o que representa **38,64% do total de ações elegíveis**.
 
 **Semana completa:** usa o fechamento antes de a semana começar e o último disponível nela. Na referência, compara o preço no fim de 11/09 com o preço no fim de 18/09; assim, inclui também a mudança do primeiro dia com dados, 14/09. **Dentro da semana:** começa no preço ao fim de 14/09 e termina ao fim de 18/09. A mudança até o fechamento de 14/09 fica de fora, pois esse fechamento já é o ponto de partida. As duas opções terminam na mesma data da semana anterior; a alternativa não acompanha os dados até o dia atual. Os textos de informação mostram as datas da execução consultada.
 
@@ -118,13 +118,13 @@ Abra **Contexto** no painel da ação. A leitura começa pelos preços e pelo re
 
 Um acontecimento pode ter ocorrido na semana ou antes dela. Resultados trimestrais são antecedentes financeiros: ajudam a entender a situação da empresa, mas se referem ao período indicado no documento. A coleta não promete uma notícia para cada ação em cada dia. Se nenhuma evidência suficiente for confirmada, a leitura informa essa limitação.
 
-### Contexto geral da semana
+### Referências de mercado e acontecimentos
 
-A seção **Contexto geral da semana**, entre os cards principais e “Maiores retornos da semana”, compara Ibovespa, S&P 500, Nasdaq Composite e dólar PTAX nas datas da janela selecionada. Seus acontecimentos ficam no mesmo bloco, em “Acontecimentos da semana · juros, economia e política”. O “i” junto ao título explica o cálculo e as diferenças entre as referências. PTAX é a taxa de referência do Banco Central; não é fechamento de mercado. Os valores vêm das fontes identificadas em cada card e não substituem os preços da Economatica.
+A seção **Referências de mercado**, entre o resumo e “Maiores retornos da semana”, compara Ibovespa, S&P 500, Nasdaq Composite e dólar PTAX nas datas da janela selecionada. Uma faixa compacta mostra as variações e o período; datas diferentes aparecem junto ao indicador correspondente. **Dados e fontes de mercado** abre valores inicial e final, datas e fontes. O “i” explica o método e as diferenças entre as referências. PTAX é a taxa de referência do Banco Central; não é fechamento de mercado. Essas referências não substituem os preços da Economatica.
 
-![Contexto geral do case com as variações do Ibovespa, S&P 500, Nasdaq Composite e dólar PTAX na janela principal, datas, fontes e botão de informação sobre os cálculos.](assets/contexto-mercado-20261008-revisado.jpg)
+![Faixa compacta das referências de mercado do case, com datas, quatro variações e três acontecimentos datados com acesso às fontes.](assets/referencias-acontecimentos-20261008.jpg)
 
-*Os cards são referências de mercado para a mesma janela. Use o “i” junto ao título para conferir como são calculados. Abra “Acontecimentos da semana · juros, economia e política” para ler os textos confirmados e suas fontes. Quando um tema não tem acontecimentos confirmados, a seção informa a ausência.* [Ampliar imagem](assets/contexto-mercado-20261008-revisado.jpg).
+*A seção mostra até três títulos de acontecimentos confirmados, na ordem da coleta, com data e link para a fonte. Abra “Detalhes e fontes” para ler os textos completos e os demais acontecimentos. Sem fatos confirmados, a lista não ocupa o topo; limites da busca ficam em “Cobertura dos acontecimentos”, quando disponíveis. Os fatos dão contexto, sem comprovar a causa de cada retorno.* [Ampliar imagem](assets/referencias-acontecimentos-20261008.jpg).
 
 Trocar a janela atualiza as comparações de preços. Isso não muda a data de publicação de uma notícia nem faz um antecedente passar a ser um acontecimento da semana.
 

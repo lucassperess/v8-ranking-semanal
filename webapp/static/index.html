@@ -11,12 +11,13 @@
       name="description"
       content="Ranking semanal de ações brasileiras com metodologia, alertas e teste de novas extrações da Economatica."
     />
-    <link rel="stylesheet" href="/static/styles.css?v=dashboard-20261007" />
-    <link rel="stylesheet" href="/static/mobile.css?v=dashboard-20261007" />
-    <link rel="stylesheet" href="/static/context.css?v=context-20261007" />
-    <script src="/static/context.js?v=context-20261007" defer></script>
-    <script src="/static/app.js?v=dashboard-20261007" defer></script>
-    <script src="/static/header.js?v=menu-20261006" defer></script>
+    <link rel="stylesheet" href="/static/styles.css?v=top-20261008" />
+    <link rel="stylesheet" href="/static/mobile.css?v=top-20261008" />
+    <link rel="stylesheet" href="/static/context.css?v=top-20261008" />
+    <link rel="stylesheet" href="/static/summary.css?v=top-20261008" />
+    <script src="/static/context.js?v=top-20261008" defer></script>
+    <script src="/static/app.js?v=top-20261008" defer></script>
+    <script src="/static/header.js?v=top-20261008" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#ranking">Ir para o ranking</a>
@@ -47,73 +48,119 @@
 
         <div id="dashboard" hidden>
           <p id="short-week-notice" class="doc-note" hidden></p>
-          <section class="metric-strip" aria-label="Indicadores principais">
-            <div class="metric main-metric">
-              <span class="metric-label">Média do top 20</span><strong id="metric-mean"></strong
-              ><span class="metric-info"
-                ><button
-                  class="info-button"
-                  type="button"
-                  aria-label="Sobre média do top 20"
-                  aria-describedby="metric-mean-help"
-                >
-                  i</button
-                ><span id="metric-mean-help" class="info-tooltip metric-tooltip" role="tooltip"
-                  >Média aritmética dos 20 maiores retornos da janela selecionada.</span
-                ></span
-              >
+          <section class="dashboard-window" aria-label="Janela da análise">
+            <div class="window-switch" role="group" aria-label="Janela da análise">
+              <button id="primary-button" class="active" type="button" aria-pressed="true">
+                Semana completa
+              </button>
+              <button id="alternative-button" type="button" aria-pressed="false">
+                Dentro da semana
+              </button>
             </div>
-            <div class="metric">
-              <span class="metric-label">Ações elegíveis</span><strong id="metric-eligible"></strong
-              ><span class="metric-info"
+            <div class="global-period">
+              <span id="global-period"></span
+              ><span class="period-info"
                 ><button
                   class="info-button"
                   type="button"
-                  aria-label="Sobre ações elegíveis"
-                  aria-describedby="metric-eligible-help"
+                  aria-label="Como o período é calculado"
+                  aria-describedby="window-explanation"
+                  aria-expanded="false"
                 >
                   i</button
-                ><span id="metric-eligible-help" class="info-tooltip metric-tooltip" role="tooltip"
-                  >Ações ordinárias e preferenciais confirmadas, com fechamento válido nas duas
-                  pontas da janela selecionada.</span
-                ></span
-              >
+                ><span id="window-explanation" class="info-tooltip" role="tooltip"></span
+              ></span>
             </div>
-            <div class="metric">
-              <span class="metric-label">Ações em alta</span><strong id="metric-up"></strong
-              ><span class="metric-info"
-                ><button
-                  class="info-button"
-                  type="button"
-                  aria-label="Sobre ações em alta"
-                  aria-describedby="metric-up-help"
-                >
-                  i</button
-                ><span id="metric-up-help" class="info-tooltip metric-tooltip" role="tooltip"
-                  >Percentual das ações elegíveis com retorno positivo na janela selecionada. Cada
-                  ação é contada uma vez.</span
-                ></span
-              >
+          </section>
+          <section
+            class="result-summary"
+            aria-label="Resumo da janela selecionada"
+            aria-live="polite"
+          >
+            <div class="summary-stats">
+              <div class="summary-stat summary-main">
+                <div class="summary-label">
+                  Média do top 20
+                  <span class="period-info"
+                    ><button
+                      class="info-button"
+                      type="button"
+                      aria-label="Sobre média do top 20"
+                      aria-describedby="metric-mean-help"
+                      aria-expanded="false"
+                    >
+                      i</button
+                    ><span id="metric-mean-help" class="info-tooltip" role="tooltip"
+                      >Média aritmética dos retornos das 20 ações da janela selecionada.</span
+                    ></span
+                  >
+                </div>
+                <strong id="metric-mean"></strong
+                ><span id="summary-window-label" class="summary-support"></span>
+              </div>
+              <div class="summary-stat">
+                <div class="summary-label">
+                  Ações elegíveis
+                  <span class="period-info"
+                    ><button
+                      class="info-button"
+                      type="button"
+                      aria-label="Sobre ações elegíveis"
+                      aria-describedby="metric-eligible-help"
+                      aria-expanded="false"
+                    >
+                      i</button
+                    ><span id="metric-eligible-help" class="info-tooltip" role="tooltip"
+                      >Ações ON e PN confirmadas, com fechamentos válidos nas duas datas
+                      comparadas.</span
+                    ></span
+                  >
+                </div>
+                <strong id="metric-eligible"></strong>
+              </div>
+              <div class="summary-stat">
+                <div class="summary-label">
+                  Ações em alta
+                  <span class="period-info"
+                    ><button
+                      class="info-button"
+                      type="button"
+                      aria-label="Sobre ações em alta"
+                      aria-describedby="metric-up-help"
+                      aria-expanded="false"
+                    >
+                      i</button
+                    ><span id="metric-up-help" class="info-tooltip" role="tooltip"
+                      >Ações elegíveis com retorno positivo na janela selecionada.</span
+                    ></span
+                  >
+                </div>
+                <strong id="metric-up"></strong
+                ><span id="metric-up-count" class="summary-support"></span>
+              </div>
             </div>
-            <div class="metric">
-              <span class="metric-label">Janela alternativa</span
-              ><strong id="metric-alternative"></strong
-              ><span class="metric-info"
-                ><button
-                  class="info-button"
-                  type="button"
-                  aria-label="Sobre janela alternativa"
-                  aria-describedby="metric-alternative-help"
-                >
-                  i</button
-                ><span
-                  id="metric-alternative-help"
-                  class="info-tooltip metric-tooltip"
-                  role="tooltip"
-                  >Média aritmética dos 20 maiores retornos entre o primeiro e o último fechamento
-                  disponíveis dentro da semana.</span
+            <div class="summary-comparison">
+              <span class="comparison-label"
+                >Médias do top 20
+                <span class="period-info"
+                  ><button
+                    class="info-button"
+                    type="button"
+                    aria-label="Sobre comparação das janelas"
+                    aria-describedby="metric-alternative-help"
+                    aria-expanded="false"
+                  >
+                    i</button
+                  ><span id="metric-alternative-help" class="info-tooltip" role="tooltip"
+                    >Cada janela possui seu próprio ranking e pode selecionar ações diferentes. A
+                    diferença entre as médias não isola o efeito do primeiro pregão.</span
+                  ></span
                 ></span
-              >
+              ><span id="comparison-primary" class="comparison-value"
+                >Semana completa <strong id="metric-primary"></strong></span
+              ><span id="comparison-alternative" class="comparison-value"
+                >Dentro da semana <strong id="metric-alternative"></strong
+              ></span>
             </div>
           </section>
 
@@ -135,28 +182,7 @@
                 </div>
                 <div class="ranking-period">
                   <p id="ranking-subtitle"></p>
-                  <span class="period-info"
-                    ><button
-                      class="info-button"
-                      type="button"
-                      aria-label="Como o período é calculado"
-                      aria-describedby="window-explanation"
-                    >
-                      i</button
-                    ><span
-                      id="window-explanation"
-                      class="info-tooltip period-tooltip"
-                      role="tooltip"
-                    ></span
-                  ></span>
                 </div>
-              </div>
-              <div class="window-switch" role="group" aria-label="Janela do ranking">
-                <button id="primary-button" class="active" type="button" aria-pressed="true">
-                  Semana completa</button
-                ><button id="alternative-button" type="button" aria-pressed="false">
-                  Dentro da semana
-                </button>
               </div>
             </div>
             <div class="ranking-summary" aria-label="Destaques da janela selecionada">

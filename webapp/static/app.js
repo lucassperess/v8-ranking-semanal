@@ -70,6 +70,7 @@ function render(data) {
   $('error').hidden = true;
   $('analysis-status').hidden = true;
   $('dashboard').hidden = false;
+  text('metric-primary', pct(data.windows.primary.mean_pct));
   text('metric-alternative', pct(data.windows.alternative.mean_pct));
   renderWindow();
   window.rankingContext?.load(
@@ -89,11 +90,7 @@ function renderWindow() {
   const alternativeHelp = `Dentro da semana\nComparamos o preço no fim de ${day(week.first_week_close)}, primeiro dia com fechamento disponível na semana, com o preço no fim de ${day(week.last_week_close)}. É a mesma semana anterior e a mesma data final da opção “Semana completa”; não vai até o dia atual.\n\nA mudança de preço até o fechamento de ${day(week.first_week_close)} fica de fora: esse preço é o ponto de partida. Por isso, nesse primeiro dia o retorno diário aparece como —. O primeiro retorno compara esse preço com o fechamento da próxima data da extração.`;
   text(
     'metric-mean-help',
-    `Média dos retornos das 20 ações do ranking selecionado.\n\n${alt ? alternativeHelp : primaryHelp}`,
-  );
-  text(
-    'metric-alternative-help',
-    `Média dos 20 maiores retornos calculados pela alternativa.\n\n${alternativeHelp}`,
+    'Média aritmética dos retornos das 20 ações da janela selecionada, com o mesmo peso para cada ação.',
   );
   $('primary-button').classList.toggle('active', !alt);
   $('alternative-button').classList.toggle('active', alt);
@@ -102,18 +99,28 @@ function renderWindow() {
   text('window-explanation', alt ? alternativeHelp : primaryHelp);
   $('ranking-download').href =
     `${data.kind === 'featured' ? '/api/featured/files' : `/api/analyses/${state.runId}/files`}/${alt ? 'top20_alternativo.csv' : 'top20.csv'}`;
+  text('global-period', `${day(current.start_date)} → ${day(current.end_date)}`);
+  text('summary-window-label', alt ? 'Dentro da semana' : 'Semana completa');
+  $('comparison-primary').classList.toggle('selected', !alt);
+  $('comparison-alternative').classList.toggle('selected', alt);
   text('metric-mean', pct(current.mean_pct));
+  $('metric-mean').classList.toggle('negative', Number(current.mean_pct) < 0);
+  $('metric-mean').classList.toggle('positive', Number(current.mean_pct) > 0);
   text('metric-eligible', current.eligible.toLocaleString('pt-BR'));
   const b = current.breadth;
   const upShare = pct((b.up / b.denominator) * 100);
   text('metric-up', upShare);
   text(
+    'metric-up-count',
+    `${b.up.toLocaleString('pt-BR')} de ${b.denominator.toLocaleString('pt-BR')} ações`,
+  );
+  text(
     'metric-up-help',
-    `${b.up.toLocaleString('pt-BR')} das ${b.denominator.toLocaleString('pt-BR')} ações elegíveis tiveram retorno positivo na janela selecionada. Isso corresponde a ${upShare} das ações elegíveis. Cada ação é contada uma vez, independentemente do tamanho de sua alta.`,
+    'Proporção das ações elegíveis com retorno positivo na janela selecionada. Cada ação é contada uma vez.',
   );
   text(
     'ranking-subtitle',
-    `${day(current.start_date)} → ${day(current.end_date)} · fechamento ajustado da Economatica · ${current.excluded} instrumentos excluídos`,
+    `${current.excluded} instrumentos excluídos · critérios e registros na auditoria`,
   );
   if (!current.top20.some((row) => row.ticker === state.ticker))
     state.ticker = current.top20[0]?.ticker || null;

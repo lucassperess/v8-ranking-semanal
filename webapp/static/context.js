@@ -210,7 +210,7 @@
     marketButton.setAttribute('aria-expanded', 'false');
     const marketHelp = el(
       'span',
-      context.market.method,
+      `${context.market.method}\n\nAs referências de mercado e os acontecimentos não comprovam a causa do retorno de cada ação.`,
       'info-tooltip asset-tooltip market-tooltip',
     );
     marketHelp.id = 'market-method-help';
@@ -223,100 +223,124 @@
       marketButton.setAttribute('aria-expanded', String(!open));
     });
     marketInfo.append(marketButton, marketHelp);
-    marketTitle.append(el('h2', 'Contexto geral da semana'), marketInfo);
-    marketPanel.append(
-      marketTitle,
-      el(
-        'p',
-        `${date(context.market.calendar_week.start)} a ${date(context.market.calendar_week.end)} · referências de mercado e acontecimentos do período. Não comprovam a causa do retorno de cada ação.`,
-        'context-muted',
-      ),
-    );
-    const grid = el('div', '', 'market-indicators');
+    marketTitle.append(el('h2', 'Referências de mercado'), marketInfo);
+    const period = context.market.indicators.find((item) => item[selectedWindow])?.[selectedWindow];
+    const heading = el('div', '', 'market-heading');
+    heading.append(marketTitle);
+    if (period)
+      heading.append(
+        el('span', `${date(period.start_date)} → ${date(period.end_date)}`, 'market-period'),
+      );
+    marketPanel.append(heading);
+    const grid = el('div', '', 'market-quotes');
+    const referenceDetails = el('details', '', 'market-reference-details');
+    referenceDetails.append(el('summary', 'Dados e fontes de mercado'));
     for (const indicator of context.market.indicators) {
       const values = indicator[selectedWindow];
-      const card = el('article', '', 'market-card');
+      const quote = el('article', '', 'market-quote');
+      quote.append(el('h3', indicator.label));
       if (!values) {
-        card.append(
-          el('h3', indicator.label),
-          el('p', 'Sem observações válidas nas datas exatas desta janela.'),
-        );
-        grid.append(card);
+        quote.append(el('span', 'Indisponível', 'context-muted'));
+        grid.append(quote);
         continue;
       }
       const value = Number(values.change_pct);
-      card.append(
-        el('h3', indicator.label),
+      quote.append(
         el(
           'strong',
           `${value > 0 ? '+' : ''}${number.format(value)}%`,
-          value < 0 ? 'negative' : 'positive',
+          value < 0 ? 'negative' : value > 0 ? 'positive' : '',
         ),
       );
-      card.append(
+      if (
+        period &&
+        (values.start_date !== period.start_date || values.end_date !== period.end_date)
+      )
+        quote.append(
+          el('p', `${date(values.start_date)} → ${date(values.end_date)}`, 'market-quote-date'),
+        );
+      grid.append(quote);
+      const row = el('div', '', 'market-reference-row');
+      row.append(
+        el('strong', indicator.label),
+        el('span', `${date(values.start_date)} → ${date(values.end_date)}`),
         el(
-          'p',
-          `${date(values.start_date)} → ${date(values.end_date)} · ${selectedWindow === 'primary' ? 'Semana completa' : 'Dentro da semana'}`,
-        ),
-      );
-      card.append(
-        el(
-          'p',
+          'span',
           `${number.format(Number(values.start_value))} → ${number.format(Number(values.end_value))} ${indicator.unit}`,
         ),
       );
-      card.append(
-        el(
-          'p',
-          /PTAX/i.test(indicator.label)
-            ? 'Taxa diária de referência do Banco Central.'
-            : indicator.definition,
-          'context-muted',
-        ),
-        link(indicator.source_label, indicator.source_url),
-      );
-      grid.append(card);
+      if (/PTAX/i.test(indicator.label))
+        row.append(el('span', 'Taxa de referência do Banco Central · venda.', 'context-muted'));
+      row.append(link(indicator.source_label, indicator.source_url));
+      referenceDetails.append(row);
     }
-    marketPanel.append(grid);
-    const newsGroup = el('details', '', 'market-news');
-    newsGroup.open = marketNewsOpen;
-    newsGroup.append(el('summary', 'Acontecimentos da semana · juros, economia e política'));
-    const events = el('div', '', 'market-events');
-    for (const event of context.market.events) {
-      const card = el('article', '', 'market-card');
-      card.append(
-        el('p', event.date_label, 'context-muted'),
-        el('h3', event.title),
-        el('p', event.text),
-        link(event.source_label, event.source_url),
-      );
-      if (event.after_price_end)
-        card.append(
-          el(
-            'strong',
-            `Depois do fechamento de ${date(context.company.price_end)}: não explica os retornos encerrados nessa data.`,
-          ),
-        );
-      events.append(card);
-    }
-    newsGroup.append(events);
-    marketPanel.append(newsGroup);
     if (context.market.missing_indicators?.length)
-      marketPanel.append(
+      referenceDetails.append(
         el(
           'p',
           `Indicadores indisponíveis: ${context.market.missing_indicators.join(', ')}.`,
           'context-muted',
         ),
       );
-    if (context.market.missing_event_topics?.length)
-      marketPanel.append(
+    marketPanel.append(grid, referenceDetails);
+    const events = context.market.events || [];
+    if (events.length) {
+      const preview = el('section', '', 'market-event-preview');
+      preview.append(
+        el('h3', 'Acontecimentos da semana'),
         el(
           'p',
-          `Não foram confirmados acontecimentos nas fontes consultadas para: ${context.market.missing_event_topics.join(', ')}. Isso não significa ausência de acontecimentos.`,
+          `${date(context.market.calendar_week.start)} a ${date(context.market.calendar_week.end)}`,
+          'market-period',
+        ),
+      );
+      for (const event of events.slice(0, 3)) {
+        const row = el('article', '', 'market-event-headline');
+        const headline = el('p', event.title);
+        if (event.after_price_end)
+          headline.append(el('span', 'Posterior ao fechamento final', 'market-event-timing'));
+        const source = link('Fonte', event.source_url);
+        source.setAttribute('aria-label', `${event.title}: ${event.source_label}`);
+        row.append(el('span', event.date_label, 'market-event-date'), headline, source);
+        preview.append(row);
+      }
+      const newsGroup = el('details', '', 'market-news');
+      newsGroup.open = marketNewsOpen;
+      newsGroup.append(el('summary', `Detalhes e fontes · ${events.length} acontecimentos`));
+      const fullEvents = el('div', '', 'market-events');
+      for (const event of events) {
+        const card = el('article', '', 'market-card');
+        card.append(
+          el('p', event.date_label, 'context-muted'),
+          el('h3', event.title),
+          el('p', event.text),
+          link(event.source_label, event.source_url),
+        );
+        if (event.after_price_end)
+          card.append(
+            el(
+              'strong',
+              `Depois do fechamento de ${date(context.company.price_end)}: não explica os retornos encerrados nessa data.`,
+            ),
+          );
+        fullEvents.append(card);
+      }
+      newsGroup.append(fullEvents);
+      preview.append(newsGroup);
+      marketPanel.append(preview);
+    }
+    if (context.market.missing_event_topics?.length) {
+      const coverage = el('details', '', 'market-reference-details');
+      coverage.append(
+        el('summary', 'Cobertura dos acontecimentos'),
+        el(
+          'p',
+          `Sem acontecimentos confirmados nas fontes consultadas para: ${context.market.missing_event_topics.join(', ')}.`,
           'context-muted',
         ),
       );
+      marketPanel.append(coverage);
+    }
   }
   async function load(kind, selection, runId) {
     const generation = ++loadGeneration;

@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.info-button').forEach((tip) => {
     tip.setAttribute('aria-expanded', 'false');
     tip.addEventListener('click', () => {
+      tip.removeAttribute('data-tip-dismissed');
       const open = tip.getAttribute('aria-expanded') === 'true';
       closeTips();
       tip.setAttribute('aria-expanded', String(!open));
@@ -42,8 +43,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!event.target.closest('.metric-info,.period-info,.asset-info,.volume-info')) closeTips();
   });
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') closeTips();
+    if (event.key === 'Escape') {
+      closeTips();
+      document.querySelectorAll('.info-button').forEach((tip) => {
+        tip.setAttribute('data-tip-dismissed', 'true');
+      });
+    }
   });
+  for (const eventName of ['focusin', 'pointerover']) {
+    document.addEventListener(eventName, (event) => {
+      event.target.closest('.info-button')?.removeAttribute('data-tip-dismissed');
+    });
+  }
   const labelTables = () =>
     document.querySelectorAll('.docs-table table,.audit-table').forEach((table) => {
       const headers = [...table.querySelectorAll('thead th')].map((cell) =>
