@@ -208,23 +208,60 @@
                   </div>
                 </dl>
                 <div id="detail-alerts" class="asset-alerts" hidden></div>
-                <div class="chart-controls">
-                  <div class="chart-mode window-switch" role="group" aria-label="Medida do gráfico">
-                    <button id="chart-price" class="active" type="button" aria-pressed="true">
-                      Preços (R$)</button
-                    ><button id="chart-returns" type="button" aria-pressed="false">
-                      Retornos diários (%)
+                <div class="asset-view-toolbar">
+                  <div
+                    class="window-switch asset-view-tabs"
+                    role="tablist"
+                    aria-label="Visualização da ação"
+                  >
+                    <button
+                      id="asset-graph-tab"
+                      type="button"
+                      role="tab"
+                      aria-selected="true"
+                      aria-controls="asset-chart-view"
+                      class="active"
+                    >
+                      Gráfico
+                    </button>
+                    <button
+                      id="asset-context-tab"
+                      type="button"
+                      role="tab"
+                      aria-selected="false"
+                      aria-controls="company-context"
+                      tabindex="-1"
+                    >
+                      Contexto
                     </button>
                   </div>
-                  <select id="asset-select" aria-label="Selecionar ação para o gráfico"></select>
+                  <select id="asset-select" aria-label="Selecionar ação"></select>
                 </div>
-                <p class="chart-help">Toque no gráfico para consultar a data e o valor.</p>
-                <div id="detail-chart" class="detail-chart"></div>
-                <div id="detail-note" class="detail-note"></div>
+                <div id="asset-chart-view" role="tabpanel" aria-labelledby="asset-graph-tab">
+                  <div class="chart-controls">
+                    <div
+                      class="chart-mode window-switch"
+                      role="group"
+                      aria-label="Medida do gráfico"
+                    >
+                      <button id="chart-price" class="active" type="button" aria-pressed="true">
+                        Preços (R$)
+                      </button>
+                      <button id="chart-returns" type="button" aria-pressed="false">
+                        Retornos diários (%)
+                      </button>
+                    </div>
+                  </div>
+                  <p class="chart-help">Toque no gráfico para consultar a data e o valor.</p>
+                  <div id="detail-chart" class="detail-chart"></div>
+                  <div id="detail-note" class="detail-note"></div>
+                </div>
                 <section
                   id="company-context"
                   class="company-context"
-                  aria-label="Contexto da empresa"
+                  role="tabpanel"
+                  aria-labelledby="asset-context-tab"
+                  tabindex="0"
                   hidden
                 ></section>
                 <a class="chart-back" href="#ranking">← Voltar ao ranking</a>

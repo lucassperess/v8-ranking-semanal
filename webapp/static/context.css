@@ -1,10 +1,38 @@
-.detail-panel.has-context {
-  position: static;
-}
 .company-context {
-  margin-top: 24px;
-  padding-top: 20px;
-  border-top: 1px solid var(--line);
+  height: 430px;
+  overflow-y: auto;
+  padding-right: 10px;
+  scrollbar-gutter: stable;
+}
+.asset-view-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 14px 0 20px;
+}
+.asset-view-toolbar select {
+  min-width: 0;
+  max-width: 55%;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #111214;
+  color: var(--text);
+  padding: 9px 12px;
+  font: inherit;
+}
+.asset-view-tabs {
+  flex-shrink: 0;
+}
+.market-news {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-panel);
+  padding: 0 18px;
+}
+.market-news > summary {
+  cursor: pointer;
+  padding: 16px 0;
+  line-height: 1.5;
 }
 .company-context p,
 .market-context p {
@@ -79,6 +107,25 @@
 @media (max-width: 1000px) {
   .market-indicators {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 800px) {
+  .company-context {
+    height: auto;
+    overflow-y: visible;
+    padding-right: 0;
+    scrollbar-gutter: auto;
+  }
+  .asset-view-toolbar {
+    flex-wrap: wrap;
+  }
+  .asset-view-toolbar select {
+    max-width: 100%;
+    min-height: 44px;
+    font-size: 16px;
+  }
+  .asset-view-tabs button {
+    min-height: 44px;
   }
 }
 @media (max-width: 600px) {

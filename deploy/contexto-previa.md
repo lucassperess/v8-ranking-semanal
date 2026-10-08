@@ -47,3 +47,11 @@ Prévia: `http://127.0.0.1:8879/`. Para iniciar novamente:
 ```
 
 A produção e o ponto de recuperação `standby-pre-contexto-2026-10-07` permanecem preservados. Não houve novas chamadas pagas a modelos nesta etapa.
+
+## Ajuste de apresentação: gráfico e contexto em abas
+
+O painel começa em “Gráfico”. A aba “Contexto” substitui a área do gráfico; ticker, retorno, preços e seletor de ação ficam disponíveis nas duas visualizações. A aba escolhida permanece ao mudar ação ou janela. As setas do teclado, Home e End alternam as abas. Ao voltar ao gráfico, ele é redesenhado com a largura disponível.
+
+No desktop, o contexto tem uma área de leitura de 430 px com rolagem própria. No mobile, a altura acompanha o texto e a rolagem é da página. Fontes e detalhes permanecem recolhíveis. Os acontecimentos gerais da semana também começam recolhidos, em seção própria; os quatro indicadores continuam visíveis.
+
+Conferidos no navegador: alternância das abas, atualização de ação e janela sem perda da aba escolhida, navegação por teclado, retorno ao gráfico sem perda de largura e telas de 1366, 390 e 320 px. Nenhum erro de console foi observado.

@@ -710,6 +710,9 @@ async function loadRun(id) {
   }
 }
 document.addEventListener('DOMContentLoaded', () => {
+  window.addEventListener('asset-view-change', () => {
+    if (state.data) renderDetail();
+  });
   $('asset-select').addEventListener('change', (event) => {
     state.ticker = event.target.value;
     renderTable(state.data.windows[state.window].top20);

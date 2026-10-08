@@ -2,6 +2,45 @@
   let context = null;
   let message = '';
   let renderedSelection = '';
+  let activeView = 'graph';
+  function showView(view, focus = false) {
+    activeView = view;
+    for (const name of ['graph', 'context']) {
+      const button = document.getElementById(`asset-${name}-tab`);
+      const selected = name === view;
+      button.classList.toggle('active', selected);
+      button.setAttribute('aria-selected', String(selected));
+      button.tabIndex = selected ? 0 : -1;
+      if (selected && focus) button.focus();
+    }
+    document.getElementById('asset-chart-view').hidden = view !== 'graph';
+    document.getElementById('company-context').hidden = view !== 'context';
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    for (const name of ['graph', 'context']) {
+      const button = document.getElementById(`asset-${name}-tab`);
+      button.addEventListener('click', () => {
+        showView(name);
+        window.dispatchEvent(new Event('asset-view-change'));
+      });
+      button.addEventListener('keydown', (event) => {
+        if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault();
+        showView(
+          event.key === 'Home'
+            ? 'graph'
+            : event.key === 'End'
+              ? 'context'
+              : activeView === 'graph'
+                ? 'context'
+                : 'graph',
+          true,
+        );
+        window.dispatchEvent(new Event('asset-view-change'));
+      });
+    }
+    showView('graph');
+  });
   const el = (tag, value, cls) => {
     const element = document.createElement(tag);
     if (value) element.textContent = value;
@@ -46,10 +85,11 @@
     renderedSelection = selectionKey;
     const companyPanel = document.getElementById('company-context');
     const marketPanel = document.getElementById('market-context');
+    const marketNewsOpen = marketPanel.querySelector('.market-news')?.open || false;
     companyPanel.replaceChildren();
+    companyPanel.scrollTop = 0;
     marketPanel.replaceChildren();
-    companyPanel.hidden = false;
-    document.getElementById('asset-detail').classList.add('has-context');
+    showView(activeView);
     if (!context) {
       companyPanel.append(el('p', message || 'Carregando o contexto revisado…'));
       marketPanel.hidden = true;
@@ -147,6 +187,9 @@
       grid.append(card);
     }
     marketPanel.append(grid);
+    const newsGroup = el('details', '', 'market-news');
+    newsGroup.open = marketNewsOpen;
+    newsGroup.append(el('summary', 'Acontecimentos da semana · juros, economia e política'));
     const events = el('div', '', 'market-events');
     for (const event of context.market.events) {
       const card = el('article', '', 'market-card');
@@ -158,7 +201,8 @@
       );
       events.append(card);
     }
-    marketPanel.append(events, el('p', context.market.method, 'context-muted'));
+    newsGroup.append(events);
+    marketPanel.append(newsGroup, el('p', context.market.method, 'context-muted'));
   }
   async function load(kind, selection) {
     context = null;
